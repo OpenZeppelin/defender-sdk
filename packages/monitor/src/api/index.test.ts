@@ -386,6 +386,8 @@ describe('SentinelClient', () => {
 
       const name = 'some random new name';
 
+      if(!oldBlockSentinel?.addressRules[0]) throw new Error('oldBlockSentinel.addressRules is empty');
+
       const expectedApiRequest = {
         type: oldBlockSentinel.type,
         name,
@@ -545,6 +547,7 @@ describe('SentinelClient', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
       const results = await sentinel.getBlockwatcherIdByNetwork('goerli');
+      if(!results[0]) throw new Error('results is empty');
       expect(results[0].blockWatcherId).toEqual('i-am-the-watcher');
     });
 
