@@ -3,7 +3,7 @@ import { createApi } from './api';
 
 jest.mock('axios');
 
-const apiUrl = 'http://api.defender.openzeppelin.com/';
+const apiUrl = 'http://platform-api.openzeppelin.com/';
 const key = 'key';
 const token = 'token';
 

@@ -13,7 +13,7 @@ export const mockAxiosError: AxiosError = {
       'Content-Type': 'application/json',
       'User-Agent': 'axios/0.21.4',
     },
-    baseURL: 'https://api.defender.openzeppelin.com/',
+    baseURL: 'https://platform-api.openzeppelin.com/',
     timeout: 0,
     xsrfCookieName: 'XSRF-TOKEN',
     xsrfHeaderName: 'X-XSRF-TOKEN',
@@ -54,7 +54,7 @@ export const mockAxiosError: AxiosError = {
       'Authorization: Bearer WRONG\r\n' +
       'Content-Type: application/json\r\n' +
       'User-Agent: axios/0.21.4\r\n' +
-      'Host: api.defender.openzeppelin.com\r\n' +
+      'Host: platform-api.openzeppelin.com\r\n' +
       'Connection: close\r\n' +
       '\r\n',
     _keepAliveTimeout: 0,
@@ -97,7 +97,7 @@ export const mockAxiosError: AxiosError = {
       statusMessage: 'Unauthorized',
       _consuming: false,
       _dumped: false,
-      responseUrl: 'https://api.defender.openzeppelin.com/relayer',
+      responseUrl: 'https://platform-api.openzeppelin.com/relayer',
       redirects: [],
     },
     aborted: false,
@@ -106,7 +106,7 @@ export const mockAxiosError: AxiosError = {
     parser: null,
     maxHeadersCount: null,
     reusedSocket: false,
-    host: 'api.defender.openzeppelin.com',
+    host: 'platform-api.openzeppelin.com',
     protocol: 'https:',
   },
   response: {
@@ -133,7 +133,7 @@ export const mockAxiosError: AxiosError = {
     config: {
       url: '/relayer',
       method: 'get',
-      baseURL: 'https://api.defender.openzeppelin.com/',
+      baseURL: 'https://platform-api.openzeppelin.com/',
       transformRequest: [Array],
       transformResponse: [Array],
       timeout: 0,
@@ -170,7 +170,7 @@ export const mockAxiosError: AxiosError = {
         'Authorization: Bearer WRONG\r\n' +
         'Content-Type: application/json\r\n' +
         'User-Agent: axios/0.21.4\r\n' +
-        'Host: api.defender.openzeppelin.com\r\n' +
+        'Host: platform-api.openzeppelin.com\r\n' +
         'Connection: close\r\n' +
         '\r\n',
       _keepAliveTimeout: 0,
@@ -185,7 +185,7 @@ export const mockAxiosError: AxiosError = {
       parser: null,
       maxHeadersCount: null,
       reusedSocket: false,
-      host: 'api.defender.openzeppelin.com',
+      host: 'platform-api.openzeppelin.com',
       protocol: 'https:',
     },
     data: { message: 'Unauthorized' },

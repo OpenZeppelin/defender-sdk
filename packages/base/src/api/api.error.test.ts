@@ -1,6 +1,6 @@
 import { pick } from 'lodash';
-import { rejectWithDefenderApiError } from './api';
-import { DefenderApiResponseError } from './api-error';
+import { rejectWithPlatformApiError } from './api';
+import { PlatformApiResponseError } from './api-error';
 import { mockAxiosError } from './__mocks__/axios-error';
 
 const expectedRejectObjectStructure = {
@@ -13,12 +13,12 @@ const expectedRejectObjectStructure = {
   request: { path: '/relayer', method: 'GET' },
 };
 
-describe('DefenderApiError', () => {
-  test('request rejection reject with a DefenderApiResponseError that include message, request.path, request.method, response.status, response.statusText, response.data', async () => {
+describe('PlatformApiError', () => {
+  test('request rejection reject with a PlatformApiResponseError that include message, request.path, request.method, response.status, response.statusText, response.data', async () => {
     try {
-      await rejectWithDefenderApiError(mockAxiosError);
+      await rejectWithPlatformApiError(mockAxiosError);
     } catch (error) {
-      expect(error instanceof DefenderApiResponseError).toBe(true);
+      expect(error instanceof PlatformApiResponseError).toBe(true);
 
       expect(error.message).toStrictEqual(expectedRejectObjectStructure.message);
       expect(error.response).toStrictEqual(expectedRejectObjectStructure.response);

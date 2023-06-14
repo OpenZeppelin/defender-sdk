@@ -6,8 +6,8 @@ type PickedAxiosErrorFields<TError> = {
   response: { status: number; statusText: string; data?: TError };
 };
 
-export class DefenderApiResponseError<TErrorData = unknown> extends Error {
-  public name = 'DefenderApiResponseError';
+export class PlatformApiResponseError<TErrorData = unknown> extends Error {
+  public name = 'PlatformApiResponseError';
 
   public request: PickedAxiosErrorFields<TErrorData>['request'];
   public response: PickedAxiosErrorFields<TErrorData>['response'];

@@ -6,4 +6,5 @@ export * from './utils/network';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 export const VERSION = require('../package.json').version;
 
-export const DEFENDER_APP_URL = 'https://defender.openzeppelin.com';
+// TODO: Update to platform.* when available
+export const PLATFORM_APP_URL = 'https://defender.openzeppelin.com';

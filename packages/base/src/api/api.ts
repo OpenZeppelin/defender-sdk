@@ -2,10 +2,10 @@ import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import https from 'https';
 
-import { DefenderApiResponseError } from './api-error';
+import { PlatformApiResponseError } from './api-error';
 
-export function rejectWithDefenderApiError(axiosError: AxiosError): Promise<never> {
-  return Promise.reject(new DefenderApiResponseError(axiosError));
+export function rejectWithPlatformApiError(axiosError: AxiosError): Promise<never> {
+  return Promise.reject(new PlatformApiResponseError(axiosError));
 }
 
 export function createApi(key: string, token: string, apiUrl: string, httpsAgent?: https.Agent): AxiosInstance {
@@ -19,7 +19,7 @@ export function createApi(key: string, token: string, apiUrl: string, httpsAgent
     httpsAgent,
   });
 
-  instance.interceptors.response.use(({ data }) => data, rejectWithDefenderApiError);
+  instance.interceptors.response.use(({ data }) => data, rejectWithPlatformApiError);
   return instance;
 }
 
