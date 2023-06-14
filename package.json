@@ -7,6 +7,12 @@
     "packages/*",
     "examples/*"
   ],
+  "dependencies": {
+    "axios": "^1.4.0",
+    "lodash": "^4.17.19",
+    "node-fetch": "^3.3.1",
+    "@openzeppelin/platform-sdk-base-client": "0.1.0"
+  },
   "devDependencies": {
     "@npmcli/fs": "3.1.0",
     "@types/glob": "^8.1.0",

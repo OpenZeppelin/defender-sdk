@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/platform-sdk-base",
+  "name": "@openzeppelin/platform-sdk-base-client",
   "version": "0.1.0",
   "description": "",
   "main": "./lib/index.js",
@@ -26,10 +26,7 @@
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^6.0.1",
-    "async-retry": "^1.3.3",
-    "axios": "^1.4.0",
-    "lodash": "^4.17.19",
-    "node-fetch": "^3.3.1"
+    "async-retry": "^1.3.3"
   },
   "publishConfig": {
     "access": "public"
