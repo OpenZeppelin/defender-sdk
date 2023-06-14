@@ -1,5 +1,5 @@
-export type SentinelConfirmation = number | 'safe' | 'finalized';
-export type ExternalCreateSubscriberRequest =
+export type MonitorConfirmation = number | 'safe' | 'finalized';
+export type ExternalCreateMonitorRequest =
   | ExternalCreateBlockSubscriberRequest
   | ExternalCreateFortaSubscriberRequest;
 
@@ -25,7 +25,7 @@ export interface ExternalBaseCreateSubscriberRequest {
 }
 export interface ExternalCreateBlockSubscriberRequest extends ExternalBaseCreateSubscriberRequest {
   network: Network;
-  confirmLevel?: SentinelConfirmation; // blockWatcherId
+  confirmLevel?: MonitorConfirmation; // blockWatcherId
   addresses: string[];
   abi?: string;
   eventConditions?: EventCondition[];
@@ -183,7 +183,7 @@ export interface NotificationReference {
   [k: string]: unknown;
 }
 
-// Copied from ui/src/components/sentinel/types.ts
+// Copied from ui/src/components/monitor/types.ts
 
 import { EventFragment, FunctionFragment } from '@ethersproject/abi';
 

@@ -2,17 +2,17 @@ import { BaseApiClient, Network } from '@openzeppelin/platform-sdk-base-client';
 import {
   ConditionSet,
   CreateSubscriberRequest,
-  ExternalCreateBlockSubscriberRequest as CreateBlockSentinelRequest,
-  ExternalCreateFortaSubscriberRequest as CreateFortaSentinelRequest,
-  ExternalCreateSubscriberRequest as CreateSentinelRequest,
-  ExternalUpdateSubscriberRequest as UpdateSentinelRequest,
+  ExternalCreateBlockSubscriberRequest as CreateBlockMonitorRequest,
+  ExternalCreateFortaSubscriberRequest as CreateFortaMonitorRequest,
+  ExternalCreateMonitorRequest as CreateMonitorRequest,
+  ExternalUpdateSubscriberRequest as UpdateMonitorRequest,
   NotificationReference,
   PartialCreateBlockSubscriberRequest,
   PartialCreateFortaSubscriberRequest,
   CreateFortaSubscriberResponse,
   CreateBlockSubscriberResponse,
 } from '../models/subscriber';
-import { DeletedSentinelResponse, CreateSentinelResponse, ListSentinelResponse } from '../models/response';
+import { DeletedMonitorResponse, CreateMonitorResponse, ListMonitorResponse } from '../models/response';
 import {
   CreateNotificationRequest,
   DeleteNotificationRequest,
@@ -23,13 +23,15 @@ import {
 import { BlockWatcher } from '../models/blockwatcher';
 
 import _ from 'lodash';
-import getConditionSets, { getSentinelConditions } from '../utils';
+import getConditionSets, { getMonitorConditions } from '../utils';
 import {
   NotificationCategory as NotificationCategoryResponse,
   UpdateNotificationCategoryRequest,
 } from '../models/category';
 
-export class SentinelClient extends BaseApiClient {
+console.log('ppppp BaseApiClient', BaseApiClient)
+
+export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
   }
@@ -40,61 +42,61 @@ export class SentinelClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to platform-api.* url when available
-    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/monitor/';
   }
 
-  public async list(): Promise<ListSentinelResponse> {
+  public async list(): Promise<ListMonitorResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/subscribers`);
     });
   }
 
-  public async create(sentinel: CreateSentinelRequest): Promise<CreateSentinelResponse> {
-    const newSentinel = await this.constructSentinelRequest(sentinel);
+  public async create(monitor: CreateMonitorRequest): Promise<CreateMonitorResponse> {
+    const newMonitor = await this.constructMonitorRequest(monitor);
     return this.apiCall(async (api) => {
-      return await api.post(`/subscribers`, newSentinel);
+      return await api.post(`/subscribers`, newMonitor);
     });
   }
 
-  public async get(sentinelId: string): Promise<CreateSentinelResponse> {
+  public async get(monitorId: string): Promise<CreateMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers/${sentinelId}`);
+      return await api.get(`/subscribers/${monitorId}`);
     });
   }
 
-  public async update(sentinelId: string, sentinel: UpdateSentinelRequest): Promise<CreateSentinelResponse> {
-    const currentSentinel = await this.get(sentinelId);
+  public async update(monitorId: string, monitor: UpdateMonitorRequest): Promise<CreateMonitorResponse> {
+    const currentMonitor = await this.get(monitorId);
 
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${sentinelId}`,
-        await this.mergeApiSentinelWithUpdateSentinel(currentSentinel, sentinel),
+        `/subscribers/${monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, monitor),
       );
     });
   }
 
-  public async delete(sentinelId: string): Promise<DeletedSentinelResponse> {
+  public async delete(monitorId: string): Promise<DeletedMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/subscribers/${sentinelId}`);
+      return await api.delete(`/subscribers/${monitorId}`);
     });
   }
 
-  public async pause(sentinelId: string): Promise<CreateSentinelRequest> {
-    const sentinel = await this.get(sentinelId);
+  public async pause(monitorId: string): Promise<CreateMonitorRequest> {
+    const monitor = await this.get(monitorId);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${sentinelId}`,
-        await this.mergeApiSentinelWithUpdateSentinel(sentinel, { type: sentinel.type, paused: true }),
+        `/subscribers/${monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, { type: monitor.type, paused: true }),
       );
     });
   }
 
-  public async unpause(sentinelId: string): Promise<CreateSentinelRequest> {
-    const sentinel = await this.get(sentinelId);
+  public async unpause(monitorId: string): Promise<CreateMonitorRequest> {
+    const monitor = await this.get(monitorId);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${sentinelId}`,
-        await this.mergeApiSentinelWithUpdateSentinel(sentinel, { type: sentinel.type, paused: false }),
+        `/subscribers/${monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, { type: monitor.type, paused: false }),
       );
     });
   }
@@ -159,16 +161,16 @@ export class SentinelClient extends BaseApiClient {
     return (await this.listBlockwatchers()).filter((blockwatcher) => blockwatcher.network === network);
   }
 
-  private constructFortaSentinel(sentinel: CreateFortaSentinelRequest): PartialCreateFortaSubscriberRequest {
+  private constructFortaMonitor(monitor: CreateFortaMonitorRequest): PartialCreateFortaSubscriberRequest {
     return {
       fortaRule: {
-        addresses: sentinel.addresses,
-        agentIDs: sentinel.agentIDs,
-        conditions: sentinel.fortaConditions,
-        autotaskCondition: sentinel.autotaskCondition ? { autotaskId: sentinel.autotaskCondition } : undefined,
+        addresses: monitor.addresses,
+        agentIDs: monitor.agentIDs,
+        conditions: monitor.fortaConditions,
+        autotaskCondition: monitor.autotaskCondition ? { autotaskId: monitor.autotaskCondition } : undefined,
       },
-      privateFortaNodeId: sentinel.privateFortaNodeId,
-      network: sentinel.network,
+      privateFortaNodeId: monitor.privateFortaNodeId,
+      network: monitor.network,
       type: 'FORTA',
     };
   }
@@ -177,10 +179,10 @@ export class SentinelClient extends BaseApiClient {
     return abi ? (typeof abi === 'string' ? abi : JSON.stringify(abi)) : undefined;
   }
 
-  private async constructBlockSentinel(
-    sentinel: CreateBlockSentinelRequest,
+  private async constructBlockMonitor(
+    monitor: CreateBlockMonitorRequest,
   ): Promise<PartialCreateBlockSubscriberRequest> {
-    const blockWatchers = await this.getBlockwatcherIdByNetwork(sentinel.network);
+    const blockWatchers = await this.getBlockwatcherIdByNetwork(monitor.network);
 
     let blockWatcherId;
     
@@ -191,8 +193,8 @@ export class SentinelClient extends BaseApiClient {
       blockWatcherId = blockWatchersSorted[0]?.blockWatcherId;
     }
 
-    if (sentinel.confirmLevel) {
-      blockWatcherId = blockWatchers.find((watcher) => watcher.confirmLevel === sentinel.confirmLevel)?.blockWatcherId;
+    if (monitor.confirmLevel) {
+      blockWatcherId = blockWatchers.find((watcher) => watcher.confirmLevel === monitor.confirmLevel)?.blockWatcherId;
     }
 
     if (!blockWatcherId) {
@@ -201,8 +203,8 @@ export class SentinelClient extends BaseApiClient {
 
     const newConditions: ConditionSet[] = [];
 
-    if (sentinel.eventConditions) {
-      sentinel.eventConditions.map((condition) => {
+    if (monitor.eventConditions) {
+      monitor.eventConditions.map((condition) => {
         newConditions.push({
           eventConditions: [condition],
           txConditions: [],
@@ -211,8 +213,8 @@ export class SentinelClient extends BaseApiClient {
       });
     }
 
-    if (sentinel.functionConditions) {
-      sentinel.functionConditions.map((condition) => {
+    if (monitor.functionConditions) {
+      monitor.functionConditions.map((condition) => {
         newConditions.push({
           eventConditions: [],
           txConditions: [],
@@ -221,19 +223,19 @@ export class SentinelClient extends BaseApiClient {
       });
     }
 
-    if (sentinel.txCondition) {
+    if (monitor.txCondition) {
       newConditions.push({
         eventConditions: [],
-        txConditions: [{ status: 'any', expression: sentinel.txCondition }],
+        txConditions: [{ status: 'any', expression: monitor.txCondition }],
         functionConditions: [],
       });
     }
 
-    const conditions = getSentinelConditions([
+    const conditions = getMonitorConditions([
       {
         conditions: newConditions,
-        abi: this.normaliseABI(sentinel.abi),
-        addresses: sentinel.addresses,
+        abi: this.normaliseABI(monitor.abi),
+        addresses: monitor.addresses,
       },
     ]);
 
@@ -242,22 +244,22 @@ export class SentinelClient extends BaseApiClient {
       addressRules: [
         {
           conditions: getConditionSets(conditions.txExpression, conditions.events, conditions.functions),
-          autotaskCondition: sentinel.autotaskCondition ? { autotaskId: sentinel.autotaskCondition } : undefined,
-          addresses: sentinel.addresses,
-          abi: this.normaliseABI(sentinel.abi),
+          autotaskCondition: monitor.autotaskCondition ? { autotaskId: monitor.autotaskCondition } : undefined,
+          addresses: monitor.addresses,
+          abi: this.normaliseABI(monitor.abi),
         },
       ],
-      network: sentinel.network as Network,
+      network: monitor.network as Network,
       type: 'BLOCK',
     };
   }
 
-  private async getNotifications(sentinelChannels: string[]): Promise<NotificationReference[]> {
+  private async getNotifications(monitorChannels: string[]): Promise<NotificationReference[]> {
     const notifications: NotificationReference[] = [];
     const notificationChannels = await this.listNotificationChannels();
 
     notificationChannels.map((channel) => {
-      if (sentinelChannels.includes(channel.notificationId)) {
+      if (monitorChannels.includes(channel.notificationId)) {
         notifications.push(channel);
       }
     });
@@ -265,41 +267,41 @@ export class SentinelClient extends BaseApiClient {
     return notifications;
   }
 
-  private async constructSentinelRequest(sentinel: CreateSentinelRequest): Promise<CreateSubscriberRequest> {
+  private async constructMonitorRequest(monitor: CreateMonitorRequest): Promise<CreateSubscriberRequest> {
     let partialResponse: PartialCreateBlockSubscriberRequest | PartialCreateFortaSubscriberRequest;
 
-    if (sentinel.type === 'BLOCK') {
-      partialResponse = await this.constructBlockSentinel(sentinel);
-    } else if (sentinel.type === 'FORTA') {
-      partialResponse = this.constructFortaSentinel(sentinel);
+    if (monitor.type === 'BLOCK') {
+      partialResponse = await this.constructBlockMonitor(monitor);
+    } else if (monitor.type === 'FORTA') {
+      partialResponse = this.constructFortaMonitor(monitor);
     } else {
-      throw new Error(`Invalid sentinel type. Type must be FORTA or BLOCK`);
+      throw new Error(`Invalid monitor type. Type must be FORTA or BLOCK`);
     }
 
-    const notificationChannels = await this.getNotifications(sentinel.notificationChannels);
+    const notificationChannels = await this.getNotifications(monitor.notificationChannels);
 
     return {
       ...partialResponse,
-      name: sentinel.name,
-      alertThreshold: sentinel.alertThreshold,
+      name: monitor.name,
+      alertThreshold: monitor.alertThreshold,
       notifyConfig: {
         notifications: notificationChannels,
-        notificationCategoryId: _.isEmpty(notificationChannels) ? sentinel.notificationCategoryId : undefined,
-        autotaskId: sentinel.autotaskTrigger ? sentinel.autotaskTrigger : undefined,
-        timeoutMs: sentinel.alertTimeoutMs ? sentinel.alertTimeoutMs : 0,
-        messageBody: sentinel.alertMessageBody ? sentinel.alertMessageBody : undefined,
-        messageSubject: sentinel.alertMessageSubject ? sentinel.alertMessageSubject : undefined,
+        notificationCategoryId: _.isEmpty(notificationChannels) ? monitor.notificationCategoryId : undefined,
+        autotaskId: monitor.autotaskTrigger ? monitor.autotaskTrigger : undefined,
+        timeoutMs: monitor.alertTimeoutMs ? monitor.alertTimeoutMs : 0,
+        messageBody: monitor.alertMessageBody ? monitor.alertMessageBody : undefined,
+        messageSubject: monitor.alertMessageSubject ? monitor.alertMessageSubject : undefined,
       },
-      paused: sentinel.paused ? sentinel.paused : false,
-      riskCategory: sentinel.riskCategory,
-      stackResourceId: sentinel.stackResourceId,
+      paused: monitor.paused ? monitor.paused : false,
+      riskCategory: monitor.riskCategory,
+      stackResourceId: monitor.stackResourceId,
     };
   }
 
-  private toCreateBlockSentinelRequest(sentinel: CreateBlockSubscriberResponse): CreateBlockSentinelRequest {
-    const rule = sentinel.addressRules[0];
+  private toCreateBlockMonitorRequest(monitor: CreateBlockSubscriberResponse): CreateBlockMonitorRequest {
+    const rule = monitor.addressRules[0];
     
-    if(!rule) throw new Error(`No rule found for monitor ${sentinel.name}`);
+    if(!rule) throw new Error(`No rule found for monitor ${monitor.name}`);
     
     let txCondition;
 
@@ -316,61 +318,61 @@ export class SentinelClient extends BaseApiClient {
       eventConditions: _.flatten(rule.conditions.map((condition) => condition.eventConditions)),
       functionConditions: _.flatten(rule.conditions.map((condition) => condition.functionConditions)),
       txCondition,
-      name: sentinel.name,
-      paused: sentinel.paused,
-      alertThreshold: sentinel.alertThreshold,
+      name: monitor.name,
+      paused: monitor.paused,
+      alertThreshold: monitor.alertThreshold,
       autotaskCondition: rule.autotaskCondition?.autotaskId,
-      autotaskTrigger: sentinel.notifyConfig?.autotaskId,
-      alertTimeoutMs: sentinel.notifyConfig?.timeoutMs,
-      alertMessageSubject: sentinel.notifyConfig?.messageSubject,
-      alertMessageBody: sentinel.notifyConfig?.messageBody,
-      notificationChannels: sentinel.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
-      notificationCategoryId: sentinel.notifyConfig?.notificationCategoryId,
-      network: sentinel.network,
-      confirmLevel: parseInt(_.last(sentinel.blockWatcherId.split('-')) as string), // We're sure there is always a last number if the convention is followd
+      autotaskTrigger: monitor.notifyConfig?.autotaskId,
+      alertTimeoutMs: monitor.notifyConfig?.timeoutMs,
+      alertMessageSubject: monitor.notifyConfig?.messageSubject,
+      alertMessageBody: monitor.notifyConfig?.messageBody,
+      notificationChannels: monitor.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
+      notificationCategoryId: monitor.notifyConfig?.notificationCategoryId,
+      network: monitor.network,
+      confirmLevel: parseInt(_.last(monitor.blockWatcherId.split('-')) as string), // We're sure there is always a last number if the convention is followd
     };
   }
 
-  private toCreateFortaSentinelRequest(sentinel: CreateFortaSubscriberResponse): CreateFortaSentinelRequest {
+  private toCreateFortaMonitorRequest(monitor: CreateFortaSubscriberResponse): CreateFortaMonitorRequest {
     return {
       type: 'FORTA',
-      name: sentinel.name,
-      paused: sentinel.paused,
-      alertThreshold: sentinel.alertThreshold,
-      autotaskCondition: sentinel.fortaRule.autotaskCondition?.autotaskId,
-      autotaskTrigger: sentinel.notifyConfig?.autotaskId,
-      alertTimeoutMs: sentinel.notifyConfig?.timeoutMs,
-      alertMessageSubject: sentinel.notifyConfig?.messageSubject,
-      alertMessageBody: sentinel.notifyConfig?.messageBody,
-      notificationChannels: sentinel.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
-      notificationCategoryId: sentinel.notifyConfig?.notificationCategoryId,
-      network: sentinel.network,
-      fortaLastProcessedTime: sentinel.fortaLastProcessedTime,
-      addresses: sentinel.fortaRule.addresses,
-      agentIDs: sentinel.fortaRule.agentIDs,
-      fortaConditions: sentinel.fortaRule.conditions,
-      privateFortaNodeId: sentinel.privateFortaNodeId,
+      name: monitor.name,
+      paused: monitor.paused,
+      alertThreshold: monitor.alertThreshold,
+      autotaskCondition: monitor.fortaRule.autotaskCondition?.autotaskId,
+      autotaskTrigger: monitor.notifyConfig?.autotaskId,
+      alertTimeoutMs: monitor.notifyConfig?.timeoutMs,
+      alertMessageSubject: monitor.notifyConfig?.messageSubject,
+      alertMessageBody: monitor.notifyConfig?.messageBody,
+      notificationChannels: monitor.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
+      notificationCategoryId: monitor.notifyConfig?.notificationCategoryId,
+      network: monitor.network,
+      fortaLastProcessedTime: monitor.fortaLastProcessedTime,
+      addresses: monitor.fortaRule.addresses,
+      agentIDs: monitor.fortaRule.agentIDs,
+      fortaConditions: monitor.fortaRule.conditions,
+      privateFortaNodeId: monitor.privateFortaNodeId,
     };
   }
 
-  private toCreateSentinelRequest(sentinel: CreateSentinelResponse): CreateSentinelRequest {
-    if (sentinel.type === 'BLOCK') return this.toCreateBlockSentinelRequest(sentinel);
-    if (sentinel.type === 'FORTA') return this.toCreateFortaSentinelRequest(sentinel);
+  private toCreateMonitorRequest(monitor: CreateMonitorResponse): CreateMonitorRequest {
+    if (monitor.type === 'BLOCK') return this.toCreateBlockMonitorRequest(monitor);
+    if (monitor.type === 'FORTA') return this.toCreateFortaMonitorRequest(monitor);
 
-    throw new Error(`Invalid sentinel type. Type must be FORTA or BLOCK`);
+    throw new Error(`Invalid monitor type. Type must be FORTA or BLOCK`);
   }
 
-  private mergeApiSentinelWithUpdateSentinel(
-    apiSentinel: CreateSentinelResponse,
-    sentinel: UpdateSentinelRequest,
+  private mergeApiMonitorWithUpdateMonitor(
+    apiMonitor: CreateMonitorResponse,
+    monitor: UpdateMonitorRequest,
   ): Promise<CreateSubscriberRequest> {
-    const newSentinel: CreateSentinelRequest = this.toCreateSentinelRequest(apiSentinel);
+    const newMonitor: CreateMonitorRequest = this.toCreateMonitorRequest(apiMonitor);
 
-    const updatedProperties = Object.keys(sentinel) as Array<keyof typeof sentinel>;
+    const updatedProperties = Object.keys(monitor) as Array<keyof typeof monitor>;
     for (const prop of updatedProperties) {
-      (newSentinel[prop] as any) = sentinel[prop];
+      (newMonitor[prop] as any) = monitor[prop];
     }
 
-    return this.constructSentinelRequest(newSentinel);
+    return this.constructMonitorRequest(newMonitor);
   }
 }

@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { SentinelClient } from '.';
+import { MonitorClient } from '.';
 import { NotificationResponse } from '..';
 import { BlockWatcher } from '../models/blockwatcher';
 import {
@@ -8,7 +8,7 @@ import {
   GetNotificationRequest,
   UpdateNotificationRequest,
 } from '../models/notification';
-import { CreateSentinelResponse } from '../models/response';
+import { CreateMonitorResponse } from '../models/response';
 import { ExternalCreateBlockSubscriberRequest, ExternalCreateFortaSubscriberRequest } from '../models/subscriber';
 
 jest.mock('@openzeppelin/platform-sdk-base-client');
@@ -18,15 +18,15 @@ jest.mock('axios');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createAuthenticatedApi } = require('@openzeppelin/platform-sdk-base-client');
 
-type TestSentinelClient = Omit<SentinelClient, 'api'> & {
+type TestMonitorClient = Omit<MonitorClient, 'api'> & {
   api: AxiosInstance;
   apiKey: string;
   apiSecret: string;
   init: () => Promise<void>;
 };
 
-describe('SentinelClient', () => {
-  let sentinel: TestSentinelClient;
+describe('MonitorClient', () => {
+  let monitor: TestMonitorClient;
   let listBlockwatchersSpy: jest.SpyInstance<Promise<BlockWatcher[]>>;
   let listNotificationChannelsSpy: jest.SpyInstance<Promise<NotificationResponse[]>>;
   const ABI = `[{
@@ -70,7 +70,7 @@ describe('SentinelClient', () => {
   }]`;
   const createBlockPayload: ExternalCreateBlockSubscriberRequest = {
     type: 'BLOCK',
-    name: 'Test BLOCK sentinel',
+    name: 'Test BLOCK monitor',
     addresses: ['0xdead'],
     notificationChannels: [],
     network: 'goerli',
@@ -93,7 +93,7 @@ describe('SentinelClient', () => {
   };
   const createFortaPayload: ExternalCreateFortaSubscriberRequest = {
     type: 'FORTA',
-    name: 'Test FORTA sentinel',
+    name: 'Test FORTA monitor',
     network: 'goerli',
     addresses: ['0xdead'],
     notificationChannels: [],
@@ -101,10 +101,10 @@ describe('SentinelClient', () => {
     fortaConditions: { minimumScannerCount: 1 },
   };
 
-  const oldBlockSentinel: CreateSentinelResponse = {
+  const oldBlockMonitor: CreateMonitorResponse = {
     type: 'BLOCK',
     subscriberId: 'old-subscriber-id',
-    name: 'Previous sentinel',
+    name: 'Previous monitor',
     paused: false,
     blockWatcherId: 'i-am-the-watcher',
     network: 'goerli',
@@ -124,9 +124,9 @@ describe('SentinelClient', () => {
   };
 
   beforeEach(() => {
-    sentinel = new SentinelClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown as TestSentinelClient;
+    monitor = new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown as TestMonitorClient;
     createAuthenticatedApi.mockClear();
-    listBlockwatchersSpy = jest.spyOn(sentinel, 'listBlockwatchers').mockImplementation(async () => [
+    listBlockwatchersSpy = jest.spyOn(monitor, 'listBlockwatchers').mockImplementation(async () => [
       {
         blockWatcherId: 'i-am-the-watcher',
         network: createBlockPayload.network,
@@ -134,54 +134,54 @@ describe('SentinelClient', () => {
       } as BlockWatcher,
     ]);
     listNotificationChannelsSpy = jest
-      .spyOn(sentinel, 'listNotificationChannels')
+      .spyOn(monitor, 'listNotificationChannels')
       .mockImplementation(async () => [{} as NotificationResponse]);
   });
 
   describe('constructor', () => {
     it('sets API key and secret', () => {
-      expect(sentinel.apiKey).toBe('key');
-      expect(sentinel.apiSecret).toBe('secret');
+      expect(monitor.apiKey).toBe('key');
+      expect(monitor.apiSecret).toBe('secret');
     });
 
     it("doesn't call init more than once", async () => {
-      await sentinel.list();
-      await sentinel.list();
-      await sentinel.list();
+      await monitor.list();
+      await monitor.list();
+      await monitor.list();
 
       expect(createAuthenticatedApi).toBeCalledTimes(1);
     });
 
     it('throws an init exception at the correct context', async () => {
-      sentinel.init = () => {
+      monitor.init = () => {
         throw new Error('Init failed');
       };
-      await expect(sentinel.create(createBlockPayload)).rejects.toThrow(/init failed/i);
-      expect(sentinel.api).toBe(undefined);
+      await expect(monitor.create(createBlockPayload)).rejects.toThrow(/init failed/i);
+      expect(monitor.api).toBe(undefined);
     });
   });
 
   describe('renew Id token on apiCall throw', () => {
     beforeEach(async () => {
       // Call first so it's not supposed to be called again
-      await sentinel.init();
+      await monitor.init();
     });
 
     it('renews token', async () => {
-      jest.spyOn(sentinel.api, 'get').mockImplementationOnce(() => {
+      jest.spyOn(monitor.api, 'get').mockImplementationOnce(() => {
         return Promise.reject({ response: { status: 401, statusText: 'Unauthorized' } });
       });
 
-      await sentinel.list();
-      expect(sentinel.api.get).toBeCalledWith('/subscribers');
+      await monitor.list();
+      expect(monitor.api.get).toBeCalledWith('/subscribers');
       expect(createAuthenticatedApi).toBeCalledTimes(2); // First time and renewal
     });
   });
 
   describe('list', () => {
     it('calls API correctly', async () => {
-      await sentinel.list();
-      expect(sentinel.api.get).toBeCalledWith('/subscribers');
+      await monitor.list();
+      expect(monitor.api.get).toBeCalledWith('/subscribers');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -224,8 +224,8 @@ describe('SentinelClient', () => {
         },
       };
 
-      await sentinel.create(createBlockPayload);
-      expect(sentinel.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      await monitor.create(createBlockPayload);
+      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
@@ -251,8 +251,8 @@ describe('SentinelClient', () => {
         },
       };
 
-      await sentinel.create(createFortaPayload);
-      expect(sentinel.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      await monitor.create(createFortaPayload);
+      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
     it('passes correct Private FORTA type arguments to the API', async () => {
@@ -278,23 +278,23 @@ describe('SentinelClient', () => {
         },
       };
 
-      await sentinel.create({ ...createFortaPayload, privateFortaNodeId: '0x123' });
-      expect(sentinel.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      await monitor.create({ ...createFortaPayload, privateFortaNodeId: '0x123' });
+      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
 
   describe('get', () => {
     it('passes correct arguments to the API', async () => {
-      await sentinel.get('i-am-the-watcher');
-      expect(sentinel.api.get).toBeCalledWith('/subscribers/i-am-the-watcher');
+      await monitor.get('i-am-the-watcher');
+      expect(monitor.api.get).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
 
   describe('update', () => {
     it('passes correct BLOCK type arguments to the API', async () => {
-      jest.spyOn(sentinel, 'get').mockImplementation(async () => oldBlockSentinel);
+      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const { name, network, paused, type, addresses, abi, txCondition, eventConditions, functionConditions } =
         createBlockPayload;
@@ -332,17 +332,17 @@ describe('SentinelClient', () => {
         },
       };
 
-      const sentinelId = 'i-am-the-BLOCK-watcher';
-      await sentinel.update(sentinelId, createBlockPayload);
-      expect(sentinel.api.put).toBeCalledWith(`/subscribers/${sentinelId}`, expectedApiRequest);
+      const monitorId = 'i-am-the-BLOCK-watcher';
+      await monitor.update(monitorId, createBlockPayload);
+      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
     it('passes correct FORTA type arguments to the API', async () => {
-      const oldSentinel: CreateSentinelResponse = {
+      const oldMonitor: CreateMonitorResponse = {
         type: 'FORTA',
         subscriberId: 'old-subscriber-id',
-        name: 'Previous sentinel',
+        name: 'Previous monitor',
         paused: false,
         network: 'goerli',
         fortaRule: {
@@ -352,7 +352,7 @@ describe('SentinelClient', () => {
           },
         },
       };
-      jest.spyOn(sentinel, 'get').mockImplementation(async () => oldSentinel);
+      jest.spyOn(monitor, 'get').mockImplementation(async () => oldMonitor);
 
       const { name, paused, type, addresses, fortaConditions, network } = createFortaPayload;
 
@@ -375,59 +375,59 @@ describe('SentinelClient', () => {
         },
       };
 
-      const sentinelId = 'i-am-the-FORTA-watcher';
-      await sentinel.update(sentinelId, createFortaPayload);
-      expect(sentinel.api.put).toBeCalledWith(`/subscribers/${sentinelId}`, expectedApiRequest);
+      const monitorId = 'i-am-the-FORTA-watcher';
+      await monitor.update(monitorId, createFortaPayload);
+      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
     it('does not override with nulls or undefined when only passing one argument', async () => {
-      jest.spyOn(sentinel, 'get').mockImplementation(async () => oldBlockSentinel);
+      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const name = 'some random new name';
 
-      if(!oldBlockSentinel?.addressRules[0]) throw new Error('oldBlockSentinel.addressRules is empty');
+      if(!oldBlockMonitor?.addressRules[0]) throw new Error('oldBlockMonitor.addressRules is empty');
 
       const expectedApiRequest = {
-        type: oldBlockSentinel.type,
+        type: oldBlockMonitor.type,
         name,
         addressRules: [
           {
-            abi: oldBlockSentinel.addressRules[0].abi,
-            addresses: oldBlockSentinel.addressRules[0].addresses,
+            abi: oldBlockMonitor.addressRules[0].abi,
+            addresses: oldBlockMonitor.addressRules[0].addresses,
             autotaskCondition: undefined,
             conditions: [],
           },
         ],
-        blockWatcherId: oldBlockSentinel.blockWatcherId,
-        network: oldBlockSentinel.network,
+        blockWatcherId: oldBlockMonitor.blockWatcherId,
+        network: oldBlockMonitor.network,
         notifyConfig: {
           autotaskId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
         alertThreshold: undefined,
-        paused: oldBlockSentinel.paused,
+        paused: oldBlockMonitor.paused,
       };
 
-      const sentinelId = 'i-am-the-BLOCK-watcher';
-      await sentinel.update(sentinelId, {
+      const monitorId = 'i-am-the-BLOCK-watcher';
+      await monitor.update(monitorId, {
         type: 'BLOCK',
         name,
       });
-      expect(sentinel.api.put).toBeCalledWith(`/subscribers/${sentinelId}`, expectedApiRequest);
+      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
 
   describe('pause', () => {
     it('passes correct arguments to the API', async () => {
-      jest.spyOn(sentinel, 'get').mockImplementation(async () => oldBlockSentinel);
+      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
-      const sentinelId = 'i-am-the-BLOCK-watcher';
-      await sentinel.pause(sentinelId);
-      expect(sentinel.api.put).toBeCalledWith(
-        `/subscribers/${sentinelId}`,
+      const monitorId = 'i-am-the-BLOCK-watcher';
+      await monitor.pause(monitorId);
+      expect(monitor.api.put).toBeCalledWith(
+        `/subscribers/${monitorId}`,
         expect.objectContaining({
           paused: true,
         }),
@@ -438,12 +438,12 @@ describe('SentinelClient', () => {
 
   describe('unpause', () => {
     it('passes correct arguments to the API', async () => {
-      jest.spyOn(sentinel, 'get').mockImplementation(async () => oldBlockSentinel);
+      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
-      const sentinelId = 'i-am-the-BLOCK-watcher';
-      await sentinel.unpause(sentinelId);
-      expect(sentinel.api.put).toBeCalledWith(
-        `/subscribers/${sentinelId}`,
+      const monitorId = 'i-am-the-BLOCK-watcher';
+      await monitor.unpause(monitorId);
+      expect(monitor.api.put).toBeCalledWith(
+        `/subscribers/${monitorId}`,
         expect.objectContaining({
           paused: false,
         }),
@@ -454,8 +454,8 @@ describe('SentinelClient', () => {
 
   describe('delete', () => {
     it('passes correct arguments to the API', async () => {
-      await sentinel.delete('i-am-the-watcher');
-      expect(sentinel.api.delete).toBeCalledWith('/subscribers/i-am-the-watcher');
+      await monitor.delete('i-am-the-watcher');
+      expect(monitor.api.delete).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -471,8 +471,8 @@ describe('SentinelClient', () => {
         },
         paused: false,
       };
-      await sentinel.createNotificationChannel(notification);
-      expect(sentinel.api.post).toBeCalledWith(`/notifications/${type}`, notification);
+      await monitor.createNotificationChannel(notification);
+      expect(monitor.api.post).toBeCalledWith(`/notifications/${type}`, notification);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -480,8 +480,8 @@ describe('SentinelClient', () => {
   describe('listNotificationChannels', () => {
     it('calls API correctly', async () => {
       listNotificationChannelsSpy.mockRestore();
-      await sentinel.listNotificationChannels();
-      expect(sentinel.api.get).toBeCalledWith('/notifications');
+      await monitor.listNotificationChannels();
+      expect(monitor.api.get).toBeCalledWith('/notifications');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -494,8 +494,8 @@ describe('SentinelClient', () => {
         type,
         notificationId,
       };
-      await sentinel.deleteNotificationChannel(notification);
-      expect(sentinel.api.delete).toBeCalledWith(`/notifications/${type}/${notification.notificationId}`);
+      await monitor.deleteNotificationChannel(notification);
+      expect(monitor.api.delete).toBeCalledWith(`/notifications/${type}/${notification.notificationId}`);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -508,8 +508,8 @@ describe('SentinelClient', () => {
         type,
         notificationId,
       };
-      await sentinel.getNotificationChannel(notification);
-      expect(sentinel.api.get).toBeCalledWith(`/notifications/${type}/${notification.notificationId}`);
+      await monitor.getNotificationChannel(notification);
+      expect(monitor.api.get).toBeCalledWith(`/notifications/${type}/${notification.notificationId}`);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -528,8 +528,8 @@ describe('SentinelClient', () => {
         },
         paused: false,
       };
-      await sentinel.updateNotificationChannel(notification);
-      expect(sentinel.api.put).toBeCalledWith(`/notifications/${type}/${notificationId}`, notification);
+      await monitor.updateNotificationChannel(notification);
+      expect(monitor.api.put).toBeCalledWith(`/notifications/${type}/${notificationId}`, notification);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -537,8 +537,8 @@ describe('SentinelClient', () => {
   describe('listBlockwatchers', () => {
     it('calls API correctly', async () => {
       listBlockwatchersSpy.mockRestore();
-      await sentinel.listBlockwatchers();
-      expect(sentinel.api.get).toBeCalledWith('/blockwatchers');
+      await monitor.listBlockwatchers();
+      expect(monitor.api.get).toBeCalledWith('/blockwatchers');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -546,13 +546,13 @@ describe('SentinelClient', () => {
   describe('getBlockwatcherIdByNetwork', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
-      const results = await sentinel.getBlockwatcherIdByNetwork('goerli');
+      const results = await monitor.getBlockwatcherIdByNetwork('goerli');
       if(!results[0]) throw new Error('results is empty');
       expect(results[0].blockWatcherId).toEqual('i-am-the-watcher');
     });
 
     it('does not find blockwatchers for network when there are none', async () => {
-      const results = await sentinel.getBlockwatcherIdByNetwork('non-supported');
+      const results = await monitor.getBlockwatcherIdByNetwork('non-supported');
       expect(results).toEqual([]);
     });
   });

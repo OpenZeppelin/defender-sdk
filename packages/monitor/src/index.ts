@@ -1,6 +1,6 @@
-export { SentinelClient } from './api';
-export { ExternalCreateSubscriberRequest as CreateSentinelRequest } from './models/subscriber';
-export { CreateSentinelResponse, DeletedSentinelResponse } from './models/response';
+export { MonitorClient } from './api';
+export { ExternalCreateMonitorRequest as CreateMonitorRequest } from './models/subscriber';
+export { CreateMonitorResponse, DeletedMonitorResponse } from './models/response';
 export {
   NotificationType,
   SaveNotificationRequest as NotificationRequest,

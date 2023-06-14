@@ -98,7 +98,7 @@ export function toConditionField(description: Description, condition: Condition)
 
 const bySignature = (e: EventFragment | FunctionFragment): string => e.format();
 
-export function getSentinelConditions(addressRules: AddressRule[]): Conditions {
+export function getMonitorConditions(addressRules: AddressRule[]): Conditions {
   let txExpression = '';
   let eventConditions: EventCondition[] = [];
   let functionConditions: FunctionCondition[] = [];

@@ -1,13 +1,13 @@
 import { CreateBlockSubscriberResponse, CreateFortaSubscriberResponse } from './subscriber';
 
-export interface DeletedSentinelResponse {
+export interface DeletedMonitorResponse {
   message: string;
 }
 
-export type CreateSentinelResponse = CreateBlockSubscriberResponse | CreateFortaSubscriberResponse;
+export type CreateMonitorResponse = CreateBlockSubscriberResponse | CreateFortaSubscriberResponse;
 
-export type ListSentinelResponse = {
-  items: CreateSentinelResponse[];
+export type ListMonitorResponse = {
+  items: CreateMonitorResponse[];
   notificationsQuotaUsage: number;
   blockProcessedQuotaUsage: number;
   fortaAlertsQuotaUsage: number;
