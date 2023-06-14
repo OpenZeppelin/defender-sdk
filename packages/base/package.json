@@ -6,10 +6,10 @@
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "test": "yarn test:unit",
+    "test": "npm run test:unit",
     "test:unit": "jest --verbose",
     "watch": "tsc -w",
-    "prepare": "yarn build"
+    "prepare": "npm run build"
   },
   "files": [
     "lib",

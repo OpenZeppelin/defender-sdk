@@ -30,5 +30,5 @@ repos:
       - id: style-fixes
         name: Run lint & format with fixes
         exclude: (\.md|\.sh)$
-        entry: yarn style
+        entry: npm run style
         language: system
