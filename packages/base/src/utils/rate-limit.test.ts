@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { rateLimitModule } from './rate-limit';
 
 describe('utils/rate-limit', () => {
@@ -14,7 +15,7 @@ describe('utils/rate-limit', () => {
       rateLimit.checkRateFor(rateEntryName);
 
       fail('Should have errored');
-    } catch (error) {
+    } catch (error: any) {
       expect(error.message).toBe('Rate limit exceeded');
     }
   });
