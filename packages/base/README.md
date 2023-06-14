@@ -1,5 +1,5 @@
-# Defender Base Client
+# Platform Base Client
 
-OpenZeppelin Defender provides a security operations (SecOps) platform for Ethereum with built-in best practices. Development teams implement Defender to ship faster and minimize security risks.
+The OpenZeppelin Platform provides a security operations (SecOps) platform for Ethereum with built-in best practices. Development teams implement the Platform to ship faster and minimize security risks.
 
-Certain components of Defender, such as Admin or Relay, can be interacted with programmatically via an API. This library provides the base class for the clients.
+Certain components of the Platform, such as Monitors or Relay, can be interacted with programmatically via an API. This library provides the base class for the clients.
