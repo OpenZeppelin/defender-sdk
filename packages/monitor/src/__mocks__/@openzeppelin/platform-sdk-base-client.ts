@@ -1,5 +1,7 @@
 import { AxiosInstance } from 'axios';
 
+console.log('plpllplpllpl is this being pulled in?')
+
 abstract class MockBaseApiClient extends jest.requireActual('@openzeppelin/platform-sdk-base-client').BaseApiClient {
   // TODO: Sentinel tests are too tightly coupled with the base client implementation
   private api: Promise<AxiosInstance> | undefined;
