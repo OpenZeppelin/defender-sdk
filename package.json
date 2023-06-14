@@ -1,8 +1,8 @@
 {
-  "name": "@openzeppelin/defender-client",
-  "version": "1.45.0-rc.1",
+  "name": "@openzeppelin/platform-sdk",
+  "version": "0.1.0",
   "private": true,
-  "description": "Root package for the defender-client set of packages",
+  "description": "The OpenZeppelin Platform Software Development Kit",
   "workspaces": [
     "packages/*",
     "examples/*"
@@ -20,7 +20,6 @@
     "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^25.2.4",
-    "lerna": "^6.6.2",
     "prettier": "^2.0.4",
     "ts-jest": "^25.3.0",
     "typescript": "^3.6.2",
@@ -38,24 +37,18 @@
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
     "test": "nx run-many -t test --skip-nx-cache",
     "style": "yarn lint && yarn format",
-    "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
-    "versionup:rcminor": "lerna version --preid=rc --no-git-tag-version --yes --exact --no-changelog",
-    "versionup:preminor": "yarn versionup:rcminor preminor",
-    "versionup:prerelease": "yarn versionup:rcminor prerelease",
-    "versionup:stableminor": "lerna version minor --conventional-graduate --no-git-tag-version --yes --exact --no-changelog",
-    "publish-rc": "yarn run publish-stable --dist-tag rc --pre-dist-tag rc --no-git-tag-version",
-    "publish-stable": "lerna publish --no-git-tag-version --ignore-scripts --yes --exact --no-changelog --force-publish"
+    "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenZeppelin/defender-client.git"
+    "url": "git+https://github.com/OpenZeppelin/platform-sdk.git"
   },
-  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
+  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OpenZeppelin/defender-client/issues"
+    "url": "https://github.com/OpenZeppelin/platform-sdk/issues"
   },
-  "homepage": "https://github.com/OpenZeppelin/defender-client#readme",
+  "homepage": "https://github.com/OpenZeppelin/platform-sdk#readme",
   "dependencies": {
     "nx": "^16.1.4"
   },
