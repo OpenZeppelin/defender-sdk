@@ -36,8 +36,8 @@ export class MonitorClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    // TODO: update to platform-api.* url when available
-    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/monitor/';
+    // TODO: update to platform-api.* url (and /sentinel) when available
+    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
   }
 
   public async list(): Promise<ListMonitorResponse> {
