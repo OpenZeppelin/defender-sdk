@@ -2,21 +2,21 @@
 require('dotenv').config();
 
 const abi = require('./abis/erc721.json');
-const { SentinelClient } = require('defender-sentinel-client');
+const { Platform } = require('@openzeppelin/platform-sdk');
 
 async function main() {
-  const creds = { apiKey: process.env.ADMIN_API_KEY, apiSecret: process.env.ADMIN_API_SECRET };
-  const client = new SentinelClient(creds);
+  const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
+  const client = new Platform(creds);
 
   let notification;
   // use an existing notification channel
-  const notificationChannels = await client.listNotificationChannels();
+  const notificationChannels = await client.monitor.listNotificationChannels();
   if (notificationChannels.length > 0) {
     // Select your desired notification channel
     notification = notificationChannels[0];
   } else {
     // OR create a new notification channel
-    notification = await client.createNotificationChannel({
+    notification = await client.monitor.createNotificationChannel({
       type: 'email',
       name: 'MyEmailNotification',
       config: {
@@ -31,7 +31,7 @@ async function main() {
     network: 'goerli',
     // optional
     confirmLevel: 1, // if not set, we pick the blockwatcher for the chosen network with the lowest offset
-    name: 'MyNewSentinel',
+    name: 'MyNewMonitor',
     addresses: ['0x0f06aB75c7DD497981b75CD82F6566e3a5CAd8f2'],
     abi: JSON.stringify(abi),
     // optional
@@ -64,7 +64,7 @@ async function main() {
 
   const fortaRequestParameters = {
     type: 'FORTA', // BLOCK or FORTA
-    name: 'MyNewFortaSentinel',
+    name: 'MyNewFortaMonitor',
     // optional
     addresses: ['0x0f06aB75c7DD497981b75CD82F6566e3a5CAd8f2'],
     // optional
@@ -93,9 +93,9 @@ async function main() {
   };
 
   // call create with the request parameters
-  const sentinelResponse = await client.create(blockRequestParameters); // or fortaRequestParameters
+  const monitorResponse = await client.monitor.create(blockRequestParameters); // or fortaRequestParameters
 
-  console.log(sentinelResponse);
+  console.log(monitorResponse);
 }
 
 if (require.main === module) {
