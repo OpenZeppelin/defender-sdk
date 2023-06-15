@@ -13,13 +13,6 @@ import {
   CreateBlockSubscriberResponse,
 } from '../models/subscriber';
 import { DeletedMonitorResponse, CreateMonitorResponse, ListMonitorResponse } from '../models/response';
-import {
-  CreateNotificationRequest,
-  DeleteNotificationRequest,
-  GetNotificationRequest,
-  NotificationSummary as NotificationResponse,
-  UpdateNotificationRequest,
-} from '../models/notification';
 import { BlockWatcher } from '../models/blockwatcher';
 
 import _ from 'lodash';
@@ -28,6 +21,8 @@ import {
   NotificationCategory as NotificationCategoryResponse,
   UpdateNotificationCategoryRequest,
 } from '../models/category';
+import { NotificationResponse } from '..';
+import { CreateNotificationRequest, DeleteNotificationRequest, GetNotificationRequest, UpdateNotificationRequest } from '../models/notification';
 
 console.log('ppppp BaseApiClient', BaseApiClient)
 
@@ -51,56 +46,86 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  public async create(monitor: CreateMonitorRequest): Promise<CreateMonitorResponse> {
-    const newMonitor = await this.constructMonitorRequest(monitor);
+  public async create(params: CreateMonitorRequest): Promise<CreateMonitorResponse> {
+    const newMonitor = await this.constructMonitorRequest(params);
     return this.apiCall(async (api) => {
       return await api.post(`/subscribers`, newMonitor);
     });
   }
 
-  public async get(monitorId: string): Promise<CreateMonitorResponse> {
+  // TODO: maybe add a named type here
+  public async get(params: { monitorId: string }): Promise<CreateMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers/${monitorId}`);
+      return await api.get(`/subscribers/${params.monitorId}`);
     });
   }
 
-  public async update(monitorId: string, monitor: UpdateMonitorRequest): Promise<CreateMonitorResponse> {
-    const currentMonitor = await this.get(monitorId);
+  public async update(params: UpdateMonitorRequest): Promise<CreateMonitorResponse> {
+    const currentMonitor = await this.get({monitorId: params.monitorId});
 
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${monitorId}`,
-        await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, monitor),
+        `/subscribers/${params.monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params),
       );
     });
   }
 
-  public async delete(monitorId: string): Promise<DeletedMonitorResponse> {
+  // TODO: maybe add a named type here
+  public async delete(params: { monitorId: string }): Promise<DeletedMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/subscribers/${monitorId}`);
+      return await api.delete(`/subscribers/${params.monitorId}`);
     });
   }
 
-  public async pause(monitorId: string): Promise<CreateMonitorRequest> {
-    const monitor = await this.get(monitorId);
+  public async pause(params: { monitorId: string }): Promise<CreateMonitorRequest> {
+    const monitor = await this.get({ monitorId: params.monitorId });
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${monitorId}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, { type: monitor.type, paused: true }),
+        `/subscribers/${params.monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, { monitorId: params.monitorId, type: monitor.type, paused: true }),
       );
     });
   }
 
-  public async unpause(monitorId: string): Promise<CreateMonitorRequest> {
-    const monitor = await this.get(monitorId);
+  public async unpause(params: { monitorId: string }): Promise<CreateMonitorRequest> {
+    const monitor = await this.get({monitorId: params.monitorId });
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${monitorId}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, { type: monitor.type, paused: false }),
+        `/subscribers/${params.monitorId}`,
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, { monitorId: params.monitorId, type: monitor.type, paused: false }),
       );
     });
   }
 
+  public async listNotificationCategories(): Promise<NotificationCategoryResponse[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/notifications/categories`);
+    });
+  }
+
+  public async getNotificationCategory(params: { categoryId: string }): Promise<NotificationCategoryResponse> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/notifications/categories/${params.categoryId}`);
+    });
+  }
+
+  public async updateNotificationCategory(
+    params: UpdateNotificationCategoryRequest,
+  ): Promise<NotificationCategoryResponse> {
+    return this.apiCall(async (api) => {
+      return await api.put(`/notifications/categories/${params.categoryId}`, params);
+    });
+  }
+
+  // TODO: should this be  part of public API?
+  public async listBlockwatchers(): Promise<BlockWatcher[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/blockwatchers`);
+    });
+  }
+
+  // TODO: move to notificationChannel API: https://www.notion.so/openzeppelin/Platform-SDK-c94a3bc3902c4f619d0287d6ad898ebf?pvs=4#4f8df5b64e8446dd9921a6fef87a1958
   public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/notifications/${notification.type}`, notification);
@@ -128,32 +153,6 @@ export class MonitorClient extends BaseApiClient {
   public async updateNotificationChannel(notification: UpdateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.put(`/notifications/${notification.type}/${notification.notificationId}`, notification);
-    });
-  }
-
-  public async listNotificationCategories(): Promise<NotificationCategoryResponse[]> {
-    return this.apiCall(async (api) => {
-      return await api.get(`/notifications/categories`);
-    });
-  }
-
-  public async getNotificationCategory(categoryId: string): Promise<NotificationCategoryResponse> {
-    return this.apiCall(async (api) => {
-      return await api.get(`/notifications/categories/${categoryId}`);
-    });
-  }
-
-  public async updateNotificationCategory(
-    category: UpdateNotificationCategoryRequest,
-  ): Promise<NotificationCategoryResponse> {
-    return this.apiCall(async (api) => {
-      return await api.put(`/notifications/categories/${category.categoryId}`, category);
-    });
-  }
-
-  public async listBlockwatchers(): Promise<BlockWatcher[]> {
-    return this.apiCall(async (api) => {
-      return await api.get(`/blockwatchers`);
     });
   }
 
@@ -213,7 +212,10 @@ export class MonitorClient extends BaseApiClient {
       });
     }
 
+    
     if (monitor.functionConditions) {
+      console.log('zzzzzzzz', monitor.functionConditions)
+      console.log('aaaaaaaa', monitor.functionConditions.map)
       monitor.functionConditions.map((condition) => {
         newConditions.push({
           eventConditions: [],
@@ -258,6 +260,7 @@ export class MonitorClient extends BaseApiClient {
     const notifications: NotificationReference[] = [];
     const notificationChannels = await this.listNotificationChannels();
 
+    console.log('is this the failed map?', notificationChannels)
     notificationChannels.map((channel) => {
       if (monitorChannels.includes(channel.notificationId)) {
         notifications.push(channel);
@@ -370,7 +373,9 @@ export class MonitorClient extends BaseApiClient {
 
     const updatedProperties = Object.keys(monitor) as Array<keyof typeof monitor>;
     for (const prop of updatedProperties) {
-      (newMonitor[prop] as any) = monitor[prop];
+      if (prop !== 'monitorId') {
+        (newMonitor[prop] as any) = monitor[prop];
+      }
     }
 
     return this.constructMonitorRequest(newMonitor);
