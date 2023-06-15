@@ -48,6 +48,7 @@ export interface ExternalCreateFortaSubscriberRequest extends ExternalBaseCreate
 }
 export interface ExternalUpdateBlockSubscriberRequest
   extends Omit<ExternalCreateBlockSubscriberRequest, 'network' | 'addresses' | 'name' | 'notificationChannels'> {
+  monitorId: string;
   network?: Network;
   addresses?: string[];
   name?: string;
@@ -56,6 +57,7 @@ export interface ExternalUpdateBlockSubscriberRequest
 
 export interface ExternalUpdateFortaSubscriberRequest
   extends Omit<ExternalCreateFortaSubscriberRequest, 'fortaConditions' | 'name' | 'notificationChannels'> {
+  monitorId: string;
   fortaConditions?: FortaConditionSet;
   name?: string;
   notificationChannels?: string[];

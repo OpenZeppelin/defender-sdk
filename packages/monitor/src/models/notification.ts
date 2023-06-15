@@ -1,4 +1,5 @@
 // Copied from openzeppelin/defender/models/src/types/notification-*.req.d.ts
+// TODO: move to notification package
 
 import { PagerDutyConfig } from './pager-duty';
 import { OpsgenieConfig } from './opsgenie';
