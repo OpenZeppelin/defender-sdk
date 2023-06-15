@@ -24,8 +24,6 @@ import {
 import { NotificationResponse } from '..';
 import { CreateNotificationRequest, DeleteNotificationRequest, GetNotificationRequest, UpdateNotificationRequest } from '../models/notification';
 
-console.log('ppppp BaseApiClient', BaseApiClient)
-
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
@@ -214,8 +212,6 @@ export class MonitorClient extends BaseApiClient {
 
     
     if (monitor.functionConditions) {
-      console.log('zzzzzzzz', monitor.functionConditions)
-      console.log('aaaaaaaa', monitor.functionConditions.map)
       monitor.functionConditions.map((condition) => {
         newConditions.push({
           eventConditions: [],
@@ -260,7 +256,6 @@ export class MonitorClient extends BaseApiClient {
     const notifications: NotificationReference[] = [];
     const notificationChannels = await this.listNotificationChannels();
 
-    console.log('is this the failed map?', notificationChannels)
     notificationChannels.map((channel) => {
       if (monitorChannels.includes(channel.notificationId)) {
         notifications.push(channel);
