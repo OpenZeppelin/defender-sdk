@@ -1,0 +1,33 @@
+{
+  "name": "@openzeppelin/platform-sdk-base-client",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/async-retry": "^1.4.4",
+    "aws-sdk": "^2.1366.0"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^6.0.1",
+    "async-retry": "^1.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

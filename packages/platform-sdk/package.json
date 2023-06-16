@@ -1,0 +1,28 @@
+{
+  "name": "@openzeppelin/platform-sdk",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/platform-sdk-base-client": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
