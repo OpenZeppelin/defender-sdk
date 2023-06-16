@@ -1,4 +1,5 @@
 import { MonitorClient } from "@openzeppelin/platform-sdk-monitor-client";
+import { Newable, ClientParams } from "./types";
 
 interface PlatformOptions {
     apiKey?: string;
@@ -7,10 +8,9 @@ interface PlatformOptions {
     relayerApiSecret?: string;
 }
 
-// TODO: improve client and return typing
-function getClient(client: any, credentials: {apiKey: string | undefined; apiSecret: string | undefined}): any {
+function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams>): T {
     if(!credentials.apiKey || !credentials.apiSecret) throw new Error(`API key and secret are required`);
-    return new client(credentials);
+    return new Client(credentials);
 };
 
 export class Platform {
