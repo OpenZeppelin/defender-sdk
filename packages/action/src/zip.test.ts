@@ -21,12 +21,12 @@ describe('zip', () => {
 
   describe('zipFolder', () => {
     it('zips folder', async function () {
-      const zip = await zipFolder(resolve(__dirname, '../fixtures/valid'));
+      const zip = await zipFolder(resolve(__dirname, './fixtures/valid'));
       await expectZip(zip);
     });
 
     it('validates index.js', async function () {
-      expect(() => zipFolder(resolve(__dirname, '../fixtures/invalid'))).rejects.toThrowError(/entrypoint/);
+      expect(() => zipFolder(resolve(__dirname, './fixtures/invalid'))).rejects.toThrowError(/entrypoint/);
     });
   });
 });
