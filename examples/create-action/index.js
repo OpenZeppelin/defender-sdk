@@ -16,8 +16,8 @@ async function main() {
     paused: false,
   };
 
-  const createdAutotask = await client.action.create(myAction)
-  console.log(createdAutotask);
+  const createdAction = await client.action.create(myAction)
+  console.log(createdAction);
 }
 
 if (require.main === module) {

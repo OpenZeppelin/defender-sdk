@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { BaseApiClient } from '@openzeppelin/defender-base-client';
+import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
 import {
   CreateActionRequest,
   UpdateActionRequest,
@@ -22,18 +22,16 @@ type SourceFiles = {
 
 export class ActionClient extends BaseApiClient {
   protected getPoolId(): string {
-    // migrate env variable name to => DEFENDER_ACTION_POOL_ID
-    return process.env.DEFENDER_AUTOTASK_POOL_ID || 'us-west-2_94f3puJWv';
+    return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
   }
 
   protected getPoolClientId(): string {
-    // migrate env variable name to => DEFENDER_ACTION_POOL_CLIENT_ID
-    return process.env.DEFENDER_AUTOTASK_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
+    return process.env.PLATFORM_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
   }
 
   protected getApiUrl(): string {
-    // TODO: update to platform-api.* url (and /action) when available + env variable name
-    return process.env.DEFENDER_AUTOTASK_API_URL || 'https://defender-api.openzeppelin.com/autotask/';
+    // TODO: update to platform-api.* url (and /action) when available
+    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/autotask/';
   }
 
   public async list(): Promise<ActionListResponse> {

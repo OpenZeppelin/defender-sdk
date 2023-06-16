@@ -6,7 +6,7 @@
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node update-code.js"
   },
   "dependencies": {
     "@openzeppelin/platform-sdk": "^0.1.0",
