@@ -1,0 +1,26 @@
+{
+  "name": "@openzeppelin/platform-sdk-actions-client",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose --passWithNoTests",
+    "watch": "tsc -w"
+  },  
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

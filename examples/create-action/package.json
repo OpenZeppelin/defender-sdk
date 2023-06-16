@@ -1,0 +1,15 @@
+{
+  "name": "@openzeppelin/platform-sdk-example-create-action",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "author": "Nami Shah <nami@openzeppelin.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@openzeppelin/platform-sdk": "^0.1.0",
+    "dotenv": "^16.1.4"
+  }
+}
