@@ -19,7 +19,7 @@ import {
 } from '../relayer';
 
 export const RelaySignerApiUrl = () =>
-  process.env.DEFENDER_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
+  process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
 
 export class RelayClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -52,14 +52,15 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async update(relayerId: string, relayerUpdateParams: UpdateRelayerRequest): Promise<RelayerGetResponse> {
+  public async update({ relayerId, relayerUpdateParams }: {relayerId: string, relayerUpdateParams: UpdateRelayerRequest }): Promise<RelayerGetResponse> {
     const currentRelayer = await this.get(relayerId);
 
     if (relayerUpdateParams.policies) {
-      const updatedRelayer = await this.updatePolicies(relayerId, {
+      const relayerPolicies = {
         ...currentRelayer.policies,
         ...relayerUpdateParams.policies,
-      });
+      };
+      const updatedRelayer = await this.updatePolicies({ relayerId, relayerPolicies });
       // if policies are the only update, return
       if (Object.keys(relayerUpdateParams).length === 1) return updatedRelayer;
     }
@@ -72,28 +73,28 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  private async updatePolicies(
+  private async updatePolicies({ relayerId, relayerPolicies }: {
     relayerId: string,
     relayerPolicies: UpdateRelayerPoliciesRequest,
-  ): Promise<RelayerGetResponse> {
+  }): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.put(`/relayers/${relayerId}`, relayerPolicies);
     });
   }
 
-  public async createKey(relayerId: string, stackResourceId?: string): Promise<RelayerApiKey> {
+  public async createKey({ relayerId, stackResourceId }: {relayerId: string, stackResourceId?: string}): Promise<RelayerApiKey> {
     return this.apiCall(async (api) => {
       return await api.post(`/relayers/${relayerId}/keys`, { stackResourceId });
     });
   }
 
-  public async listKeys(relayerId: string): Promise<RelayerApiKey[]> {
+  public async listKeys({ relayerId }: { relayerId: string }): Promise<RelayerApiKey[]> {
     return this.apiCall(async (api) => {
       return await api.get(`/relayers/${relayerId}/keys`);
     });
   }
 
-  public async deleteKey(relayerId: string, keyId: string): Promise<DeleteRelayerApiKeyResponse> {
+  public async deleteKey({ relayerId, keyId }: { relayerId: string, keyId: string }): Promise<DeleteRelayerApiKeyResponse> {
     return this.apiCall(async (api) => {
       return await api.delete(`/relayers/${relayerId}/keys/${keyId}`);
     });
@@ -109,11 +110,11 @@ export class ApiRelayer extends BaseApiClient implements IRelayer {
   }
 
   protected getPoolId(): string {
-    return process.env.DEFENDER_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
+    return process.env.PLATFORM_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
   }
 
   protected getPoolClientId(): string {
-    return process.env.DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
+    return process.env.PLATFORM_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
   }
 
   protected getApiUrl(): string {
@@ -126,52 +127,52 @@ export class ApiRelayer extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+  public async sendTransaction({ payload }: { payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.post('/txs', payload)) as RelayerTransaction;
     });
   }
 
-  public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+  public async replaceTransactionById({ id, payload }: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
     });
   }
 
-  public async replaceTransactionByNonce(
+  public async replaceTransactionByNonce({ nonce, payload }: {
     nonce: number,
     payload: RelayerTransactionPayload,
-  ): Promise<RelayerTransaction> {
+  }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
     });
   }
 
-  public async signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload> {
+  public async signTypedData({ payload }: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload> {
     return this.apiCall(async (api) => {
       return (await api.post('/sign-typed-data', payload)) as SignedMessagePayload;
     });
   }
 
-  public async sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
+  public async sign({ payload }: { payload: SignMessagePayload }): Promise<SignedMessagePayload> {
     return this.apiCall(async (api) => {
       return (await api.post('/sign', payload)) as SignedMessagePayload;
     });
   }
 
-  public async query(id: string): Promise<RelayerTransaction> {
+  public async query({ id }: { id: string }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.get(`txs/${id}`)) as RelayerTransaction;
     });
   }
 
-  public async list(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
+  public async list({ criteria }: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]> {
     return this.apiCall(async (api) => {
       return (await api.get(`txs`, { params: criteria ?? {} })) as RelayerTransaction[];
     });
   }
 
-  public async call(method: string, params: string[]): Promise<JsonRpcResponse> {
+  public async call({ method, params }: { method: string, params: string[] }): Promise<JsonRpcResponse> {
     return this.apiCall(async (api) => {
       return (await api.post(`/relayer/jsonrpc`, {
         method,

@@ -215,14 +215,14 @@ export type ListTransactionsRequest = {
 
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse>;
-  sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-  replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-  replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-  query(id: string): Promise<RelayerTransaction>;
-  list(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
-  sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
-  signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
-  call(method: string, params: string[]): Promise<JsonRpcResponse>;
+  sendTransaction(params :{ payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  replaceTransactionById(params: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  replaceTransactionByNonce(params: { nonce: number, payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  query(params: { id: string }): Promise<RelayerTransaction>;
+  list(params: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]>;
+  sign(params: { payload: SignMessagePayload }): Promise<SignedMessagePayload>;
+  signTypedData(params: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload>;
+  call(params: { method: string, params: string[] }): Promise<JsonRpcResponse>;
 }
 
 export function isRelayer(params: any): params is Relayer {
@@ -250,38 +250,38 @@ export class Relayer implements IRelayer {
     return this.relayer.getRelayer();
   }
 
-  public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
-    return this.relayer.sign(payload);
+  public sign({ payload }: { payload: SignMessagePayload }): Promise<SignedMessagePayload> {
+    return this.relayer.sign({ payload });
   }
 
-  public signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload> {
-    return this.relayer.signTypedData(payload);
+  public signTypedData({ payload }: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload> {
+    return this.relayer.signTypedData({ payload });
   }
 
-  public sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+  public sendTransaction({ payload }: { payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
     validatePayload(payload);
-    return this.relayer.sendTransaction(payload);
+    return this.relayer.sendTransaction({ payload });
   }
 
-  public replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+  public replaceTransactionById({ id, payload }: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
     validatePayload(payload);
-    return this.relayer.replaceTransactionById(id, payload);
+    return this.relayer.replaceTransactionById({ id, payload });
   }
 
-  public replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+  public replaceTransactionByNonce({ nonce, payload }: { nonce: number, payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
     validatePayload(payload);
-    return this.relayer.replaceTransactionByNonce(nonce, payload);
+    return this.relayer.replaceTransactionByNonce({ nonce, payload });
   }
 
-  public query(id: string): Promise<RelayerTransaction> {
-    return this.relayer.query(id);
+  public query({ id }: { id: string }): Promise<RelayerTransaction> {
+    return this.relayer.query({ id });
   }
 
-  public list(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
-    return this.relayer.list(criteria);
+  public list({ criteria }: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]> {
+    return this.relayer.list({ criteria });
   }
 
-  public call(method: string, params: string[]): Promise<JsonRpcResponse> {
-    return this.relayer.call(method, params);
+  public call({ method, params }: { method: string, params: string[] }): Promise<JsonRpcResponse> {
+    return this.relayer.call({ method, params });
   }
 }
