@@ -83,7 +83,7 @@ export class ProposalClient extends BaseApiClient {
       // create simulation
       if (simulate && !isBatchProposal(proposal.contract)) {
         try {
-          simulation = await this.simulateProposal({
+          simulation = await this.simulate({
             contractId: response.contractId, 
             proposalId: response.proposalId,
             transaction: {
@@ -138,7 +138,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async getProposalSimulation({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<SimulationResponse> {
+  public async getSimulation({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.get(
         `/contracts/${contractId}/proposals/${proposalId}/simulation`,
@@ -147,7 +147,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async simulateProposal({ contractId, proposalId, transaction }: SimulateProposalParams): Promise<SimulationResponse> {
+  public async simulate({ contractId, proposalId, transaction }: SimulateProposalParams): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.post(
         `/contracts/${contractId}/proposals/${proposalId}/simulate`,
