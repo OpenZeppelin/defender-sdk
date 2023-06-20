@@ -23,15 +23,15 @@ type SimulateProposalParams = {
 
 export class ProposalClient extends BaseApiClient {
   protected getPoolId(): string {
-    return process.env.PLATFIRM_POOL_ID || 'us-west-2_94f3puJWv';
+    return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
   }
 
   protected getPoolClientId(): string {
-    return process.env.PLATFIRM_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
+    return process.env.PLATFORM_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
   }
 
   protected getApiUrl(): string {
-    return process.env.PLATFIRM_API_URL || 'https://defender-api.openzeppelin.com/admin/';
+    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
   }
 
   // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-client
