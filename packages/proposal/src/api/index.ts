@@ -9,6 +9,18 @@ import { SimulationRequest as SimulationTransaction, SimulationResponse } from '
 import { ExternalApiProposalResponse as ProposalResponse, ProposalResponseWithUrl } from '../models/response';
 import { getProposalUrl } from './utils';
 
+type CreateProposalParams = {
+    proposal: CreateProposalRequest,
+    simulate?: boolean,
+    overrideSimulationOpts?: SimulationTransaction
+};
+
+type SimulateProposalParams = {
+    contractId: string,
+    proposalId: string,
+    transaction: SimulationTransaction,
+};
+
 export class ProposalClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.PLATFIRM_POOL_ID || 'us-west-2_94f3puJWv';
@@ -23,9 +35,7 @@ export class ProposalClient extends BaseApiClient {
   }
 
   // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-client
-  public async createProposal(
-    proposal: CreateProposalRequest & { simulate?: boolean; overrideSimulationOpts?: SimulationTransaction },
-  ): Promise<ProposalResponseWithUrl> {
+  public async create({ proposal, simulate, overrideSimulationOpts }: CreateProposalParams ): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       let simulation: SimulationResponse | undefined = undefined;
       let simulationData = '0x';
@@ -33,14 +43,14 @@ export class ProposalClient extends BaseApiClient {
         isArray(contract);
 
       // handle simulation checks before creating proposal
-      if (proposal.simulate) {
+      if (simulate) {
         // we do not support simulating batch proposals from the client.
         if (isBatchProposal(proposal.contract)) {
           throw new Error(
             'Simulating a batch proposal is currently not supported from the API. Use the Defender UI to manually trigger a simulation.',
           );
         }
-        const overrideData = proposal.overrideSimulationOpts?.transactionData.data;
+        const overrideData = overrideSimulationOpts?.transactionData.data;
         simulationData = overrideData ?? '0x';
         // only check if we haven't overridden the simulation data property
         if (!overrideData) {
@@ -71,18 +81,22 @@ export class ProposalClient extends BaseApiClient {
       const response = (await api.post('/proposals', proposal)) as ProposalResponse;
 
       // create simulation
-      if (proposal.simulate && !isBatchProposal(proposal.contract)) {
+      if (simulate && !isBatchProposal(proposal.contract)) {
         try {
-          simulation = await this.simulateProposal(response.contractId, response.proposalId, {
-            transactionData: {
-              from: proposal.via,
-              to: proposal.contract.address,
-              data: simulationData,
-              value: proposal.metadata?.sendValue ?? '0',
-              ...proposal.overrideSimulationOpts?.transactionData,
-            },
-            blockNumber: proposal.overrideSimulationOpts?.blockNumber,
-          });
+          simulation = await this.simulateProposal({
+            contractId: response.contractId, 
+            proposalId: response.proposalId,
+            transaction: {
+							transactionData: {
+							from: proposal.via,
+							to: proposal.contract.address,
+							data: simulationData,
+							value: proposal.metadata?.sendValue ?? '0',
+							...overrideSimulationOpts?.transactionData,
+							},
+							blockNumber: overrideSimulationOpts?.blockNumber,
+            }
+					});
         } catch (e) {
           // simply log so we don't block createProposal response
           console.warn('Simulation Failed:', e);
@@ -92,21 +106,21 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async listProposals(opts: { includeArchived?: boolean } = {}): Promise<ProposalResponseWithUrl[]> {
+  public async list(opts: { includeArchived?: boolean } = {}): Promise<ProposalResponseWithUrl[]> {
     return this.apiCall(async (api) => {
       const response = (await api.get('/proposals', { params: opts })) as ProposalResponse[];
       return response.map((proposal) => ({ ...proposal, url: getProposalUrl(proposal) }));
     });
   }
 
-  public async getProposal(contractId: string, proposalId: string): Promise<ProposalResponseWithUrl> {
+  public async get({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.get(`/contracts/${contractId}/proposals/${proposalId}`)) as ProposalResponse;
       return { ...response, url: getProposalUrl(response) };
     });
   }
 
-  public async archiveProposal(contractId: string, proposalId: string): Promise<ProposalResponseWithUrl> {
+  public async archive({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
         archived: true,
@@ -115,7 +129,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async unarchiveProposal(contractId: string, proposalId: string): Promise<ProposalResponseWithUrl> {
+  public async unarchive({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
         archived: false,
@@ -124,7 +138,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async getProposalSimulation(contractId: string, proposalId: string): Promise<SimulationResponse> {
+  public async getProposalSimulation({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.get(
         `/contracts/${contractId}/proposals/${proposalId}/simulation`,
@@ -133,11 +147,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async simulateProposal(
-    contractId: string,
-    proposalId: string,
-    transaction: SimulationTransaction,
-  ): Promise<SimulationResponse> {
+  public async simulateProposal({ contractId, proposalId, transaction }: SimulateProposalParams): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.post(
         `/contracts/${contractId}/proposals/${proposalId}/simulate`,
