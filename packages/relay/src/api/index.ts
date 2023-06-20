@@ -34,7 +34,7 @@ export class RelayClient extends BaseApiClient {
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/relayer/';
   }
 
-  public async get(relayerId: string): Promise<RelayerGetResponse> {
+  public async get({ relayerId }: { relayerId: string }): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/relayers/${relayerId}`);
     });
@@ -46,14 +46,14 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async create(relayer: CreateRelayerRequest): Promise<RelayerGetResponse> {
+  public async create({ relayer }: { relayer: CreateRelayerRequest }): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.post('/relayers', relayer);
     });
   }
 
   public async update({ relayerId, relayerUpdateParams }: {relayerId: string, relayerUpdateParams: UpdateRelayerRequest }): Promise<RelayerGetResponse> {
-    const currentRelayer = await this.get(relayerId);
+    const currentRelayer = await this.get({ relayerId });
 
     if (relayerUpdateParams.policies) {
       const relayerPolicies = {
