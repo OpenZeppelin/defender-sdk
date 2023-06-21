@@ -1,0 +1,12 @@
+{
+    "extends": "code-style/tsconfig.json",
+    "compilerOptions": {
+        "declaration": true,
+        "outDir": "./lib",
+        "skipLibCheck": true,
+        "sourceMap": false
+    },
+    "include": ["./src"],
+    "exclude": ["**/*.test.ts", "**/__mocks__/*"]
+}
+  
