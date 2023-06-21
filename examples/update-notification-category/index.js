@@ -25,7 +25,7 @@ async function main() {
     });
   }
 
-  const getExistingCategory = (await client.notifiationChannel.listCategories())[0];
+  const getExistingCategory = (await client.monitor.listNotificationCategories())[0];
 
   const category = {
     ...getExistingCategory,
@@ -33,7 +33,7 @@ async function main() {
     notificationIds: [{ notificationId: notification.notificationId, type: notification.type }],
   };
   // call update with the request parameters
-  const response = await client.notifiationChannel.updateCategory(category);
+  const response = await client.monitor.updateNotificationCategory(category);
   console.log(response);
 }
 

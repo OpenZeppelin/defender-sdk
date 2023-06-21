@@ -6,10 +6,6 @@ import {
 	UpdateNotificationRequest,
 	NotificationSummary as NotificationResponse,
 } from "../models/notification";
-import { 
-	UpdateNotificationCategoryRequest,
-  NotificationCategory as NotificationCategoryResponse,
-} from "../models/category";
 
 const PATH = '/notifications';
 
@@ -54,26 +50,6 @@ export class NotificationChannelClient extends BaseApiClient {
 		public async update(notification: UpdateNotificationRequest): Promise<NotificationResponse> {
 			return this.apiCall(async (api) => {
 				return await api.put(`${PATH}/${notification.type}/${notification.notificationId}`, notification);
-			});
-		}
-
-		public async listCategories(): Promise<NotificationCategoryResponse[]> {
-			return this.apiCall(async (api) => {
-				return await api.get(`${PATH}/categories`);
-			});
-		}
-	
-		public async getCategory({ categoryId }: { categoryId: string }): Promise<NotificationCategoryResponse> {
-			return this.apiCall(async (api) => {
-				return await api.get(`${PATH}/categories/${categoryId}`);
-			});
-		}
-	
-		public async updateCategory(
-			category: UpdateNotificationCategoryRequest,
-		): Promise<NotificationCategoryResponse> {
-			return this.apiCall(async (api) => {
-				return await api.put(`${PATH}/categories/${category.categoryId}`, category);
 			});
 		}
 }
