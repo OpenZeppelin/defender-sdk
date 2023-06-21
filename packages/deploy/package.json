@@ -1,0 +1,34 @@
+{
+  "name": "@openzeppelin/platform-sdk-deploy-client",
+  "version": "0.1.0",
+  "description": "Client library for managing Platform Deployments",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose --passWithNoTests",
+    "watch": "tsc -w",
+    "prepare": "npm run build",
+    "test:clean": "jest --clearCache"
+  },
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "Dylan Kilkenny <dylan@openzeppelin.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@ethersproject/abi": "^5.6.3",
+    "@openzeppelin/platform-sdk-base-client": "^0.1.0",
+    "axios": "^1.4.0",
+    "lodash": "^4.17.19"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "daddff62731a4b55075b57905d8c5b8c4eb3b80e"
+}
