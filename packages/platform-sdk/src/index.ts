@@ -1,5 +1,6 @@
 import { MonitorClient } from "@openzeppelin/platform-sdk-monitor-client";
 import { ActionClient } from "@openzeppelin/platform-sdk-action-client";
+import { RelayClient } from "@openzeppelin/platform-sdk-relay-client";
 import { Newable, ClientParams } from "./types";
 
 interface PlatformOptions {
@@ -34,5 +35,9 @@ export class Platform {
 
     get action() {
         return getClient(ActionClient, {apiKey: this.apiKey, apiSecret: this.apiSecret});
+    }
+
+    get relay() {
+        return getClient(RelayClient, {apiKey: this.apiKey, apiSecret: this.apiSecret});
     }
 }
