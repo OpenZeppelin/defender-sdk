@@ -13,15 +13,15 @@ export class RelaySignerClient extends BaseApiClient {
     }
   
     protected getPoolId(): string {
-      return process.env.PLATFORM_POOL_ID || 'us-west-2_iLmIggsiy';
+      return process.env.DEFENDER_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
     }
   
     protected getPoolClientId(): string {
-      return process.env.PLATFORM_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
+      return process.env.DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
     }
   
     protected getApiUrl(): string {
-      return process.env.PLATFORM_API_URL || 'https://api.defender.openzeppelin.com/';
+      return process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
     }
   
     public async getRelayer(): Promise<RelayerGetResponse> {
@@ -63,13 +63,13 @@ export class RelaySignerClient extends BaseApiClient {
       });
     }
   
-    public async query({ id }: { id: string }): Promise<RelayerTransaction> {
+    public async getTransaction({ id }: { id: string }): Promise<RelayerTransaction> {
       return this.apiCall(async (api) => {
         return (await api.get(`txs/${id}`)) as RelayerTransaction;
       });
     }
   
-    public async list(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
+    public async listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
       return this.apiCall(async (api) => {
         return (await api.get(`txs`, { params: criteria ?? {} })) as RelayerTransaction[];
       });
