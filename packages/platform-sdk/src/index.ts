@@ -24,7 +24,6 @@ export class Platform {
     private relayerApiKey: string | undefined;
     private relayerApiSecret: string | undefined;
 
-    // TODO: add relayerApiKey and relayerApiSecret when we add relay signer
     constructor(options: PlatformOptions) {
         this.apiKey = options.apiKey;
         this.apiSecret = options.apiSecret;
