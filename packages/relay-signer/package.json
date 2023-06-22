@@ -1,5 +1,5 @@
 {
-    "name": "@openzeppelin/platform-sdk-relay-client",
+    "name": "@openzeppelin/platform-sdk-relay-signer-client",
     "version": "0.1.0",
     "description": "",
     "main": "./lib/index.js",
