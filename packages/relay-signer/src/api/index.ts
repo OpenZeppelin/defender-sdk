@@ -3,19 +3,8 @@ import { ApiRelayerParams, RelayerGetResponse } from "../models/relayer";
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from "../models/transactions";
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from "../models/rpc";
 
-export interface IRelayer {
-	getRelayer(): Promise<RelayerGetResponse>;
-	sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-	replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-	replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-	query(id: string): Promise<RelayerTransaction>;
-	list(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
-	sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
-	signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
-	call(method: string, params: string[]): Promise<JsonRpcResponse>;
-}
 
-export class RelaySigner extends BaseApiClient implements IRelayer {
+export class RelaySignerClient extends BaseApiClient {
     private jsonRpcRequestNextId: number;
   
     public constructor(params: ApiRelayerParams) {
@@ -47,16 +36,16 @@ export class RelaySigner extends BaseApiClient implements IRelayer {
       });
     }
   
-    public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
+    public async replaceTransactionById({ id, payload }: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
       return this.apiCall(async (api) => {
         return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
       });
     }
   
-    public async replaceTransactionByNonce(
+    public async replaceTransactionByNonce({ nonce, payload }: {
       nonce: number,
       payload: RelayerTransactionPayload,
-    ): Promise<RelayerTransaction> {
+    }): Promise<RelayerTransaction> {
       return this.apiCall(async (api) => {
         return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
       });
@@ -74,7 +63,7 @@ export class RelaySigner extends BaseApiClient implements IRelayer {
       });
     }
   
-    public async query(id: string): Promise<RelayerTransaction> {
+    public async query({ id }: { id: string }): Promise<RelayerTransaction> {
       return this.apiCall(async (api) => {
         return (await api.get(`txs/${id}`)) as RelayerTransaction;
       });
@@ -86,7 +75,7 @@ export class RelaySigner extends BaseApiClient implements IRelayer {
       });
     }
   
-    public async call(method: string, params: string[]): Promise<JsonRpcResponse> {
+    public async call({ method, params }: { method: string, params: string[] }): Promise<JsonRpcResponse> {
       return this.apiCall(async (api) => {
         return (await api.post(`/relayer/jsonrpc`, {
           method,
