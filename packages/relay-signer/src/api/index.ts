@@ -16,11 +16,11 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     }
 
     protected getPoolId(): string {
-      return process.env.DEFENDER_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
+      return process.env.PLATFORM_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
     }
   
     protected getPoolClientId(): string {
-      return process.env.DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
+      return process.env.PLATFORM_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
     }
   
     protected getApiUrl(): string {
