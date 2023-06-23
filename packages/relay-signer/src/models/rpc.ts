@@ -1,5 +1,11 @@
 import { Hex } from "./transactions";
 
+export type JsonRpcRequest = {
+  id: number;
+  jsonrpc: '2.0';
+  method: string;
+  params: string[];
+};
 
 export interface SignMessagePayload {
 	message: Hex;

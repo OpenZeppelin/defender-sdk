@@ -1,5 +1,7 @@
 import https from 'https';
 import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from './transactions';
+import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 
 // TODO platform Address model for this
 export type Address = string;
@@ -28,4 +30,16 @@ export interface UpdateRelayerPoliciesRequest {
   whitelistReceivers?: Address[];
   EIP1559Pricing?: boolean;
   privateTransactions?: boolean;
+}
+
+export interface IRelayer {
+	getRelayer(): Promise<RelayerGetResponse>;
+	sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
+	replaceTransactionById(params: {id: string, payload: RelayerTransactionPayload}): Promise<RelayerTransaction>;
+	replaceTransactionByNonce(params: {nonce: number, payload: RelayerTransactionPayload}): Promise<RelayerTransaction>;
+	getTransaction(params: {id: string}): Promise<RelayerTransaction>;
+	listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
+	sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
+	signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
+	call(params: {method: string, params: string[]}): Promise<JsonRpcResponse>;
 }

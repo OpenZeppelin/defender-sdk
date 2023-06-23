@@ -1,17 +1,20 @@
 import { BaseApiClient } from "@openzeppelin/platform-sdk-base-client";
-import { ApiRelayerParams, RelayerGetResponse } from "../models/relayer";
+import { ApiRelayerParams, IRelayer, RelayerGetResponse } from "../models/relayer";
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from "../models/transactions";
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from "../models/rpc";
 
 
-export class RelaySignerClient extends BaseApiClient {
+export const getRelaySignerApiUrl = () =>
+  process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
+
+export class RelaySignerClient extends BaseApiClient implements IRelayer {
     private jsonRpcRequestNextId: number;
   
     public constructor(params: ApiRelayerParams) {
       super(params);
       this.jsonRpcRequestNextId = 1;
     }
-  
+
     protected getPoolId(): string {
       return process.env.DEFENDER_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
     }
@@ -21,7 +24,7 @@ export class RelaySignerClient extends BaseApiClient {
     }
   
     protected getApiUrl(): string {
-      return process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
+      return getRelaySignerApiUrl();
     }
   
     public async getRelayer(): Promise<RelayerGetResponse> {
