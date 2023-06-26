@@ -16,7 +16,7 @@ import {
   UpdateRelayerRequest,
   RelayerApiKey,
   DeleteRelayerApiKeyResponse,
-} from '../relayer';
+} from '../models';
 
 export const RelaySignerApiUrl = () =>
   process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';

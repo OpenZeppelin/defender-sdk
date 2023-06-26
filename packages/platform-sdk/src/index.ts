@@ -4,6 +4,7 @@ import { RelayClient } from "@openzeppelin/platform-sdk-relay-client";
 import { ProposalClient } from "@openzeppelin/platform-sdk-proposal-client";
 import { DeployClient } from "@openzeppelin/platform-sdk-deploy-client";
 import { NotificationChannelClient } from "@openzeppelin/platform-sdk-notification-channel-client";
+import { RelaySignerClient } from "@openzeppelin/platform-sdk-relay-signer-client";
 import { Newable, ClientParams } from "./types";
 
 interface PlatformOptions {
@@ -24,7 +25,6 @@ export class Platform {
     private relayerApiKey: string | undefined;
     private relayerApiSecret: string | undefined;
 
-    // TODO: add relayerApiKey and relayerApiSecret when we add relay signer
     constructor(options: PlatformOptions) {
         this.apiKey = options.apiKey;
         this.apiSecret = options.apiSecret;
@@ -54,5 +54,9 @@ export class Platform {
 
     get notifiationChannel() {
         return getClient(NotificationChannelClient, {apiKey: this.apiKey, apiSecret: this.apiSecret});
+    }
+
+    get relaySigner() {
+        return getClient(RelaySignerClient, {apiKey: this.relayerApiKey, apiSecret: this.relayerApiSecret});
     }
 }

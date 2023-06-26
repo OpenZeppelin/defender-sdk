@@ -3,9 +3,9 @@ require('dotenv').config();
 const { Platform } = require('@openzeppelin/platform-sdk');
 
 async function main() {
-  // Gather autotaskId and api key
+  // Gather actionId and api key
   const actionId = process.argv[2];
-  if (!actionId) throw new Error(`AutotaskId missing`);
+  if (!actionId) throw new Error(`ActionId missing`);
 
   const { API_KEY: apiKey, API_SECRET: apiSecret } = process.env;
   if (!apiKey || !apiSecret) throw new Error(`Team API Key missing`);
@@ -25,7 +25,7 @@ async function main() {
     console.log(`Code digest matches (skipping upload)`);
   } else {
     await client.action.updateCodeFromFolder({ actionId, path: './code' });
-    console.log(`Autotask code updated`);
+    console.log(`Action code updated`);
   }
 }
 
