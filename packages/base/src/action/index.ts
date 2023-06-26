@@ -16,7 +16,7 @@ function cleanError(payload?: _Blob): _Blob {
   return payload;
 }
 
-export abstract class BaseAutotaskClient {
+export abstract class BaseActionClient {
   private lambda: Lambda;
 
   private invocationRateLimit: RateLimitModule;

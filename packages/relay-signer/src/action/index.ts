@@ -1,11 +1,11 @@
 import {
-  AutotaskRelayerParams,
+  ActionRelayerParams,
   IRelayer,
   RelayerGetResponse,
 } from '../models/relayer';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
 import { JsonRpcRequest, JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
-import { BaseAutotaskClient } from '@openzeppelin/platform-sdk-base-client/lib/autotask';
+import { BaseActionClient } from '@openzeppelin/platform-sdk-base-client/lib/action';
 
 
 export type SendTxRequest = {
@@ -34,10 +34,10 @@ export type JsonRpcCallRequest = {
 
 export type Request = SendTxRequest | GetTxRequest | SignRequest | GetSelfRequest | JsonRpcCallRequest;
 
-export class AutotaskRelayer extends BaseAutotaskClient implements IRelayer {
+export class ActionRelayer extends BaseActionClient implements IRelayer {
   private jsonRpcRequestNextId: number;
 
-  public constructor(params: AutotaskRelayerParams) {
+  public constructor(params: ActionRelayerParams) {
     super(params.credentials, params.relayerARN);
     this.jsonRpcRequestNextId = 0;
   }

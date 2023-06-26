@@ -1,9 +1,9 @@
-import { AutotaskRelayer } from '.';
+import { ActionRelayer } from '.';
 import Lambda from 'aws-sdk/clients/lambda';
 
-type TestAutotaskRelayer = Omit<AutotaskRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
 
-describe('AutotaskRelayer', () => {
+describe('ActionRelayer', () => {
   const credentials = {
     AccessKeyId: 'keyId',
     SecretAccessKey: 'accessKey',
@@ -15,13 +15,13 @@ describe('AutotaskRelayer', () => {
     gasLimit: 21000,
   };
 
-  let relayer: TestAutotaskRelayer;
+  let relayer: TestActionRelayer;
 
   beforeEach(async function () {
-    relayer = new AutotaskRelayer({
+    relayer = new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
-    }) as unknown as TestAutotaskRelayer;
+    }) as unknown as TestActionRelayer;
   });
 
   afterAll(() => {

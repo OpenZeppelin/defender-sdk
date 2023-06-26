@@ -8,9 +8,9 @@ export type Address = string;
 
 export type BigUInt = string | number;
 
-export type RelayerParams = ApiRelayerParams | AutotaskRelayerParams;
+export type RelayerParams = ApiRelayerParams | ActionRelayerParams;
 export type ApiRelayerParams = { apiKey: string; apiSecret: string; httpsAgent?: https.Agent };
-export type AutotaskRelayerParams = { credentials: string; relayerARN: string; httpsAgent?: https.Agent };
+export type ActionRelayerParams = { credentials: string; relayerARN: string; httpsAgent?: https.Agent };
 
 export interface RelayerGetResponse {
 	relayerId: string;

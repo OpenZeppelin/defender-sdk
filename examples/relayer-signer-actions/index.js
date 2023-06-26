@@ -2,13 +2,10 @@ require('dotenv').config();
 
 const { Platform } = require('@openzeppelin/platform-sdk');
 
-const creds = { 
-  apiKey: process.env.API_KEY,
-  apiSecret: process.env.API_SECRET,
+const creds = {
   relayerApiKey: process.env.RELAYER_API_KEY,
   relayerApiSecret: process.env.RELAYER_API_SECRET
 };
-console.log(creds);
 const client = new Platform(creds);
 
 async function get() {

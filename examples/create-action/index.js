@@ -7,7 +7,7 @@ async function main() {
   const client = new Platform(creds);
 
   const myAction = {
-    name: 'my-autotask',
+    name: 'my-action',
     encodedZippedCode: await client.action.getEncodedZippedCodeFromFolder({ path: './code' }),
     trigger: {
       type: 'schedule',

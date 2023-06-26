@@ -1,7 +1,7 @@
-import { AutotaskRelayer } from '.';
+import { ActionRelayer } from '.';
 import Lambda from 'aws-sdk/clients/lambda';
 
-type TestAutotaskRelayer = Omit<AutotaskRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
 
 const getTime = () => Math.floor(Date.now() / 1000);
 const sleep = (millisecond: number) => new Promise((resolve) => setTimeout(resolve, millisecond));
@@ -19,20 +19,20 @@ const waitNextSecondStart = async () => {
   return true;
 };
 
-describe('AutotaskRelayer', () => {
+describe('ActionRelayer', () => {
   const credentials = {
     AccessKeyId: 'keyId',
     SecretAccessKey: 'accessKey',
     SessionToken: 'token',
   };
 
-  let relayer: TestAutotaskRelayer;
+  let relayer: TestActionRelayer;
 
   beforeEach(async function () {
-    relayer = new AutotaskRelayer({
+    relayer = new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
-    }) as unknown as TestAutotaskRelayer;
+    }) as unknown as TestActionRelayer;
   });
 
   describe('get rate limited', () => {

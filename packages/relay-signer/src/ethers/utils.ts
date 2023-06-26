@@ -1,15 +1,15 @@
-import { ApiRelayerParams, AutotaskRelayerParams, BigUInt } from "../models/relayer";
+import { ApiRelayerParams, ActionRelayerParams, BigUInt } from "../models/relayer";
 import { RelayerTransactionPayload } from "../models/transactions";
 import { Relayer } from "../relayer";
 
-export function isAutotaskCredentials(
-	credentials: AutotaskRelayerParams | ApiRelayerParams,
-): credentials is AutotaskRelayerParams {
-	const autotaskCredentials = credentials as AutotaskRelayerParams;
-	return !!autotaskCredentials.credentials;
+export function isActionCredentials(
+	credentials: ActionRelayerParams | ApiRelayerParams,
+): credentials is ActionRelayerParams {
+	const actionCredentials = credentials as ActionRelayerParams;
+	return !!actionCredentials.credentials;
 }
 
-export function isApiCredentials(credentials: AutotaskRelayerParams | ApiRelayerParams): credentials is ApiRelayerParams {
+export function isApiCredentials(credentials: ActionRelayerParams | ApiRelayerParams): credentials is ApiRelayerParams {
 	const apiCredentials = credentials as ApiRelayerParams;
 	return !!apiCredentials.apiKey && !!apiCredentials.apiSecret;
 }
