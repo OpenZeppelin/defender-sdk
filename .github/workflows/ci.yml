@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, labeled]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+# Declare default permissions as read only.
+permissions: read-all
+
+jobs:
+  prepare:
+    name: Prepare pre-requisites
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+      with:
+        egress-policy: audit
+
+    - name: Checkout
+      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+    - name: Prepare pre-requisites
+      uses: ./.github/actions/prepare
+
+  # Deterministic Build & tests
+  test:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    needs: prepare
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.6.0
+    with:
+      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+      node-version: "16.20.0"
