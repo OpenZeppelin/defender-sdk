@@ -1,4 +1,4 @@
-import { Hex } from "./transactions";
+import { Hex } from './transactions';
 
 export type JsonRpcRequest = {
   id: number;
@@ -8,7 +8,7 @@ export type JsonRpcRequest = {
 };
 
 export interface SignMessagePayload {
-	message: Hex;
+  message: Hex;
 }
 
 export interface SignedMessagePayload {

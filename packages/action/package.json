@@ -9,7 +9,7 @@
     "test": "npm run test:unit",
     "test:unit": "jest --verbose --passWithNoTests",
     "watch": "tsc -w"
-  },  
+  },
   "files": [
     "lib",
     "!*.test.js",

@@ -4,7 +4,7 @@ const { Platform } = require('@openzeppelin/platform-sdk');
 
 const creds = {
   relayerApiKey: process.env.RELAYER_API_KEY,
-  relayerApiSecret: process.env.RELAYER_API_SECRET
+  relayerApiSecret: process.env.RELAYER_API_SECRET,
 };
 const client = new Platform(creds);
 
@@ -25,13 +25,13 @@ async function send() {
 
 async function replace(id) {
   const txResponse = await client.relaySigner.replaceTransactionById({
-    id, 
+    id,
     payload: {
       to: '0x179810822f56b0e79469189741a3fa5f2f9a7631',
       value: 2,
       speed: 'fast',
       gasLimit: '21000',
-    }
+    },
   });
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
@@ -55,7 +55,7 @@ async function list() {
 
 async function balance(addr) {
   if (!addr) throw new Error(`Missing address`);
-  const balance = await client.relaySigner.call({ method: 'eth_getBalance', params: [addr, 'latest']});
+  const balance = await client.relaySigner.call({ method: 'eth_getBalance', params: [addr, 'latest'] });
   console.log(`eth_getBalance`, JSON.stringify(balance, null, 2));
 }
 
@@ -98,7 +98,7 @@ async function main() {
     console.log(`Unexpected error:`, e);
     process.exit(1);
   }
-};
+}
 
 if (require.main === module) {
   main().catch(console.error);

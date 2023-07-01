@@ -11,6 +11,6 @@ export interface ExternalApiProposalResponse extends ExternalApiCreateProposalRe
   isArchived: boolean;
 }
 export interface ProposalResponseWithUrl extends ProposalResponse {
-    url: string;
-    simulation?: SimulationResponse;
+  url: string;
+  simulation?: SimulationResponse;
 }

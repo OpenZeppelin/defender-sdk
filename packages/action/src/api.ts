@@ -1,17 +1,7 @@
 import { createHash } from 'crypto';
 import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
-import {
-  CreateActionRequest,
-  UpdateActionRequest,
-  GetSecretsResponse,
-  SaveSecretsRequest,
-} from './models/action';
-import {
-  ActionRunBase,
-  ActionRunListResponse,
-  ActionRunResponse,
-  ActionRunStatus,
-} from './models/action-run.res';
+import { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
+import { ActionRunBase, ActionRunListResponse, ActionRunResponse, ActionRunStatus } from './models/action-run.res';
 import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 import { zipFolder, zipSources } from './zip';
 
@@ -40,13 +30,13 @@ export class ActionClient extends BaseApiClient {
     });
   }
 
-  public async get({ actionId } : { actionId: string }): Promise<ActionResponse> {
+  public async get({ actionId }: { actionId: string }): Promise<ActionResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/autotasks/${actionId}`);
     });
   }
 
-  public async delete({ actionId } : { actionId: string }): Promise<ActionDeleteResponse> {
+  public async delete({ actionId }: { actionId: string }): Promise<ActionDeleteResponse> {
     return this.apiCall(async (api) => {
       return await api.delete(`/autotasks/${actionId}`);
     });
@@ -76,17 +66,17 @@ export class ActionClient extends BaseApiClient {
     return await zipFolder(path);
   }
 
-  public async updateCodeFromZip({ actionId , buffer }: { actionId: string, buffer: Buffer }): Promise<void> {
+  public async updateCodeFromZip({ actionId, buffer }: { actionId: string; buffer: Buffer }): Promise<void> {
     const encodedZippedCode = this.getEncodedZippedCodeFromBuffer({ buffer });
     return this.updateCode({ actionId, encodedZippedCode });
   }
 
-  public async updateCodeFromSources({ actionId, sources }: { actionId: string, sources: SourceFiles }): Promise<void> {
+  public async updateCodeFromSources({ actionId, sources }: { actionId: string; sources: SourceFiles }): Promise<void> {
     const encodedZippedCode = await this.getEncodedZippedCodeFromSources(sources);
     return this.updateCode({ actionId, encodedZippedCode });
   }
 
-  public async updateCodeFromFolder({ actionId, path } : { actionId: string, path: string }): Promise<void> {
+  public async updateCodeFromFolder({ actionId, path }: { actionId: string; path: string }): Promise<void> {
     const encodedZippedCode = await this.getEncodedZippedCodeFromFolder({ path });
     return this.updateCode({ actionId, encodedZippedCode });
   }
@@ -94,11 +84,11 @@ export class ActionClient extends BaseApiClient {
   public async listActionRuns({
     actionId,
     next,
-    status
+    status,
   }: {
-    actionId: string,
-    next?: string,
-    status?: ActionRunStatus | undefined,
+    actionId: string;
+    next?: string;
+    status?: ActionRunStatus | undefined;
   }): Promise<ActionRunListResponse> {
     if (next && !status && (next === 'success' || next === 'error' || next === 'pending' || next === 'throttle')) {
       status = next as ActionRunStatus;
@@ -115,7 +105,13 @@ export class ActionClient extends BaseApiClient {
     });
   }
 
-  public async runAction({ actionId, data }: { actionId: string, data: { [key: string]: any } }): Promise<ActionRunBase> {
+  public async runAction({
+    actionId,
+    data,
+  }: {
+    actionId: string;
+    data: { [key: string]: any };
+  }): Promise<ActionRunBase> {
     return this.apiCall(async (api) => {
       return await api.post(`/autotasks/${actionId}/runs/manual`, data);
     });
@@ -126,7 +122,13 @@ export class ActionClient extends BaseApiClient {
     return createHash('SHA256').update(binary).end().digest('base64');
   }
 
-  private async updateCode({ actionId, encodedZippedCode }: { actionId: string, encodedZippedCode: string }): Promise<void> {
+  private async updateCode({
+    actionId,
+    encodedZippedCode,
+  }: {
+    actionId: string;
+    encodedZippedCode: string;
+  }): Promise<void> {
     return this.apiCall(async (api) => {
       return await api.put(`/autotasks/${actionId}/code`, { encodedZippedCode });
     });

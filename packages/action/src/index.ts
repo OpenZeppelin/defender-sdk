@@ -1,10 +1,5 @@
 export { ActionClient } from './api';
-export {
-  CreateActionRequest,
-  UpdateActionRequest,
-  GetSecretsResponse,
-  SaveSecretsRequest,
-} from './models/action';
+export { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
 export { ActionRunBase, ActionRunListResponse, ActionRunResponse } from './models/action-run.res';
 export { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 

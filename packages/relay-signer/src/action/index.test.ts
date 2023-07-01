@@ -152,7 +152,7 @@ describe('ActionRelayer', () => {
 
   describe('call', () => {
     test('passes correct arguments to the API', async () => {
-      await relayer.call({ method: 'eth_call', params: ['0xa', '0xb']});
+      await relayer.call({ method: 'eth_call', params: ['0xa', '0xb'] });
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',

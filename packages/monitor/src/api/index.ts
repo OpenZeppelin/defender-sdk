@@ -22,7 +22,12 @@ import {
   UpdateNotificationCategoryRequest,
 } from '../models/category';
 import { NotificationResponse } from '..';
-import { CreateNotificationRequest, DeleteNotificationRequest, GetNotificationRequest, UpdateNotificationRequest } from '../models/notification';
+import {
+  CreateNotificationRequest,
+  DeleteNotificationRequest,
+  GetNotificationRequest,
+  UpdateNotificationRequest,
+} from '../models/notification';
 
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -59,7 +64,7 @@ export class MonitorClient extends BaseApiClient {
   }
 
   public async update(params: UpdateMonitorRequest): Promise<CreateMonitorResponse> {
-    const currentMonitor = await this.get({monitorId: params.monitorId});
+    const currentMonitor = await this.get({ monitorId: params.monitorId });
 
     return this.apiCall(async (api) => {
       return await api.put(
@@ -81,17 +86,25 @@ export class MonitorClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return await api.put(
         `/subscribers/${params.monitorId}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, { monitorId: params.monitorId, type: monitor.type, paused: true }),
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, {
+          monitorId: params.monitorId,
+          type: monitor.type,
+          paused: true,
+        }),
       );
     });
   }
 
   public async unpause(params: { monitorId: string }): Promise<CreateMonitorRequest> {
-    const monitor = await this.get({monitorId: params.monitorId });
+    const monitor = await this.get({ monitorId: params.monitorId });
     return this.apiCall(async (api) => {
       return await api.put(
         `/subscribers/${params.monitorId}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, { monitorId: params.monitorId, type: monitor.type, paused: false }),
+        await this.mergeApiMonitorWithUpdateMonitor(monitor, {
+          monitorId: params.monitorId,
+          type: monitor.type,
+          paused: false,
+        }),
       );
     });
   }
@@ -182,9 +195,10 @@ export class MonitorClient extends BaseApiClient {
     const blockWatchers = await this.getBlockwatcherIdByNetwork(monitor.network);
 
     let blockWatcherId;
-    
+
     if (blockWatchers?.length > 0) {
-        const blockWatchersSorted = _.sortBy(blockWatchers.filter(({ confirmLevel }) => _.isNumber(confirmLevel)), // Only consider numberish confirmLevels
+      const blockWatchersSorted = _.sortBy(
+        blockWatchers.filter(({ confirmLevel }) => _.isNumber(confirmLevel)), // Only consider numberish confirmLevels
         ['confirmLevel'],
       ).reverse();
       blockWatcherId = blockWatchersSorted[0]?.blockWatcherId;
@@ -210,7 +224,6 @@ export class MonitorClient extends BaseApiClient {
       });
     }
 
-    
     if (monitor.functionConditions) {
       monitor.functionConditions.map((condition) => {
         newConditions.push({
@@ -298,9 +311,9 @@ export class MonitorClient extends BaseApiClient {
 
   private toCreateBlockMonitorRequest(monitor: CreateBlockSubscriberResponse): CreateBlockMonitorRequest {
     const rule = monitor.addressRules[0];
-    
-    if(!rule) throw new Error(`No rule found for monitor ${monitor.name}`);
-    
+
+    if (!rule) throw new Error(`No rule found for monitor ${monitor.name}`);
+
     let txCondition;
 
     for (const condition of rule.conditions) {

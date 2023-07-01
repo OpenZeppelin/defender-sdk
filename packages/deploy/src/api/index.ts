@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 import { BaseApiClient, Network } from '@openzeppelin/platform-sdk-base-client';
-import { 
+import {
   ApprovalProcessResponse,
   BlockExplorerApiKeyResponse,
   CreateBlockExplorerApiKeyRequest,
@@ -9,7 +9,7 @@ import {
   RemoveBlockExplorerApiKeyResponse,
   UpdateBlockExplorerApiKeyRequest,
   UpgradeContractRequest,
-  UpgradeContractResponse
+  UpgradeContractResponse,
 } from '../models';
 
 const DEPLOYMENTS_PATH = '/deployments';
@@ -17,7 +17,6 @@ const UPGRADES_PATH = '/upgrades';
 const BLOCKEXPLORER_API_KEY_PATH = '/block-explorer-api-key';
 
 export class DeployClient extends BaseApiClient {
-
   protected getPoolId(): string {
     return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
   }
@@ -81,7 +80,9 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async createBlockExplorerApiKey(payload: CreateBlockExplorerApiKeyRequest): Promise<BlockExplorerApiKeyResponse> {
+  public async createBlockExplorerApiKey(
+    payload: CreateBlockExplorerApiKeyRequest,
+  ): Promise<BlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
       return api.post(`${BLOCKEXPLORER_API_KEY_PATH}`, payload);
     });

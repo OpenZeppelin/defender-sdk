@@ -1,7 +1,5 @@
 export type MonitorConfirmation = number | 'safe' | 'finalized';
-export type ExternalCreateMonitorRequest =
-  | ExternalCreateBlockSubscriberRequest
-  | ExternalCreateFortaSubscriberRequest;
+export type ExternalCreateMonitorRequest = ExternalCreateBlockSubscriberRequest | ExternalCreateFortaSubscriberRequest;
 
 export type ExternalUpdateSubscriberRequest =
   | ExternalUpdateBlockSubscriberRequest

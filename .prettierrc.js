@@ -1,4 +1,3 @@
 module.exports = {
-    ...require('code-style/.prettierrc.js'),
-  };
-  
+  ...require('code-style/.prettierrc.js'),
+};

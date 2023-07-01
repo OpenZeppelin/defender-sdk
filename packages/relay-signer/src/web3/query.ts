@@ -19,7 +19,7 @@ export class DefenderRelayQueryProvider {
   public send(payload: JsonRpcPayload, callback: Web3Callback): void {
     const payloadId = typeof payload.id === 'string' ? parseInt(payload.id) : payload.id;
     this.relayer
-      .call({ method: payload.method, params: payload.params ?? []})
+      .call({ method: payload.method, params: payload.params ?? [] })
       .then((response) =>
         callback(null, {
           ...response,

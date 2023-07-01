@@ -29,7 +29,7 @@ Run `npm run lint` at the project root.
 
 ## Examples
 
-The `examples` repo has sample code  - note that most examples rely on `dotenv` for loading API keys and secrets. 
+The `examples` repo has sample code - note that most examples rely on `dotenv` for loading API keys and secrets.
 
 ## Lower Environments
 

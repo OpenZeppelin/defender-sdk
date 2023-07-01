@@ -69,7 +69,7 @@ async function main() {
       viaType: 'Gnosis Safe',
       metadata: {}, // Required field but empty
       steps,
-    }
+    },
   });
 
   console.log(url);

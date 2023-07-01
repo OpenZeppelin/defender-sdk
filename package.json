@@ -45,7 +45,7 @@
     "test": "nx run-many -t test --skip-nx-cache --parallel=1",
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache",
-    "style": "npm run lint && npm run format",
+    "style": "npm run lint && npx prettier --write . && npm run format",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
   },
   "repository": {

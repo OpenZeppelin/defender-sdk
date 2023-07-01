@@ -52,7 +52,13 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async update({ relayerId, relayerUpdateParams }: {relayerId: string, relayerUpdateParams: UpdateRelayerRequest }): Promise<RelayerGetResponse> {
+  public async update({
+    relayerId,
+    relayerUpdateParams,
+  }: {
+    relayerId: string;
+    relayerUpdateParams: UpdateRelayerRequest;
+  }): Promise<RelayerGetResponse> {
     const currentRelayer = await this.get({ relayerId });
 
     if (relayerUpdateParams.policies) {
@@ -73,16 +79,25 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  private async updatePolicies({ relayerId, relayerPolicies }: {
-    relayerId: string,
-    relayerPolicies: UpdateRelayerPoliciesRequest,
+  private async updatePolicies({
+    relayerId,
+    relayerPolicies,
+  }: {
+    relayerId: string;
+    relayerPolicies: UpdateRelayerPoliciesRequest;
   }): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.put(`/relayers/${relayerId}`, relayerPolicies);
     });
   }
 
-  public async createKey({ relayerId, stackResourceId }: {relayerId: string, stackResourceId?: string}): Promise<RelayerApiKey> {
+  public async createKey({
+    relayerId,
+    stackResourceId,
+  }: {
+    relayerId: string;
+    stackResourceId?: string;
+  }): Promise<RelayerApiKey> {
     return this.apiCall(async (api) => {
       return await api.post(`/relayers/${relayerId}/keys`, { stackResourceId });
     });
@@ -94,7 +109,13 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async deleteKey({ relayerId, keyId }: { relayerId: string, keyId: string }): Promise<DeleteRelayerApiKeyResponse> {
+  public async deleteKey({
+    relayerId,
+    keyId,
+  }: {
+    relayerId: string;
+    keyId: string;
+  }): Promise<DeleteRelayerApiKeyResponse> {
     return this.apiCall(async (api) => {
       return await api.delete(`/relayers/${relayerId}/keys/${keyId}`);
     });
@@ -133,15 +154,24 @@ export class ApiRelayer extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async replaceTransactionById({ id, payload }: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
+  public async replaceTransactionById({
+    id,
+    payload,
+  }: {
+    id: string;
+    payload: RelayerTransactionPayload;
+  }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
     });
   }
 
-  public async replaceTransactionByNonce({ nonce, payload }: {
-    nonce: number,
-    payload: RelayerTransactionPayload,
+  public async replaceTransactionByNonce({
+    nonce,
+    payload,
+  }: {
+    nonce: number;
+    payload: RelayerTransactionPayload;
   }): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
@@ -172,7 +202,7 @@ export class ApiRelayer extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async call({ method, params }: { method: string, params: string[] }): Promise<JsonRpcResponse> {
+  public async call({ method, params }: { method: string; params: string[] }): Promise<JsonRpcResponse> {
     return this.apiCall(async (api) => {
       return (await api.post(`/relayer/jsonrpc`, {
         method,

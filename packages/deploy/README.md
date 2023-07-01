@@ -44,7 +44,7 @@ await client.deploy.deployContract({
     artifactPayload: JSON.stringify(artifactFile),
     licenseType: 'MIT',
     constructorInputs: ['Hello World!'],
-  }
+  },
 });
 ```
 
@@ -92,7 +92,7 @@ await client.deploy.upgradeContract({
     newImplementationABI: JSON.stringify(boxABIFile),
     newImplementationAddress: '0xABCDEF1....',
     network: 'sepolia',
-  }
+  },
 });
 ```
 
@@ -131,7 +131,7 @@ And updating the Api Key for a given network
 ```js
 const apiKeyId = '8181d9e0-88ce-4db0-802a-2b56e2e6a7b1';
 await client.deploy.updateBlockExplorerApiKey({
-  apiKeyId, 
+  apiKeyId,
   { key: 'LDNWOWFNEJ2WEL4WLKNWEF8F2MNWKEF' },
 });
 ```
