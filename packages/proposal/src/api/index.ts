@@ -34,7 +34,7 @@ export class ProposalClient extends BaseApiClient {
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
   }
 
-  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-client
+  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within platform-sdk
   public async create({ proposal, simulate, overrideSimulationOpts }: CreateProposalParams ): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       let simulation: SimulationResponse | undefined = undefined;

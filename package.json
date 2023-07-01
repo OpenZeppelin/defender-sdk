@@ -32,16 +32,19 @@
     "nx": "^16.1.4"
   },
   "scripts": {
-    "install-deps": "npm install --frozen-lockfile",
+    "install-deps": "npm run install --frozen-lockfile",
     "nx-build-skip-cache": "npm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "npm run build-test --skip-nx-cache",
-    "build": "nx run-many -t build",
+    "nx-test-skip-cache": "npm run test --skip-nx-cache",
+    "build": "nx run-many -t build --parallel=1",
     "build-test": "nx run-many -t style,build,test",
     "lint": "npm run lint:check --fix",
     "format:check": "prettier --check '**/*.{js,ts,tsx}'",
     "format": "npm run format:check --write",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
-    "test": "nx run-many -t test --skip-nx-cache",
+    "test": "nx run-many -t test --skip-nx-cache --parallel=1",
+    "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
+    "test:changed": "nx affected:test --base=origin/main --skip-nx-cache",
     "style": "npm run lint && npm run format",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
   },
