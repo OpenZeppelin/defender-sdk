@@ -17,7 +17,7 @@ This monorepo contains individual OpenZeppelin Platform TypeScript clients and p
 
   > Install pnpm globally with `npm i -g pnpm` if you haven't already.
 
-- To skip cache on the subsequent build steps you can use `pnpm run nx-build-skip-cache`.
+- To skip cache on the subsequent build steps you can use `pnpm nx-build-skip-cache`.
 
 ## Testing
 

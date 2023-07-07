@@ -51,11 +51,12 @@ export abstract class BaseApiClient {
     }
   }
 
+  // prettier-ignore
   protected async apiCall<T>(fn: (api: AxiosInstance) => Promise<T>): Promise<T> {
     const api = await this.init();
     try {
       return await fn(api);
-    } catch (error) {
+    } catch (error: any) {
       // this means ID token has expired so we'll recreate session and try again
       if (error.response && error.response.status === 401 && error.response.statusText === 'Unauthorized') {
         this.api = undefined;

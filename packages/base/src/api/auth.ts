@@ -2,6 +2,7 @@
 
 import { AuthenticationDetails, CognitoUserPool, CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
 import retry from 'async-retry';
+import { error } from 'console';
 
 export type UserPass = { Username: string; Password: string };
 export type PoolData = { UserPoolId: string; ClientId: string };
@@ -15,7 +16,8 @@ export async function authenticate(authenticationData: UserPass, poolData: PoolD
   try {
     return retry(() => doAuthenticate(cognitoUser, authenticationDetails), { retries: 3 });
   } catch (err) {
-    throw new Error(`Failed to get a token for the API key ${authenticationData.Username}: ${err.message || err}`);
+    const errorMessage = (err as Error).message || err;
+    throw new Error(`Failed to get a token for the API key ${authenticationData.Username}: ${errorMessage}`);
   }
 }
 
@@ -46,7 +48,8 @@ export async function refreshSession(
   try {
     return retry(() => doRefreshSession(cognitoUser, session), { retries: 3 });
   } catch (err) {
-    throw new Error(`Failed to refresh token for the API key ${authenticationData.Username}: ${err.message || err}`);
+    const errorMessage = (err as Error).message || err;
+    throw new Error(`Failed to refresh token for the API key ${authenticationData.Username}: ${errorMessage}`);
   }
 }
 

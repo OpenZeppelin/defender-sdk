@@ -119,7 +119,8 @@ export class ActionClient extends BaseApiClient {
 
   public getCodeDigest({ encodedZippedCode }: { encodedZippedCode: string }): string {
     const binary = Buffer.from(encodedZippedCode, 'base64');
-    return createHash('SHA256').update(binary).end().digest('base64');
+    const hash = createHash('SHA256').update(binary);
+    return hash.digest('base64');
   }
 
   private async updateCode({
