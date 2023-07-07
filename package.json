@@ -54,6 +54,12 @@
   "bugs": {
     "url": "https://github.com/OpenZeppelin/platform-sdk/issues"
   },
+  "engines": {
+    "node": "16.20.0",
+    "npm": "use pnpm",
+    "pnpm": ">=7",
+    "yarn": "use pnpm"
+  },
   "homepage": "https://github.com/OpenZeppelin/platform-sdk#readme",
   "resolutions": {
     "@ethersproject/abstract-provider": "^5.6.1"

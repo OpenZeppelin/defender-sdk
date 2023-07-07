@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { rateLimitModule } from './rate-limit';
-
+// prettier-ignore
 describe('utils/rate-limit', () => {
   test('should throw error if limit is reached', () => {
     try {
@@ -15,7 +15,7 @@ describe('utils/rate-limit', () => {
       rateLimit.checkRateFor(rateEntryName);
 
       fail('Should have errored');
-    } catch (error) {
+    } catch (error: any) {
       expect(error.message).toBe('Rate limit exceeded');
     }
   });

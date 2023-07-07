@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "test": "npm run test:unit",
-    "test:unit": "jest --verbose",
+    "test:unit": "jest --verbose --passWithNoTests",
     "watch": "tsc -w"
   },
   "files": [
