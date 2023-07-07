@@ -17,7 +17,7 @@ describe('PlatformApiError', () => {
   test('request rejection reject with a PlatformApiResponseError that include message, request.path, request.method, response.status, response.statusText, response.data', async () => {
     try {
       await rejectWithPlatformApiError(mockAxiosError);
-    } catch (error: any) {
+    } catch (error) {
       expect(error instanceof PlatformApiResponseError).toBe(true);
 
       expect(error.message).toStrictEqual(expectedRejectObjectStructure.message);
@@ -36,7 +36,7 @@ describe('PlatformApiError', () => {
 
     try {
       await previousRejectionMethod(mockAxiosError);
-    } catch (error: any) {
+    } catch (error) {
       expect(error).toStrictEqual(expectedRejectObjectStructure);
     }
   });

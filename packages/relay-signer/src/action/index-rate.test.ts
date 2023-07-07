@@ -29,10 +29,10 @@ describe('ActionRelayer', () => {
   let relayer: TestActionRelayer;
 
   beforeEach(async function () {
-    relayer = new ActionRelayer({
+    relayer = (new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
-    }) as unknown as TestActionRelayer;
+    }) as unknown) as TestActionRelayer;
   });
 
   describe('get rate limited', () => {

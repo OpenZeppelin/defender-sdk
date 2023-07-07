@@ -13,7 +13,11 @@ This monorepo contains individual OpenZeppelin Platform TypeScript clients and p
 
 ## Development Setup
 
-Checkout the repo and run `npm i && npm run build`.
+- Checkout the repo and run `pnpm i --ignore-scripts --prefer-offline && pnpm run build`.
+
+  > Install pnpm globally with `npm i -g pnpm` if you haven't already.
+
+- To skip cache on the subsequent build steps you can use `pnpm run nx-build-skip-cache`.
 
 ## Testing
 

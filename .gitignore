@@ -1,10 +1,15 @@
 node_modules
 .zos.session
 zos.*
-build
 lib
 .openzeppelin
 *.tgz
-coverage
 .env
 .vscode
+dist
+/build
+/coverage
+./test
+.DS_Store
+tmp
+.pnpm-store

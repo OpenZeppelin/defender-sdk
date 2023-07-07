@@ -30,5 +30,5 @@ repos:
       - id: style-fixes
         name: Run lint & format with fixes
         exclude: (\.md|\.sh)$
-        entry: npm run style
+        entry: pnpm run style
         language: system
