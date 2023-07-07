@@ -1,7 +1,7 @@
 import { ActionRelayer } from '.';
-import Lambda from 'aws-sdk/clients/lambda';
+import Lambda from '../__mocks__/aws-sdk/clients/lambda';
 
-type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: ReturnType<typeof Lambda>; arn: string };
 
 describe('ActionRelayer', () => {
   const credentials = {
@@ -22,10 +22,6 @@ describe('ActionRelayer', () => {
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
     }) as unknown) as TestActionRelayer;
-  });
-
-  afterAll(() => {
-    expect(true).toBe(false);
   });
 
   describe('constructor', () => {
@@ -81,7 +77,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"nonce":10}}',
+        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000}}',
       });
     });
 
@@ -90,7 +86,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"transactionId":"123-456-abc"}}',
+        Payload: '{"action":"replace-tx","txPayload":{"to":"0x0","gasLimit":21000,"id":"123-456-abc"}}',
       });
     });
   });

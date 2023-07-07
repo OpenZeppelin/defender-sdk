@@ -179,12 +179,15 @@ describe('ethers/signer', () => {
     const sent = await signer.sendTransaction(request);
 
     expectSentTx(sent, request);
-    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
-      ...omit(request, 'nonce'),
-      gasLimit: '0xea60',
-      speed: tx.speed,
-      gasPrice: undefined,
-      validUntil: undefined,
+    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
+      nonce: 30,
+      payload: {
+        ...omit(request, 'nonce'),
+        gasLimit: '0xea60',
+        speed: tx.speed,
+        gasPrice: undefined,
+        validUntil: undefined,
+      }
     });
   });
 
@@ -219,14 +222,17 @@ describe('ethers/signer', () => {
     const sent = await contract.transfer(from, '0x02', { nonce: tx.nonce });
 
     expectSentTx(sent, tx);
-    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
-      data: contract.interface.encodeFunctionData('transfer', [from, '0x02']),
-      gasLimit: '0xea60',
-      speed: 'safeLow',
-      to: tx.to,
-      value: undefined,
-      gasPrice: undefined,
-      validUntil: undefined,
+    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
+      nonce: 30, 
+      payload: {
+        data: contract.interface.encodeFunctionData('transfer', [from, '0x02']),
+        gasLimit: '0xea60',
+        speed: 'safeLow',
+        to: tx.to,
+        value: undefined,
+        gasPrice: undefined,
+        validUntil: undefined,
+      }
     });
   });
 
