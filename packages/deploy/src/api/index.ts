@@ -14,6 +14,7 @@ import {
   UpgradeContractRequest,
   UpgradeContractResponse,
 } from '../models';
+import { Verification, VerificationRequest } from '../models/verification';
 
 const DEPLOYMENTS_PATH = '/deployments';
 const UPGRADES_PATH = '/upgrades';
@@ -115,6 +116,18 @@ export class DeployClient extends BaseApiClient {
   public async listConfig(): Promise<DeploymentConfigResponse[]> {
     return this.apiCall(async (api) => {
       return api.get(`${DEPLOYMENTS_CONFIG_PATH}`);
+    });
+  }
+
+  public async getDeploymentVerification(
+    params: Pick<VerificationRequest, 'contractAddress' | 'contractNetwork'>,
+  ): Promise<Verification | undefined> {
+    return this.apiCall(async (api) => {
+      try {
+        return (await api.get(`/verifications/${params.contractNetwork}/${params.contractAddress}`)) as Verification;
+      } catch {
+        return undefined;
+      }
     });
   }
 
