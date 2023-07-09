@@ -5,6 +5,7 @@ import { ExternalApiCreateProposalRequest as CreateProposalRequest, PartialContr
 import { SimulationRequest as SimulationTransaction, SimulationResponse } from '../models/simulation';
 import { ExternalApiProposalResponse as ProposalResponse, ProposalResponseWithUrl } from '../models/response';
 import { getProposalUrl } from './utils';
+import { Contract } from '../models/contract';
 
 type CreateProposalParams = {
   proposal: CreateProposalRequest;
@@ -29,6 +30,24 @@ export class ProposalClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
+  }
+
+  public async addContract(contract: Contract): Promise<Contract> {
+    return this.apiCall(async (api) => {
+      return (await api.put('/contracts', contract)) as Contract;
+    });
+  }
+
+  public async deleteContract(contractId: string): Promise<string> {
+    return this.apiCall(async (api) => {
+      return (await api.delete(`/contracts/${contractId}`)) as string;
+    });
+  }
+
+  public async listContracts(): Promise<Omit<Contract, 'abi'>[]> {
+    return this.apiCall(async (api) => {
+      return (await api.get('/contracts')) as Omit<Contract, 'abi'>[];
+    });
   }
 
   // added separate from CreateProposalRequest type as the `simulate` boolean is contained within platform-sdk

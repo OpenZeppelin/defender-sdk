@@ -5,8 +5,11 @@ import {
   BlockExplorerApiKeyResponse,
   CreateBlockExplorerApiKeyRequest,
   DeployContractRequest,
+  DeploymentConfigCreateRequest,
+  DeploymentConfigResponse,
   DeploymentResponse,
   RemoveBlockExplorerApiKeyResponse,
+  RemoveDeploymentConfigResponse,
   UpdateBlockExplorerApiKeyRequest,
   UpgradeContractRequest,
   UpgradeContractResponse,
@@ -15,6 +18,7 @@ import {
 const DEPLOYMENTS_PATH = '/deployments';
 const UPGRADES_PATH = '/upgrades';
 const BLOCKEXPLORER_API_KEY_PATH = '/block-explorer-api-key';
+const DEPLOYMENTS_CONFIG_PATH = '/deployment-config';
 
 export class DeployClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -100,6 +104,38 @@ export class DeployClient extends BaseApiClient {
   public async removeBlockExplorerApiKey(blockExplorerApiKeyId: string): Promise<RemoveBlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
       return api.delete(`${BLOCKEXPLORER_API_KEY_PATH}/${blockExplorerApiKeyId}`);
+    });
+  }
+
+  public async getConfig({ deploymentConfigId }: { deploymentConfigId: string }): Promise<DeploymentConfigResponse> {
+    return this.apiCall(async (api) => {
+      return api.get(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
+    });
+  }
+  public async listConfig(): Promise<DeploymentConfigResponse[]> {
+    return this.apiCall(async (api) => {
+      return api.get(`${DEPLOYMENTS_CONFIG_PATH}`);
+    });
+  }
+
+  public async createConfig(payload: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
+    return this.apiCall(async (api) => {
+      return api.post(`${DEPLOYMENTS_CONFIG_PATH}`, payload);
+    });
+  }
+
+  public async updateConfig(
+    deploymentConfigId: string,
+    payload: DeploymentConfigCreateRequest,
+  ): Promise<DeploymentConfigResponse> {
+    return this.apiCall(async (api) => {
+      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`, payload);
+    });
+  }
+
+  public async removeConfig(deploymentConfigId: string): Promise<RemoveDeploymentConfigResponse> {
+    return this.apiCall(async (api) => {
+      return api.delete(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
     });
   }
 }
