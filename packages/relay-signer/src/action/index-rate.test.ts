@@ -1,7 +1,10 @@
 import { ActionRelayer } from '.';
 import Lambda from '../__mocks__/aws-sdk/clients/lambda';
 
-type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: ReturnType<typeof Lambda>; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
+  lambda: ReturnType<typeof Lambda>;
+  arn: string;
+};
 
 const getTime = () => Math.floor(Date.now() / 1000);
 const sleep = (millisecond: number) => new Promise((resolve) => setTimeout(resolve, millisecond));

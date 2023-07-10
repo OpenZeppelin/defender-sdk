@@ -187,7 +187,7 @@ describe('ethers/signer', () => {
         speed: tx.speed,
         gasPrice: undefined,
         validUntil: undefined,
-      }
+      },
     });
   });
 
@@ -223,7 +223,7 @@ describe('ethers/signer', () => {
 
     expectSentTx(sent, tx);
     expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
-      nonce: 30, 
+      nonce: 30,
       payload: {
         data: contract.interface.encodeFunctionData('transfer', [from, '0x02']),
         gasLimit: '0xea60',
@@ -232,7 +232,7 @@ describe('ethers/signer', () => {
         value: undefined,
         gasPrice: undefined,
         validUntil: undefined,
-      }
+      },
     });
   });
 

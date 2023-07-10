@@ -21,11 +21,15 @@ This monorepo contains individual OpenZeppelin Platform TypeScript clients and p
 
 ## Testing
 
-Run `npm test` to run unit tests across all packages.
+- Run `pnpm nx-test-skip-cache` to run unit tests across all packages.
 
 ## Linting & Styling
 
-Run `pnpm lint:check` or `pnpm prettier:check` at the project root. For fixing `pnpm lint:fix`
+- Run `pnpm lint:check` or `pnpm prettier:check` at the project root. For fixing `pnpm lint:fix`
+
+## Combining style, build & test in single command
+
+- Run `pnpm nx-build-test-skip-cache`.
 
 ## Publish
 
