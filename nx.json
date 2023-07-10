@@ -1,7 +1,10 @@
 {
   "workspaceLayout": {
-    "examplesDir": "examples",
+    "appsDir": "examples",
     "libsDir": "packages"
+  },
+  "affected": {
+    "defaultBase": "main"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -12,5 +15,5 @@
       }
     }
   },
-  "defaultBase": "master"
+  "defaultBase": "main"
 }
