@@ -1,4 +1,8 @@
 {
+  "workspaceLayout": {
+    "examplesDir": "examples",
+    "libsDir": "packages"
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",

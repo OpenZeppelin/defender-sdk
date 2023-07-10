@@ -13,15 +13,23 @@ This monorepo contains individual OpenZeppelin Platform TypeScript clients and p
 
 ## Development Setup
 
-Checkout the repo and run `npm i && npm run build`.
+- Checkout the repo and run `pnpm i --ignore-scripts --prefer-offline && pnpm run build`.
+
+  > Install pnpm globally with `npm i -g pnpm` if you haven't already.
+
+- To skip cache on the subsequent build steps you can use `pnpm nx-build-skip-cache`.
 
 ## Testing
 
-Run `npm test` to run unit tests across all packages.
+- Run `pnpm nx-test-skip-cache` to run unit tests across all packages.
 
-## Linting
+## Linting & Styling
 
-Run `npm run lint` at the project root.
+- Run `pnpm lint:check` or `pnpm prettier:check` at the project root. For fixing `pnpm lint:fix`
+
+## Combining style, build & test in single command
+
+- Run `pnpm nx-build-test-skip-cache`.
 
 ## Publish
 
@@ -29,7 +37,7 @@ Run `npm run lint` at the project root.
 
 ## Examples
 
-The `examples` repo has sample code  - note that most examples rely on `dotenv` for loading API keys and secrets. 
+The `examples` repo has sample code - note that most examples rely on `dotenv` for loading API keys and secrets.
 
 ## Lower Environments
 

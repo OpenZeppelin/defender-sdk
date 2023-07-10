@@ -20,10 +20,10 @@ describe('Deploy Client', () => {
     verifySourceCode: true,
   };
   beforeEach(() => {
-    deployClient = new DeployClient({
+    deployClient = (new DeployClient({
       apiKey: 'key',
       apiSecret: 'secret',
-    }) as unknown as TestClient<DeployClient>;
+    }) as unknown) as TestClient<DeployClient>;
     createAuthenticatedApi.mockClear();
   });
   describe('constructor', () => {
@@ -85,7 +85,7 @@ describe('Deploy Client', () => {
   });
   describe('get', () => {
     it('calls API correctly', async () => {
-      await deployClient.getDeployedContract({ deploymentId: 'deploy-id'});
+      await deployClient.getDeployedContract({ deploymentId: 'deploy-id' });
       expect(deployClient.api.get).toBeCalledWith('/deployments/deploy-id');
       expect(createAuthenticatedApi).toBeCalled();
     });

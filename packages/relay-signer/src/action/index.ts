@@ -1,12 +1,13 @@
-import {
-  ActionRelayerParams,
-  IRelayer,
-  RelayerGetResponse,
-} from '../models/relayer';
+import { ActionRelayerParams, IRelayer, RelayerGetResponse } from '../models/relayer';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
-import { JsonRpcRequest, JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
+import {
+  JsonRpcRequest,
+  JsonRpcResponse,
+  SignMessagePayload,
+  SignTypedDataPayload,
+  SignedMessagePayload,
+} from '../models/rpc';
 import { BaseActionClient } from '@openzeppelin/platform-sdk-base-client/lib/action';
-
 
 export type SendTxRequest = {
   action: 'send-tx';
@@ -46,17 +47,23 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     return this.execute({ action: 'send-tx', payload });
   }
 
-  public async replaceTransactionById({ id, payload }: {
-    id: string,
-    payload: RelayerTransactionPayload,
+  public async replaceTransactionById({
+    id,
+    payload,
+  }: {
+    id: string;
+    payload: RelayerTransactionPayload;
   }): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { id: string } = { ...payload, id };
     return this.execute({ action: 'replace-tx', txPayload });
   }
 
-  public async replaceTransactionByNonce({ nonce, payload }: {
-    nonce: number,
-    payload: RelayerTransactionPayload,
+  public async replaceTransactionByNonce({
+    nonce,
+    payload,
+  }: {
+    nonce: number;
+    payload: RelayerTransactionPayload;
   }): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { nonce: number } = { ...payload, nonce };
     return this.execute({ action: 'replace-tx', payload });
@@ -96,7 +103,7 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     });
   }
 
-  public async call({ method, params }: { method: string, params: string[] }): Promise<JsonRpcResponse> {
+  public async call({ method, params }: { method: string; params: string[] }): Promise<JsonRpcResponse> {
     return this.execute({
       action: 'json-rpc-query' as const,
       payload: { method, params, jsonrpc: '2.0', id: this.jsonRpcRequestNextId++ },

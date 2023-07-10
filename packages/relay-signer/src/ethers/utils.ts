@@ -1,21 +1,24 @@
-import { ApiRelayerParams, ActionRelayerParams, BigUInt } from "../models/relayer";
-import { RelayerTransactionPayload } from "../models/transactions";
-import { Relayer } from "../relayer";
+import { ApiRelayerParams, ActionRelayerParams, BigUInt } from '../models/relayer';
+import { RelayerTransactionPayload } from '../models/transactions';
+import { Relayer } from '../relayer';
 
 export function isActionCredentials(
-	credentials: ActionRelayerParams | ApiRelayerParams,
+  credentials: ActionRelayerParams | ApiRelayerParams,
 ): credentials is ActionRelayerParams {
-	const actionCredentials = credentials as ActionRelayerParams;
-	return !!actionCredentials.credentials;
+  const actionCredentials = credentials as ActionRelayerParams;
+  return !!actionCredentials.credentials;
 }
 
 export function isApiCredentials(credentials: ActionRelayerParams | ApiRelayerParams): credentials is ApiRelayerParams {
-	const apiCredentials = credentials as ApiRelayerParams;
-	return !!apiCredentials.apiKey && !!apiCredentials.apiSecret;
+  const apiCredentials = credentials as ApiRelayerParams;
+  return !!apiCredentials.apiKey && !!apiCredentials.apiSecret;
 }
 
 export function validatePayload(payload: RelayerTransactionPayload) {
-  if (isEIP1559Tx(payload) && BigInt(payload.maxFeePerGas as BigUInt) < BigInt(payload.maxPriorityFeePerGas as BigUInt)) {
+  if (
+    isEIP1559Tx(payload) &&
+    BigInt(payload.maxFeePerGas as BigUInt) < BigInt(payload.maxPriorityFeePerGas as BigUInt)
+  ) {
     throw new Error('maxFeePerGas should be greater or equal to maxPriorityFeePerGas');
   }
   if (payload.validUntil && new Date(payload.validUntil).getTime() < new Date().getTime()) {
@@ -28,7 +31,9 @@ export function validatePayload(payload: RelayerTransactionPayload) {
 }
 
 // If a tx-like object is representing a EIP1559 transaction (type 2)
-export function isEIP1559Tx<TransactionLikeType extends object>(tx: TransactionLikeType): tx is TransactionLikeType & {
+export function isEIP1559Tx<TransactionLikeType extends object>(
+  tx: TransactionLikeType,
+): tx is TransactionLikeType & {
   maxPriorityFeePerGas: NonNullable<unknown>;
   maxFeePerGas: NonNullable<unknown>;
 } {

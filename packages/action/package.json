@@ -8,8 +8,9 @@
     "build": "rm -rf lib && tsc",
     "test": "npm run test:unit",
     "test:unit": "jest --verbose --passWithNoTests",
-    "watch": "tsc -w"
-  },  
+    "watch": "tsc -w",
+    "lint:ts": "tsc --noEmit --project tsconfig.json"
+  },
   "files": [
     "lib",
     "!*.test.js",

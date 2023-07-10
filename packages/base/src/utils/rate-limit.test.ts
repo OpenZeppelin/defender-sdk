@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { rateLimitModule } from './rate-limit';
-
+// prettier-ignore
 describe('utils/rate-limit', () => {
   test('should throw error if limit is reached', () => {
     try {

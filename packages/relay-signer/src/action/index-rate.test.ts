@@ -1,7 +1,10 @@
 import { ActionRelayer } from '.';
-import Lambda from 'aws-sdk/clients/lambda';
+import Lambda from '../__mocks__/aws-sdk/clients/lambda';
 
-type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
+  lambda: ReturnType<typeof Lambda>;
+  arn: string;
+};
 
 const getTime = () => Math.floor(Date.now() / 1000);
 const sleep = (millisecond: number) => new Promise((resolve) => setTimeout(resolve, millisecond));
@@ -29,10 +32,10 @@ describe('ActionRelayer', () => {
   let relayer: TestActionRelayer;
 
   beforeEach(async function () {
-    relayer = new ActionRelayer({
+    relayer = (new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
-    }) as unknown as TestActionRelayer;
+    }) as unknown) as TestActionRelayer;
   });
 
   describe('get rate limited', () => {
@@ -49,7 +52,7 @@ describe('ActionRelayer', () => {
             await relayer.getTransaction({ id: '42' });
           } catch (error) {
             expect(index).toBe(rateLimit + 1);
-            expect(error.message).toBe('Rate limit exceeded');
+            expect((error as any).message).toBe('Rate limit exceeded');
             hasBeenRateLimited = true;
           }
         }),

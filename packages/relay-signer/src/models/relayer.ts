@@ -13,16 +13,16 @@ export type ApiRelayerParams = { apiKey: string; apiSecret: string; httpsAgent?:
 export type ActionRelayerParams = { credentials: string; relayerARN: string; httpsAgent?: https.Agent };
 
 export interface RelayerGetResponse {
-	relayerId: string;
-	name: string;
-	address: string;
-	network: Network;
-	paused: boolean;
-	createdAt: string;
-	pendingTxCost: string;
-	minBalance: BigUInt;
-	policies: UpdateRelayerPoliciesRequest;
-	stackResourceId?: string;
+  relayerId: string;
+  name: string;
+  address: string;
+  network: Network;
+  paused: boolean;
+  createdAt: string;
+  pendingTxCost: string;
+  minBalance: BigUInt;
+  policies: UpdateRelayerPoliciesRequest;
+  stackResourceId?: string;
 }
 
 export interface UpdateRelayerPoliciesRequest {
@@ -33,13 +33,13 @@ export interface UpdateRelayerPoliciesRequest {
 }
 
 export interface IRelayer {
-	getRelayer(): Promise<RelayerGetResponse>;
-	sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-	replaceTransactionById(params: {id: string, payload: RelayerTransactionPayload}): Promise<RelayerTransaction>;
-	replaceTransactionByNonce(params: {nonce: number, payload: RelayerTransactionPayload}): Promise<RelayerTransaction>;
-	getTransaction(params: {id: string}): Promise<RelayerTransaction>;
-	listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
-	sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
-	signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
-	call(params: {method: string, params: string[]}): Promise<JsonRpcResponse>;
+  getRelayer(): Promise<RelayerGetResponse>;
+  sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
+  replaceTransactionById(params: { id: string; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  replaceTransactionByNonce(params: { nonce: number; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  getTransaction(params: { id: string }): Promise<RelayerTransaction>;
+  listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
+  sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
+  signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
+  call(params: { method: string; params: string[] }): Promise<JsonRpcResponse>;
 }

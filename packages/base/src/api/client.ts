@@ -51,6 +51,7 @@ export abstract class BaseApiClient {
     }
   }
 
+  // prettier-ignore
   protected async apiCall<T>(fn: (api: AxiosInstance) => Promise<T>): Promise<T> {
     const api = await this.init();
     try {

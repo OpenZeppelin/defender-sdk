@@ -162,8 +162,10 @@ export class DefenderRelaySenderProvider {
 
   protected _delegateToProvider(provider: any) {
     // Sorry for all the anys
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const delegate = (fn: any) => {
       if (typeof (provider[fn] as any) === 'function') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (this as any)[fn] = provider[fn].bind(provider);
       }
     };

@@ -1,7 +1,10 @@
 import { ActionRelayer } from '.';
-import Lambda from 'aws-sdk/clients/lambda';
+import Lambda from '../__mocks__/aws-sdk/clients/lambda';
 
-type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & { lambda: Lambda; arn: string };
+type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
+  lambda: ReturnType<typeof Lambda>;
+  arn: string;
+};
 
 describe('ActionRelayer', () => {
   const credentials = {
@@ -18,14 +21,10 @@ describe('ActionRelayer', () => {
   let relayer: TestActionRelayer;
 
   beforeEach(async function () {
-    relayer = new ActionRelayer({
+    relayer = (new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
-    }) as unknown as TestActionRelayer;
-  });
-
-  afterAll(() => {
-    expect(true).toBe(false);
+    }) as unknown) as TestActionRelayer;
   });
 
   describe('constructor', () => {
@@ -81,7 +80,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"nonce":10}}',
+        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000}}',
       });
     });
 
@@ -90,7 +89,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"transactionId":"123-456-abc"}}',
+        Payload: '{"action":"replace-tx","txPayload":{"to":"0x0","gasLimit":21000,"id":"123-456-abc"}}',
       });
     });
   });
@@ -152,7 +151,7 @@ describe('ActionRelayer', () => {
 
   describe('call', () => {
     test('passes correct arguments to the API', async () => {
-      await relayer.call({ method: 'eth_call', params: ['0xa', '0xb']});
+      await relayer.call({ method: 'eth_call', params: ['0xa', '0xb'] });
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',

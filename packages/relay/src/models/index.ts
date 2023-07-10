@@ -148,6 +148,7 @@ export type ActionRelayerParams = { credentials: string; relayerARN: string; htt
 export type JsonRpcResponse = {
   id: number | null;
   jsonrpc: '2.0';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result: any;
   error?: {
     code: number;
@@ -164,20 +165,19 @@ export type JsonRpcRequest = {
 };
 
 export interface IRelayer {
-	getRelayer(): Promise<RelayerGetResponse>;
-	sendTransaction(params :{ payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
-	replaceTransactionById(params: { id: string, payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
-	replaceTransactionByNonce(params: { nonce: number, payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
-	query(params: { id: string }): Promise<RelayerTransaction>;
-	list(params: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]>;
-	sign(params: { payload: SignMessagePayload }): Promise<SignedMessagePayload>;
-	signTypedData(params: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload>;
-	call(params: { method: string, params: string[] }): Promise<JsonRpcResponse>;
+  getRelayer(): Promise<RelayerGetResponse>;
+  sendTransaction(params: { payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  replaceTransactionById(params: { id: string; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  replaceTransactionByNonce(params: { nonce: number; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
+  query(params: { id: string }): Promise<RelayerTransaction>;
+  list(params: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]>;
+  sign(params: { payload: SignMessagePayload }): Promise<SignedMessagePayload>;
+  signTypedData(params: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload>;
+  call(params: { method: string; params: string[] }): Promise<JsonRpcResponse>;
 }
 
 export type ListTransactionsRequest = {
-	status?: 'pending' | 'mined' | 'failed';
-	since?: Date;
-	limit?: number;
+  status?: 'pending' | 'mined' | 'failed';
+  since?: Date;
+  limit?: number;
 };
-  

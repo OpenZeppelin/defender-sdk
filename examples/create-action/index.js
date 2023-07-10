@@ -16,7 +16,7 @@ async function main() {
     paused: false,
   };
 
-  const createdAction = await client.action.create(myAction)
+  const createdAction = await client.action.create(myAction);
   console.log(createdAction);
 }
 

@@ -13,6 +13,7 @@ const expectedRejectObjectStructure = {
   request: { path: '/relayer', method: 'GET' },
 };
 
+// prettier-ignore
 describe('PlatformApiError', () => {
   test('request rejection reject with a PlatformApiResponseError that include message, request.path, request.method, response.status, response.statusText, response.data', async () => {
     try {
@@ -36,7 +37,7 @@ describe('PlatformApiError', () => {
 
     try {
       await previousRejectionMethod(mockAxiosError);
-    } catch (error: any) {
+    } catch (error) {
       expect(error).toStrictEqual(expectedRejectObjectStructure);
     }
   });

@@ -119,7 +119,7 @@ describe('MonitorClient', () => {
   };
 
   beforeEach(() => {
-    monitor = new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown as TestMonitorClient;
+    monitor = (new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown) as TestMonitorClient;
     createAuthenticatedApi.mockClear();
     listBlockwatchersSpy = jest.spyOn(monitor, 'listBlockwatchers').mockImplementation(async () => [
       {
@@ -184,8 +184,17 @@ describe('MonitorClient', () => {
 
   describe('create', () => {
     it('passes correct BLOCK type arguments to the API', async () => {
-      const { name, network, paused, type, addresses, abi, txCondition, eventConditions, functionConditions } =
-        createBlockPayload;
+      const {
+        name,
+        network,
+        paused,
+        type,
+        addresses,
+        abi,
+        txCondition,
+        eventConditions,
+        functionConditions,
+      } = createBlockPayload;
 
       const expectedApiRequest = {
         paused,
@@ -282,7 +291,7 @@ describe('MonitorClient', () => {
 
   describe('get', () => {
     it('passes correct arguments to the API', async () => {
-      await monitor.get({monitorId: 'i-am-the-watcher' });
+      await monitor.get({ monitorId: 'i-am-the-watcher' });
       expect(monitor.api.get).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -292,8 +301,17 @@ describe('MonitorClient', () => {
     it('passes correct BLOCK type arguments to the API', async () => {
       jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
-      const { name, network, paused, type, addresses, abi, txCondition, eventConditions, functionConditions } =
-        createBlockPayload;
+      const {
+        name,
+        network,
+        paused,
+        type,
+        addresses,
+        abi,
+        txCondition,
+        eventConditions,
+        functionConditions,
+      } = createBlockPayload;
 
       const expectedApiRequest = {
         paused,
@@ -329,7 +347,7 @@ describe('MonitorClient', () => {
       };
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.update({monitorId, ...createBlockPayload});
+      await monitor.update({ monitorId, ...createBlockPayload });
       expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -372,7 +390,7 @@ describe('MonitorClient', () => {
       };
 
       const monitorId = 'i-am-the-FORTA-watcher';
-      await monitor.update({monitorId, ...createFortaPayload});
+      await monitor.update({ monitorId, ...createFortaPayload });
       expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -382,7 +400,7 @@ describe('MonitorClient', () => {
 
       const name = 'some random new name';
 
-      if(!oldBlockMonitor?.addressRules[0]) throw new Error('oldBlockMonitor.addressRules is empty');
+      if (!oldBlockMonitor?.addressRules[0]) throw new Error('oldBlockMonitor.addressRules is empty');
 
       const expectedApiRequest = {
         type: oldBlockMonitor.type,
@@ -422,7 +440,7 @@ describe('MonitorClient', () => {
       jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.pause({monitorId});
+      await monitor.pause({ monitorId });
       expect(monitor.api.put).toBeCalledWith(
         `/subscribers/${monitorId}`,
         expect.objectContaining({
@@ -438,7 +456,7 @@ describe('MonitorClient', () => {
       jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.unpause({monitorId});
+      await monitor.unpause({ monitorId });
       expect(monitor.api.put).toBeCalledWith(
         `/subscribers/${monitorId}`,
         expect.objectContaining({
@@ -451,7 +469,7 @@ describe('MonitorClient', () => {
 
   describe('delete', () => {
     it('passes correct arguments to the API', async () => {
-      await monitor.delete({monitorId: 'i-am-the-watcher'});
+      await monitor.delete({ monitorId: 'i-am-the-watcher' });
       expect(monitor.api.delete).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -545,7 +563,7 @@ describe('MonitorClient', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
       const results = await monitor.getBlockwatcherIdByNetwork('goerli');
-      if(!results[0]) throw new Error('results is empty');
+      if (!results[0]) throw new Error('results is empty');
       expect(results[0].blockWatcherId).toEqual('i-am-the-watcher');
     });
 

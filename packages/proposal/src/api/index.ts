@@ -1,24 +1,21 @@
 import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
 import { isArray } from 'lodash';
 import { Interface } from 'ethers/lib/utils';
-import {
-  ExternalApiCreateProposalRequest as CreateProposalRequest,
-  PartialContract,
-} from '../models/proposal';
+import { ExternalApiCreateProposalRequest as CreateProposalRequest, PartialContract } from '../models/proposal';
 import { SimulationRequest as SimulationTransaction, SimulationResponse } from '../models/simulation';
 import { ExternalApiProposalResponse as ProposalResponse, ProposalResponseWithUrl } from '../models/response';
 import { getProposalUrl } from './utils';
 
 type CreateProposalParams = {
-    proposal: CreateProposalRequest,
-    simulate?: boolean,
-    overrideSimulationOpts?: SimulationTransaction
+  proposal: CreateProposalRequest;
+  simulate?: boolean;
+  overrideSimulationOpts?: SimulationTransaction;
 };
 
 type SimulateProposalParams = {
-    contractId: string,
-    proposalId: string,
-    transaction: SimulationTransaction,
+  contractId: string;
+  proposalId: string;
+  transaction: SimulationTransaction;
 };
 
 export class ProposalClient extends BaseApiClient {
@@ -34,8 +31,12 @@ export class ProposalClient extends BaseApiClient {
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
   }
 
-  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-client
-  public async create({ proposal, simulate, overrideSimulationOpts }: CreateProposalParams ): Promise<ProposalResponseWithUrl> {
+  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within platform-sdk
+  public async create({
+    proposal,
+    simulate,
+    overrideSimulationOpts,
+  }: CreateProposalParams): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       let simulation: SimulationResponse | undefined = undefined;
       let simulationData = '0x';
@@ -84,19 +85,19 @@ export class ProposalClient extends BaseApiClient {
       if (simulate && !isBatchProposal(proposal.contract)) {
         try {
           simulation = await this.simulate({
-            contractId: response.contractId, 
+            contractId: response.contractId,
             proposalId: response.proposalId,
             transaction: {
-							transactionData: {
-							from: proposal.via,
-							to: proposal.contract.address,
-							data: simulationData,
-							value: proposal.metadata?.sendValue ?? '0',
-							...overrideSimulationOpts?.transactionData,
-							},
-							blockNumber: overrideSimulationOpts?.blockNumber,
-            }
-					});
+              transactionData: {
+                from: proposal.via,
+                to: proposal.contract.address,
+                data: simulationData,
+                value: proposal.metadata?.sendValue ?? '0',
+                ...overrideSimulationOpts?.transactionData,
+              },
+              blockNumber: overrideSimulationOpts?.blockNumber,
+            },
+          });
         } catch (e) {
           // simply log so we don't block createProposal response
           console.warn('Simulation Failed:', e);
@@ -113,14 +114,26 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async get({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
+  public async get({
+    contractId,
+    proposalId,
+  }: {
+    contractId: string;
+    proposalId: string;
+  }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.get(`/contracts/${contractId}/proposals/${proposalId}`)) as ProposalResponse;
       return { ...response, url: getProposalUrl(response) };
     });
   }
 
-  public async archive({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
+  public async archive({
+    contractId,
+    proposalId,
+  }: {
+    contractId: string;
+    proposalId: string;
+  }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
         archived: true,
@@ -129,7 +142,13 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async unarchive({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<ProposalResponseWithUrl> {
+  public async unarchive({
+    contractId,
+    proposalId,
+  }: {
+    contractId: string;
+    proposalId: string;
+  }): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
       const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
         archived: false,
@@ -138,7 +157,13 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async getSimulation({ contractId, proposalId }: { contractId: string, proposalId: string }): Promise<SimulationResponse> {
+  public async getSimulation({
+    contractId,
+    proposalId,
+  }: {
+    contractId: string;
+    proposalId: string;
+  }): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.get(
         `/contracts/${contractId}/proposals/${proposalId}/simulation`,

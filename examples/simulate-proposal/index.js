@@ -33,7 +33,7 @@ async function main() {
       functionInputs: [],
       via: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
       viaType: 'EOA',
-    }
+    },
   });
 
   console.log(`Created proposal (${proposal.proposalId})`);
@@ -58,7 +58,7 @@ async function main() {
         // can be up to 100 blocks ahead of current block,
         // does not support previous blocks
         blockNumber: undefined,
-      }
+      },
     });
 
     // Check if simulation reverted under `simulation.meta.reverted`
@@ -78,7 +78,7 @@ async function main() {
 
   // Alternatively you can initiate a simulation request as part of `createProposal`
   const proposalWithSimulation = await client.proposal.create({
-    proposal: { 
+    proposal: {
       contract: {
         address: '0xA91382E82fB676d4c935E601305E5253b3829dCD',
         network: 'mainnet',
@@ -101,7 +101,7 @@ async function main() {
       functionInterface: { name: 'flash', inputs: [] },
       functionInputs: [],
       via: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      viaType: 'EOA'
+      viaType: 'EOA',
     },
     // set simulate to true
     simulate: true,

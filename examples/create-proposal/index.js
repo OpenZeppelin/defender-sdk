@@ -19,7 +19,7 @@ async function main() {
       functionInputs: ['42'],
       via: '0x534Fba01B138915C9F6D2b58bCF5C4712852cfE8',
       viaType: 'Gnosis Safe',
-    }
+    },
   });
 
   console.log(proposal);
