@@ -274,9 +274,30 @@ importers:
 
   packages/platform-sdk:
     dependencies:
+      '@openzeppelin/platform-sdk-action-client':
+        specifier: ^0.1.0
+        version: link:../action
       '@openzeppelin/platform-sdk-base-client':
         specifier: ^0.1.0
         version: link:../base
+      '@openzeppelin/platform-sdk-deploy-client':
+        specifier: ^0.1.0
+        version: link:../deploy
+      '@openzeppelin/platform-sdk-monitor-client':
+        specifier: ^0.1.0
+        version: link:../monitor
+      '@openzeppelin/platform-sdk-notification-channel-client':
+        specifier: ^0.1.0
+        version: link:../notification-channel
+      '@openzeppelin/platform-sdk-proposal-client':
+        specifier: ^0.1.0
+        version: link:../proposal
+      '@openzeppelin/platform-sdk-relay-client':
+        specifier: ^0.1.0
+        version: link:../relay
+      '@openzeppelin/platform-sdk-relay-signer-client':
+        specifier: ^0.1.0
+        version: link:../relay-signer
 
   packages/proposal:
     dependencies:
