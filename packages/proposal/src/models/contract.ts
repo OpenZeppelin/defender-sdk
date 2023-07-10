@@ -1,10 +1,10 @@
-import { Network } from "@openzeppelin/platform-sdk-base-client";
-import { Address } from "./proposal";
+import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { Address } from './proposal';
 
 export interface Contract {
-	network: Network;
-	address: Address;
-	name: string;
-	abi?: string;
-	natSpec?: string;
+  network: Network;
+  address: Address;
+  name: string;
+  abi?: string;
+  natSpec?: string;
 }

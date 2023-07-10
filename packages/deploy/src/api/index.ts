@@ -39,6 +39,7 @@ export class DeployClient extends BaseApiClient {
       throw new Error(
         `Missing artifact in deploy request. Either artifactPayload or artifactUri must be included in the request.`,
       );
+
     return this.apiCall(async (api) => {
       return api.post(`${DEPLOYMENTS_PATH}`, payload);
     });
