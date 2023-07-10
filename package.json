@@ -30,8 +30,8 @@
   "scripts": {
     "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
-    "nx-build-test-skip-cache": "npm run build-test --skip-nx-cache",
-    "nx-test-skip-cache": "npm run test --skip-nx-cache",
+    "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
+    "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
     "build": "nx run-many -t build --parallel=1",
     "build-test": "nx run-many -t style,build,test",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",

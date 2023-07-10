@@ -157,13 +157,13 @@ describe('web3/sender', () => {
 
     expect(sent).toEqual(replacedHash);
     expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
-      nonce: 30, 
+      nonce: 30,
       payload: {
         ...request,
         gasLimit: '0xea60',
         speed: undefined,
         gasPrice: '0x3b9aca00',
-      }
+      },
     });
 
     relayer.replaceTransactionByNonce.mockResolvedValue(tx);
@@ -201,7 +201,7 @@ describe('web3/sender', () => {
 
     expect(sent).toEqual(tx.hash);
     expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
-      nonce: 30, 
+      nonce: 30,
       payload: {
         ...pick(tx, 'from', 'gaslimit', 'speed'),
         nonce: '0x1e',
@@ -211,7 +211,7 @@ describe('web3/sender', () => {
         speed: tx.speed,
         gasPrice: undefined,
         validUntil: undefined,
-      }
+      },
     });
   });
 });
