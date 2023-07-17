@@ -1,0 +1,15 @@
+{
+  "name": "@openzeppelin/platform-sdk-example-list-tenant-networks",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@openzeppelin/platform-sdk": "../../packages/platform-sdk",
+    "dotenv": "^16.1.4"
+  }
+}

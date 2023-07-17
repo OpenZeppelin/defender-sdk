@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/platform-sdk",
+  "name": "@openzeppelin/platform-sdk-tenant-client",
   "version": "0.1.0",
   "description": "",
   "main": "./lib/index.js",
@@ -20,15 +20,10 @@
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
+    "@ethersproject/abi": "^5.6.3",
     "@openzeppelin/platform-sdk-base-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-monitor-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-action-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-relay-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-proposal-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-deploy-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-notification-channel-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-relay-signer-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-tenant-client": "^0.1.0"
+    "axios": "^1.4.0",
+    "lodash": "^4.17.19"
   },
   "publishConfig": {
     "access": "public"

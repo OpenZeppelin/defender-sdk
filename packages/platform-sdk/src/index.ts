@@ -5,6 +5,8 @@ import { ProposalClient } from '@openzeppelin/platform-sdk-proposal-client';
 import { DeployClient } from '@openzeppelin/platform-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/platform-sdk-notification-channel-client';
 import { RelaySignerClient } from '@openzeppelin/platform-sdk-relay-signer-client';
+import { TenantClient } from '@openzeppelin/platform-sdk-tenant-client';
+
 import { Newable, ClientParams } from './types';
 
 interface PlatformOptions {
@@ -58,5 +60,9 @@ export class Platform {
 
   get relaySigner() {
     return getClient(RelaySignerClient, { apiKey: this.relayerApiKey, apiSecret: this.relayerApiSecret });
+  }
+
+  get tenant() {
+    return getClient(TenantClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
   }
 }
