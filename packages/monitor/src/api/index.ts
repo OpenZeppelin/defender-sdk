@@ -28,6 +28,7 @@ import {
   GetNotificationRequest,
   UpdateNotificationRequest,
 } from '../models/notification';
+import { NetworkType } from '../models/networks';
 
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -41,6 +42,12 @@ export class MonitorClient extends BaseApiClient {
   protected getApiUrl(): string {
     // TODO: update to platform-api.* url (and /sentinel) when available
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+  }
+
+  public async listNetworks(type?: NetworkType): Promise<Network[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(type ? `/networks?type=${type}` : `/networks`);
+    });
   }
 
   public async list(): Promise<ListMonitorResponse> {
