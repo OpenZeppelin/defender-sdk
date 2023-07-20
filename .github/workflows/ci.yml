@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 # Declare default permissions as read only.
-permissions: read-all
+permissions: write-all
 
 jobs:
   prepare:
