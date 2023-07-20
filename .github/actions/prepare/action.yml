@@ -15,6 +15,14 @@ runs:
       with:
         node-version: 16.20.0
         cache: 'pnpm'
+
+    - name: check ssh key
+      run: |
+        ssh -vT git@github.com
+      shell: bash
+
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile --ignore-scripts
+      if: always()
+      run: |
+        pnpm install --frozen-lockfile --ignore-scripts
       shell: bash
