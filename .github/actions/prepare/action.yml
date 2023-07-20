@@ -7,6 +7,8 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9  # v3.5.3
+      with:
+        persist-credentials: false
     - uses: pnpm/action-setup@v2
       with:
         version: 8
@@ -16,9 +18,10 @@ runs:
         node-version: 16.20.0
         cache: 'pnpm'
 
-    - name: check ssh key
+    - name: Reconfigure git to use HTTP authentication
       run: |
-        ssh -vT git@github.com
+        git config --global url."https://github.com/".insteadOf
+        ssh://git@github.com/
       shell: bash
 
     - name: Install dependencies
