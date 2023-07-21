@@ -9,11 +9,11 @@ concurrency:
   cancel-in-progress: true
 
 # Declare default permissions as read only.
-permissions: write-all
+permissions: read-all
 
 jobs:
-  prepare:
-    name: Prepare pre-requisites
+  build-test:
+    name: Run build & test
     runs-on: ubuntu-22.04
     steps:
     - name: Harden Runner
@@ -27,14 +27,14 @@ jobs:
     - name: Prepare pre-requisites
       uses: ./.github/actions/prepare
 
-  # Deterministic Build & tests
-  test:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    needs: prepare
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.7.0
-    with:
-      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
-      node-version: "16.20.0"
+    - name: Style
+      run: |
+        pnpm style
+
+    - name: Build
+      run: |
+        pnpm nx-build-skip-cache
+
+    - name: Test
+      run: |
+        pnpm nx-test-skip-cache
