@@ -38,7 +38,7 @@ export interface MonitorFilterTrigger {
 
 export interface Action
   extends Pick<CreateActionRequest, 'name' | 'relayerId' | 'paused' | 'stackResourceId' | 'dependenciesVersion'> {
-  actionkId: string;
+  actionId: string;
   encodedZippedCode?: string;
   trigger: ScheduleTrigger | WebhookTrigger | SentinelTrigger | MonitorFilterTrigger;
   createdAt?: string;
