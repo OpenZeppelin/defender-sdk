@@ -46,8 +46,8 @@ importers:
         specifier: ^5.61.0
         version: 5.61.0(eslint@8.44.0)(typescript@4.9.5)
       code-style:
-        specifier: git+https://github.com/OpenZeppelin/code-style.git
-        version: github.com/OpenZeppelin/code-style/0c7b3073da623d1112e4f9c3f186586167ab2d03
+        specifier: https://github.com/OpenZeppelin/configs.git
+        version: github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03
       eslint:
         specifier: ^8.42.0
         version: 8.44.0
@@ -7669,8 +7669,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/OpenZeppelin/code-style/0c7b3073da623d1112e4f9c3f186586167ab2d03:
-    resolution: {commit: 0c7b3073da623d1112e4f9c3f186586167ab2d03, repo: git+ssh://git@github.com/OpenZeppelin/code-style.git, type: git}
+  github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03:
+    resolution: {tarball: https://codeload.github.com/OpenZeppelin/configs/tar.gz/0c7b3073da623d1112e4f9c3f186586167ab2d03}
     name: code-style
     version: 0.1.0
     dev: true
