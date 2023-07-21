@@ -65,7 +65,6 @@ jobs:
       node-version: "16.20.0"
       # Remove after making repo public
       rekor-log-public: true
-      private-repository: true
 
   # Git tag the commit for publishing
   tag:
