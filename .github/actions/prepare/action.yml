@@ -12,20 +12,12 @@ runs:
     - uses: pnpm/action-setup@v2
       with:
         version: 8
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 16
       uses: actions/setup-node@v3
       with:
         node-version: 16.20.0
         cache: 'pnpm'
-
-    - name: Reconfigure git to use HTTP authentication
-      run: |
-        git config --global url."https://github.com/".insteadOf
-        ssh://git@github.com/
-      shell: bash
-
     - name: Install dependencies
-      if: always()
       run: |
-        pnpm install --frozen-lockfile --ignore-scripts
+        pnpm install-deps
       shell: bash

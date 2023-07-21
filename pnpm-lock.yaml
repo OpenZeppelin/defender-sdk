@@ -46,7 +46,7 @@ importers:
         specifier: ^5.61.0
         version: 5.61.0(eslint@8.44.0)(typescript@4.9.5)
       code-style:
-        specifier: https://github.com/OpenZeppelin/code-style.git
+        specifier: git+https://github.com/OpenZeppelin/code-style.git
         version: github.com/OpenZeppelin/code-style/0c7b3073da623d1112e4f9c3f186586167ab2d03
       eslint:
         specifier: ^8.42.0
@@ -65,7 +65,7 @@ importers:
         version: 16.1.4
       nx-cloud:
         specifier: latest
-        version: 16.0.5
+        version: 16.1.1
       prettier:
         specifier: ^2.0.4
         version: 2.0.4
@@ -1659,10 +1659,10 @@ packages:
       semver: 7.5.3
     dev: true
 
-  /@nrwl/nx-cloud@16.0.5:
-    resolution: {integrity: sha512-1p82ym8WE9ziejwgPslstn19iV/VkHfHfKr/5YOnfCHQS+NxUf92ogcYhHXtqWLblVZ9Zs4W4pkSXK4e04wCmQ==}
+  /@nrwl/nx-cloud@16.1.1:
+    resolution: {integrity: sha512-iJIPP46+saFZK748FKU4u4YZH+Sv3ZvZPbMwGVMhwqhOYcrlO5aSa0lpilyoN8WuhooKNqcCfiqshx6V577fTg==}
     dependencies:
-      nx-cloud: 16.0.5
+      nx-cloud: 16.1.1
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5626,11 +5626,11 @@ packages:
       bn.js: 4.11.6
       strip-hex-prefix: 1.0.0
 
-  /nx-cloud@16.0.5:
-    resolution: {integrity: sha512-13P7r0aKikjBtmdZrNorwXzVPeVIV4MLEwqGY+DEG6doLBtI5KqEQk/d5B5l2dCF2BEi/LXEmLYCmf9gwbOJ+Q==}
+  /nx-cloud@16.1.1:
+    resolution: {integrity: sha512-Rq7ynvkYzAJ67N3pDqU6cMqwvWP7WXJGP4EFjLxgUrRHNCccqDPggeAqePodfk3nZEUrZB8F5QBKZuuw1DR3oA==}
     hasBin: true
     dependencies:
-      '@nrwl/nx-cloud': 16.0.5
+      '@nrwl/nx-cloud': 16.1.1
       axios: 1.1.3
       chalk: 4.1.2
       dotenv: 10.0.0
