@@ -6,7 +6,7 @@ import { DeployClient } from '@openzeppelin/platform-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/platform-sdk-notification-channel-client';
 import { RelaySignerClient } from '@openzeppelin/platform-sdk-relay-signer-client';
 import { Newable, ClientParams } from './types';
-import { NetworkType } from '@openzeppelin/platform-sdk-monitor-client/lib/models/networks';
+import { ListNetworkRequestOptions } from '@openzeppelin/platform-sdk-monitor-client/lib/models/networks';
 import { Network } from '@openzeppelin/platform-sdk-base-client';
 
 interface PlatformOptions {
@@ -34,8 +34,8 @@ export class Platform {
     this.relayerApiSecret = options.relayerApiSecret;
   }
 
-  public networks(type?: NetworkType): Promise<Network[]> {
-    return getClient(MonitorClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listNetworks(type);
+  public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
+    return getClient(MonitorClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listNetworks(opts);
   }
 
   get monitor() {
