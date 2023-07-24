@@ -139,6 +139,15 @@ importers:
         specifier: ^16.1.4
         version: 16.1.4
 
+  examples/list-networks:
+    dependencies:
+      '@openzeppelin/platform-sdk':
+        specifier: 0.1.0
+        version: link:../../packages/platform-sdk
+      dotenv:
+        specifier: ^16.1.4
+        version: 16.1.4
+
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/platform-sdk':
