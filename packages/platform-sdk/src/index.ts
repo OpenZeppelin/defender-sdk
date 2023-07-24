@@ -17,7 +17,6 @@ interface PlatformOptions {
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
-  console.log('creds', credentials);
   if (
     !('credentials' in credentials && 'relayerARN' in credentials) &&
     !('apiKey' in credentials && 'apiSecret' in credentials)
