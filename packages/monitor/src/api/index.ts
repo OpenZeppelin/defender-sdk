@@ -269,6 +269,7 @@ export class MonitorClient extends BaseApiClient {
       ],
       network: monitor.network as Network,
       type: 'BLOCK',
+      skipABIValidation: monitor.skipABIValidation,
     };
   }
 
@@ -338,6 +339,7 @@ export class MonitorClient extends BaseApiClient {
       txCondition,
       name: monitor.name,
       paused: monitor.paused,
+      skipABIValidation: monitor.skipABIValidation,
       alertThreshold: monitor.alertThreshold,
       autotaskCondition: rule.autotaskCondition?.autotaskId,
       autotaskTrigger: monitor.notifyConfig?.autotaskId,
