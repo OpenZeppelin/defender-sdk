@@ -4,6 +4,7 @@
   "private": true,
   "description": "The OpenZeppelin Platform Software Development Kit",
   "dependencies": {
+    "@openzeppelin/platform-sdk-base-client": "0.1.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },
