@@ -39,6 +39,10 @@ jobs:
                           "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA")
           echo "author=$(echo $COMMIT_DETAILS | yq '.author.login')" >> $GITHUB_OUTPUT
   prepare:
+    permissions:
+      contents: write
+      id-token: write
+      actions: read
     needs: check_author
     runs-on: ubuntu-22.04
     if: ${{ needs.check_author.outputs.latest_commit_author != 'svc-gh-is-01' }}
@@ -54,6 +58,11 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # # Deterministic Build & tests
   # provenance:
   #   permissions:
@@ -68,18 +77,6 @@ jobs:
   #     # Remove after making repo public
   #     rekor-log-public: true
 
-  # Release without publishing
-  release:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # # Git tag the commit for publishing
   # tag:
