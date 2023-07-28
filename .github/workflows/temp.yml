@@ -57,11 +57,12 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+      # - name: Create Release Pull Request
+      #   uses: changesets/action@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # # Deterministic Build & tests
   # provenance:
