@@ -1,8 +1,4 @@
 {
-  "workspaceLayout": {
-    "appsDir": "examples",
-    "libsDir": "packages"
-  },
   "affected": {
     "defaultBase": "main"
   },
