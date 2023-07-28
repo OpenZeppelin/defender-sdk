@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/platform-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -20,14 +20,14 @@
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/platform-sdk-base-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-monitor-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-action-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-relay-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-proposal-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-deploy-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-notification-channel-client": "^0.1.0",
-    "@openzeppelin/platform-sdk-relay-signer-client": "^0.1.0"
+    "@openzeppelin/platform-sdk-base-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-monitor-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-action-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-relay-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-proposal-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-deploy-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-notification-channel-client": "^0.2.0",
+    "@openzeppelin/platform-sdk-relay-signer-client": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"
