@@ -32,3 +32,4 @@
 - feat: add support to base mainnet
 - feat: add `skipABIValidation` flag to monitor create request
 - ci: add changeset actions
+- ci: remove provenance

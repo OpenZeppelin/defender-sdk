@@ -54,19 +54,19 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
-  # Deterministic Build & tests
-  provenance:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    needs: prepare
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.7.0
-    with:
-      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
-      node-version: "16.20.0"
-      # Remove after making repo public
-      rekor-log-public: true
+  # # Deterministic Build & tests
+  # provenance:
+  #   permissions:
+  #     id-token: write
+  #     contents: read
+  #     actions: read
+  #   needs: prepare
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.7.0
+  #   with:
+  #     run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+  #     node-version: "16.20.0"
+  #     # Remove after making repo public
+  #     rekor-log-public: true
 
   # Release without publishing
   release:
@@ -74,7 +74,6 @@ jobs:
       id-token: write
       contents: read
       actions: read
-    needs: provenance
     runs-on: ubuntu-22.04
     steps:
       - name: Create Release Pull Request
