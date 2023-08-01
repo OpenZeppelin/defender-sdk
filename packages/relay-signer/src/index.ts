@@ -1,4 +1,4 @@
-export { RelaySignerClient } from './api';
+export { Relayer } from './relayer';
 
 export * from './models/relayer';
 export * from './models/rpc';

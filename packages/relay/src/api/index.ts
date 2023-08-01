@@ -1,15 +1,6 @@
 import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
 import {
-  ApiRelayerParams,
-  IRelayer,
-  JsonRpcResponse,
-  ListTransactionsRequest,
   RelayerGetResponse,
-  RelayerTransaction,
-  RelayerTransactionPayload,
-  SignedMessagePayload,
-  SignTypedDataPayload,
-  SignMessagePayload,
   CreateRelayerRequest,
   RelayerListResponse,
   UpdateRelayerPoliciesRequest,
@@ -17,9 +8,6 @@ import {
   RelayerApiKey,
   DeleteRelayerApiKeyResponse,
 } from '../models';
-
-export const RelaySignerApiUrl = () =>
-  process.env.PLATFORM_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
 
 export class RelayClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -118,98 +106,6 @@ export class RelayClient extends BaseApiClient {
   }): Promise<DeleteRelayerApiKeyResponse> {
     return this.apiCall(async (api) => {
       return await api.delete(`/relayers/${relayerId}/keys/${keyId}`);
-    });
-  }
-}
-
-export class ApiRelayer extends BaseApiClient implements IRelayer {
-  private jsonRpcRequestNextId: number;
-
-  public constructor(params: ApiRelayerParams) {
-    super(params);
-    this.jsonRpcRequestNextId = 1;
-  }
-
-  protected getPoolId(): string {
-    return process.env.PLATFORM_RELAY_SIGNER_POOL_ID || 'us-west-2_iLmIggsiy';
-  }
-
-  protected getPoolClientId(): string {
-    return process.env.PLATFORM_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
-  }
-
-  protected getApiUrl(): string {
-    return RelaySignerApiUrl();
-  }
-
-  public async getRelayer(): Promise<RelayerGetResponse> {
-    return this.apiCall(async (api) => {
-      return (await api.get('/relayer')) as RelayerGetResponse;
-    });
-  }
-
-  public async sendTransaction({ payload }: { payload: RelayerTransactionPayload }): Promise<RelayerTransaction> {
-    return this.apiCall(async (api) => {
-      return (await api.post('/txs', payload)) as RelayerTransaction;
-    });
-  }
-
-  public async replaceTransactionById({
-    id,
-    payload,
-  }: {
-    id: string;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
-    return this.apiCall(async (api) => {
-      return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
-    });
-  }
-
-  public async replaceTransactionByNonce({
-    nonce,
-    payload,
-  }: {
-    nonce: number;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
-    return this.apiCall(async (api) => {
-      return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
-    });
-  }
-
-  public async signTypedData({ payload }: { payload: SignTypedDataPayload }): Promise<SignedMessagePayload> {
-    return this.apiCall(async (api) => {
-      return (await api.post('/sign-typed-data', payload)) as SignedMessagePayload;
-    });
-  }
-
-  public async sign({ payload }: { payload: SignMessagePayload }): Promise<SignedMessagePayload> {
-    return this.apiCall(async (api) => {
-      return (await api.post('/sign', payload)) as SignedMessagePayload;
-    });
-  }
-
-  public async query({ id }: { id: string }): Promise<RelayerTransaction> {
-    return this.apiCall(async (api) => {
-      return (await api.get(`txs/${id}`)) as RelayerTransaction;
-    });
-  }
-
-  public async list({ criteria }: { criteria?: ListTransactionsRequest }): Promise<RelayerTransaction[]> {
-    return this.apiCall(async (api) => {
-      return (await api.get(`txs`, { params: criteria ?? {} })) as RelayerTransaction[];
-    });
-  }
-
-  public async call({ method, params }: { method: string; params: string[] }): Promise<JsonRpcResponse> {
-    return this.apiCall(async (api) => {
-      return (await api.post(`/relayer/jsonrpc`, {
-        method,
-        params,
-        jsonrpc: '2.0',
-        id: this.jsonRpcRequestNextId++,
-      })) as JsonRpcResponse;
     });
   }
 }
