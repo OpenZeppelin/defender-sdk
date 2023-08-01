@@ -12,7 +12,7 @@ importers:
   .:
     dependencies:
       '@openzeppelin/platform-sdk-base-client':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:packages/base
       axios:
         specifier: ^1.4.0
@@ -46,8 +46,8 @@ importers:
         specifier: ^5.61.0
         version: 5.61.0(eslint@8.44.0)(typescript@4.9.5)
       code-style:
-        specifier: https://github.com/OpenZeppelin/code-style.git
-        version: github.com/OpenZeppelin/code-style/0c7b3073da623d1112e4f9c3f186586167ab2d03
+        specifier: https://github.com/OpenZeppelin/configs.git
+        version: github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03
       eslint:
         specifier: ^8.42.0
         version: 8.44.0
@@ -65,7 +65,7 @@ importers:
         version: 16.1.4
       nx-cloud:
         specifier: latest
-        version: 16.0.5
+        version: 16.1.1
       prettier:
         specifier: ^2.0.4
         version: 2.0.4
@@ -79,7 +79,7 @@ importers:
   examples/create-action:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -88,7 +88,7 @@ importers:
   examples/create-batch-proposal:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -97,7 +97,7 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -106,7 +106,7 @@ importers:
   examples/create-proposal:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -115,7 +115,7 @@ importers:
   examples/create-relayer:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -124,7 +124,7 @@ importers:
   examples/create-relayer-key:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -133,7 +133,16 @@ importers:
   examples/deploy-contract:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
+        version: link:../../packages/platform-sdk
+      dotenv:
+        specifier: ^16.1.4
+        version: 16.1.4
+
+  examples/list-networks:
+    dependencies:
+      '@openzeppelin/platform-sdk':
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -142,7 +151,7 @@ importers:
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -151,7 +160,7 @@ importers:
   examples/simulate-proposal:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -163,7 +172,7 @@ importers:
   examples/update-action:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -172,7 +181,7 @@ importers:
   examples/update-notification-category:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -181,7 +190,7 @@ importers:
   examples/update-relayer:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: 0.1.0
+        specifier: 0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -190,7 +199,7 @@ importers:
   examples/upgrade-contract:
     dependencies:
       '@openzeppelin/platform-sdk':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../../packages/platform-sdk
       dotenv:
         specifier: ^16.1.4
@@ -199,7 +208,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -233,7 +242,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -248,7 +257,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -263,7 +272,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -275,34 +284,34 @@ importers:
   packages/platform-sdk:
     dependencies:
       '@openzeppelin/platform-sdk-action-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../action
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       '@openzeppelin/platform-sdk-deploy-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../deploy
       '@openzeppelin/platform-sdk-monitor-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../monitor
       '@openzeppelin/platform-sdk-notification-channel-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../notification-channel
       '@openzeppelin/platform-sdk-proposal-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../proposal
       '@openzeppelin/platform-sdk-relay-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../relay
       '@openzeppelin/platform-sdk-relay-signer-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../relay-signer
 
   packages/proposal:
     dependencies:
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -317,7 +326,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -353,7 +362,7 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0
       '@openzeppelin/platform-sdk-base-client':
-        specifier: ^0.1.0
+        specifier: ^0.2.0
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.0.1
@@ -1659,10 +1668,10 @@ packages:
       semver: 7.5.3
     dev: true
 
-  /@nrwl/nx-cloud@16.0.5:
-    resolution: {integrity: sha512-1p82ym8WE9ziejwgPslstn19iV/VkHfHfKr/5YOnfCHQS+NxUf92ogcYhHXtqWLblVZ9Zs4W4pkSXK4e04wCmQ==}
+  /@nrwl/nx-cloud@16.1.1:
+    resolution: {integrity: sha512-iJIPP46+saFZK748FKU4u4YZH+Sv3ZvZPbMwGVMhwqhOYcrlO5aSa0lpilyoN8WuhooKNqcCfiqshx6V577fTg==}
     dependencies:
-      nx-cloud: 16.0.5
+      nx-cloud: 16.1.1
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5626,11 +5635,11 @@ packages:
       bn.js: 4.11.6
       strip-hex-prefix: 1.0.0
 
-  /nx-cloud@16.0.5:
-    resolution: {integrity: sha512-13P7r0aKikjBtmdZrNorwXzVPeVIV4MLEwqGY+DEG6doLBtI5KqEQk/d5B5l2dCF2BEi/LXEmLYCmf9gwbOJ+Q==}
+  /nx-cloud@16.1.1:
+    resolution: {integrity: sha512-Rq7ynvkYzAJ67N3pDqU6cMqwvWP7WXJGP4EFjLxgUrRHNCccqDPggeAqePodfk3nZEUrZB8F5QBKZuuw1DR3oA==}
     hasBin: true
     dependencies:
-      '@nrwl/nx-cloud': 16.0.5
+      '@nrwl/nx-cloud': 16.1.1
       axios: 1.1.3
       chalk: 4.1.2
       dotenv: 10.0.0
@@ -7669,8 +7678,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/OpenZeppelin/code-style/0c7b3073da623d1112e4f9c3f186586167ab2d03:
-    resolution: {commit: 0c7b3073da623d1112e4f9c3f186586167ab2d03, repo: git+ssh://git@github.com/OpenZeppelin/code-style.git, type: git}
+  github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03:
+    resolution: {tarball: https://codeload.github.com/OpenZeppelin/configs/tar.gz/0c7b3073da623d1112e4f9c3f186586167ab2d03}
     name: code-style
     version: 0.1.0
     dev: true

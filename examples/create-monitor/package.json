@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/platform-sdk-example-create-monitor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/platform-sdk": "^0.1.0",
+    "@openzeppelin/platform-sdk": "^0.2.0",
     "dotenv": "^16.1.4"
   }
 }

@@ -1,13 +1,13 @@
 {
   "name": "@openzeppelin/platform-sdk-relay-signer-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "rm -rf lib && tsc",
     "test": "npm run test:unit",
-    "test:unit": "jest --verbose --passWithNoTests",
+    "test:unit": "jest --verbose --passWithNoTests --forceExit",
     "watch": "tsc -w"
   },
   "files": [
@@ -38,7 +38,7 @@
     "@ethersproject/properties": "^5.7.0",
     "@ethersproject/random": "^5.7.0",
     "@ethersproject/strings": "^5.7.0",
-    "@openzeppelin/platform-sdk-base-client": "^0.1.0",
+    "@openzeppelin/platform-sdk-base-client": "^0.2.0",
     "amazon-cognito-identity-js": "^6.0.1",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"

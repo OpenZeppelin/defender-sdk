@@ -1,10 +1,10 @@
 {
   "name": "@openzeppelin/platform-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "The OpenZeppelin Platform Software Development Kit",
   "dependencies": {
-    "@openzeppelin/platform-sdk-base-client": "0.1.0",
+    "@openzeppelin/platform-sdk-base-client": "0.2.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },
@@ -17,7 +17,7 @@
     "@types/node": "^16.1.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
-    "code-style": "https://github.com/OpenZeppelin/code-style.git",
+    "code-style": "https://github.com/OpenZeppelin/configs.git",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",

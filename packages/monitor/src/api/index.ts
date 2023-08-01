@@ -28,6 +28,7 @@ import {
   GetNotificationRequest,
   UpdateNotificationRequest,
 } from '../models/notification';
+import { ListNetworkRequestOptions } from '../models/networks';
 
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -41,6 +42,12 @@ export class MonitorClient extends BaseApiClient {
   protected getApiUrl(): string {
     // TODO: update to platform-api.* url (and /sentinel) when available
     return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+  }
+
+  public async listNetworks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(opts && opts.networkType ? `/networks?type=${opts.networkType}` : `/networks`);
+    });
   }
 
   public async list(): Promise<ListMonitorResponse> {
@@ -262,6 +269,7 @@ export class MonitorClient extends BaseApiClient {
       ],
       network: monitor.network as Network,
       type: 'BLOCK',
+      skipABIValidation: monitor.skipABIValidation,
     };
   }
 
@@ -331,6 +339,7 @@ export class MonitorClient extends BaseApiClient {
       txCondition,
       name: monitor.name,
       paused: monitor.paused,
+      skipABIValidation: monitor.skipABIValidation,
       alertThreshold: monitor.alertThreshold,
       autotaskCondition: rule.autotaskCondition?.autotaskId,
       autotaskTrigger: monitor.notifyConfig?.autotaskId,

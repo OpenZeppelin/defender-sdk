@@ -26,6 +26,7 @@ export interface ExternalCreateBlockSubscriberRequest extends ExternalBaseCreate
   confirmLevel?: MonitorConfirmation; // blockWatcherId
   addresses: string[];
   abi?: string;
+  skipABIValidation?: boolean;
   eventConditions?: EventCondition[];
   functionConditions?: FunctionCondition[];
   txCondition?: string;
@@ -71,6 +72,7 @@ import { NotificationType } from './notification';
 export interface BaseCreateSubscriberRequest {
   name: string;
   paused: boolean;
+  skipABIValidation?: boolean;
   alertThreshold?: Threshold;
   notifyConfig?: Notifications;
   riskCategory?: SubscriberRiskCategory;
@@ -94,6 +96,7 @@ export interface PartialCreateBlockSubscriberRequest {
   blockWatcherId: string;
   network: Network;
   type: 'BLOCK';
+  skipABIValidation?: boolean;
 }
 
 export interface CreateBlockSubscriberRequest
