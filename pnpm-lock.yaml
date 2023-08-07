@@ -65,7 +65,7 @@ importers:
         version: 16.1.4
       nx-cloud:
         specifier: latest
-        version: 16.1.1
+        version: 16.0.5
       prettier:
         specifier: ^2.0.4
         version: 2.0.4
@@ -138,6 +138,18 @@ importers:
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
+
+  examples/ethers-signer:
+    dependencies:
+      '@openzeppelin/platform-sdk':
+        specifier: 0.2.0
+        version: link:../../packages/platform-sdk
+      dotenv:
+        specifier: ^16.1.4
+        version: 16.1.4
+      ethers:
+        specifier: ^5.6.1
+        version: 5.7.2
 
   examples/list-networks:
     dependencies:
@@ -1668,10 +1680,10 @@ packages:
       semver: 7.5.3
     dev: true
 
-  /@nrwl/nx-cloud@16.1.1:
-    resolution: {integrity: sha512-iJIPP46+saFZK748FKU4u4YZH+Sv3ZvZPbMwGVMhwqhOYcrlO5aSa0lpilyoN8WuhooKNqcCfiqshx6V577fTg==}
+  /@nrwl/nx-cloud@16.0.5:
+    resolution: {integrity: sha512-1p82ym8WE9ziejwgPslstn19iV/VkHfHfKr/5YOnfCHQS+NxUf92ogcYhHXtqWLblVZ9Zs4W4pkSXK4e04wCmQ==}
     dependencies:
-      nx-cloud: 16.1.1
+      nx-cloud: 16.0.5
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5635,11 +5647,11 @@ packages:
       bn.js: 4.11.6
       strip-hex-prefix: 1.0.0
 
-  /nx-cloud@16.1.1:
-    resolution: {integrity: sha512-Rq7ynvkYzAJ67N3pDqU6cMqwvWP7WXJGP4EFjLxgUrRHNCccqDPggeAqePodfk3nZEUrZB8F5QBKZuuw1DR3oA==}
+  /nx-cloud@16.0.5:
+    resolution: {integrity: sha512-13P7r0aKikjBtmdZrNorwXzVPeVIV4MLEwqGY+DEG6doLBtI5KqEQk/d5B5l2dCF2BEi/LXEmLYCmf9gwbOJ+Q==}
     hasBin: true
     dependencies:
-      '@nrwl/nx-cloud': 16.1.1
+      '@nrwl/nx-cloud': 16.0.5
       axios: 1.1.3
       chalk: 4.1.2
       dotenv: 10.0.0
