@@ -1,5 +1,16 @@
 # @openzeppelin/platform-sdk-relay-signer-client
 
+## 0.3.0
+
+### Minor Changes
+
+- efefd68: feat: Add support of instantiating platform-sdk package from Platform Actions
+
+### Patch Changes
+
+- Updated dependencies [efefd68]
+  - @openzeppelin/platform-sdk-base-client@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
