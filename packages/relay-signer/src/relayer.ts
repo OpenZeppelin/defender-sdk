@@ -30,10 +30,12 @@ export class Relayer implements IRelayer {
   }
 
   public getProvider(): DefenderRelayProvider {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
     return new DefenderRelayProvider(this.credentials);
   }
 
   public getSigner(provider: Provider, options: DefenderRelaySignerOptions = {}): DefenderRelaySigner {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
     return new DefenderRelaySigner(this.credentials, provider, options);
   }
 
