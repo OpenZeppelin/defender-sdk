@@ -10,4 +10,4 @@
 '@openzeppelin/platform-sdk-relay-signer-client': minor
 ---
 
-Bump minor version
+feat: Add support of instantiating platform-sdk package from Platform Actions
