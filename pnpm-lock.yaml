@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@openzeppelin/platform-sdk-base-client':
-        specifier: 0.2.0
-        version: 0.2.0
+        specifier: 0.3.0
+        version: link:packages/base
       axios:
         specifier: ^1.4.0
         version: 1.4.0
@@ -1767,15 +1767,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@openzeppelin/platform-sdk-base-client@0.2.0:
-    resolution: {integrity: sha512-bsd7SXN2dgVa3lhgSBJ96i7FSz25mpdMvxCjLsy0ViucPQ3zERZ/QMtgVDvL2DbAkjTjnr3f5O169n0/UgTCMA==}
-    dependencies:
-      amazon-cognito-identity-js: 6.0.1
-      async-retry: 1.3.3
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /@parcel/watcher@2.0.4:
     resolution: {integrity: sha512-cTDi+FUDBIUOBKEtj+nhiJ71AZVlkAsQFuGQTun5tV9mwQBQgZvhCzG+URPQc8myeN32yRVZEfVAPCs1RW+Jvg==}
