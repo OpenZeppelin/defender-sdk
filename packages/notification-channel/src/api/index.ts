@@ -5,6 +5,7 @@ import {
   GetNotificationRequest,
   UpdateNotificationRequest,
   NotificationSummary as NotificationResponse,
+  NotificationType,
 } from '../models/notification';
 
 const PATH = '/notifications';
@@ -35,21 +36,25 @@ export class NotificationChannelClient extends BaseApiClient {
     });
   }
 
-  public async delete(notification: DeleteNotificationRequest): Promise<string> {
+  public async delete(type: NotificationType, id: string): Promise<string> {
     return this.apiCall(async (api) => {
-      return await api.delete(`${PATH}/${notification.type}/${notification.notificationId}`);
+      return await api.delete(`${PATH}/${type}/${id}`);
     });
   }
 
-  public async get(notification: GetNotificationRequest): Promise<NotificationResponse> {
+  public async get(type: NotificationType, id: string): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`${PATH}/${notification.type}/${notification.notificationId}`);
+      return await api.get(`${PATH}/${type}/${id}`);
     });
   }
 
-  public async update(notification: UpdateNotificationRequest): Promise<NotificationResponse> {
+  public async update(
+    type: NotificationType,
+    id: string,
+    notification: UpdateNotificationRequest,
+  ): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
-      return await api.put(`${PATH}/${notification.type}/${notification.notificationId}`, notification);
+      return await api.put(`${PATH}/${type}/${id}`, notification);
     });
   }
 }

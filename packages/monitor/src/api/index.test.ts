@@ -305,7 +305,7 @@ describe('MonitorClient', () => {
 
   describe('get', () => {
     it('passes correct arguments to the API', async () => {
-      await monitor.get({ monitorId: 'i-am-the-watcher' });
+      await monitor.get('i-am-the-watcher');
       expect(monitor.api.get).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -361,7 +361,7 @@ describe('MonitorClient', () => {
       };
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.update({ monitorId, ...createBlockPayload });
+      await monitor.update(monitorId, { monitorId, ...createBlockPayload });
       expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -404,7 +404,7 @@ describe('MonitorClient', () => {
       };
 
       const monitorId = 'i-am-the-FORTA-watcher';
-      await monitor.update({ monitorId, ...createFortaPayload });
+      await monitor.update(monitorId, { monitorId, ...createFortaPayload });
       expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -439,7 +439,7 @@ describe('MonitorClient', () => {
       };
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.update({
+      await monitor.update(monitorId, {
         monitorId,
         type: 'BLOCK',
         name,
@@ -454,7 +454,7 @@ describe('MonitorClient', () => {
       jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.pause({ monitorId });
+      await monitor.pause(monitorId);
       expect(monitor.api.put).toBeCalledWith(
         `/subscribers/${monitorId}`,
         expect.objectContaining({
@@ -470,7 +470,7 @@ describe('MonitorClient', () => {
       jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
 
       const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.unpause({ monitorId });
+      await monitor.unpause(monitorId);
       expect(monitor.api.put).toBeCalledWith(
         `/subscribers/${monitorId}`,
         expect.objectContaining({
@@ -483,7 +483,7 @@ describe('MonitorClient', () => {
 
   describe('delete', () => {
     it('passes correct arguments to the API', async () => {
-      await monitor.delete({ monitorId: 'i-am-the-watcher' });
+      await monitor.delete('i-am-the-watcher');
       expect(monitor.api.delete).toBeCalledWith('/subscribers/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });

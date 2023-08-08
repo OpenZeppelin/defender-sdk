@@ -30,15 +30,15 @@ export class ActionClient extends BaseApiClient {
     });
   }
 
-  public async get({ actionId }: { actionId: string }): Promise<ActionResponse> {
+  public async get(id: string): Promise<ActionResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/autotasks/${actionId}`);
+      return await api.get(`/autotasks/${id}`);
     });
   }
 
-  public async delete({ actionId }: { actionId: string }): Promise<ActionDeleteResponse> {
+  public async delete(id: string): Promise<ActionDeleteResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/autotasks/${actionId}`);
+      return await api.delete(`/autotasks/${id}`);
     });
   }
 
@@ -62,58 +62,58 @@ export class ActionClient extends BaseApiClient {
     return await zipSources(sources);
   }
 
-  public async getEncodedZippedCodeFromFolder({ path }: { path: string }): Promise<string> {
+  public async getEncodedZippedCodeFromFolder(path: string): Promise<string> {
     return await zipFolder(path);
   }
 
-  public async updateCodeFromZip({ actionId, buffer }: { actionId: string; buffer: Buffer }): Promise<void> {
+  public async updateCodeFromZip(id: string, { buffer }: { buffer: Buffer }): Promise<void> {
     const encodedZippedCode = this.getEncodedZippedCodeFromBuffer({ buffer });
-    return this.updateCode({ actionId, encodedZippedCode });
+    return this.updateCode(id, { encodedZippedCode });
   }
 
-  public async updateCodeFromSources({ actionId, sources }: { actionId: string; sources: SourceFiles }): Promise<void> {
+  public async updateCodeFromSources(id: string, { sources }: { sources: SourceFiles }): Promise<void> {
     const encodedZippedCode = await this.getEncodedZippedCodeFromSources(sources);
-    return this.updateCode({ actionId, encodedZippedCode });
+    return this.updateCode(id, { encodedZippedCode });
   }
 
-  public async updateCodeFromFolder({ actionId, path }: { actionId: string; path: string }): Promise<void> {
-    const encodedZippedCode = await this.getEncodedZippedCodeFromFolder({ path });
-    return this.updateCode({ actionId, encodedZippedCode });
+  public async updateCodeFromFolder(id: string, { path }: { path: string }): Promise<void> {
+    const encodedZippedCode = await this.getEncodedZippedCodeFromFolder(path);
+    return this.updateCode(id, { encodedZippedCode });
   }
 
-  public async listActionRuns({
-    actionId,
-    next,
-    status,
-  }: {
-    actionId: string;
-    next?: string;
-    status?: ActionRunStatus | undefined;
-  }): Promise<ActionRunListResponse> {
+  public async listActionRuns(
+    id: string,
+    {
+      params,
+    }: {
+      params: {
+        next?: string;
+        status?: ActionRunStatus | undefined;
+      };
+    },
+  ): Promise<ActionRunListResponse> {
+    // TODO: move to backend.
+    const { next, status } = params;
     if (next && !status && (next === 'success' || next === 'error' || next === 'pending' || next === 'throttle')) {
-      status = next as ActionRunStatus;
-      next = undefined;
+      params = {
+        status: next as ActionRunStatus,
+        next: undefined,
+      };
     }
     return this.apiCall(async (api) => {
-      return api.get(`/autotasks/${actionId}/runs`, { params: { next, status } });
+      return api.get(`/autotasks/${id}/runs`, { params });
     });
   }
 
-  public async getActionRun({ actionRunId }: { actionRunId: string }): Promise<ActionRunResponse> {
+  public async getActionRun(id: string): Promise<ActionRunResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/autotasks/runs/${actionRunId}`);
+      return await api.get(`/autotasks/runs/${id}`);
     });
   }
 
-  public async runAction({
-    actionId,
-    data,
-  }: {
-    actionId: string;
-    data: { [key: string]: any };
-  }): Promise<ActionRunBase> {
+  public async runAction(id: string, data: { [key: string]: any }): Promise<ActionRunBase> {
     return this.apiCall(async (api) => {
-      return await api.post(`/autotasks/${actionId}/runs/manual`, data);
+      return await api.post(`/autotasks/${id}/runs/manual`, data);
     });
   }
 
@@ -123,15 +123,9 @@ export class ActionClient extends BaseApiClient {
     return hash.digest('base64');
   }
 
-  private async updateCode({
-    actionId,
-    encodedZippedCode,
-  }: {
-    actionId: string;
-    encodedZippedCode: string;
-  }): Promise<void> {
+  private async updateCode(id: string, { encodedZippedCode }: { encodedZippedCode: string }): Promise<void> {
     return this.apiCall(async (api) => {
-      return await api.put(`/autotasks/${actionId}/code`, { encodedZippedCode });
+      return await api.put(`/autotasks/${id}/code`, { encodedZippedCode });
     });
   }
 

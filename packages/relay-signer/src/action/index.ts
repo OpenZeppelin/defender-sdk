@@ -47,24 +47,15 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     return this.execute({ action: 'send-tx', payload });
   }
 
-  public async replaceTransactionById({
-    id,
-    payload,
-  }: {
-    id: string;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { id: string } = { ...payload, id };
     return this.execute({ action: 'replace-tx', txPayload });
   }
 
-  public async replaceTransactionByNonce({
-    nonce,
-    payload,
-  }: {
-    nonce: number;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public async replaceTransactionByNonce(
+    nonce: number,
+    payload: RelayerTransactionPayload,
+  ): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { nonce: number } = { ...payload, nonce };
     return this.execute({ action: 'replace-tx', payload });
   }
@@ -75,7 +66,7 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     });
   }
 
-  public async getTransaction({ id }: { id: string }): Promise<RelayerTransaction> {
+  public async getTransaction(id: string): Promise<RelayerTransaction> {
     return this.execute({
       action: 'get-tx' as const,
       payload: id,

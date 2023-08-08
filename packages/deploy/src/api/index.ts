@@ -45,9 +45,9 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getDeployedContract({ deploymentId }: { deploymentId: string }): Promise<DeploymentResponse> {
+  public async getDeployedContract(id: string): Promise<DeploymentResponse> {
     return this.apiCall(async (api) => {
-      return api.get(`${DEPLOYMENTS_PATH}/${deploymentId}`);
+      return api.get(`${DEPLOYMENTS_PATH}/${id}`);
     });
   }
 
@@ -57,7 +57,7 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getDeployApprovalProcess({ network }: { network: Network }): Promise<ApprovalProcessResponse> {
+  public async getDeployApprovalProcess(network: Network): Promise<ApprovalProcessResponse> {
     return this.apiCall(async (api) => {
       return api.get(`${DEPLOYMENTS_PATH}/config/${network}`);
     });
@@ -69,7 +69,7 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getUpgradeApprovalProcess({ network }: { network: Network }): Promise<ApprovalProcessResponse> {
+  public async getUpgradeApprovalProcess(network: Network): Promise<ApprovalProcessResponse> {
     return this.apiCall(async (api) => {
       return api.get(`${UPGRADES_PATH}/config/${network}`);
     });
@@ -109,9 +109,9 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getConfig({ deploymentConfigId }: { deploymentConfigId: string }): Promise<DeploymentConfigResponse> {
+  public async getConfig(id: string): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.get(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
+      return api.get(`${DEPLOYMENTS_CONFIG_PATH}/${id}`);
     });
   }
   public async listConfig(): Promise<DeploymentConfigResponse[]> {
@@ -121,11 +121,12 @@ export class DeployClient extends BaseApiClient {
   }
 
   public async getDeploymentVerification(
-    params: Pick<VerificationRequest, 'contractAddress' | 'contractNetwork'>,
+    contractNetwork: Pick<VerificationRequest, 'contractNetwork'>,
+    contractAddress: Pick<VerificationRequest, 'contractAddress'>,
   ): Promise<Verification | undefined> {
     return this.apiCall(async (api) => {
       try {
-        return (await api.get(`/verifications/${params.contractNetwork}/${params.contractAddress}`)) as Verification;
+        return (await api.get(`/verifications/${contractNetwork}/${contractAddress}`)) as Verification;
       } catch {
         return undefined;
       }
@@ -138,18 +139,15 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async updateConfig(
-    deploymentConfigId: string,
-    payload: DeploymentConfigCreateRequest,
-  ): Promise<DeploymentConfigResponse> {
+  public async updateConfig(id: string, payload: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`, payload);
+      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${id}`, payload);
     });
   }
 
-  public async removeConfig(deploymentConfigId: string): Promise<RemoveDeploymentConfigResponse> {
+  public async removeConfig(id: string): Promise<RemoveDeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.delete(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
+      return api.delete(`${DEPLOYMENTS_CONFIG_PATH}/${id}`);
     });
   }
 }

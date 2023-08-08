@@ -76,7 +76,7 @@ describe('ActionRelayer', () => {
 
   describe('replaceTransaction', () => {
     test('passes nonce to the API', async () => {
-      await relayer.replaceTransactionByNonce({ nonce: 10, payload });
+      await relayer.replaceTransactionByNonce(10, payload);
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
@@ -85,7 +85,7 @@ describe('ActionRelayer', () => {
     });
 
     test('passes txId to the API', async () => {
-      await relayer.replaceTransactionById({ id: '123-456-abc', payload });
+      await relayer.replaceTransactionById('123-456-abc', payload);
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
@@ -129,7 +129,7 @@ describe('ActionRelayer', () => {
 
   describe('query', () => {
     test('passes correct arguments to the API', async () => {
-      await relayer.getTransaction({ id: '42' });
+      await relayer.getTransaction('42');
       expect(relayer.lambda.invoke).toBeCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',

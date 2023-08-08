@@ -156,14 +156,11 @@ describe('web3/sender', () => {
     const sent = await new Promise((resolve) => web3.eth.sendTransaction(request).on('transactionHash', resolve));
 
     expect(sent).toEqual(replacedHash);
-    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
-      nonce: 30,
-      payload: {
-        ...request,
-        gasLimit: '0xea60',
-        speed: undefined,
-        gasPrice: '0x3b9aca00',
-      },
+    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
+      ...request,
+      gasLimit: '0xea60',
+      speed: undefined,
+      gasPrice: '0x3b9aca00',
     });
 
     relayer.replaceTransactionByNonce.mockResolvedValue(tx);
@@ -200,18 +197,15 @@ describe('web3/sender', () => {
     );
 
     expect(sent).toEqual(tx.hash);
-    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith({
-      nonce: 30,
-      payload: {
-        ...pick(tx, 'from', 'gaslimit', 'speed'),
-        nonce: '0x1e',
-        data: contract.methods.transfer(from, '0x02').encodeABI(),
-        to: tx.to.toLowerCase(),
-        gasLimit: '0xea60',
-        speed: tx.speed,
-        gasPrice: undefined,
-        validUntil: undefined,
-      },
+    expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
+      ...pick(tx, 'from', 'gaslimit', 'speed'),
+      nonce: '0x1e',
+      data: contract.methods.transfer(from, '0x02').encodeABI(),
+      to: tx.to.toLowerCase(),
+      gasLimit: '0xea60',
+      speed: tx.speed,
+      gasPrice: undefined,
+      validUntil: undefined,
     });
   });
 });

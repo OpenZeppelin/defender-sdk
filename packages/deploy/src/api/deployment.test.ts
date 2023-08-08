@@ -85,7 +85,7 @@ describe('Deploy Client', () => {
   });
   describe('get', () => {
     it('calls API correctly', async () => {
-      await deployClient.getDeployedContract({ deploymentId: 'deploy-id' });
+      await deployClient.getDeployedContract('deploy-id');
       expect(deployClient.api.get).toBeCalledWith('/deployments/deploy-id');
       expect(createAuthenticatedApi).toBeCalled();
     });
