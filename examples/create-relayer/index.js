@@ -15,7 +15,7 @@ async function main() {
     },
   };
 
-  const relayer = await client.relay.create({ relayer: createParams });
+  const relayer = await client.relay.create(createParams);
 
   console.log(relayer);
 }

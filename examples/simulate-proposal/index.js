@@ -44,21 +44,17 @@ async function main() {
 
   try {
     // Simulate the proposal
-    const simulation = await client.proposal.simulate({
-      contractId: proposal.contractId, // contractId
-      proposalId: proposal.proposalId, // proposalId
-      proposal: {
-        transactionData: {
-          from: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', // change this to impersonate the `from` address
-          data,
-          to: proposal.contract.address,
-          value: proposal.metadata.sendValue ?? '10000000000000000',
-        },
-        // default to latest finalized block,
-        // can be up to 100 blocks ahead of current block,
-        // does not support previous blocks
-        blockNumber: undefined,
+    const simulation = await client.proposal.simulate(proposal.contractId, proposal.proposalId, {
+      transactionData: {
+        from: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', // change this to impersonate the `from` address
+        data,
+        to: proposal.contract.address,
+        value: proposal.metadata.sendValue ?? '10000000000000000',
       },
+      // default to latest finalized block,
+      // can be up to 100 blocks ahead of current block,
+      // does not support previous blocks
+      blockNumber: undefined,
     });
 
     // Check if simulation reverted under `simulation.meta.reverted`

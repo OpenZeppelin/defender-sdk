@@ -15,7 +15,7 @@ async function main() {
     notification = notificationChannels[0];
   } else {
     // OR create a new notification channel
-    notification = await client.notifiationChannel.create({
+    notification = await client.notifiationChannel.create('email', {
       type: 'email',
       name: 'MyEmailNotification',
       config: {
@@ -33,7 +33,7 @@ async function main() {
     notificationIds: [{ notificationId: notification.notificationId, type: notification.type }],
   };
   // call update with the request parameters
-  const response = await client.monitor.updateNotificationCategory(category);
+  const response = await client.monitor.updateNotificationCategory(getExistingCategory.categoryId, category);
   console.log(response);
 }
 
