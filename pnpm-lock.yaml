@@ -213,6 +213,9 @@ importers:
       axios:
         specifier: ^1.4.0
         version: 1.4.0
+      glob:
+        specifier: ^7.1.6
+        version: 7.2.3
       jszip:
         specifier: ^3.5.0
         version: 3.5.0
