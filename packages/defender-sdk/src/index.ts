@@ -42,7 +42,7 @@ export class Platform {
     this.apiSecret = options.apiSecret;
     this.relayerApiKey = options.relayerApiKey;
     this.relayerApiSecret = options.relayerApiSecret;
-    // support for using relaySigner from Platform Actions
+    // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
   }

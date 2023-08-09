@@ -24,7 +24,8 @@
     "jszip": "^3.5.0",
     "@openzeppelin/defender-sdk-base-client": "^0.3.0",
     "axios": "^1.4.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "glob": "^7.1.6"
   },
   "publishConfig": {
     "access": "public"
