@@ -42,7 +42,8 @@ jobs:
     permissions:
       contents: write
       id-token: write
-      actions: read
+      actions: write
+      pull-requests: write
     needs: check_author
     runs-on: ubuntu-22.04
     if: ${{ needs.check_author.outputs.latest_commit_author != 'svc-gh-is-01' }}
@@ -54,6 +55,9 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
