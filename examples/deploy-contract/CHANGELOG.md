@@ -1,5 +1,12 @@
 # @openzeppelin/platform-sdk-example-deploy-contract
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies [3c336b7]
+  - @openzeppelin/platform-sdk@0.3.1
+
 ## 0.2.1
 
 ### Patch Changes

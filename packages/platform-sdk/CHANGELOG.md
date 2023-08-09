@@ -1,5 +1,13 @@
 # @openzeppelin/platform-sdk
 
+## 0.3.1
+
+### Patch Changes
+
+- 3c336b7: Added missing dependency to actions package
+- Updated dependencies [3c336b7]
+  - @openzeppelin/platform-sdk-action-client@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
