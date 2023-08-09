@@ -11,42 +11,13 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 
 jobs:
-  check_author:
-    runs-on: ubuntu-22.04
-    outputs:
-      latest_commit_author: ${{ steps.commit.outputs.author }}
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@cba0d00b1fc9a034e1e642ea0f1103c282990604 # v2.5.0
-        with:
-          egress-policy: audit
-
-      - name: Checkout Repo
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
-
-      - name: Install yq
-        run: |
-          sudo apt-get update &&\
-          sudo apt-get install wget -y &&\
-          sudo wget https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64 -O /usr/bin/yq &&\
-          sudo chmod +x /usr/bin/yq
-
-      - name: Get last commit details
-        id: commit
-        run: |
-          COMMIT_SHA=$(git rev-parse HEAD)
-          COMMIT_DETAILS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                          "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA")
-          echo "author=$(echo $COMMIT_DETAILS | yq '.author.login')" >> $GITHUB_OUTPUT
-  prepare:
+  release:
     permissions:
       contents: write
       id-token: write
       actions: write
       pull-requests: write
-    needs: check_author
     runs-on: ubuntu-22.04
-    if: ${{ needs.check_author.outputs.latest_commit_author != 'svc-gh-is-01' }}
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@cba0d00b1fc9a034e1e642ea0f1103c282990604 # v2.5.0
