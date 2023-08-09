@@ -1,5 +1,5 @@
 import https from 'https';
-import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from './transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 

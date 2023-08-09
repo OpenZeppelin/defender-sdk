@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Platform } = require('@openzeppelin/defender-sdk');
 
 const creds = {
   relayerApiKey: process.env.RELAYER_API_KEY,

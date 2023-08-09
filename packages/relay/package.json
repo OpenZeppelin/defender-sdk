@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/platform-sdk-relay-client",
+  "name": "@openzeppelin/defender-sdk-relay-client",
   "version": "0.3.0",
   "description": "",
   "main": "./lib/index.js",
@@ -20,7 +20,7 @@
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/platform-sdk-base-client": "^0.3.0",
+    "@openzeppelin/defender-sdk-base-client": "^0.3.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },

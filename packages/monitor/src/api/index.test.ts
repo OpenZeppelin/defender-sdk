@@ -5,12 +5,12 @@ import { BlockWatcher } from '../models/blockwatcher';
 import { CreateMonitorResponse } from '../models/response';
 import { ExternalCreateBlockSubscriberRequest, ExternalCreateFortaSubscriberRequest } from '../models/subscriber';
 
-jest.mock('@openzeppelin/platform-sdk-base-client');
+jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
 jest.mock('axios');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createAuthenticatedApi } = require('@openzeppelin/platform-sdk-base-client');
+const { createAuthenticatedApi } = require('@openzeppelin/defender-sdk-base-client');
 
 type TestMonitorClient = Omit<MonitorClient, 'api'> & {
   api: AxiosInstance;

@@ -1,4 +1,4 @@
-import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { isArray } from 'lodash';
 import { Interface } from 'ethers/lib/utils';
 import { ExternalApiCreateProposalRequest as CreateProposalRequest, PartialContract } from '../models/proposal';
@@ -50,7 +50,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within platform-sdk
+  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-sdk
   public async create({
     proposal,
     simulate,

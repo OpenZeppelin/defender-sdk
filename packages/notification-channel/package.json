@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/platform-sdk-notification-channel-client",
+  "name": "@openzeppelin/defender-sdk-notification-channel-client",
   "version": "0.3.0",
   "description": "",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@ethersproject/abi": "^5.6.3",
-    "@openzeppelin/platform-sdk-base-client": "^0.3.0",
+    "@openzeppelin/defender-sdk-base-client": "^0.3.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },

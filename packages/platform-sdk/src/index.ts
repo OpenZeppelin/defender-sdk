@@ -1,13 +1,13 @@
-import { MonitorClient } from '@openzeppelin/platform-sdk-monitor-client';
-import { ActionClient } from '@openzeppelin/platform-sdk-action-client';
-import { RelayClient } from '@openzeppelin/platform-sdk-relay-client';
-import { ProposalClient } from '@openzeppelin/platform-sdk-proposal-client';
-import { DeployClient } from '@openzeppelin/platform-sdk-deploy-client';
-import { NotificationChannelClient } from '@openzeppelin/platform-sdk-notification-channel-client';
+import { MonitorClient } from '@openzeppelin/defender-sdk-monitor-client';
+import { ActionClient } from '@openzeppelin/defender-sdk-action-client';
+import { RelayClient } from '@openzeppelin/defender-sdk-relay-client';
+import { ProposalClient } from '@openzeppelin/defender-sdk-proposal-client';
+import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
+import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { Newable, ClientParams } from './types';
-import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/platform-sdk-relay-signer-client';
-import { ListNetworkRequestOptions } from '@openzeppelin/platform-sdk-monitor-client/lib/models/networks';
-import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
+import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-monitor-client/lib/models/networks';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 
 interface PlatformOptions {
   apiKey?: string;

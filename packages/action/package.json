@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/platform-sdk-action-client",
+  "name": "@openzeppelin/defender-sdk-action-client",
   "version": "0.3.0",
   "description": "",
   "main": "./lib/index.js",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "jszip": "^3.5.0",
-    "@openzeppelin/platform-sdk-base-client": "^0.3.0",
+    "@openzeppelin/defender-sdk-base-client": "^0.3.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },

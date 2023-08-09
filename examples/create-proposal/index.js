@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Platform } = require('@openzeppelin/defender-sdk');
 
 async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };

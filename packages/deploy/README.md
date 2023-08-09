@@ -7,7 +7,7 @@ Platform Deployment Client allows you to deploy contracts through the OpenZeppel
 Start by creating a new _Team API Key_ in Platform, and granting it the capability to manage deployments. Use the newly created API key to initialize an instance of the Platform client.
 
 ```js
-const { PlatformClient } = require('@openzeppelin/platform-sdk');
+const { PlatformClient } = require('@openzeppelin/defender-sdk');
 const client = PlatformClient({ apiKey: API_KEY, apiSecret: API_SECRET });
 ```
 

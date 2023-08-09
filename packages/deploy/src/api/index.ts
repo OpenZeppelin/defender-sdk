@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { BaseApiClient, Network } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient, Network } from '@openzeppelin/defender-sdk-base-client';
 import {
   ApprovalProcessResponse,
   BlockExplorerApiKeyResponse,

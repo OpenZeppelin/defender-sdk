@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - Updated dependencies [efefd68]
-  - @openzeppelin/platform-sdk@0.3.0
+  - @openzeppelin/defender-sdk@0.3.0
 
 ## 0.2.0
 
@@ -24,4 +24,4 @@
 ### Patch Changes
 
 - Updated dependencies [496f88d]
-  - @openzeppelin/platform-sdk@0.2.0
+  - @openzeppelin/defender-sdk@0.2.0

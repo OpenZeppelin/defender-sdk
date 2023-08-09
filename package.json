@@ -1,10 +1,10 @@
 {
-  "name": "@openzeppelin/platform-sdk",
+  "name": "@openzeppelin/defender-sdk",
   "version": "0.3.0",
   "private": true,
   "description": "The OpenZeppelin Platform Software Development Kit",
   "dependencies": {
-    "@openzeppelin/platform-sdk-base-client": "0.3.0",
+    "@openzeppelin/defender-sdk-base-client": "0.3.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19"
   },
@@ -47,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenZeppelin/platform-sdk.git"
+    "url": "https://github.com/OpenZeppelin/defender-sdk.git"
   },
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OpenZeppelin/platform-sdk/issues"
+    "url": "https://github.com/OpenZeppelin/defender-sdk/issues"
   },
   "engines": {
     "node": "16.20.0",
@@ -60,7 +60,7 @@
     "pnpm": ">=7",
     "yarn": "use pnpm"
   },
-  "homepage": "https://github.com/OpenZeppelin/platform-sdk#readme",
+  "homepage": "https://github.com/OpenZeppelin/defender-sdk#readme",
   "resolutions": {
     "@ethersproject/abstract-provider": "^5.6.1"
   }

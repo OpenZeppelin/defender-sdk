@@ -1,4 +1,4 @@
-import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { ApiRelayerParams, IRelayer, RelayerGetResponse } from '../models/relayer';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';

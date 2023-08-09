@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
 import { ActionRunBase, ActionRunListResponse, ActionRunResponse, ActionRunStatus } from './models/action-run.res';
 import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';

@@ -1,4 +1,4 @@
-import { BaseApiClient, Network } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient, Network } from '@openzeppelin/defender-sdk-base-client';
 import {
   ConditionSet,
   CreateSubscriberRequest,
@@ -143,7 +143,7 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  // TODO: move to notificationChannel API: https://www.notion.so/openzeppelin/Platform-SDK-c94a3bc3902c4f619d0287d6ad898ebf?pvs=4#4f8df5b64e8446dd9921a6fef87a1958
+  // TODO: move to notificationChannel API: https://www.notion.so/openzeppelin/defender-sdk-c94a3bc3902c4f619d0287d6ad898ebf?pvs=4#4f8df5b64e8446dd9921a6fef87a1958
   public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/notifications/${notification.type}`, notification);

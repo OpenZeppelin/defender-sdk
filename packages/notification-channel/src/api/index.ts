@@ -1,4 +1,4 @@
-import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import {
   CreateNotificationRequest,
   DeleteNotificationRequest,
