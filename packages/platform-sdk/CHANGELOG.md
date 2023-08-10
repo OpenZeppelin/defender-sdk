@@ -1,5 +1,23 @@
 # @openzeppelin/platform-sdk
 
+## 0.4.0
+
+### Minor Changes
+
+- be73034: Feat: Support linea & base
+
+### Patch Changes
+
+- Updated dependencies [be73034]
+  - @openzeppelin/platform-sdk-action-client@0.4.0
+  - @openzeppelin/platform-sdk-base-client@0.4.0
+  - @openzeppelin/platform-sdk-deploy-client@0.4.0
+  - @openzeppelin/platform-sdk-monitor-client@0.4.0
+  - @openzeppelin/platform-sdk-notification-channel-client@0.4.0
+  - @openzeppelin/platform-sdk-proposal-client@0.4.0
+  - @openzeppelin/platform-sdk-relay-client@0.4.0
+  - @openzeppelin/platform-sdk-relay-signer-client@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes

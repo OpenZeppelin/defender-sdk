@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/platform-sdk-proposal-client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -20,7 +20,7 @@
   "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/platform-sdk-base-client": "^0.3.0",
+    "@openzeppelin/platform-sdk-base-client": "^0.4.0",
     "axios": "^1.4.0",
     "ethers": "^5.7.2",
     "lodash": "^4.17.19"
