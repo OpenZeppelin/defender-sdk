@@ -1,5 +1,16 @@
 # @openzeppelin/platform-sdk-example-update-action
 
+## 0.3.0
+
+### Minor Changes
+
+- be73034: Feat: Support linea & base
+
+### Patch Changes
+
+- Updated dependencies [be73034]
+  - @openzeppelin/platform-sdk@0.4.0
+
 ## 0.2.1
 
 ### Patch Changes
