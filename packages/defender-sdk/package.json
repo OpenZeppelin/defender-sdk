@@ -20,14 +20,14 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-monitor-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-action-client": "^0.3.1",
-    "@openzeppelin/defender-sdk-relay-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-proposal-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-deploy-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-notification-channel-client": "^0.3.0",
-    "@openzeppelin/defender-sdk-relay-signer-client": "^0.3.0"
+    "@openzeppelin/defender-sdk-base-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-monitor-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-action-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-relay-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-proposal-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-deploy-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-notification-channel-client": "^0.4.0",
+    "@openzeppelin/defender-sdk-relay-signer-client": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 0.4.0
+
+### Minor Changes
+
+- be73034: Feat: Support linea & base
+
 ## 0.3.0
 
 ### Minor Changes
