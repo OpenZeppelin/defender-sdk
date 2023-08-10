@@ -21,7 +21,7 @@ export class ActionClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to /action when available
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/autotask/';
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/autotask/';
   }
 
   public async list(): Promise<ActionListResponse> {

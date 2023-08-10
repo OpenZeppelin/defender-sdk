@@ -20,7 +20,7 @@ export class NotificationChannelClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to /monitor when available
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/sentinel/';
   }
 
   public async create(notification: CreateNotificationRequest): Promise<NotificationResponse> {
