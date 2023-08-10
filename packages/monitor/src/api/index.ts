@@ -1,4 +1,4 @@
-import { BaseApiClient, Network } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient, Network } from '@openzeppelin/defender-sdk-base-client';
 import {
   ConditionSet,
   CreateSubscriberRequest,
@@ -32,16 +32,16 @@ import { ListNetworkRequestOptions } from '../models/networks';
 
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
-    return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
+    return process.env.DEFENDER_POOL_ID || 'us-west-2_94f3puJWv';
   }
 
   protected getPoolClientId(): string {
-    return process.env.PLATFORM_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
+    return process.env.DEFENDER_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
   }
 
   protected getApiUrl(): string {
-    // TODO: update to platform-api.* url (and /sentinel) when available
-    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+    // TODO: update to /monitor when available
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/sentinel/';
   }
 
   public async listNetworks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
@@ -143,7 +143,7 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  // TODO: move to notificationChannel API: https://www.notion.so/openzeppelin/Platform-SDK-c94a3bc3902c4f619d0287d6ad898ebf?pvs=4#4f8df5b64e8446dd9921a6fef87a1958
+  // TODO: move to notificationChannel API: https://www.notion.so/openzeppelin/defender-sdk-c94a3bc3902c4f619d0287d6ad898ebf?pvs=4#4f8df5b64e8446dd9921a6fef87a1958
   public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/notifications/${notification.type}`, notification);

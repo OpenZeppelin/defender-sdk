@@ -1,12 +1,12 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 const boxAbiFile = require('./abis/Box.json');
 
 async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
-  const client = new Platform(creds);
+  const client = new Defender(creds);
 
   // Get approval process for deployment on Sepolia
   const config = await client.deploy.getUpgradeApprovalProcess({ network: 'goerli' });

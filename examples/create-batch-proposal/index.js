@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 const ERC20Token = '0x24B5C627cF54582F93eDbcF6186989227400Ac75';
 const RolesContract = '0xa50d145697530e8fef3F59a9643c6E9992d0f30D';
@@ -59,7 +59,7 @@ const steps = [
 
 async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
-  const client = new Platform(creds);
+  const client = new Defender(creds);
 
   const { url } = await client.proposal.create({
     proposal: {

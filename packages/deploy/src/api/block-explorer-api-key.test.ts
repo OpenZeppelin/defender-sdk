@@ -2,12 +2,12 @@ import { DeployClient } from './index';
 import { CreateBlockExplorerApiKeyRequest, UpdateBlockExplorerApiKeyRequest } from '../models';
 import { TestClient } from '../utils/index';
 
-jest.mock('@openzeppelin/platform-sdk-base-client');
+jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
 jest.mock('axios');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createAuthenticatedApi } = require('@openzeppelin/platform-sdk-base-client');
+const { createAuthenticatedApi } = require('@openzeppelin/defender-sdk-base-client');
 
 describe('Block Explorer Api Key Client', () => {
   let client: TestClient<DeployClient>;

@@ -1,4 +1,4 @@
-import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { Address } from '.';
 
 export type ComponentType = 'deploy' | 'upgrade';

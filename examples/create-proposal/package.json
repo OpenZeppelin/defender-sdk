@@ -1,15 +1,15 @@
 {
-  "name": "@openzeppelin/platform-sdk-example-create-proposal",
+  "name": "@openzeppelin/defender-sdk-example-create-proposal",
   "version": "0.3.0",
   "private": true,
   "main": "index.js",
-  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/platform-sdk": "0.4.0",
+    "@openzeppelin/defender-sdk": "0.4.0",
     "dotenv": "^16.1.4"
   }
 }

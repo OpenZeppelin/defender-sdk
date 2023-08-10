@@ -66,7 +66,7 @@ export type CreateSubscriberRequest = CreateBlockSubscriberRequest | CreateForta
 
 // Copied from openzeppelin/defender/models/src/types/subscribers.req.d.ts
 
-import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { NotificationType } from './notification';
 
 export interface BaseCreateSubscriberRequest {

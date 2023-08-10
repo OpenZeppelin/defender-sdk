@@ -1,17 +1,21 @@
-# Platform Packages
+# Defender V2 SDK Packages
 
 <!-- TODO: Confirm these are all populating with data -->
 
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/platform-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/platform-sdk)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7395/badge)](https://bestpractices.coreinfrastructure.org/projects/7395)
-[![Scorecard supply-chain security](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/scorecard.yml)
-[![Stable Git Release](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/stable.yml/badge.svg)](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/stable.yml)
-[![RC Git Release](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/rc.yml/badge.svg)](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/rc.yml)
-[![CI](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/platform-sdk/actions/workflows/ci.yml)
+[![Scorecard supply-chain security](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml)
+[![Stable Git Release](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/stable.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/stable.yml)
+[![RC Git Release](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml)
+[![CI](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml)
 
-This monorepo contains individual OpenZeppelin Platform TypeScript clients and publishes the collection of clients as `@openzeppelin/platform-sdk`
+This monorepo contains individual OpenZeppelin Defender TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`
 
 ## Development Setup
+
+- `pnpm` for workspaces & dependency management.
+- `nx` for build & tests.
+- `changesets` for versioning, changelog management & publishing.
 
 - Checkout the repo and run `pnpm i --ignore-scripts --prefer-offline && pnpm run build`.
 
@@ -45,9 +49,9 @@ You can set the following environment variables to control to which instance you
 
 ```bash
 # all modules/clients besides relay signer
-PLATFORM_API_URL=
-PLATFORM_POOL_ID=
-PLATFORM_CLIENT_ID=
+DEFENDER_API_URL=
+DEFENDER_POOL_ID=
+DEFENDER_CLIENT_ID=
 # relay signer
 RELAY_SIGNER_API_URL=
 RELAY_SIGNER_POOL_ID=
@@ -58,14 +62,18 @@ RELAY_SIGNER_POOL_CLIENT_ID=
 
 ### CI/CD
 
+- For time being the manual process is as follows until CI/CD is fixed.
+  - Run `npx changeset` to select specific packages to bump ( use up & down arrows to navigate, space to select specific packages). This will create a new changeset file in `./changesets` folder. Update changelog in changeset file if needed using `feat:`, `fix:`, `docs:`, `chore:` or `refactor:` prefixes.
+  - Create a PR with changeset file.
+  - After the PR is approved & merged. You will need to run `npx changeset version` to bump all the versions of the packages -> create a PR.
+  - After the PR is merged make sure to run build & tests uisng `pnpm build-skip-nx-cache` && `pnpm test-skip-nx-cache`.
+  - After the tests passes run `npx changeset publish` this publishes the packages to npm.
+  - Finally create changeset tags using `npx changeset tag`` and push tags ( make sure you are signing tags before pushing ) to git.
+
 <!-- TODO: once we have CI/CD steps fully defined we should validate this is accurate -->
 
 - We use github actions for CI/CD. See [workflows](.github/workflows) for more info.
   - `ci.yml` - runs on every push to any branch --> runs tests.
-  - `rc.yml` - runs on every push to master --> creates a rc tag --> creates a pre-release draft.
-  - `stable.yml` - Manual trigger workflow --> creates a stable tag --> creates a latest release --> publishes to npm.
-  - `release.yml` - Manual trigger workflow --> create a git release for a given tag.
-  - `publish.yml` - Manual trigger workflow ( for any given tag ) --> publishes to npm.
 
 ---
 
