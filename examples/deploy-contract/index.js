@@ -1,12 +1,12 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/defender-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 const artifactFile = require('./artifacts/Box.json');
 
 async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
-  const client = new Platform(creds);
+  const client = new Defender(creds);
 
   // await client.deploy.createBlockExplorerApiKey({
   //   network: 'goerli',

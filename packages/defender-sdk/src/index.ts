@@ -9,7 +9,7 @@ import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-monitor-client/lib/models/networks';
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 
-interface PlatformOptions {
+interface DefenderOptions {
   apiKey?: string;
   apiSecret?: string;
   relayerApiKey?: string;
@@ -29,7 +29,7 @@ function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | A
   return new Client(credentials);
 }
 
-export class Platform {
+export class Defender {
   private apiKey: string | undefined;
   private apiSecret: string | undefined;
   private relayerApiKey: string | undefined;
@@ -37,7 +37,7 @@ export class Platform {
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
 
-  constructor(options: PlatformOptions) {
+  constructor(options: DefenderOptions) {
     this.apiKey = options.apiKey;
     this.apiSecret = options.apiSecret;
     this.relayerApiKey = options.relayerApiKey;

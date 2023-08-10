@@ -1,12 +1,12 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/defender-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 const creds = {
   relayerApiKey: process.env.RELAYER_API_KEY,
   relayerApiSecret: process.env.RELAYER_API_SECRET,
 };
-const client = new Platform(creds);
+const client = new Defender(creds);
 
 async function get() {
   const info = await client.relaySigner.getRelayer();

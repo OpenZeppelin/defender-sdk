@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "main": "index.js",
-  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "scripts": {
     "start": "node update-code.js"

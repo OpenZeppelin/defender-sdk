@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- efefd68: feat: Add support of instantiating defender-sdk package from Platform Actions
+- efefd68: feat: Add support of instantiating defender-sdk package from Defender Actions
 
 ### Patch Changes
 

@@ -17,7 +17,7 @@
     "!*.test.d.ts",
     "!*__mocks__"
   ],
-  "author": "OpenZeppelin Platform <platform@openzeppelin.com>",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/defender-sdk-base-client": "^0.3.0",

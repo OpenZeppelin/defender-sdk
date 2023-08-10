@@ -2,11 +2,11 @@
 require('dotenv').config();
 
 const abi = require('./abis/erc721.json');
-const { Platform } = require('@openzeppelin/defender-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
-  const client = new Platform(creds);
+  const client = new Defender(creds);
 
   let notification;
   // use an existing notification channel

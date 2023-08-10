@@ -1,7 +1,7 @@
 {
   "name": "@openzeppelin/defender-sdk-deploy-client",
   "version": "0.3.0",
-  "description": "Client library for managing Platform Deployments",
+  "description": "Client library for managing Defender Deployments",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {

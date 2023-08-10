@@ -1,14 +1,14 @@
-# Platform Deployment Client
+# Defender Deployment Client
 
-Platform Deployment Client allows you to deploy contracts through the OpenZeppelin Platform, manage deployment configuration and manage block explorer api keys.
+Defender Deployment Client allows you to deploy contracts through the OpenZeppelin Defender, manage deployment configuration and manage block explorer api keys.
 
 ## Usage
 
-Start by creating a new _Team API Key_ in Platform, and granting it the capability to manage deployments. Use the newly created API key to initialize an instance of the Platform client.
+Start by creating a new _Team API Key_ in Defender, and granting it the capability to manage deployments. Use the newly created API key to initialize an instance of Defender client.
 
 ```js
-const { PlatformClient } = require('@openzeppelin/defender-sdk');
-const client = PlatformClient({ apiKey: API_KEY, apiSecret: API_SECRET });
+const { Defender } = require('@openzeppelin/defender-sdk');
+const client = Defender({ apiKey: API_KEY, apiSecret: API_SECRET });
 ```
 
 ### Deployment
@@ -78,7 +78,7 @@ To upgrade a contract you need to provide these required fields:
 There are a number of optional fields, these include:
 
 - `proxyAdminAddress` - The Proxy Admin address in case you are upgrading with a transparent proxy.
-- `newImplementationABI` - The ABI of the new implementation address. This will be required if the implementation contract does not exist in the OpenZeppelin Platform.
+- `newImplementationABI` - The ABI of the new implementation address. This will be required if the implementation contract does not exist in OpenZeppelin Defender.
 - `approvalProcessId` - The approval process ID in case you wish to override the default global approval process.
 - `senderAddress` - The address you wish to create the Gnosis proposal with. When creating an upgrade proposal, we provide you with an external link to the Gnosis Safe UI. This will lead you to a proposal ready to be signed. This proposal will contain information about what upgrade to execute, as well as who initiated the proposal. The `senderAddress` property lets you customise define which address this is.
 

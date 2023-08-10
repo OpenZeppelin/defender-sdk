@@ -9,7 +9,7 @@
 [![RC Git Release](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml)
 [![CI](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml)
 
-This monorepo contains individual OpenZeppelin Platform TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`
+This monorepo contains individual OpenZeppelin Defender TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`
 
 ## Development Setup
 

@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- efefd68: feat: Add support of instantiating defender-sdk package from Platform Actions
+- efefd68: feat: Add support of instantiating platform-sdk package from Defender Actions
 
 ### Patch Changes
 
@@ -28,4 +28,4 @@
 ### Patch Changes
 
 - Updated dependencies [496f88d]
-  - @openzeppelin/defender-sdk-base-client@0.2.0
+  - @openzeppelin/platform-sdk-base-client@0.2.0
