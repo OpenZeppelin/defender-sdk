@@ -139,6 +139,18 @@ importers:
         specifier: ^16.1.4
         version: 16.1.4
 
+  examples/ethers-signer:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: ^0.4.0
+        version: link:../..
+      dotenv:
+        specifier: ^16.1.4
+        version: 16.1.4
+      ethers:
+        specifier: ^5.6.1
+        version: 5.7.2
+
   examples/list-networks:
     dependencies:
       '@openzeppelin/defender-sdk':
