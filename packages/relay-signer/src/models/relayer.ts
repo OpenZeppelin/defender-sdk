@@ -1,9 +1,9 @@
 import https from 'https';
-import { Network } from '@openzeppelin/platform-sdk-base-client';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from './transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 
-// TODO platform Address model for this
+// TODO Defender Address model for this
 export type Address = string;
 
 export type BigUInt = string | number;

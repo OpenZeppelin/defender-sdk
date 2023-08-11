@@ -1,11 +1,22 @@
-# @openzeppelin/platform-sdk-example-create-action
+# @openzeppelin/defender-sdk-example-create-action
+
+## 0.3.0
+
+### Minor Changes
+
+- be73034: Feat: Support linea & base
+
+### Patch Changes
+
+- Updated dependencies [be73034]
+  - @openzeppelin/platform-sdk@0.4.0
 
 ## 0.2.1
 
 ### Patch Changes
 
 - Updated dependencies [efefd68]
-  - @openzeppelin/platform-sdk@0.3.0
+  - @openzeppelin/defender-sdk@0.3.0
 
 ## 0.2.0
 
@@ -24,4 +35,4 @@
 ### Patch Changes
 
 - Updated dependencies [496f88d]
-  - @openzeppelin/platform-sdk@0.2.0
+  - @openzeppelin/defender-sdk@0.2.0

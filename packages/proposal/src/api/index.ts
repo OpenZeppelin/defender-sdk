@@ -1,4 +1,4 @@
-import { BaseApiClient } from '@openzeppelin/platform-sdk-base-client';
+import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { isArray } from 'lodash';
 import { Interface } from 'ethers/lib/utils';
 import { ExternalApiCreateProposalRequest as CreateProposalRequest, PartialContract } from '../models/proposal';
@@ -21,15 +21,15 @@ type SimulateProposalParams = {
 
 export class ProposalClient extends BaseApiClient {
   protected getPoolId(): string {
-    return process.env.PLATFORM_POOL_ID || 'us-west-2_94f3puJWv';
+    return process.env.DEFENDER_POOL_ID || 'us-west-2_94f3puJWv';
   }
 
   protected getPoolClientId(): string {
-    return process.env.PLATFORM_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
+    return process.env.DEFENDER_POOL_CLIENT_ID || '40e58hbc7pktmnp9i26hh5nsav';
   }
 
   protected getApiUrl(): string {
-    return process.env.PLATFORM_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/proposal/';
   }
 
   public async addContract(contract: Contract): Promise<Contract> {
@@ -50,7 +50,7 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within platform-sdk
+  // added separate from CreateProposalRequest type as the `simulate` boolean is contained within defender-sdk
   public async create({
     proposal,
     simulate,
