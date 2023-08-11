@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 
-abstract class MockBaseApiClient extends jest.requireActual('@openzeppelin/platform-sdk-base-client').BaseApiClient {
-  // TODO: Platform deployment tests are too tightly coupled with the base client implementation
+abstract class MockBaseApiClient extends jest.requireActual('@openzeppelin/defender-sdk-base-client').BaseApiClient {
+  // TODO: Defender SDK deployment tests are too tightly coupled with the base client implementation
   private api: Promise<AxiosInstance> | undefined;
   protected async init(): Promise<AxiosInstance> {
     if (!this.api) {

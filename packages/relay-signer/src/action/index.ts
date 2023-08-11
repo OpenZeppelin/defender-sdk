@@ -7,7 +7,7 @@ import {
   SignTypedDataPayload,
   SignedMessagePayload,
 } from '../models/rpc';
-import { BaseActionClient } from '@openzeppelin/platform-sdk-base-client/lib/action';
+import { BaseActionClient } from '@openzeppelin/defender-sdk-base-client/lib/action';
 
 export type SendTxRequest = {
   action: 'send-tx';

@@ -54,7 +54,7 @@ export const mockAxiosError: AxiosError = {
       'Authorization: Bearer WRONG\r\n' +
       'Content-Type: application/json\r\n' +
       'User-Agent: axios/0.21.4\r\n' +
-      'Host: platform-api.openzeppelin.com\r\n' +
+      'Host: defender-api.openzeppelin.com\r\n' +
       'Connection: close\r\n' +
       '\r\n',
     _keepAliveTimeout: 0,
@@ -106,7 +106,7 @@ export const mockAxiosError: AxiosError = {
     parser: null,
     maxHeadersCount: null,
     reusedSocket: false,
-    host: 'platform-api.openzeppelin.com',
+    host: 'defender-api.openzeppelin.com',
     protocol: 'https:',
   },
   response: {
@@ -177,7 +177,7 @@ export const mockAxiosError: AxiosError = {
         'Authorization: Bearer WRONG\r\n' +
         'Content-Type: application/json\r\n' +
         'User-Agent: axios/0.21.4\r\n' +
-        'Host: platform-api.openzeppelin.com\r\n' +
+        'Host: defender-api.openzeppelin.com\r\n' +
         'Connection: close\r\n' +
         '\r\n',
       _keepAliveTimeout: 0,
@@ -192,7 +192,7 @@ export const mockAxiosError: AxiosError = {
       parser: null,
       maxHeadersCount: null,
       reusedSocket: false,
-      host: 'platform-api.openzeppelin.com',
+      host: 'defender-api.openzeppelin.com',
       protocol: 'https:',
     },
     data: { message: 'Unauthorized' },

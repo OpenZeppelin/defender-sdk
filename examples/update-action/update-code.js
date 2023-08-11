@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 async function main() {
   // Gather actionId and api key
@@ -11,7 +11,7 @@ async function main() {
   if (!apiKey || !apiSecret) throw new Error(`Team API Key missing`);
 
   // Setup client
-  const client = new Platform({ apiKey, apiSecret });
+  const client = new Defender({ apiKey, apiSecret });
 
   // Get new code digest
   const encodedZippedCode = await client.action.getEncodedZippedCodeFromFolder('./code');
