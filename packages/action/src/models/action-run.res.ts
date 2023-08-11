@@ -46,3 +46,8 @@ export type ActionRunListItemResponse = ActionRunBase;
 export type ActionRunResponse = ActionRunBase &
   (ActionRunPendingData | ActionRunErrorData | ActionRunSuccessData | ActionRunThrottledData);
 export type ActionRunFinishedResponse = ActionRunBase & (ActionRunErrorData | ActionRunSuccessData);
+
+export type ActionRunListParams = {
+  next?: string;
+  status?: ActionRunStatus | undefined;
+};

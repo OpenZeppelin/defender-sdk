@@ -1,7 +1,13 @@
 import { createHash } from 'crypto';
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
-import { ActionRunBase, ActionRunListResponse, ActionRunResponse, ActionRunStatus } from './models/action-run.res';
+import {
+  ActionRunBase,
+  ActionRunListParams,
+  ActionRunListResponse,
+  ActionRunResponse,
+  ActionRunStatus,
+} from './models/action-run.res';
 import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 import { zipFolder, zipSources } from './zip';
 
@@ -81,17 +87,7 @@ export class ActionClient extends BaseApiClient {
     return this.updateCode(id, { encodedZippedCode });
   }
 
-  public async listActionRuns(
-    id: string,
-    {
-      params,
-    }: {
-      params: {
-        next?: string;
-        status?: ActionRunStatus | undefined;
-      };
-    },
-  ): Promise<ActionRunListResponse> {
+  public async listActionRuns(id: string, params: ActionRunListParams): Promise<ActionRunListResponse> {
     // TODO: move to backend.
     const { next, status } = params;
     if (next && !status && (next === 'success' || next === 'error' || next === 'pending' || next === 'throttle')) {

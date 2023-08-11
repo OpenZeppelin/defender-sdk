@@ -1,8 +1,6 @@
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import {
   CreateNotificationRequest,
-  DeleteNotificationRequest,
-  GetNotificationRequest,
   UpdateNotificationRequest,
   NotificationSummary as NotificationResponse,
   NotificationType,
@@ -36,21 +34,21 @@ export class NotificationChannelClient extends BaseApiClient {
     });
   }
 
-  public async delete(type: NotificationType, id: string): Promise<string> {
+  public async delete(id: string, type: NotificationType): Promise<string> {
     return this.apiCall(async (api) => {
       return await api.delete(`${PATH}/${type}/${id}`);
     });
   }
 
-  public async get(type: NotificationType, id: string): Promise<NotificationResponse> {
+  public async get(id: string, type: NotificationType): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`${PATH}/${type}/${id}`);
     });
   }
 
   public async update(
-    type: NotificationType,
     id: string,
+    type: NotificationType,
     notification: UpdateNotificationRequest,
   ): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {

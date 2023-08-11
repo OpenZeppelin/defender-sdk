@@ -34,14 +34,14 @@ export class DeployClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/deployment/';
   }
 
-  public async deployContract(payload: DeployContractRequest): Promise<DeploymentResponse> {
-    if (isEmpty(payload.artifactUri) && isEmpty(payload.artifactPayload))
+  public async deployContract(params: DeployContractRequest): Promise<DeploymentResponse> {
+    if (isEmpty(params.artifactUri) && isEmpty(params.artifactPayload))
       throw new Error(
         `Missing artifact in deploy request. Either artifactPayload or artifactUri must be included in the request.`,
       );
 
     return this.apiCall(async (api) => {
-      return api.post(`${DEPLOYMENTS_PATH}`, payload);
+      return api.post(`${DEPLOYMENTS_PATH}`, params);
     });
   }
 
@@ -63,9 +63,9 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async upgradeContract(payload: UpgradeContractRequest): Promise<UpgradeContractResponse> {
+  public async upgradeContract(params: UpgradeContractRequest): Promise<UpgradeContractResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${UPGRADES_PATH}`, payload);
+      return api.post(`${UPGRADES_PATH}`, params);
     });
   }
 
@@ -87,19 +87,19 @@ export class DeployClient extends BaseApiClient {
   }
 
   public async createBlockExplorerApiKey(
-    payload: CreateBlockExplorerApiKeyRequest,
+    params: CreateBlockExplorerApiKeyRequest,
   ): Promise<BlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${BLOCKEXPLORER_API_KEY_PATH}`, payload);
+      return api.post(`${BLOCKEXPLORER_API_KEY_PATH}`, params);
     });
   }
 
   public async updateBlockExplorerApiKey(
     blockExplorerApiKeyId: string,
-    payload: UpdateBlockExplorerApiKeyRequest,
+    params: UpdateBlockExplorerApiKeyRequest,
   ): Promise<BlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${BLOCKEXPLORER_API_KEY_PATH}/${blockExplorerApiKeyId}`, payload);
+      return api.put(`${BLOCKEXPLORER_API_KEY_PATH}/${blockExplorerApiKeyId}`, params);
     });
   }
 
@@ -133,15 +133,15 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async createConfig(payload: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
+  public async createConfig(params: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${DEPLOYMENTS_CONFIG_PATH}`, payload);
+      return api.post(`${DEPLOYMENTS_CONFIG_PATH}`, params);
     });
   }
 
-  public async updateConfig(id: string, payload: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
+  public async updateConfig(id: string, params: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${id}`, payload);
+      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${id}`, params);
     });
   }
 

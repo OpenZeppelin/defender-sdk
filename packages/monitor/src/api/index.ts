@@ -22,13 +22,7 @@ import {
   UpdateNotificationCategoryRequest,
 } from '../models/category';
 import { NotificationResponse } from '..';
-import {
-  CreateNotificationRequest,
-  DeleteNotificationRequest,
-  GetNotificationRequest,
-  NotificationType,
-  UpdateNotificationRequest,
-} from '../models/notification';
+import { CreateNotificationRequest, NotificationType, UpdateNotificationRequest } from '../models/notification';
 import { ListNetworkRequestOptions } from '../models/networks';
 
 export class MonitorClient extends BaseApiClient {
@@ -45,9 +39,9 @@ export class MonitorClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/sentinel/';
   }
 
-  public async listNetworks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
+  public async listNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
     return this.apiCall(async (api) => {
-      return await api.get(opts && opts.networkType ? `/networks?type=${opts.networkType}` : `/networks`);
+      return await api.get(params && params.networkType ? `/networks?type=${params.networkType}` : `/networks`);
     });
   }
 
@@ -142,12 +136,9 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  public async createNotificationChannel(
-    type: NotificationType,
-    notification: CreateNotificationRequest,
-  ): Promise<NotificationResponse> {
+  public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
-      return await api.post(`/notifications/${type}`, notification);
+      return await api.post(`/notifications/${notification.type}`, notification);
     });
   }
 
@@ -157,25 +148,24 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  public async deleteNotificationChannel(type: NotificationType, id: string): Promise<string> {
+  public async deleteNotificationChannel(id: string, type: NotificationType): Promise<string> {
     return this.apiCall(async (api) => {
       return await api.delete(`/notifications/${type}/${id}`);
     });
   }
 
-  public async getNotificationChannel(type: NotificationType, id: string): Promise<NotificationResponse> {
+  public async getNotificationChannel(id: string, type: NotificationType): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/notifications/${type}/${id}`);
     });
   }
 
   public async updateNotificationChannel(
-    type: NotificationType,
     id: string,
     notification: UpdateNotificationRequest,
   ): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
-      return await api.put(`/notifications/${type}/${id}`, notification);
+      return await api.put(`/notifications/${notification.type}/${id}`, notification);
     });
   }
 

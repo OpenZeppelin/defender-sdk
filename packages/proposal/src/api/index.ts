@@ -13,12 +13,6 @@ type CreateProposalParams = {
   overrideSimulationOpts?: SimulationTransaction;
 };
 
-type SimulateProposalParams = {
-  contractId: string;
-  proposalId: string;
-  transaction: SimulationTransaction;
-};
-
 export class ProposalClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.DEFENDER_POOL_ID || 'us-west-2_94f3puJWv';
@@ -103,15 +97,18 @@ export class ProposalClient extends BaseApiClient {
       // create simulation
       if (simulate && !isBatchProposal(proposal.contract)) {
         try {
-          simulation = await this.simulate(response.contractId, response.proposalId, {
-            transactionData: {
-              from: proposal.via,
-              to: proposal.contract.address,
-              data: simulationData,
-              value: proposal.metadata?.sendValue ?? '0',
-              ...overrideSimulationOpts?.transactionData,
+          simulation = await this.simulate(response.proposalId, {
+            contractId: response.contractId,
+            transaction: {
+              transactionData: {
+                from: proposal.via,
+                to: proposal.contract.address,
+                data: simulationData,
+                value: proposal.metadata?.sendValue ?? '0',
+                ...overrideSimulationOpts?.transactionData,
+              },
+              blockNumber: overrideSimulationOpts?.blockNumber,
             },
-            blockNumber: overrideSimulationOpts?.blockNumber,
           });
         } catch (e) {
           // simply log so we don't block createProposal response
@@ -150,24 +147,23 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async getSimulation(contractId: string, proposalId: string): Promise<SimulationResponse> {
+  public async getSimulation(proposalId: string, params: { contractId: string }): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.get(
-        `/contracts/${contractId}/proposals/${proposalId}/simulation`,
+        `/contracts/${params.contractId}/proposals/${proposalId}/simulation`,
       )) as SimulationResponse;
       return response;
     });
   }
 
   public async simulate(
-    contractId: string,
     proposalId: string,
-    transaction: SimulationTransaction,
+    params: { contractId: string; transaction: SimulationTransaction },
   ): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.post(
-        `/contracts/${contractId}/proposals/${proposalId}/simulate`,
-        transaction,
+        `/contracts/${params.contractId}/proposals/${proposalId}/simulate`,
+        params.transaction,
       )) as SimulationResponse;
       return response;
     });

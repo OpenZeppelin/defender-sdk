@@ -15,7 +15,7 @@ async function main() {
     notification = notificationChannels[0];
   } else {
     // OR create a new notification channel
-    notification = await client.notifiationChannel.create('email', {
+    notification = await client.notifiationChannel.create({
       type: 'email',
       name: 'MyEmailNotification',
       config: {
