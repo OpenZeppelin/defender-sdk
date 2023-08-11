@@ -4,7 +4,7 @@ const { ethers } = require('ethers');
 const ERC20Abi = require('./erc20.json');
 const ERC20Bytecode = require('./bytecode.json')[0].data.bytecode.object;
 const { domain, types, value } = require('./typedData.json');
-const { Platform } = require('@openzeppelin/platform-sdk');
+const { Defender } = require('@openzeppelin/defender-sdk');
 
 async function main() {
   const creds = {
@@ -13,7 +13,7 @@ async function main() {
   };
   const validUntil = new Date(Date.now() + 120 * 1000).toISOString();
 
-  const client = new Platform(creds);
+  const client = new Defender(creds);
   const provider = client.relaySigner.getProvider();
   const signer = client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
 

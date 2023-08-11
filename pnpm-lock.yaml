@@ -141,9 +141,9 @@ importers:
 
   examples/ethers-signer:
     dependencies:
-      '@openzeppelin/platform-sdk':
-        specifier: 0.2.0
-        version: link:../../packages/platform-sdk
+      '@openzeppelin/defender-sdk':
+        specifier: ^0.4.0
+        version: link:../..
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
