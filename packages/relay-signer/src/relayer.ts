@@ -3,11 +3,15 @@ import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessag
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from './models/transactions';
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
+import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
+import { Provider } from '@ethersproject/abstract-provider';
 
 export class Relayer implements IRelayer {
   private relayer: IRelayer;
+  private credentials: RelayerParams;
 
   public constructor(credentials: RelayerParams) {
+    this.credentials = credentials;
     if (isActionCredentials(credentials)) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { ActionRelayer } = require('./action');
@@ -23,6 +27,16 @@ export class Relayer implements IRelayer {
 
   public getRelayer(): Promise<RelayerGetResponse> {
     return this.relayer.getRelayer();
+  }
+
+  public getProvider(): DefenderRelayProvider {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
+    return new DefenderRelayProvider(this.credentials);
+  }
+
+  public getSigner(provider: Provider, options: DefenderRelaySignerOptions = {}): DefenderRelaySigner {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
+    return new DefenderRelaySigner(this.credentials, provider, options);
   }
 
   public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
