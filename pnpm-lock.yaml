@@ -79,8 +79,8 @@ importers:
   examples/create-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -88,8 +88,8 @@ importers:
   examples/create-batch-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -97,8 +97,8 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -107,7 +107,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -116,7 +116,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -125,7 +125,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -134,7 +134,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -142,8 +142,8 @@ importers:
   examples/ethers-signer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -155,7 +155,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -163,8 +163,8 @@ importers:
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -173,7 +173,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -184,8 +184,8 @@ importers:
   examples/update-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -194,7 +194,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -203,7 +203,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 0.4.0
-        version: link:../..
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
@@ -211,8 +211,8 @@ importers:
   examples/upgrade-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: ^0.4.0
-        version: link:../..
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.1.4
         version: 16.1.4
