@@ -23,7 +23,7 @@ export class ProposalClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/proposal/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/proposal/';
   }
 
   public async addContract(contract: Contract): Promise<Contract> {
