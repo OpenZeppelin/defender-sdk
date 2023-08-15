@@ -22,9 +22,9 @@ export class RelayClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/relayer/';
   }
 
-  public async get({ relayerId }: { relayerId: string }): Promise<RelayerGetResponse> {
+  public async get(id: string): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/relayers/${relayerId}`);
+      return await api.get(`/relayers/${id}`);
     });
   }
 
@@ -34,27 +34,21 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async create({ relayer }: { relayer: CreateRelayerRequest }): Promise<RelayerGetResponse> {
+  public async create(relayer: CreateRelayerRequest): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.post('/relayers', relayer);
     });
   }
 
-  public async update({
-    relayerId,
-    relayerUpdateParams,
-  }: {
-    relayerId: string;
-    relayerUpdateParams: UpdateRelayerRequest;
-  }): Promise<RelayerGetResponse> {
-    const currentRelayer = await this.get({ relayerId });
+  public async update(id: string, relayerUpdateParams: UpdateRelayerRequest): Promise<RelayerGetResponse> {
+    const currentRelayer = await this.get(id);
 
     if (relayerUpdateParams.policies) {
       const relayerPolicies = {
         ...currentRelayer.policies,
         ...relayerUpdateParams.policies,
       };
-      const updatedRelayer = await this.updatePolicies({ relayerId, relayerPolicies });
+      const updatedRelayer = await this.updatePolicies(id, relayerPolicies);
       // if policies are the only update, return
       if (Object.keys(relayerUpdateParams).length === 1) return updatedRelayer;
     }
@@ -67,45 +61,27 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  private async updatePolicies({
-    relayerId,
-    relayerPolicies,
-  }: {
-    relayerId: string;
-    relayerPolicies: UpdateRelayerPoliciesRequest;
-  }): Promise<RelayerGetResponse> {
+  private async updatePolicies(id: string, relayerPolicies: UpdateRelayerPoliciesRequest): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
-      return await api.put(`/relayers/${relayerId}`, relayerPolicies);
+      return await api.put(`/relayers/${id}`, relayerPolicies);
     });
   }
 
-  public async createKey({
-    relayerId,
-    stackResourceId,
-  }: {
-    relayerId: string;
-    stackResourceId?: string;
-  }): Promise<RelayerApiKey> {
+  public async createKey(id: string, { stackResourceId }: { stackResourceId?: string }): Promise<RelayerApiKey> {
     return this.apiCall(async (api) => {
-      return await api.post(`/relayers/${relayerId}/keys`, { stackResourceId });
+      return await api.post(`/relayers/${id}/keys`, { stackResourceId });
     });
   }
 
-  public async listKeys({ relayerId }: { relayerId: string }): Promise<RelayerApiKey[]> {
+  public async listKeys(id: string): Promise<RelayerApiKey[]> {
     return this.apiCall(async (api) => {
-      return await api.get(`/relayers/${relayerId}/keys`);
+      return await api.get(`/relayers/${id}/keys`);
     });
   }
 
-  public async deleteKey({
-    relayerId,
-    keyId,
-  }: {
-    relayerId: string;
-    keyId: string;
-  }): Promise<DeleteRelayerApiKeyResponse> {
+  public async deleteKey(id: string, keyId: string): Promise<DeleteRelayerApiKeyResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/relayers/${relayerId}/keys/${keyId}`);
+      return await api.delete(`/relayers/${id}/keys/${keyId}`);
     });
   }
 }

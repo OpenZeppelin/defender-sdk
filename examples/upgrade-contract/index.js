@@ -9,7 +9,7 @@ async function main() {
   const client = new Defender(creds);
 
   // Get approval process for deployment on Sepolia
-  const config = await client.deploy.getUpgradeApprovalProcess({ network: 'goerli' });
+  const config = await client.deploy.getUpgradeApprovalProcess('goerli');
   console.log(config);
 
   const upgrade = await client.deploy.upgradeContract({

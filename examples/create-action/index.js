@@ -8,7 +8,7 @@ async function main() {
 
   const myAction = {
     name: 'my-action',
-    encodedZippedCode: await client.action.getEncodedZippedCodeFromFolder({ path: './code' }),
+    encodedZippedCode: await client.action.getEncodedZippedCodeFromFolder('./code'),
     trigger: {
       type: 'schedule',
       frequencyMinutes: 1500,

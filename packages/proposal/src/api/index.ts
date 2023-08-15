@@ -13,12 +13,6 @@ type CreateProposalParams = {
   overrideSimulationOpts?: SimulationTransaction;
 };
 
-type SimulateProposalParams = {
-  contractId: string;
-  proposalId: string;
-  transaction: SimulationTransaction;
-};
-
 export class ProposalClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.DEFENDER_POOL_ID || 'us-west-2_94f3puJWv';
@@ -38,9 +32,9 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async deleteContract(contractId: string): Promise<string> {
+  public async deleteContract(id: string): Promise<string> {
     return this.apiCall(async (api) => {
-      return (await api.delete(`/contracts/${contractId}`)) as string;
+      return (await api.delete(`/contracts/${id}`)) as string;
     });
   }
 
@@ -103,9 +97,8 @@ export class ProposalClient extends BaseApiClient {
       // create simulation
       if (simulate && !isBatchProposal(proposal.contract)) {
         try {
-          simulation = await this.simulate({
+          simulation = await this.simulate(response.proposalId, {
             contractId: response.contractId,
-            proposalId: response.proposalId,
             transaction: {
               transactionData: {
                 from: proposal.via,
@@ -126,76 +119,51 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async list(opts: { includeArchived?: boolean } = {}): Promise<ProposalResponseWithUrl[]> {
+  public async list(params: { includeArchived?: boolean } = {}): Promise<ProposalResponseWithUrl[]> {
     return this.apiCall(async (api) => {
-      const response = (await api.get('/proposals', { params: opts })) as ProposalResponse[];
+      const response = (await api.get('/proposals', { params })) as ProposalResponse[];
       return response.map((proposal) => ({ ...proposal, url: getProposalUrl(proposal) }));
     });
   }
 
-  public async get({
-    contractId,
-    proposalId,
-  }: {
-    contractId: string;
-    proposalId: string;
-  }): Promise<ProposalResponseWithUrl> {
+  public async get(id: string): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
-      const response = (await api.get(`/contracts/${contractId}/proposals/${proposalId}`)) as ProposalResponse;
+      const response = (await api.get(`/proposals/details/${id}`)) as ProposalResponse;
       return { ...response, url: getProposalUrl(response) };
     });
   }
 
-  public async archive({
-    contractId,
-    proposalId,
-  }: {
-    contractId: string;
-    proposalId: string;
-  }): Promise<ProposalResponseWithUrl> {
+  public async archive(id: string): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
-      const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
-        archived: true,
-      })) as ProposalResponse;
+      const response = (await api.put(`proposals/archive/${id}`)) as ProposalResponse;
       return { ...response, url: getProposalUrl(response) };
     });
   }
 
-  public async unarchive({
-    contractId,
-    proposalId,
-  }: {
-    contractId: string;
-    proposalId: string;
-  }): Promise<ProposalResponseWithUrl> {
+  public async unarchive(id: string): Promise<ProposalResponseWithUrl> {
     return this.apiCall(async (api) => {
-      const response = (await api.put(`/contracts/${contractId}/proposals/${proposalId}/archived`, {
-        archived: false,
-      })) as ProposalResponse;
+      const response = (await api.put(`/proposals/unarchive/${id}`)) as ProposalResponse;
       return { ...response, url: getProposalUrl(response) };
     });
   }
 
-  public async getSimulation({
-    contractId,
-    proposalId,
-  }: {
-    contractId: string;
-    proposalId: string;
-  }): Promise<SimulationResponse> {
+  public async getSimulation(proposalId: string, params: { contractId: string }): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.get(
-        `/contracts/${contractId}/proposals/${proposalId}/simulation`,
+        `/contracts/${params.contractId}/proposals/${proposalId}/simulation`,
       )) as SimulationResponse;
       return response;
     });
   }
 
-  public async simulate({ contractId, proposalId, transaction }: SimulateProposalParams): Promise<SimulationResponse> {
+  public async simulate(
+    proposalId: string,
+    params: { contractId: string; transaction: SimulationTransaction },
+  ): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.post(
-        `/contracts/${contractId}/proposals/${proposalId}/simulate`,
-        transaction,
+        `/contracts/${params.contractId}/proposals/${proposalId}/simulate`,
+        params.transaction,
       )) as SimulationResponse;
       return response;
     });

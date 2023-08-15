@@ -38,25 +38,16 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async replaceTransactionById({
-    id,
-    payload,
-  }: {
-    id: string;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
     });
   }
 
-  public async replaceTransactionByNonce({
-    nonce,
-    payload,
-  }: {
-    nonce: number;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public async replaceTransactionByNonce(
+    nonce: number,
+    payload: RelayerTransactionPayload,
+  ): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
     });
@@ -74,7 +65,7 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async getTransaction({ id }: { id: string }): Promise<RelayerTransaction> {
+  public async getTransaction(id: string): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.get(`txs/${id}`)) as RelayerTransaction;
     });

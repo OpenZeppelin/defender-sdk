@@ -49,7 +49,7 @@ describe('ActionRelayer', () => {
       await Promise.all(
         Array.from({ length: 302 }).map(async (ignore, index) => {
           try {
-            await relayer.getTransaction({ id: '42' });
+            await relayer.getTransaction('42');
           } catch (error) {
             expect(index).toBe(rateLimit + 1);
             expect((error as any).message).toBe('Rate limit exceeded');
@@ -60,7 +60,7 @@ describe('ActionRelayer', () => {
 
       await sleep(1000);
 
-      const afterTheLimitQueryResult = await relayer.getTransaction({ id: '42' });
+      const afterTheLimitQueryResult = await relayer.getTransaction('42');
 
       expect(hasBeenRateLimited).toBe(true);
       expect(Boolean(afterTheLimitQueryResult)).toBe(true);

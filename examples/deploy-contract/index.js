@@ -17,7 +17,7 @@ async function main() {
   console.log(keys);
 
   // Get approval process for deployment on sepolia
-  const config = await client.deploy.getDeployApprovalProcess({ network: 'goerli' });
+  const config = await client.deploy.getDeployApprovalProcess('goerli');
   console.log(config);
 
   const deployment = await client.deploy.deployContract({
@@ -29,7 +29,7 @@ async function main() {
     verifySourceCode: true,
   });
 
-  const deploymentStatus = await client.deploy.getDeployedContract({ deploymentId: deployment.deploymentId });
+  const deploymentStatus = await client.deploy.getDeployedContract(deployment.deploymentId);
   console.log(deploymentStatus);
 }
 

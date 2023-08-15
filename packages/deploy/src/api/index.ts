@@ -34,20 +34,20 @@ export class DeployClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/deployment/';
   }
 
-  public async deployContract(payload: DeployContractRequest): Promise<DeploymentResponse> {
-    if (isEmpty(payload.artifactUri) && isEmpty(payload.artifactPayload))
+  public async deployContract(params: DeployContractRequest): Promise<DeploymentResponse> {
+    if (isEmpty(params.artifactUri) && isEmpty(params.artifactPayload))
       throw new Error(
         `Missing artifact in deploy request. Either artifactPayload or artifactUri must be included in the request.`,
       );
 
     return this.apiCall(async (api) => {
-      return api.post(`${DEPLOYMENTS_PATH}`, payload);
+      return api.post(`${DEPLOYMENTS_PATH}`, params);
     });
   }
 
-  public async getDeployedContract({ deploymentId }: { deploymentId: string }): Promise<DeploymentResponse> {
+  public async getDeployedContract(id: string): Promise<DeploymentResponse> {
     return this.apiCall(async (api) => {
-      return api.get(`${DEPLOYMENTS_PATH}/${deploymentId}`);
+      return api.get(`${DEPLOYMENTS_PATH}/${id}`);
     });
   }
 
@@ -57,19 +57,19 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getDeployApprovalProcess({ network }: { network: Network }): Promise<ApprovalProcessResponse> {
+  public async getDeployApprovalProcess(network: Network): Promise<ApprovalProcessResponse> {
     return this.apiCall(async (api) => {
       return api.get(`${DEPLOYMENTS_PATH}/config/${network}`);
     });
   }
 
-  public async upgradeContract(payload: UpgradeContractRequest): Promise<UpgradeContractResponse> {
+  public async upgradeContract(params: UpgradeContractRequest): Promise<UpgradeContractResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${UPGRADES_PATH}`, payload);
+      return api.post(`${UPGRADES_PATH}`, params);
     });
   }
 
-  public async getUpgradeApprovalProcess({ network }: { network: Network }): Promise<ApprovalProcessResponse> {
+  public async getUpgradeApprovalProcess(network: Network): Promise<ApprovalProcessResponse> {
     return this.apiCall(async (api) => {
       return api.get(`${UPGRADES_PATH}/config/${network}`);
     });
@@ -87,19 +87,19 @@ export class DeployClient extends BaseApiClient {
   }
 
   public async createBlockExplorerApiKey(
-    payload: CreateBlockExplorerApiKeyRequest,
+    params: CreateBlockExplorerApiKeyRequest,
   ): Promise<BlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${BLOCKEXPLORER_API_KEY_PATH}`, payload);
+      return api.post(`${BLOCKEXPLORER_API_KEY_PATH}`, params);
     });
   }
 
   public async updateBlockExplorerApiKey(
     blockExplorerApiKeyId: string,
-    payload: UpdateBlockExplorerApiKeyRequest,
+    params: UpdateBlockExplorerApiKeyRequest,
   ): Promise<BlockExplorerApiKeyResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${BLOCKEXPLORER_API_KEY_PATH}/${blockExplorerApiKeyId}`, payload);
+      return api.put(`${BLOCKEXPLORER_API_KEY_PATH}/${blockExplorerApiKeyId}`, params);
     });
   }
 
@@ -109,9 +109,9 @@ export class DeployClient extends BaseApiClient {
     });
   }
 
-  public async getConfig({ deploymentConfigId }: { deploymentConfigId: string }): Promise<DeploymentConfigResponse> {
+  public async getConfig(id: string): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.get(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
+      return api.get(`${DEPLOYMENTS_CONFIG_PATH}/${id}`);
     });
   }
   public async listConfig(): Promise<DeploymentConfigResponse[]> {
@@ -121,35 +121,33 @@ export class DeployClient extends BaseApiClient {
   }
 
   public async getDeploymentVerification(
-    params: Pick<VerificationRequest, 'contractAddress' | 'contractNetwork'>,
+    contractNetwork: Pick<VerificationRequest, 'contractNetwork'>,
+    contractAddress: Pick<VerificationRequest, 'contractAddress'>,
   ): Promise<Verification | undefined> {
     return this.apiCall(async (api) => {
       try {
-        return (await api.get(`/verifications/${params.contractNetwork}/${params.contractAddress}`)) as Verification;
+        return (await api.get(`/verifications/${contractNetwork}/${contractAddress}`)) as Verification;
       } catch {
         return undefined;
       }
     });
   }
 
-  public async createConfig(payload: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
+  public async createConfig(params: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.post(`${DEPLOYMENTS_CONFIG_PATH}`, payload);
+      return api.post(`${DEPLOYMENTS_CONFIG_PATH}`, params);
     });
   }
 
-  public async updateConfig(
-    deploymentConfigId: string,
-    payload: DeploymentConfigCreateRequest,
-  ): Promise<DeploymentConfigResponse> {
+  public async updateConfig(id: string, params: DeploymentConfigCreateRequest): Promise<DeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`, payload);
+      return api.put(`${DEPLOYMENTS_CONFIG_PATH}/${id}`, params);
     });
   }
 
-  public async removeConfig(deploymentConfigId: string): Promise<RemoveDeploymentConfigResponse> {
+  public async removeConfig(id: string): Promise<RemoveDeploymentConfigResponse> {
     return this.apiCall(async (api) => {
-      return api.delete(`${DEPLOYMENTS_CONFIG_PATH}/${deploymentConfigId}`);
+      return api.delete(`${DEPLOYMENTS_CONFIG_PATH}/${id}`);
     });
   }
 }

@@ -14,17 +14,17 @@ async function main() {
   const client = new Defender({ apiKey, apiSecret });
 
   // Get new code digest
-  const encodedZippedCode = await client.action.getEncodedZippedCodeFromFolder({ path: './code' });
+  const encodedZippedCode = await client.action.getEncodedZippedCodeFromFolder('./code');
   const newDigest = client.action.getCodeDigest({ encodedZippedCode });
 
   // Get existing one
-  const { codeDigest } = await client.action.get({ actionId });
+  const { codeDigest } = await client.action.get(actionId);
 
   // Update code only if changed
   if (newDigest === codeDigest) {
     console.log(`Code digest matches (skipping upload)`);
   } else {
-    await client.action.updateCodeFromFolder({ actionId, path: './code' });
+    await client.action.updateCodeFromFolder(actionId, { path: './code' });
     console.log(`Action code updated`);
   }
 }

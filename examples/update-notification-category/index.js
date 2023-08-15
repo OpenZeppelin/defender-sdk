@@ -33,7 +33,7 @@ async function main() {
     notificationIds: [{ notificationId: notification.notificationId, type: notification.type }],
   };
   // call update with the request parameters
-  const response = await client.monitor.updateNotificationCategory(category);
+  const response = await client.monitor.updateNotificationCategory(getExistingCategory.categoryId, category);
   console.log(response);
 }
 

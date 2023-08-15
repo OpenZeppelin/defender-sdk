@@ -35,9 +35,9 @@ export interface UpdateRelayerPoliciesRequest {
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse>;
   sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
-  replaceTransactionById(params: { id: string; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
-  replaceTransactionByNonce(params: { nonce: number; payload: RelayerTransactionPayload }): Promise<RelayerTransaction>;
-  getTransaction(params: { id: string }): Promise<RelayerTransaction>;
+  replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
+  replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
+  getTransaction(id: string): Promise<RelayerTransaction>;
   listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
   sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
   signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;

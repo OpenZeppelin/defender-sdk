@@ -44,10 +44,9 @@ async function main() {
 
   try {
     // Simulate the proposal
-    const simulation = await client.proposal.simulate({
-      contractId: proposal.contractId, // contractId
-      proposalId: proposal.proposalId, // proposalId
-      proposal: {
+    const simulation = await client.proposal.simulate(proposal.proposalId, {
+      contractId: proposal.contractId,
+      transaction: {
         transactionData: {
           from: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', // change this to impersonate the `from` address
           data,

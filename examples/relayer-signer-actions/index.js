@@ -24,14 +24,11 @@ async function send() {
 }
 
 async function replace(id) {
-  const txResponse = await client.relaySigner.replaceTransactionById({
-    id,
-    payload: {
-      to: '0x179810822f56b0e79469189741a3fa5f2f9a7631',
-      value: 2,
-      speed: 'fast',
-      gasLimit: '21000',
-    },
+  const txResponse = await client.relaySigner.replaceTransactionById(id, {
+    to: '0x179810822f56b0e79469189741a3fa5f2f9a7631',
+    value: 2,
+    speed: 'fast',
+    gasLimit: '21000',
   });
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
@@ -44,7 +41,7 @@ async function sign(msg) {
 
 async function query(id) {
   if (!id) throw new Error(`Missing id`);
-  const txUpdate = await client.relaySigner.getTransaction({ id });
+  const txUpdate = await client.relaySigner.getTransaction(id);
   console.log('txUpdate', txUpdate);
 }
 

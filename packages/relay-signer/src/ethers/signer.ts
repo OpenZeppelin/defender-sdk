@@ -154,7 +154,7 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
     };
 
     const relayedTransaction = nonce
-      ? await this.relayer.replaceTransactionByNonce({ nonce, payload })
+      ? await this.relayer.replaceTransactionByNonce(nonce, payload)
       : await this.relayer.sendTransaction(payload);
 
     let gasParams;

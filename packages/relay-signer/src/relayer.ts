@@ -52,30 +52,18 @@ export class Relayer implements IRelayer {
     return this.relayer.sendTransaction(payload);
   }
 
-  public replaceTransactionById({
-    id,
-    payload,
-  }: {
-    id: string;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     validatePayload(payload);
-    return this.relayer.replaceTransactionById({ id, payload });
+    return this.relayer.replaceTransactionById(id, payload);
   }
 
-  public replaceTransactionByNonce({
-    nonce,
-    payload,
-  }: {
-    nonce: number;
-    payload: RelayerTransactionPayload;
-  }): Promise<RelayerTransaction> {
+  public replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     validatePayload(payload);
-    return this.relayer.replaceTransactionByNonce({ nonce, payload });
+    return this.relayer.replaceTransactionByNonce(nonce, payload);
   }
 
-  public getTransaction({ id }: { id: string }): Promise<RelayerTransaction> {
-    return this.relayer.getTransaction({ id });
+  public getTransaction(id: string): Promise<RelayerTransaction> {
+    return this.relayer.getTransaction(id);
   }
 
   public listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
