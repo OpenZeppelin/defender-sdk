@@ -36,7 +36,7 @@ export class MonitorClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to /monitor when available
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/sentinel/';
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/sentinel/';
   }
 
   public async listNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
@@ -47,21 +47,21 @@ export class MonitorClient extends BaseApiClient {
 
   public async list(): Promise<ListMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers`);
+      return await api.get(`/monitors`);
     });
   }
 
   public async create(params: CreateMonitorRequest): Promise<CreateMonitorResponse> {
     const newMonitor = await this.constructMonitorRequest(params);
     return this.apiCall(async (api) => {
-      return await api.post(`/subscribers`, newMonitor);
+      return await api.post(`/monitors`, newMonitor);
     });
   }
 
   // TODO: maybe add a named type here
   public async get(id: string): Promise<CreateMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers/${id}`);
+      return await api.get(`/monitors/${id}`);
     });
   }
 
@@ -69,14 +69,14 @@ export class MonitorClient extends BaseApiClient {
     const currentMonitor = await this.get(id);
 
     return this.apiCall(async (api) => {
-      return await api.put(`/subscribers/${id}`, await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params));
+      return await api.put(`/monitors/${id}`, await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params));
     });
   }
 
   // TODO: maybe add a named type here
   public async delete(id: string): Promise<DeletedMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/subscribers/${id}`);
+      return await api.delete(`/monitors/${id}`);
     });
   }
 
@@ -84,7 +84,7 @@ export class MonitorClient extends BaseApiClient {
     const monitor = await this.get(id);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${id}`,
+        `/monitors/${id}`,
         await this.mergeApiMonitorWithUpdateMonitor(monitor, {
           monitorId: id,
           type: monitor.type,
@@ -98,7 +98,7 @@ export class MonitorClient extends BaseApiClient {
     const monitor = await this.get(id);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${id}`,
+        `/monitors/${id}`,
         await this.mergeApiMonitorWithUpdateMonitor(monitor, {
           monitorId: id,
           type: monitor.type,
