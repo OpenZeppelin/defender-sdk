@@ -81,6 +81,7 @@ export interface BaseCreateSubscriberRequest {
 
 export interface BaseCreateSubscriberResponse extends BaseCreateSubscriberRequest {
   subscriberId: string;
+  monitorId?: string;
   createdAt?: string;
 }
 

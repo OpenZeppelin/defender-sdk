@@ -190,6 +190,15 @@ importers:
         specifier: ^16.1.4
         version: 16.1.4
 
+  examples/update-monitor:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 0.4.0
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.1.4
+        version: 16.1.4
+
   examples/update-notification-category:
     dependencies:
       '@openzeppelin/defender-sdk':
