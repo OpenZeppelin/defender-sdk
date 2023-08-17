@@ -51,11 +51,11 @@ You can set the following environment variables to control to which instance you
 # all modules/clients besides relay signer
 DEFENDER_API_URL=
 DEFENDER_POOL_ID=
-DEFENDER_CLIENT_ID=
+DEFENDER_POOL_CLIENT_ID=
 # relay signer
-RELAY_SIGNER_API_URL=
-RELAY_SIGNER_POOL_ID=
-RELAY_SIGNER_POOL_CLIENT_ID=
+DEFENDER_RELAY_SIGNER_API_URL=
+DEFENDER_RELAY_SIGNER_POOL_ID=
+DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID=
 ```
 
 ---
