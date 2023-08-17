@@ -31,7 +31,7 @@ export class DeployClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/deployment/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
   }
 
   public async deployContract(params: DeployContractRequest): Promise<DeploymentResponse> {
