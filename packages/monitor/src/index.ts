@@ -1,5 +1,5 @@
 export { MonitorClient } from './api';
-export { ExternalCreateMonitorRequest as CreateMonitorRequest } from './models/subscriber';
+export { ExternalCreateMonitorRequest as CreateMonitorRequest } from './models/monitor';
 export { CreateMonitorResponse, DeletedMonitorResponse } from './models/response';
 export {
   NotificationType,

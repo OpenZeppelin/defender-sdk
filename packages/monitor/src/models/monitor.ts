@@ -1,10 +1,8 @@
 export type MonitorConfirmation = number | 'safe' | 'finalized';
-export type ExternalCreateMonitorRequest = ExternalCreateBlockSubscriberRequest | ExternalCreateFortaSubscriberRequest;
+export type ExternalCreateMonitorRequest = ExternalCreateBlockMonitorRequest | ExternalCreateFortaMonitorRequest;
 
-export type ExternalUpdateSubscriberRequest =
-  | ExternalUpdateBlockSubscriberRequest
-  | ExternalUpdateFortaSubscriberRequest;
-export interface ExternalBaseCreateSubscriberRequest {
+export type ExternalUpdateMonitorRequest = ExternalUpdateBlockMonitorRequest | ExternalUpdateFortaMonitorRequest;
+export interface ExternalBaseCreateMonitorRequest {
   name: string;
   addresses?: string[];
   abi?: string;
@@ -18,10 +16,10 @@ export interface ExternalBaseCreateSubscriberRequest {
   notificationChannels: string[];
   notificationCategoryId?: string;
   type: 'FORTA' | 'BLOCK';
-  riskCategory?: SubscriberRiskCategory;
+  riskCategory?: MonitorRiskCategory;
   stackResourceId?: string;
 }
-export interface ExternalCreateBlockSubscriberRequest extends ExternalBaseCreateSubscriberRequest {
+export interface ExternalCreateBlockMonitorRequest extends ExternalBaseCreateMonitorRequest {
   network: Network;
   confirmLevel?: MonitorConfirmation; // blockWatcherId
   addresses: string[];
@@ -33,7 +31,7 @@ export interface ExternalCreateBlockSubscriberRequest extends ExternalBaseCreate
   type: 'BLOCK';
 }
 
-export interface ExternalCreateFortaSubscriberRequest extends ExternalBaseCreateSubscriberRequest {
+export interface ExternalCreateFortaMonitorRequest extends ExternalBaseCreateMonitorRequest {
   privateFortaNodeId?: string;
   network?: Network;
   fortaLastProcessedTime?: string;
@@ -45,8 +43,8 @@ export interface ExternalCreateFortaSubscriberRequest extends ExternalBaseCreate
   fortaConditions: FortaConditionSet;
   type: 'FORTA';
 }
-export interface ExternalUpdateBlockSubscriberRequest
-  extends Omit<ExternalCreateBlockSubscriberRequest, 'network' | 'addresses' | 'name' | 'notificationChannels'> {
+export interface ExternalUpdateBlockMonitorRequest
+  extends Omit<ExternalCreateBlockMonitorRequest, 'network' | 'addresses' | 'name' | 'notificationChannels'> {
   monitorId: string;
   network?: Network;
   addresses?: string[];
@@ -54,45 +52,44 @@ export interface ExternalUpdateBlockSubscriberRequest
   notificationChannels?: string[];
 }
 
-export interface ExternalUpdateFortaSubscriberRequest
-  extends Omit<ExternalCreateFortaSubscriberRequest, 'fortaConditions' | 'name' | 'notificationChannels'> {
+export interface ExternalUpdateFortaMonitorRequest
+  extends Omit<ExternalCreateFortaMonitorRequest, 'fortaConditions' | 'name' | 'notificationChannels'> {
   monitorId: string;
   fortaConditions?: FortaConditionSet;
   name?: string;
   notificationChannels?: string[];
 }
 
-export type CreateSubscriberRequest = CreateBlockSubscriberRequest | CreateFortaSubscriberRequest;
+export type CreateMonitorRequest = CreateBlockMonitorRequest | CreateFortaMonitorRequest;
 
 // Copied from openzeppelin/defender/models/src/types/subscribers.req.d.ts
 
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { NotificationType } from './notification';
 
-export interface BaseCreateSubscriberRequest {
+export interface BaseCreateMonitorRequest {
   name: string;
   paused: boolean;
   skipABIValidation?: boolean;
   alertThreshold?: Threshold;
   notifyConfig?: Notifications;
-  riskCategory?: SubscriberRiskCategory;
+  riskCategory?: MonitorRiskCategory;
   stackResourceId?: string;
 }
 
-export interface BaseCreateSubscriberResponse extends BaseCreateSubscriberRequest {
-  subscriberId: string;
-  monitorId?: string;
+export interface BaseCreateMonitorResponse extends BaseCreateMonitorRequest {
+  monitorId: string;
   createdAt?: string;
 }
 
-export interface PartialCreateFortaSubscriberRequest {
+export interface PartialCreateFortaMonitorRequest {
   privateFortaNodeId?: string;
   fortaRule: FortaRule;
   network?: Network;
   type: 'FORTA';
 }
 
-export interface PartialCreateBlockSubscriberRequest {
+export interface PartialCreateBlockMonitorRequest {
   addressRules: AddressRule[];
   blockWatcherId: string;
   network: Network;
@@ -100,19 +97,15 @@ export interface PartialCreateBlockSubscriberRequest {
   skipABIValidation?: boolean;
 }
 
-export interface CreateBlockSubscriberRequest
-  extends BaseCreateSubscriberRequest,
-    PartialCreateBlockSubscriberRequest {}
+export interface CreateBlockMonitorRequest extends BaseCreateMonitorRequest, PartialCreateBlockMonitorRequest {}
 
-export interface CreateFortaSubscriberRequest
-  extends BaseCreateSubscriberRequest,
-    PartialCreateFortaSubscriberRequest {}
+export interface CreateFortaMonitorRequest extends BaseCreateMonitorRequest, PartialCreateFortaMonitorRequest {}
 
-export interface CreateFortaSubscriberResponse extends BaseCreateSubscriberResponse, CreateFortaSubscriberRequest {
+export interface CreateFortaMonitorResponse extends BaseCreateMonitorResponse, CreateFortaMonitorRequest {
   fortaLastProcessedTime?: string;
 }
 
-export interface CreateBlockSubscriberResponse extends BaseCreateSubscriberResponse, CreateBlockSubscriberRequest {}
+export interface CreateBlockMonitorResponse extends BaseCreateMonitorResponse, CreateBlockMonitorRequest {}
 
 export interface FortaRule {
   addresses?: Address[];
@@ -129,18 +122,12 @@ export interface FortaConditionSet {
   severity?: number;
 }
 
-export enum SubscriberType {
+export enum MonitorType {
   BLOCK = 'BLOCK',
   FORTA = 'FORTA',
 }
 
-export type SubscriberRiskCategory =
-  | 'NONE'
-  | 'GOVERNANCE'
-  | 'ACCESS-CONTROL'
-  | 'SUSPICIOUS'
-  | 'FINANCIAL'
-  | 'TECHNICAL';
+export type MonitorRiskCategory = 'NONE' | 'GOVERNANCE' | 'ACCESS-CONTROL' | 'SUSPICIOUS' | 'FINANCIAL' | 'TECHNICAL';
 
 export type Address = string;
 export interface AddressRule {

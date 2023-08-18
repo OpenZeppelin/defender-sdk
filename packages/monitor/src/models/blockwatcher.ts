@@ -1,5 +1,5 @@
 import { Network } from '@openzeppelin/defender-sdk-base-client';
-import { MonitorConfirmation } from './subscriber';
+import { MonitorConfirmation } from './monitor';
 export interface BlockWatcherOptions {
   processBlockAttempts?: number;
   processBlockAttemptTimeoutMs?: number;

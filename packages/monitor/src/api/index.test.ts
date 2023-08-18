@@ -3,7 +3,7 @@ import { MonitorClient } from '.';
 import { NotificationResponse } from '..';
 import { BlockWatcher } from '../models/blockwatcher';
 import { CreateMonitorResponse } from '../models/response';
-import { ExternalCreateBlockSubscriberRequest, ExternalCreateFortaSubscriberRequest } from '../models/subscriber';
+import { ExternalCreateBlockMonitorRequest, ExternalCreateFortaMonitorRequest } from '../models/monitor';
 
 jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
@@ -63,7 +63,7 @@ describe('MonitorClient', () => {
     "stateMutability": "nonpayable",
     "type": "function"
   }]`;
-  const createBlockPayload: ExternalCreateBlockSubscriberRequest = {
+  const createBlockPayload: ExternalCreateBlockMonitorRequest = {
     type: 'BLOCK',
     name: 'Test BLOCK monitor',
     addresses: ['0xdead'],
@@ -86,7 +86,7 @@ describe('MonitorClient', () => {
       },
     ],
   };
-  const createFortaPayload: ExternalCreateFortaSubscriberRequest = {
+  const createFortaPayload: ExternalCreateFortaMonitorRequest = {
     type: 'FORTA',
     name: 'Test FORTA monitor',
     network: 'goerli',
@@ -98,7 +98,7 @@ describe('MonitorClient', () => {
 
   const oldBlockMonitor: CreateMonitorResponse = {
     type: 'BLOCK',
-    subscriberId: 'old-subscriber-id',
+    monitorId: 'old-monitor-id',
     name: 'Previous monitor',
     paused: false,
     blockWatcherId: 'i-am-the-watcher',
@@ -369,7 +369,6 @@ describe('MonitorClient', () => {
     it('passes correct FORTA type arguments to the API', async () => {
       const oldMonitor: CreateMonitorResponse = {
         type: 'FORTA',
-        subscriberId: 'old-subscriber-id',
         monitorId: 'old-subscriber-id',
         name: 'Previous monitor',
         paused: false,
