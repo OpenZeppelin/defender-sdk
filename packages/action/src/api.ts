@@ -97,19 +97,19 @@ export class ActionClient extends BaseApiClient {
       };
     }
     return this.apiCall(async (api) => {
-      return api.get(`/autotasks/${id}/runs`, { params });
+      return api.get(`/actions/${id}/runs`, { params });
     });
   }
 
   public async getActionRun(id: string): Promise<ActionRunResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/autotasks/runs/${id}`);
+      return await api.get(`/actions/runs/${id}`);
     });
   }
 
   public async runAction(id: string, data: { [key: string]: any }): Promise<ActionRunBase> {
     return this.apiCall(async (api) => {
-      return await api.post(`/autotasks/${id}/runs/manual`, data);
+      return await api.post(`/actions/${id}/runs/manual`, data);
     });
   }
 
@@ -121,7 +121,7 @@ export class ActionClient extends BaseApiClient {
 
   private async updateCode(id: string, { encodedZippedCode }: { encodedZippedCode: string }): Promise<void> {
     return this.apiCall(async (api) => {
-      return await api.put(`/autotasks/${id}/code`, { encodedZippedCode });
+      return await api.put(`/actions/${id}/code`, { encodedZippedCode });
     });
   }
 
