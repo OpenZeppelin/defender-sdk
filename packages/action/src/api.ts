@@ -27,36 +27,36 @@ export class ActionClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to /action when available
-    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/autotask/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
   }
 
   public async list(): Promise<ActionListResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/autotasks`);
+      return await api.get(`/actions`);
     });
   }
 
   public async get(id: string): Promise<ActionResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/autotasks/${id}`);
+      return await api.get(`/actions/${id}`);
     });
   }
 
   public async delete(id: string): Promise<ActionDeleteResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/autotasks/${id}`);
+      return await api.delete(`/actions/${id}`);
     });
   }
 
   public async create(action: CreateActionRequest): Promise<ActionResponse> {
     return this.apiCall(async (api) => {
-      return await api.post(`/autotasks`, action);
+      return await api.post(`/actions`, action);
     });
   }
 
   public async update(action: UpdateActionRequest): Promise<ActionResponse> {
     return this.apiCall(async (api) => {
-      return await api.put(`/autotasks/`, action);
+      return await api.put(`/actions/`, action);
     });
   }
 

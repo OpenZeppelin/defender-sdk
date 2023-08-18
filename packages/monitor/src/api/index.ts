@@ -1,17 +1,17 @@
 import { BaseApiClient, Network } from '@openzeppelin/defender-sdk-base-client';
 import {
   ConditionSet,
-  CreateSubscriberRequest,
-  ExternalCreateBlockSubscriberRequest as CreateBlockMonitorRequest,
-  ExternalCreateFortaSubscriberRequest as CreateFortaMonitorRequest,
-  ExternalCreateMonitorRequest as CreateMonitorRequest,
-  ExternalUpdateSubscriberRequest as UpdateMonitorRequest,
+  CreateMonitorRequest,
+  ExternalCreateBlockMonitorRequest as CreateBlockMonitorRequest,
+  ExternalCreateFortaMonitorRequest as CreateFortaMonitorRequest,
+  ExternalCreateMonitorRequest,
+  ExternalUpdateMonitorRequest as UpdateMonitorRequest,
   NotificationReference,
-  PartialCreateBlockSubscriberRequest,
-  PartialCreateFortaSubscriberRequest,
-  CreateFortaSubscriberResponse,
-  CreateBlockSubscriberResponse,
-} from '../models/subscriber';
+  PartialCreateBlockMonitorRequest,
+  PartialCreateFortaMonitorRequest,
+  CreateFortaMonitorResponse,
+  CreateBlockMonitorResponse,
+} from '../models/monitor';
 import { DeletedMonitorResponse, CreateMonitorResponse, ListMonitorResponse } from '../models/response';
 import { BlockWatcher } from '../models/blockwatcher';
 
@@ -36,7 +36,7 @@ export class MonitorClient extends BaseApiClient {
 
   protected getApiUrl(): string {
     // TODO: update to /monitor when available
-    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/sentinel/';
+    return process.env.DEFENDER_API_URL || 'https://platform-api.openzeppelin.com/v2/';
   }
 
   public async listNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
@@ -47,21 +47,21 @@ export class MonitorClient extends BaseApiClient {
 
   public async list(): Promise<ListMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers`);
+      return await api.get(`/monitors`);
     });
   }
 
-  public async create(params: CreateMonitorRequest): Promise<CreateMonitorResponse> {
+  public async create(params: ExternalCreateMonitorRequest): Promise<CreateMonitorResponse> {
     const newMonitor = await this.constructMonitorRequest(params);
     return this.apiCall(async (api) => {
-      return await api.post(`/subscribers`, newMonitor);
+      return await api.post(`/monitors`, newMonitor);
     });
   }
 
   // TODO: maybe add a named type here
   public async get(id: string): Promise<CreateMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.get(`/subscribers/${id}`);
+      return await api.get(`/monitors/${id}`);
     });
   }
 
@@ -69,22 +69,22 @@ export class MonitorClient extends BaseApiClient {
     const currentMonitor = await this.get(id);
 
     return this.apiCall(async (api) => {
-      return await api.put(`/subscribers/${id}`, await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params));
+      return await api.put(`/monitors/${id}`, await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params));
     });
   }
 
   // TODO: maybe add a named type here
   public async delete(id: string): Promise<DeletedMonitorResponse> {
     return this.apiCall(async (api) => {
-      return await api.delete(`/subscribers/${id}`);
+      return await api.delete(`/monitors/${id}`);
     });
   }
 
-  public async pause(id: string): Promise<CreateMonitorRequest> {
+  public async pause(id: string): Promise<ExternalCreateMonitorRequest> {
     const monitor = await this.get(id);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${id}`,
+        `/monitors/${id}`,
         await this.mergeApiMonitorWithUpdateMonitor(monitor, {
           monitorId: id,
           type: monitor.type,
@@ -94,11 +94,11 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
-  public async unpause(id: string): Promise<CreateMonitorRequest> {
+  public async unpause(id: string): Promise<ExternalCreateMonitorRequest> {
     const monitor = await this.get(id);
     return this.apiCall(async (api) => {
       return await api.put(
-        `/subscribers/${id}`,
+        `/monitors/${id}`,
         await this.mergeApiMonitorWithUpdateMonitor(monitor, {
           monitorId: id,
           type: monitor.type,
@@ -173,7 +173,7 @@ export class MonitorClient extends BaseApiClient {
     return (await this.listBlockwatchers()).filter((blockwatcher) => blockwatcher.network === network);
   }
 
-  private constructFortaMonitor(monitor: CreateFortaMonitorRequest): PartialCreateFortaSubscriberRequest {
+  private constructFortaMonitor(monitor: CreateFortaMonitorRequest): PartialCreateFortaMonitorRequest {
     return {
       fortaRule: {
         addresses: monitor.addresses,
@@ -191,9 +191,7 @@ export class MonitorClient extends BaseApiClient {
     return abi ? (typeof abi === 'string' ? abi : JSON.stringify(abi)) : undefined;
   }
 
-  private async constructBlockMonitor(
-    monitor: CreateBlockMonitorRequest,
-  ): Promise<PartialCreateBlockSubscriberRequest> {
+  private async constructBlockMonitor(monitor: CreateBlockMonitorRequest): Promise<PartialCreateBlockMonitorRequest> {
     const blockWatchers = await this.getBlockwatcherIdByNetwork(monitor.network);
 
     let blockWatcherId;
@@ -281,8 +279,8 @@ export class MonitorClient extends BaseApiClient {
     return notifications;
   }
 
-  private async constructMonitorRequest(monitor: CreateMonitorRequest): Promise<CreateSubscriberRequest> {
-    let partialResponse: PartialCreateBlockSubscriberRequest | PartialCreateFortaSubscriberRequest;
+  private async constructMonitorRequest(monitor: ExternalCreateMonitorRequest): Promise<CreateMonitorRequest> {
+    let partialResponse: PartialCreateBlockMonitorRequest | PartialCreateFortaMonitorRequest;
 
     if (monitor.type === 'BLOCK') {
       partialResponse = await this.constructBlockMonitor(monitor);
@@ -312,7 +310,7 @@ export class MonitorClient extends BaseApiClient {
     };
   }
 
-  private toCreateBlockMonitorRequest(monitor: CreateBlockSubscriberResponse): CreateBlockMonitorRequest {
+  private toCreateBlockMonitorRequest(monitor: CreateBlockMonitorResponse): CreateBlockMonitorRequest {
     const rule = monitor.addressRules[0];
 
     if (!rule) throw new Error(`No rule found for monitor ${monitor.name}`);
@@ -348,7 +346,7 @@ export class MonitorClient extends BaseApiClient {
     };
   }
 
-  private toCreateFortaMonitorRequest(monitor: CreateFortaSubscriberResponse): CreateFortaMonitorRequest {
+  private toCreateFortaMonitorRequest(monitor: CreateFortaMonitorResponse): CreateFortaMonitorRequest {
     return {
       type: 'FORTA',
       name: monitor.name,
@@ -370,7 +368,7 @@ export class MonitorClient extends BaseApiClient {
     };
   }
 
-  private toCreateMonitorRequest(monitor: CreateMonitorResponse): CreateMonitorRequest {
+  private toCreateMonitorRequest(monitor: CreateMonitorResponse): ExternalCreateMonitorRequest {
     if (monitor.type === 'BLOCK') return this.toCreateBlockMonitorRequest(monitor);
     if (monitor.type === 'FORTA') return this.toCreateFortaMonitorRequest(monitor);
 
@@ -380,8 +378,8 @@ export class MonitorClient extends BaseApiClient {
   private mergeApiMonitorWithUpdateMonitor(
     apiMonitor: CreateMonitorResponse,
     monitor: UpdateMonitorRequest,
-  ): Promise<CreateSubscriberRequest> {
-    const newMonitor: CreateMonitorRequest = this.toCreateMonitorRequest(apiMonitor);
+  ): Promise<CreateMonitorRequest> {
+    const newMonitor: ExternalCreateMonitorRequest = this.toCreateMonitorRequest(apiMonitor);
 
     const updatedProperties = Object.keys(monitor) as Array<keyof typeof monitor>;
     for (const prop of updatedProperties) {

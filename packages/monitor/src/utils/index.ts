@@ -9,7 +9,7 @@ import {
   EventCondition,
   FunctionCondition,
   TxCondition,
-} from '../models/subscriber';
+} from '../models/monitor';
 
 import { Interface, EventFragment, FunctionFragment } from '@ethersproject/abi';
 import { isTransactionMethod } from '../models/ethers';

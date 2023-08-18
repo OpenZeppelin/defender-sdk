@@ -1,10 +1,10 @@
-import { CreateBlockSubscriberResponse, CreateFortaSubscriberResponse } from './subscriber';
+import { CreateBlockMonitorResponse, CreateFortaMonitorResponse } from './monitor';
 
 export interface DeletedMonitorResponse {
   message: string;
 }
 
-export type CreateMonitorResponse = CreateBlockSubscriberResponse | CreateFortaSubscriberResponse;
+export type CreateMonitorResponse = CreateBlockMonitorResponse | CreateFortaMonitorResponse;
 
 export type ListMonitorResponse = {
   items: CreateMonitorResponse[];

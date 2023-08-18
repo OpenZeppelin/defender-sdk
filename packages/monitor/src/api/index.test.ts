@@ -3,7 +3,7 @@ import { MonitorClient } from '.';
 import { NotificationResponse } from '..';
 import { BlockWatcher } from '../models/blockwatcher';
 import { CreateMonitorResponse } from '../models/response';
-import { ExternalCreateBlockSubscriberRequest, ExternalCreateFortaSubscriberRequest } from '../models/subscriber';
+import { ExternalCreateBlockMonitorRequest, ExternalCreateFortaMonitorRequest } from '../models/monitor';
 
 jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
@@ -63,7 +63,7 @@ describe('MonitorClient', () => {
     "stateMutability": "nonpayable",
     "type": "function"
   }]`;
-  const createBlockPayload: ExternalCreateBlockSubscriberRequest = {
+  const createBlockPayload: ExternalCreateBlockMonitorRequest = {
     type: 'BLOCK',
     name: 'Test BLOCK monitor',
     addresses: ['0xdead'],
@@ -86,7 +86,7 @@ describe('MonitorClient', () => {
       },
     ],
   };
-  const createFortaPayload: ExternalCreateFortaSubscriberRequest = {
+  const createFortaPayload: ExternalCreateFortaMonitorRequest = {
     type: 'FORTA',
     name: 'Test FORTA monitor',
     network: 'goerli',
@@ -98,7 +98,7 @@ describe('MonitorClient', () => {
 
   const oldBlockMonitor: CreateMonitorResponse = {
     type: 'BLOCK',
-    subscriberId: 'old-subscriber-id',
+    monitorId: 'old-monitor-id',
     name: 'Previous monitor',
     paused: false,
     blockWatcherId: 'i-am-the-watcher',
@@ -169,7 +169,7 @@ describe('MonitorClient', () => {
       });
 
       await monitor.list();
-      expect(monitor.api.get).toBeCalledWith('/subscribers');
+      expect(monitor.api.get).toBeCalledWith('/monitors');
       expect(createAuthenticatedApi).toBeCalledTimes(2); // First time and renewal
     });
   });
@@ -191,7 +191,7 @@ describe('MonitorClient', () => {
   describe('list', () => {
     it('calls API correctly', async () => {
       await monitor.list();
-      expect(monitor.api.get).toBeCalledWith('/subscribers');
+      expect(monitor.api.get).toBeCalledWith('/monitors');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -244,7 +244,7 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create(createBlockPayload);
-      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
@@ -271,7 +271,7 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create(createFortaPayload);
-      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
     it('passes correct Private FORTA type arguments to the API', async () => {
@@ -298,7 +298,7 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create({ ...createFortaPayload, privateFortaNodeId: '0x123' });
-      expect(monitor.api.post).toBeCalledWith('/subscribers', expectedApiRequest);
+      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -306,7 +306,7 @@ describe('MonitorClient', () => {
   describe('get', () => {
     it('passes correct arguments to the API', async () => {
       await monitor.get('i-am-the-watcher');
-      expect(monitor.api.get).toBeCalledWith('/subscribers/i-am-the-watcher');
+      expect(monitor.api.get).toBeCalledWith('/monitors/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -362,14 +362,14 @@ describe('MonitorClient', () => {
 
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.update(monitorId, { monitorId, ...createBlockPayload });
-      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
+      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
     it('passes correct FORTA type arguments to the API', async () => {
       const oldMonitor: CreateMonitorResponse = {
         type: 'FORTA',
-        subscriberId: 'old-subscriber-id',
+        monitorId: 'old-subscriber-id',
         name: 'Previous monitor',
         paused: false,
         network: 'goerli',
@@ -405,7 +405,7 @@ describe('MonitorClient', () => {
 
       const monitorId = 'i-am-the-FORTA-watcher';
       await monitor.update(monitorId, { monitorId, ...createFortaPayload });
-      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
+      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
 
@@ -444,7 +444,7 @@ describe('MonitorClient', () => {
         type: 'BLOCK',
         name,
       });
-      expect(monitor.api.put).toBeCalledWith(`/subscribers/${monitorId}`, expectedApiRequest);
+      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
@@ -456,7 +456,7 @@ describe('MonitorClient', () => {
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.pause(monitorId);
       expect(monitor.api.put).toBeCalledWith(
-        `/subscribers/${monitorId}`,
+        `/monitors/${monitorId}`,
         expect.objectContaining({
           paused: true,
         }),
@@ -472,7 +472,7 @@ describe('MonitorClient', () => {
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.unpause(monitorId);
       expect(monitor.api.put).toBeCalledWith(
-        `/subscribers/${monitorId}`,
+        `/monitors/${monitorId}`,
         expect.objectContaining({
           paused: false,
         }),
@@ -484,7 +484,7 @@ describe('MonitorClient', () => {
   describe('delete', () => {
     it('passes correct arguments to the API', async () => {
       await monitor.delete('i-am-the-watcher');
-      expect(monitor.api.delete).toBeCalledWith('/subscribers/i-am-the-watcher');
+      expect(monitor.api.delete).toBeCalledWith('/monitors/i-am-the-watcher');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
