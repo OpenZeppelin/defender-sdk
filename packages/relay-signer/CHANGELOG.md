@@ -1,5 +1,16 @@
 # @openzeppelin/defender-sdk-relay-signer-client
 
+## 1.0.0
+
+### Major Changes
+
+- 8711a12: - Migrate platform-sdk to defender-sdk
+
+### Patch Changes
+
+- Updated dependencies [8711a12]
+  - @openzeppelin/defender-sdk-base-client@1.0.0
+
 ## 0.4.0
 
 ### Minor Changes
