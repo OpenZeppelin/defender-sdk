@@ -1,5 +1,23 @@
 # @openzeppelin/defender-sdk
 
+## 1.0.0
+
+### Major Changes
+
+- 8711a12: - Migrate platform-sdk to defender-sdk
+
+### Patch Changes
+
+- Updated dependencies [8711a12]
+  - @openzeppelin/defender-sdk-action-client@1.0.0
+  - @openzeppelin/defender-sdk-base-client@1.0.0
+  - @openzeppelin/defender-sdk-deploy-client@1.0.0
+  - @openzeppelin/defender-sdk-monitor-client@1.0.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.0.0
+  - @openzeppelin/defender-sdk-proposal-client@1.0.0
+  - @openzeppelin/defender-sdk-relay-client@1.0.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.0.0
+
 ## 0.3.0
 
 ### Minor Changes
