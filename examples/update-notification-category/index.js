@@ -9,13 +9,13 @@ async function main() {
 
   let notification;
   // use an existing notification channel
-  const notificationChannels = await client.notifiationChannel.list();
+  const notificationChannels = await client.notificationChannel.list();
   if (notificationChannels.length > 0) {
     // Select your desired notification channel
     notification = notificationChannels[0];
   } else {
     // OR create a new notification channel
-    notification = await client.notifiationChannel.create({
+    notification = await client.notificationChannel.create({
       type: 'email',
       name: 'MyEmailNotification',
       config: {
