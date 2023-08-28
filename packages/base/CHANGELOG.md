@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.1.0
+
+### Minor Changes
+
+- 0851ae2: - Fix: Create relayer key bug
+  - Fix: Notification client typo
+  - Fix: Patch security vulnerabilities
+
 ## 1.0.0
 
 ### Major Changes

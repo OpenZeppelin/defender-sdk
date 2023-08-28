@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-simulate-proposal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "main": "index.js",
   "author": "Nami Shah <nami@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.0.0",
+    "@openzeppelin/defender-sdk": "1.1.0",
     "dotenv": "^16.3.1",
     "ethers": "^5.7.2"
   }

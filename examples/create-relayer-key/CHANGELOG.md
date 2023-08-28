@@ -1,5 +1,18 @@
 # example-create-relayer-key
 
+## 1.1.0
+
+### Minor Changes
+
+- 0851ae2: - Fix: Create relayer key bug
+  - Fix: Notification client typo
+  - Fix: Patch security vulnerabilities
+
+### Patch Changes
+
+- Updated dependencies [0851ae2]
+  - @openzeppelin/defender-sdk@1.1.0
+
 ## 1.0.0
 
 ### Major Changes
