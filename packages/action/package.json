@@ -21,7 +21,7 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "jszip": "^3.5.0",
+    "jszip": "^3.8.0",
     "@openzeppelin/defender-sdk-base-client": "^1.0.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.19",
