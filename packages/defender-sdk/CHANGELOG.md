@@ -1,5 +1,25 @@
 # @openzeppelin/defender-sdk
 
+## 1.1.0
+
+### Minor Changes
+
+- 0851ae2: - Fix: Create relayer key bug
+  - Fix: Notification client typo
+  - Fix: Patch security vulnerabilities
+
+### Patch Changes
+
+- Updated dependencies [0851ae2]
+  - @openzeppelin/defender-sdk-action-client@1.1.0
+  - @openzeppelin/defender-sdk-base-client@1.1.0
+  - @openzeppelin/defender-sdk-deploy-client@1.1.0
+  - @openzeppelin/defender-sdk-monitor-client@1.1.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.1.0
+  - @openzeppelin/defender-sdk-proposal-client@1.1.0
+  - @openzeppelin/defender-sdk-relay-client@1.1.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.1.0
+
 ## 1.0.0
 
 ### Major Changes
