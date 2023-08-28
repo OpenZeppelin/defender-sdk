@@ -181,3 +181,7 @@ export type ListTransactionsRequest = {
   since?: Date;
   limit?: number;
 };
+
+export interface CreateKeyParams {
+  stackResourceId?: string;
+}

@@ -7,6 +7,7 @@ import {
   UpdateRelayerRequest,
   RelayerApiKey,
   DeleteRelayerApiKeyResponse,
+  CreateKeyParams,
 } from '../models';
 
 export class RelayClient extends BaseApiClient {
@@ -67,9 +68,9 @@ export class RelayClient extends BaseApiClient {
     });
   }
 
-  public async createKey(id: string, { stackResourceId }: { stackResourceId?: string }): Promise<RelayerApiKey> {
+  public async createKey(id: string, createKeyParams?: CreateKeyParams): Promise<RelayerApiKey> {
     return this.apiCall(async (api) => {
-      return await api.post(`/relayers/${id}/keys`, { stackResourceId });
+      return await api.post(`/relayers/${id}/keys`, createKeyParams);
     });
   }
 
