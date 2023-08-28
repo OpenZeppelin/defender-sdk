@@ -257,8 +257,8 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
       aws-sdk:
-        specifier: ^2.1366.0
-        version: 2.1366.0
+        specifier: ^2.1445.0
+        version: 2.1445.0
 
   packages/defender-sdk:
     dependencies:
@@ -2394,8 +2394,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1366.0:
-    resolution: {integrity: sha512-tS7y18KHH0eq43I8WJsxVBpwOMY45FSsu6a+A/6k0bMrE4zhd1fzhPN+5coNIODaGxnqVvgw9guLg3AOe4SpaA==}
+  /aws-sdk@2.1445.0:
+    resolution: {integrity: sha512-/IYUYE79khfguHsb28fQtXKR/avgkhCa6NNOh6W84xEyc89hLTvF30VlvaYaHFlIQeDmylO9kJfjSqGrEVDPIg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
