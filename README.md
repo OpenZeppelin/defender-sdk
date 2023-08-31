@@ -13,7 +13,7 @@ This monorepo contains individual OpenZeppelin Defender TypeScript clients and p
 
 ## Usage
 
-For detailed instructions on how to use the SDK, please refer to our [SDK Documentation](https://www.sdk-docs.defender.openzeppelin.com/).
+For detailed instructions on how to use the SDK, please refer to our [SDK Documentation](https://api-docs.defender.openzeppelin.com/).
 
 ## Development Setup
 
