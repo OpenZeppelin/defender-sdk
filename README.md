@@ -11,6 +11,10 @@
 
 This monorepo contains individual OpenZeppelin Defender TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`
 
+## Usage
+
+For detailed instructions on how to use the SDK, please refer to our [SDK Documentation](https://api-docs.defender.openzeppelin.com/).
+
 ## Development Setup
 
 - `pnpm` for workspaces & dependency management.
@@ -34,10 +38,6 @@ This monorepo contains individual OpenZeppelin Defender TypeScript clients and p
 ## Combining style, build & test in single command
 
 - Run `pnpm nx-build-test-skip-cache`.
-
-## Publish
-
-<!-- TODO: define publish steps re Github CI - this section could be deleted if we want to just document this internally -->
 
 ## Examples
 
