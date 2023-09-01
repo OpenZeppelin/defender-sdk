@@ -23,7 +23,6 @@ import {
 } from '../models/category';
 import { NotificationResponse } from '..';
 import { CreateNotificationRequest, NotificationType, UpdateNotificationRequest } from '../models/notification';
-import { ListNetworkRequestOptions } from '../models/networks';
 
 export class MonitorClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -37,12 +36,6 @@ export class MonitorClient extends BaseApiClient {
   protected getApiUrl(): string {
     // TODO: update to /monitor when available
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
-  }
-
-  public async listNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
-    return this.apiCall(async (api) => {
-      return await api.get(params && params.networkType ? `/networks?type=${params.networkType}` : `/networks`);
-    });
   }
 
   public async list(): Promise<ListMonitorResponse> {
