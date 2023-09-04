@@ -8,7 +8,7 @@ import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
-import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-monitor-client/lib/models/networks';
+import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 
 interface DefenderOptions {
