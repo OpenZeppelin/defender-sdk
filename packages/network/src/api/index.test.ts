@@ -114,6 +114,7 @@ describe('NetworkClient', () => {
       const forkedNetworkId = '123-456-789';
       await networkClient.update(forkedNetworkId, { blockExplorerUrl: 'https://localhost:8000/explorer' });
       expect(networkClient.api.put).toBeCalledWith(`/networks/forks/${forkedNetworkId}`, {
+        forkedNetworkId,
         blockExplorerUrl: 'https://localhost:8000/explorer',
       });
       expect(createAuthenticatedApi).toBeCalled();
