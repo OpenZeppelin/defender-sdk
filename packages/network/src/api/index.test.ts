@@ -38,9 +38,9 @@ describe('NetworkClient', () => {
     });
 
     it("doesn't call init more than once", async () => {
-      await networkClient.list();
-      await networkClient.list();
-      await networkClient.list();
+      await networkClient.listForkedNetworks();
+      await networkClient.listForkedNetworks();
+      await networkClient.listForkedNetworks();
 
       expect(createAuthenticatedApi).toBeCalledTimes(1);
     });
@@ -49,7 +49,7 @@ describe('NetworkClient', () => {
       networkClient.init = () => {
         throw new Error('Init failed');
       };
-      await expect(networkClient.create(createForkPayload)).rejects.toThrow(/init failed/i);
+      await expect(networkClient.createForkedNetwork(createForkPayload)).rejects.toThrow(/init failed/i);
       expect(networkClient.api).toBe(undefined);
     });
   });
@@ -65,7 +65,7 @@ describe('NetworkClient', () => {
         return Promise.reject({ response: { status: 401, statusText: 'Unauthorized' } });
       });
 
-      await networkClient.list();
+      await networkClient.listForkedNetworks();
       expect(networkClient.api.get).toBeCalledWith('/networks/forks');
       expect(createAuthenticatedApi).toBeCalledTimes(2); // First time and renewal
     });
@@ -87,7 +87,7 @@ describe('NetworkClient', () => {
 
   describe('list', () => {
     it('calls API correctly', async () => {
-      await networkClient.list();
+      await networkClient.listForkedNetworks();
       expect(networkClient.api.get).toBeCalledWith('/networks/forks');
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -95,7 +95,7 @@ describe('NetworkClient', () => {
 
   describe('create', () => {
     it('calls API correctly', async () => {
-      await networkClient.create(createForkPayload);
+      await networkClient.createForkedNetwork(createForkPayload);
       expect(networkClient.api.post).toBeCalledWith('/networks/forks', createForkPayload);
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -103,7 +103,7 @@ describe('NetworkClient', () => {
 
   describe('get', () => {
     it('calls API correctly', async () => {
-      await networkClient.get('123-456-789');
+      await networkClient.getForkedNetwork('123-456-789');
       expect(networkClient.api.get).toBeCalledWith('/networks/forks/123-456-789');
       expect(createAuthenticatedApi).toBeCalled();
     });
@@ -112,7 +112,7 @@ describe('NetworkClient', () => {
   describe('update', () => {
     it('calls API correctly', async () => {
       const forkedNetworkId = '123-456-789';
-      await networkClient.update(forkedNetworkId, { blockExplorerUrl: 'https://localhost:8000/explorer' });
+      await networkClient.updateForkedNetwork(forkedNetworkId, { blockExplorerUrl: 'https://localhost:8000/explorer' });
       expect(networkClient.api.put).toBeCalledWith(`/networks/forks/${forkedNetworkId}`, {
         forkedNetworkId,
         blockExplorerUrl: 'https://localhost:8000/explorer',
@@ -123,7 +123,7 @@ describe('NetworkClient', () => {
 
   describe('delete', () => {
     it('calls API correctly', async () => {
-      await networkClient.delete('123-456-789');
+      await networkClient.deleteForkedNetwork('123-456-789');
       expect(networkClient.api.delete).toBeCalledWith('/networks/forks/123-456-789');
       expect(createAuthenticatedApi).toBeCalled();
     });

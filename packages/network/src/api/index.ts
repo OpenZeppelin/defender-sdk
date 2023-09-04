@@ -23,13 +23,13 @@ export class NetworkClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
   }
 
-  public async create(network: ForkedNetworkCreateRequest): Promise<ForkedNetworkResponse> {
+  public async createForkedNetwork(network: ForkedNetworkCreateRequest): Promise<ForkedNetworkResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`${PATH}/forks`, network);
     });
   }
 
-  public async list(): Promise<ForkedNetworkResponse[]> {
+  public async listForkedNetworks(): Promise<ForkedNetworkResponse[]> {
     return this.apiCall(async (api) => {
       return await api.get(`${PATH}/forks`);
     });
@@ -41,19 +41,19 @@ export class NetworkClient extends BaseApiClient {
     });
   }
 
-  public async delete(id: string): Promise<string> {
+  public async deleteForkedNetwork(id: string): Promise<string> {
     return this.apiCall(async (api) => {
       return await api.delete(`${PATH}/forks/${id}`);
     });
   }
 
-  public async get(id: string): Promise<ForkedNetworkResponse> {
+  public async getForkedNetwork(id: string): Promise<ForkedNetworkResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`${PATH}/forks/${id}`);
     });
   }
 
-  public async update(
+  public async updateForkedNetwork(
     id: string,
     network: Omit<ForkedNetworkUpdateRequest, 'forkedNetworkId'>,
   ): Promise<ForkedNetworkResponse> {
