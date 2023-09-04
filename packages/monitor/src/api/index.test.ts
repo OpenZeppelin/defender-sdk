@@ -136,7 +136,6 @@ describe('MonitorClient', () => {
 
   describe('constructor', () => {
     it('sets API key and secret', () => {
-      console.log(monitor);
       expect(monitor.apiKey).toBe('key');
       expect(monitor.apiSecret).toBe('secret');
     });
