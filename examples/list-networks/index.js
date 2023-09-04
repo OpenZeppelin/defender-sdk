@@ -9,7 +9,7 @@ async function main() {
   // List Defender Supported Networks
   const networks = await client.network.listSupportedNetworks({ networkType: 'production' });
   // List Tenant Forked Networks
-  const forkedNetworks = await client.network.list();
+  const forkedNetworks = await client.network.listForkedNetworks();
 
   console.log(networks);
   console.log(forkedNetworks);
