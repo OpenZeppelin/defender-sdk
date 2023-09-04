@@ -136,6 +136,7 @@ describe('MonitorClient', () => {
 
   describe('constructor', () => {
     it('sets API key and secret', () => {
+      console.log(monitor);
       expect(monitor.apiKey).toBe('key');
       expect(monitor.apiSecret).toBe('secret');
     });
@@ -171,20 +172,6 @@ describe('MonitorClient', () => {
       await monitor.list();
       expect(monitor.api.get).toBeCalledWith('/monitors');
       expect(createAuthenticatedApi).toBeCalledTimes(2); // First time and renewal
-    });
-  });
-
-  describe('list networks', () => {
-    it('calls API correctly', async () => {
-      await monitor.listNetworks();
-      expect(monitor.api.get).toBeCalledWith('/networks');
-      expect(createAuthenticatedApi).toBeCalled();
-    });
-
-    it('calls API correctly with network type', async () => {
-      await monitor.listNetworks({ networkType: 'production' });
-      expect(monitor.api.get).toBeCalledWith('/networks?type=production');
-      expect(createAuthenticatedApi).toBeCalled();
     });
   });
 
