@@ -6,7 +6,8 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node update-code.js"
+    "start": "node index.js",
+    "start:code": "node update-code.js"
   },
   "dependencies": {
     "@openzeppelin/defender-sdk": "1.1.0",
