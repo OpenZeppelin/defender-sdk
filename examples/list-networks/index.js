@@ -6,8 +6,13 @@ async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
   const client = new Defender(creds);
 
-  const networks = await client.networks({ networkType: 'production' });
+  // List Defender Supported Networks
+  const networks = await client.network.listSupportedNetworks({ networkType: 'production' });
+  // List Tenant Forked Networks
+  const forkedNetworks = await client.network.listForkedNetworks();
+
   console.log(networks);
+  console.log(forkedNetworks);
 }
 
 if (require.main === module) {

@@ -4,9 +4,11 @@ import { RelayClient } from '@openzeppelin/defender-sdk-relay-client';
 import { ProposalClient } from '@openzeppelin/defender-sdk-proposal-client';
 import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
+import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
+
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
-import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-monitor-client/lib/models/networks';
+import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 
 interface DefenderOptions {
@@ -48,7 +50,11 @@ export class Defender {
   }
 
   public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
-    return getClient(MonitorClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listNetworks(opts);
+    return getClient(NetworkClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listSupportedNetworks(opts);
+  }
+
+  get network() {
+    return getClient(NetworkClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
   }
 
   get monitor() {

@@ -174,20 +174,6 @@ describe('MonitorClient', () => {
     });
   });
 
-  describe('list networks', () => {
-    it('calls API correctly', async () => {
-      await monitor.listNetworks();
-      expect(monitor.api.get).toBeCalledWith('/networks');
-      expect(createAuthenticatedApi).toBeCalled();
-    });
-
-    it('calls API correctly with network type', async () => {
-      await monitor.listNetworks({ networkType: 'production' });
-      expect(monitor.api.get).toBeCalledWith('/networks?type=production');
-      expect(createAuthenticatedApi).toBeCalled();
-    });
-  });
-
   describe('list', () => {
     it('calls API correctly', async () => {
       await monitor.list();
