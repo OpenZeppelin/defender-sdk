@@ -24,3 +24,133 @@ updates:
       - vulnerabilites
     # Allow up to 5 open pull requests
     open-pull-requests-limit: 5
+
+  - package-ecosystem: npm
+    directory: /examples/create-action
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-batch-proposal
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-monitor
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-proposal
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-relayer-key
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-relayer
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/deploy-contract
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/ethers-signer
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/list-networks
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/relayer-signer-actions
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/simulate-proposal
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/update-action
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/update-monitor
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/update-notification-category
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/update-relayer
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/upgrade-contract
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/action
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/base
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/defender-sdk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/deploy
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/monitor
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/network
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/notification-channel
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/proposal
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/relay-signer
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/relay
+    schedule:
+      interval: daily
