@@ -11,12 +11,14 @@ export interface ForkedNetworkCreateRequest {
   rpcUrl: string;
   blockExplorerUrl?: string;
   apiKey?: string;
+  stackResourceId?: string;
 }
 
 export interface ForkedNetworkUpdateRequest {
   forkedNetworkId: string;
   apiKey?: string;
   blockExplorerUrl?: string;
+  stackResourceId?: string;
 }
 
 export interface ForkedNetworkResponse {
@@ -29,4 +31,5 @@ export interface ForkedNetworkResponse {
   blockExplorerUrl?: string;
   createdAt: string;
   createdBy: string;
+  stackResourceId?: string;
 }
