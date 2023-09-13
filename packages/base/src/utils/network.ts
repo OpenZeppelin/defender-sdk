@@ -1,6 +1,8 @@
 import { findKey } from 'lodash';
 
-type PublicNetwork =
+export type Network = SupportedNetwork | ForkedNetwork;
+export type SupportedNetwork = PublicNetwork | CustomNetwork;
+export type PublicNetwork =
   | 'mainnet'
   | 'sepolia'
   | 'goerli'
@@ -18,11 +20,11 @@ type PublicNetwork =
   | 'mumbai'
   | 'avalanche'
   | 'fuji'
-  | 'optimism'
-  | 'optimism-goerli'
   | 'arbitrum'
   | 'arbitrum-nova'
   | 'arbitrum-goerli'
+  | 'optimism'
+  | 'optimism-goerli'
   | 'celo'
   | 'alfajores'
   | 'harmony-s0'
@@ -35,12 +37,10 @@ type PublicNetwork =
   | 'zksync-goerli'
   | 'base'
   | 'base-goerli'
-  | 'linea'
-  | 'linea-goerli';
-
-type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test';
-
-export type Network = PublicNetwork | CustomNetwork;
+  | 'linea-goerli'
+  | 'linea';
+export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-security-alliance';
+export type ForkedNetwork = string;
 
 export const Networks: Network[] = [
   'mainnet',
@@ -60,11 +60,11 @@ export const Networks: Network[] = [
   'mumbai',
   'avalanche',
   'fuji',
-  'optimism',
-  'optimism-goerli',
   'arbitrum',
   'arbitrum-nova',
   'arbitrum-goerli',
+  'optimism',
+  'optimism-goerli',
   'celo',
   'alfajores',
   'harmony-s0',
@@ -77,10 +77,11 @@ export const Networks: Network[] = [
   'zksync-goerli',
   'base',
   'base-goerli',
-  'linea',
   'linea-goerli',
+  'linea',
   'x-dfk-avax-chain',
   'x-dfk-avax-chain-test',
+  'x-security-alliance',
 ];
 
 export function isValidNetwork(text: string): text is Network {
@@ -134,4 +135,5 @@ const chainIds: { [key in Network]: number } = {
   'linea-goerli': 59140,
   'x-dfk-avax-chain': 53935,
   'x-dfk-avax-chain-test': 335,
+  'x-security-alliance': 888,
 };
