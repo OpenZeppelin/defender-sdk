@@ -47,7 +47,7 @@ importers:
         version: 5.62.0(eslint@8.44.0)(typescript@4.9.5)
       code-style:
         specifier: git+https://github.com/OpenZeppelin/configs.git
-        version: github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03
+        version: git@github.com+OpenZeppelin/configs/a6cd128e6f5225b15d76704708c5def97caa8176
       eslint:
         specifier: ^8.42.0
         version: 8.44.0
@@ -257,8 +257,8 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
       aws-sdk:
-        specifier: ^2.1366.0
-        version: 2.1366.0
+        specifier: ^2.1459.0
+        version: 2.1459.0
 
   packages/defender-sdk:
     dependencies:
@@ -2561,8 +2561,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1366.0:
-    resolution: {integrity: sha512-tS7y18KHH0eq43I8WJsxVBpwOMY45FSsu6a+A/6k0bMrE4zhd1fzhPN+5coNIODaGxnqVvgw9guLg3AOe4SpaA==}
+  /aws-sdk@2.1459.0:
+    resolution: {integrity: sha512-My45PgQYhRTh6fOeZ94ELUoXzza/6gTy0J22aK4iy0DEA+uE5gjr1VthnIwbLYNMeEqn8xwJZuNJqvi/WaUUcQ==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -8017,8 +8017,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/OpenZeppelin/configs/0c7b3073da623d1112e4f9c3f186586167ab2d03:
-    resolution: {tarball: https://codeload.github.com/OpenZeppelin/configs/tar.gz/0c7b3073da623d1112e4f9c3f186586167ab2d03}
+  git@github.com+OpenZeppelin/configs/a6cd128e6f5225b15d76704708c5def97caa8176:
+    resolution: {commit: a6cd128e6f5225b15d76704708c5def97caa8176, repo: git@github.com:OpenZeppelin/configs.git, type: git}
     name: code-style
     version: 0.1.0
     dev: true
