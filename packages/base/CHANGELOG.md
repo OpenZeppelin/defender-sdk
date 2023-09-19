@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.2.0
+
+### Minor Changes
+
+- 37edbc7: - feat: forked networks support
+  - feat: network client
+  - ci: security updates
+  - fix: actions example
+
 ## 1.1.0
 
 ### Minor Changes
