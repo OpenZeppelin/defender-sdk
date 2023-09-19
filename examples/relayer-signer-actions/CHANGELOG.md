@@ -1,5 +1,19 @@
 # @openzeppelin/defender-sdk-example-relay-signer-action
 
+## 1.2.0
+
+### Minor Changes
+
+- 37edbc7: - feat: forked networks support
+  - feat: network client
+  - ci: security updates
+  - fix: actions example
+
+### Patch Changes
+
+- Updated dependencies [37edbc7]
+  - @openzeppelin/defender-sdk@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
