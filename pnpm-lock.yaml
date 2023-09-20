@@ -94,6 +94,15 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
 
+  examples/create-forked-network:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 1.2.0
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
@@ -1889,10 +1898,10 @@ packages:
     dev: true
     optional: true
 
-  /@openzeppelin/defender-sdk-action-client@1.1.0:
-    resolution: {integrity: sha512-hK8BBOCYoyOWBZzs3EC9JPcjPeN4ziCxQUQU6hKNG4yf+/oicld6M8huBk/9177K3PIT/pex4MHVbYlP61WtEQ==}
+  /@openzeppelin/defender-sdk-action-client@1.2.0:
+    resolution: {integrity: sha512-1fILCk8dckTvDJXY328hEfrH/UqkUlOq6XiwPqzWUB9RVfTWItgAFsxyyHwPssZOrCviAKT4YK4NRtbctpkzpA==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       glob: 7.2.3
       jszip: 3.8.0
@@ -1902,8 +1911,8 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-base-client@1.1.0:
-    resolution: {integrity: sha512-wqt2L0wnTSpQJL4O8oRP2xhHJr5RBAtBLL1wLGLQF18ShNVtHIp7SW8nq0F9wnO/dKUphyi5/3gXB+EhrtuScQ==}
+  /@openzeppelin/defender-sdk-base-client@1.2.0:
+    resolution: {integrity: sha512-v/nzOABW4RH4wqVPG8gUICV48eZeO0kf6ZvNsd1aUP4i7NyCPv80gErjtW08SFzR/sTqsDN6PS3D+les8mGXvg==}
     dependencies:
       amazon-cognito-identity-js: 6.0.1
       async-retry: 1.3.3
@@ -1911,11 +1920,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-deploy-client@1.1.0:
-    resolution: {integrity: sha512-FWuCHgke0gO4ehr3E3//VzX6d7OY4ZYKEH+miG9BftOho/Lh7K9Sy8GEompzoVaiFXRT97S9aqfnAauKRtQFHg==}
+  /@openzeppelin/defender-sdk-deploy-client@1.2.0:
+    resolution: {integrity: sha512-kUBRKMSQiTZ8urP236L68k5X8Eg1ys2FDYMeuJ22GhXFAC2M1l6OaXNFolFBSzmS5t/x8BkJU6+RCyoCqO2qxg==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1923,11 +1932,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-monitor-client@1.1.0:
-    resolution: {integrity: sha512-Xb+VHzsOXTTxwiRRlHEE6+rC5e+wBKwT/3wyg7wBtLXgTYkGm/XfcZcGukaPmvmOv5JXSETbzLgWJW4CBMSIyQ==}
+  /@openzeppelin/defender-sdk-monitor-client@1.2.0:
+    resolution: {integrity: sha512-6g+jlgjUMQxqN91DtJlDEMerf9mqKBW3HVROMuNjEnFqtEmiasL6GQ7HkbE/fmo+gzbBqX5VgstemX5XJgajWQ==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1935,11 +1944,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-notification-channel-client@1.1.0:
-    resolution: {integrity: sha512-F3QIfJO1WNKDco3b/O8XYoX2YxbP4JHottbDUWF02AAg3Qg8yql1tkqjWJQF/OD4kr8yeWQXFDgqGfS5xw4CIQ==}
+  /@openzeppelin/defender-sdk-notification-channel-client@1.2.0:
+    resolution: {integrity: sha512-Ax8TAwGBB4FLUpY7K3Zs8EH2Rntxm6dYcupUf5jRiSjtv4ZNMl+zzI0QsdjnkrZylbwSehGx45snic1ldQuHtQ==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1947,10 +1956,10 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-proposal-client@1.1.0:
-    resolution: {integrity: sha512-0BhI3tg2aXdMu0g3AV40/lDOxOAYXB3sNZf5SjhJ7olBS7scCz/WG4WORr0XjcSit/kzppztjOGLUs/GtoItUg==}
+  /@openzeppelin/defender-sdk-proposal-client@1.2.0:
+    resolution: {integrity: sha512-aiSkniJzYZAXRVOQ93Bg85mf2h3T7hZQJh7bZURTcSJinf8caLTDmX2UlkVj+ucboqWIPcOoIN1nS4daq2z5pA==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       ethers: 5.7.2
       lodash: 4.17.21
@@ -1961,10 +1970,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-client@1.1.0:
-    resolution: {integrity: sha512-tgYAKseuPJuELpS3twDxtHsN7HvLagS9Q4N/SWNVoVVI7+NY7gARh/TZFXecucl8gPNklgxzbPQFexO9s9WPSA==}
+  /@openzeppelin/defender-sdk-relay-client@1.2.0:
+    resolution: {integrity: sha512-6y/RgxQVnrvLLepvKxCS2ClaOM2Eq0yzkUh5RXKKMcmb27glMoiBRq0qeF5lZmeacnRybsJHwcf9hVKVCQ3AKg==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1972,8 +1981,8 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-signer-client@1.1.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.8.2)(web3-utils@1.8.2)(web3@1.8.2):
-    resolution: {integrity: sha512-hgCCYYeiS9jEKwZ6FgOR9/sJYkzKVbuIBpB4716eZNWBEusTEm2MZpDGU5wi4Dg50A8N+Y6nJwPOyLS9ghHyGQ==}
+  /@openzeppelin/defender-sdk-relay-signer-client@1.2.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.8.2)(web3-utils@1.8.2)(web3@1.8.2):
+    resolution: {integrity: sha512-wef/CKjrgP5BQ8auq2N/j898k8pszzAYeEZvKZkyOq1QSH33D5Utihg9IogLUR0mBA52H3IhnPuJKgqU4adKSw==}
     peerDependencies:
       '@ethersproject/abstract-provider': ^5.6.1
       '@ethersproject/abstract-signer': ^5.6.2
@@ -1998,7 +2007,7 @@ packages:
       '@ethersproject/random': 5.7.0
       '@ethersproject/strings': 5.7.0
       '@ethersproject/transactions': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
       amazon-cognito-identity-js: 6.0.1
       axios: 1.4.0
       lodash: 4.17.21
@@ -2014,14 +2023,14 @@ packages:
   /@openzeppelin/defender-sdk@1.0.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.8.2)(web3-utils@1.8.2)(web3@1.8.2):
     resolution: {integrity: sha512-+Ayol7BsrgTxBB665hmDVa/lvEfRHbBTN4ENBUKRlBD0mra03doE1ROGXyOuSk6UdugNTxYOuEP1YlL5Hsb8Mw==}
     dependencies:
-      '@openzeppelin/defender-sdk-action-client': 1.1.0
-      '@openzeppelin/defender-sdk-base-client': 1.1.0
-      '@openzeppelin/defender-sdk-deploy-client': 1.1.0
-      '@openzeppelin/defender-sdk-monitor-client': 1.1.0
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.1.0
-      '@openzeppelin/defender-sdk-proposal-client': 1.1.0
-      '@openzeppelin/defender-sdk-relay-client': 1.1.0
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.1.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.8.2)(web3-utils@1.8.2)(web3@1.8.2)
+      '@openzeppelin/defender-sdk-action-client': 1.2.0
+      '@openzeppelin/defender-sdk-base-client': 1.2.0
+      '@openzeppelin/defender-sdk-deploy-client': 1.2.0
+      '@openzeppelin/defender-sdk-monitor-client': 1.2.0
+      '@openzeppelin/defender-sdk-notification-channel-client': 1.2.0
+      '@openzeppelin/defender-sdk-proposal-client': 1.2.0
+      '@openzeppelin/defender-sdk-relay-client': 1.2.0
+      '@openzeppelin/defender-sdk-relay-signer-client': 1.2.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.8.2)(web3-utils@1.8.2)(web3@1.8.2)
     transitivePeerDependencies:
       - '@ethersproject/abstract-provider'
       - '@ethersproject/abstract-signer'
