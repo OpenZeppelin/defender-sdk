@@ -47,11 +47,10 @@ async function query(id) {
 
 async function list() {
   const transactions = await client.relaySigner.listTransactions({
-    limit: 3,
+    limit: 50,
     status: 'mined',
-    usePagination: true,
+    usePagination: true, // optional, defaults to false
     sort: 'desc',
-    since: '2023-09-26T10:18:53.759Z'
   });
   console.log(JSON.stringify(transactions, null, 2));
 }
