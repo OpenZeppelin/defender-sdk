@@ -65,10 +65,10 @@ DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID=
 - For time being the manual process is as follows until CI/CD is fixed.
   - Run `npx changeset` to select specific packages to bump ( use up & down arrows to navigate, space to select specific packages). This will create a new changeset file in `./changesets` folder. Update changelog in changeset file if needed using `feat:`, `fix:`, `docs:`, `chore:` or `refactor:` prefixes.
   - Create a PR with changeset file.
-  - After the PR is approved & merged. You will need to run `npx changeset version` to bump all the versions of the packages -> create a PR.
-  - After the PR is merged make sure to run build & tests uisng `pnpm build-skip-nx-cache` && `pnpm test-skip-nx-cache`.
+  - After the PR is approved & merged. Changeset bot will automatically create a PR deleting the changeset file and bumping the package version & updates changelog. This PR will not automatically update the package version/dependencies in `package.json` file. You will have to manually push the change to this PR updating package version/version of `@openzeppelin/defender-sdk-base-client` in `package.json` file.
+  - After the PR is approved & merged make sure to run build & tests uisng `pnpm build-skip-nx-cache` && `pnpm test-skip-nx-cache`.
   - After the tests passes run `npx changeset publish` this publishes the packages to npm.
-  - Finally create changeset tags using `npx changeset tag`` and push tags ( make sure you are signing tags before pushing ) to git.
+  - Finally push tags ( make sure you are signing tags before pushing ) to git `git push --follow-tags`.
 
 <!-- TODO: once we have CI/CD steps fully defined we should validate this is accurate -->
 
