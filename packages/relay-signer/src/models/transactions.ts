@@ -66,4 +66,13 @@ export type ListTransactionsRequest = {
   status?: 'pending' | 'mined' | 'failed';
   since?: Date;
   limit?: number;
+  next?: string;
+  sort?: 'asc' | 'desc';
+  usePagination?: boolean;
 };
+
+
+export type PaginatedTransactionResponse = {
+  items: RelayerTransaction[];
+  next?: string;
+}

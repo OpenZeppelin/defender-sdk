@@ -46,8 +46,14 @@ async function query(id) {
 }
 
 async function list() {
-  const transactions = await client.relaySigner.listTransactions({ limit: 3 });
-  console.log(transactions.map((tx) => JSON.stringify(tx, null, 2)).join('\n'));
+  const transactions = await client.relaySigner.listTransactions({
+    limit: 3,
+    status: 'mined',
+    usePagination: true,
+    sort: 'desc',
+    since: '2023-09-26T10:18:53.759Z'
+  });
+  console.log(JSON.stringify(transactions, null, 2));
 }
 
 async function balance(addr) {
