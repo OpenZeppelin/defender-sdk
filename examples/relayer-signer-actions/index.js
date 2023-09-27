@@ -50,7 +50,8 @@ async function list() {
     limit: 50,
     status: 'mined',
     usePagination: true, // optional, defaults to false
-    sort: 'desc',
+    sort: 'desc', // optional, only available in combination with usePagination
+    next: '', // optional: include when the response has this value to fetch the next set of results
   });
   console.log(JSON.stringify(transactions, null, 2));
 }
