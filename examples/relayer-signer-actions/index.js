@@ -46,8 +46,14 @@ async function query(id) {
 }
 
 async function list() {
-  const transactions = await client.relaySigner.listTransactions({ limit: 3 });
-  console.log(transactions.map((tx) => JSON.stringify(tx, null, 2)).join('\n'));
+  const transactions = await client.relaySigner.listTransactions({
+    limit: 50,
+    status: 'mined',
+    usePagination: true, // optional, defaults to false
+    sort: 'desc', // optional, only available in combination with usePagination
+    next: '', // optional: include when the response has this value to fetch the next set of results
+  });
+  console.log(JSON.stringify(transactions, null, 2));
 }
 
 async function balance(addr) {

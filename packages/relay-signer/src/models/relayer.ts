@@ -1,6 +1,6 @@
 import https from 'https';
 import { Network } from '@openzeppelin/defender-sdk-base-client';
-import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from './transactions';
+import { ListTransactionsRequest, PaginatedTransactionResponse, RelayerTransaction, RelayerTransactionPayload } from './transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 
 // TODO Defender Address model for this
@@ -38,7 +38,7 @@ export interface IRelayer {
   replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   getTransaction(id: string): Promise<RelayerTransaction>;
-  listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]>;
+  listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[] | PaginatedTransactionResponse>;
   sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
   signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
   call(params: { method: string; params: string[] }): Promise<JsonRpcResponse>;
