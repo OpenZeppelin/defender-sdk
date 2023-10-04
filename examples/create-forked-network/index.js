@@ -11,7 +11,7 @@ async function main() {
     name: 'MyForkedNetwork',
     forkedNetwork: 'mainnet',
     rpcUrl: '', // Add your RPC URL here
-  })
+  });
 
   console.log(network);
 }
