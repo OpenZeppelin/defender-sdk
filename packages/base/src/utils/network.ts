@@ -39,7 +39,8 @@ export type PublicNetwork =
   | 'base-goerli'
   | 'linea-goerli'
   | 'linea'
-  | 'mantle';
+  | 'mantle'
+  | 'scroll-sepolia';
 export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-security-alliance';
 export type ForkedNetwork = string;
 
@@ -84,6 +85,7 @@ export const Networks: Network[] = [
   'x-dfk-avax-chain-test',
   'x-security-alliance',
   'mantle',
+  'scroll-sepolia',
 ];
 
 export function isValidNetwork(text: string): text is Network {
@@ -139,4 +141,5 @@ const chainIds: { [key in Network]: number } = {
   'x-dfk-avax-chain-test': 335,
   'x-security-alliance': 888,
   'mantle': 5000,
+  'scroll-sepolia': 534351,
 };
