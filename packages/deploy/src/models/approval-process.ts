@@ -1,7 +1,7 @@
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { Address } from '.';
 
-export type ComponentType = 'deploy' | 'upgrade';
+export type ComponentType = ('deploy' | 'upgrade')[];
 export interface ApprovalProcessResponse {
   approvalProcessId: string;
   createdAt: string;
