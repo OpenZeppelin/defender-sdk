@@ -1,6 +1,11 @@
 import https from 'https';
 import { Network } from '@openzeppelin/defender-sdk-base-client';
-import { ListTransactionsRequest, PaginatedTransactionResponse, RelayerTransaction, RelayerTransactionPayload } from './transactions';
+import {
+  ListTransactionsRequest,
+  PaginatedTransactionResponse,
+  RelayerTransaction,
+  RelayerTransactionPayload,
+} from './transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 
 // TODO Defender Address model for this
