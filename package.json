@@ -34,7 +34,7 @@
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
     "build": "nx run-many -t build --parallel=1",
-    "build-test": "nx run-many -t style,build,test",
+    "build-test": "nx run-many -t style,build,test --projects=@openzeppelin/defender-base-client,*  --parallel=false",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier --check '**/*.{js,ts,tsx}'",
