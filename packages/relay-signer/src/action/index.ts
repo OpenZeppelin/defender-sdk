@@ -1,4 +1,4 @@
-import { ActionRelayerParams, IRelayer, RelayerGetResponse } from '../models/relayer';
+import { ActionRelayerParams, IRelayer, RelayerGetResponse, RelayerStatus } from '../models/relayer';
 import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
 import {
   JsonRpcRequest,
@@ -63,6 +63,12 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
   public async getRelayer(): Promise<RelayerGetResponse> {
     return this.execute({
       action: 'get-self' as const,
+    });
+  }
+
+  public async getRelayerStatus(): Promise<RelayerStatus> {
+    return this.execute({
+      action: 'get-self-status' as const,
     });
   }
 

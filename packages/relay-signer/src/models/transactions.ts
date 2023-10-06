@@ -71,8 +71,7 @@ export type ListTransactionsRequest = {
   usePagination?: boolean;
 };
 
-
 export type PaginatedTransactionResponse = {
   items: RelayerTransaction[];
   next?: string;
-}
+};

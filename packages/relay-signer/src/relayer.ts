@@ -1,6 +1,11 @@
-import { IRelayer, RelayerGetResponse, RelayerParams } from './models/relayer';
+import { IRelayer, RelayerGetResponse, RelayerParams, RelayerStatus } from './models/relayer';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './models/rpc';
-import { ListTransactionsRequest, PaginatedTransactionResponse, RelayerTransaction, RelayerTransactionPayload } from './models/transactions';
+import {
+  ListTransactionsRequest,
+  PaginatedTransactionResponse,
+  RelayerTransaction,
+  RelayerTransactionPayload,
+} from './models/transactions';
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
 import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
@@ -27,6 +32,10 @@ export class Relayer implements IRelayer {
 
   public getRelayer(): Promise<RelayerGetResponse> {
     return this.relayer.getRelayer();
+  }
+
+  public getRelayerStatus(): Promise<RelayerStatus> {
+    return this.relayer.getRelayerStatus();
   }
 
   public getProvider(): DefenderRelayProvider {
@@ -66,7 +75,9 @@ export class Relayer implements IRelayer {
     return this.relayer.getTransaction(id);
   }
 
-  public listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[] | PaginatedTransactionResponse> {
+  public listTransactions(
+    criteria?: ListTransactionsRequest,
+  ): Promise<RelayerTransaction[] | PaginatedTransactionResponse> {
     return this.relayer.listTransactions(criteria);
   }
 
