@@ -134,7 +134,7 @@ export interface BlockTriggerEvent {
   matchReasons: MonitorConditionSummary[];
   matchedAddresses: string[];
   matchedChecksumAddresses: string[];
-  sentinel: BlockMonitorSummary;
+  monitor: BlockMonitorSummary;
   metadata?: { [k: string]: unknown };
 }
 
@@ -143,7 +143,7 @@ export interface FortaTriggerEvent {
   hash: string;
   alert: FortaAlert;
   matchReasons: FortaConditionSummary[];
-  sentinel: FortaMonitorSummary;
+  monitor: FortaMonitorSummary;
   metadata?: { [k: string]: unknown };
 }
 
