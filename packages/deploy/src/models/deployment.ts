@@ -1,6 +1,7 @@
 import { Network } from '@openzeppelin/defender-sdk-base-client';
 import { Address } from '.';
 
+export type DeploymentStatus = 'submitted' | 'completed' | 'failed' | 'pending';
 export type SourceCodeLicense =
   | 'None'
   | 'Unlicense'
@@ -30,6 +31,7 @@ export interface DeployContractRequest {
   libraries?: DeployRequestLibraries;
   constructorInputs?: (string | boolean | number)[];
   relayerId?: string;
+  approvalProcessId?: string;
 }
 export interface DeployRequestLibraries {
   [k: string]: string;
@@ -41,20 +43,22 @@ export interface DeploymentResponse {
   contractName: string;
   contractPath: string;
   network: Network;
-  relayerId: string;
-  address: Address;
-  status: string;
+  relayerId?: string;
+  approvalProcessId?: string;
+  address?: Address;
+  status: DeploymentStatus;
+  pending?: number;
   blockExplorerVerification: BlockExplorerVerification;
   deployDataVerification: string;
   bytecodeVerification: string;
   deploymentArtifactId?: string;
-  transactionId: string;
-  txHash: string;
+  transactionId?: string;
+  txHash?: string;
   abi: string;
   bytecode: string;
   constructorBytecode: string;
   value: string;
-  salt: string;
+  salt?: string;
   licenseType?: SourceCodeLicense;
   libraries?: {
     [k: string]: string;
