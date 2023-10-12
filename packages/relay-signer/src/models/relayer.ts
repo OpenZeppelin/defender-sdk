@@ -30,6 +30,25 @@ export interface RelayerGetResponse {
   stackResourceId?: string;
 }
 
+export interface RelayerStatus {
+  relayerId: string;
+  name: string;
+  nonce: number;
+  address: string;
+  numberOfPendingTransactions: number;
+  paused: boolean;
+  pendingTxCost?: string;
+  txsQuotaUsage: number;
+  rpcQuotaUsage: number;
+  lastConfirmedTransaction?: {
+    hash: string;
+    status: string;
+    minedAt: string;
+    sentAt: string;
+    nonce: number;
+  };
+}
+
 export interface UpdateRelayerPoliciesRequest {
   gasPriceCap?: BigUInt;
   whitelistReceivers?: Address[];
@@ -39,6 +58,7 @@ export interface UpdateRelayerPoliciesRequest {
 
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse>;
+  getRelayerStatus(): Promise<RelayerStatus>;
   sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;

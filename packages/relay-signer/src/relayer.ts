@@ -1,4 +1,4 @@
-import { IRelayer, RelayerGetResponse, RelayerParams } from './models/relayer';
+import { IRelayer, RelayerGetResponse, RelayerParams, RelayerStatus } from './models/relayer';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './models/rpc';
 import {
   ListTransactionsRequest,
@@ -32,6 +32,10 @@ export class Relayer implements IRelayer {
 
   public getRelayer(): Promise<RelayerGetResponse> {
     return this.relayer.getRelayer();
+  }
+
+  public getRelayerStatus(): Promise<RelayerStatus> {
+    return this.relayer.getRelayerStatus();
   }
 
   public getProvider(): DefenderRelayProvider {
