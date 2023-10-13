@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.3.0
+
+### Minor Changes
+
+- 001029a: - feat: add scroll sepolia network
+  - feat: enforce base package to build first
+  - feat: export created types
+  - feat: changed sentinel attribute by monitor
+
+### Patch Changes
+
+- Updated dependencies [001029a]
+  - @openzeppelin/defender-sdk-action-client@1.3.0
+  - @openzeppelin/defender-sdk-base-client@1.3.0
+  - @openzeppelin/defender-sdk-deploy-client@1.3.0
+  - @openzeppelin/defender-sdk-monitor-client@1.3.0
+  - @openzeppelin/defender-sdk-network-client@1.3.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.3.0
+  - @openzeppelin/defender-sdk-proposal-client@1.3.0
+  - @openzeppelin/defender-sdk-relay-client@1.3.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes
