@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.3.0
+
+### Minor Changes
+
+- 001029a: - feat: add scroll sepolia network
+  - feat: enforce base package to build first
+  - feat: export created types
+  - feat: changed sentinel attribute by monitor
+
 ## 1.2.0
 
 ### Minor Changes
