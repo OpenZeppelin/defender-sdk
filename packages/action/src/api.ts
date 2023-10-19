@@ -10,6 +10,7 @@ import {
 } from './models/action-run.res';
 import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 import { zipFolder, zipSources } from './zip';
+import { tailLogsFor, validateId, validatePath } from './utils';
 
 type SourceFiles = {
   'index.js': string;
@@ -135,5 +136,17 @@ export class ActionClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return await api.get(`/secrets`);
     });
+  }
+
+  public tailLogsFor(actionId: string): Promise<void> {
+    return tailLogsFor(this, actionId);
+  }
+
+  public validateId(id: string): void {
+    validateId(id);
+  }
+
+  public validatePath(path: string): void {
+    validatePath(path);
   }
 }
