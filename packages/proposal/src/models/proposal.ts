@@ -1,4 +1,5 @@
 import { Network } from '@openzeppelin/defender-sdk-base-client';
+import { ProposalResponse } from '..';
 
 // Copied from openzeppelin/defender/models/src/types/proposal-api.req.d.ts
 export type Hex = string;
@@ -74,4 +75,9 @@ export interface NativeCurrency {
   symbol: string;
   decimals: number;
   type: 'native';
+}
+
+export interface ProposalListPaginatedResponse {
+  items: ProposalResponse[];
+  next?: string;
 }
