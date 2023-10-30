@@ -1,7 +1,11 @@
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { isArray } from 'lodash';
 import { Interface } from 'ethers/lib/utils';
-import { ExternalApiCreateProposalRequest as CreateProposalRequest, PartialContract } from '../models/proposal';
+import {
+  ExternalApiCreateProposalRequest as CreateProposalRequest,
+  PartialContract,
+  ProposalListPaginatedResponse,
+} from '../models/proposal';
 import { SimulationRequest as SimulationTransaction, SimulationResponse } from '../models/simulation';
 import { ExternalApiProposalResponse as ProposalResponse, ProposalResponseWithUrl } from '../models/response';
 import { getProposalUrl } from './utils';
@@ -119,10 +123,19 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async list(params: { includeArchived?: boolean } = {}): Promise<ProposalResponseWithUrl[]> {
+  private isListResponse(response: ProposalResponse[] | ProposalListPaginatedResponse): response is ProposalResponse[] {
+    return Array.isArray(response);
+  }
+
+  public async list(
+    params: { limit?: number; next?: string; includeArchived?: boolean } = {},
+  ): Promise<ProposalResponseWithUrl[] | ProposalListPaginatedResponse> {
     return this.apiCall(async (api) => {
-      const response = (await api.get('/proposals', { params })) as ProposalResponse[];
-      return response.map((proposal) => ({ ...proposal, url: getProposalUrl(proposal) }));
+      const response = (await api.get('/proposals', { params })) as ProposalResponse[] | ProposalListPaginatedResponse;
+      if (this.isListResponse(response)) {
+        return response.map((proposal) => ({ ...proposal, url: getProposalUrl(proposal) }));
+      }
+      return response;
     });
   }
 
