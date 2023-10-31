@@ -14,9 +14,12 @@ async function main() {
   const client = new Defender({ apiKey, apiSecret });
 
   // Update Variables
-  const updated = await client.action.updateEnvironmentVariables(actionId, { variables: { Hello: 'World!' } });
+  const updated = await client.action.updateEnvironmentVariables(actionId, {
+    variables: { hello: 'world!', test: '123' },
+  });
   console.log(updated.message);
 
+  // Retrieve action and display environment variables
   const action = await client.action.get(actionId);
   console.log(`New Action Environment Variables:`);
   console.log(action.environmentVariables);
