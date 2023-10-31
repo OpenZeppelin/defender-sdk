@@ -11,3 +11,5 @@ export type ActionResponse = Action;
 export type ActionDeleteResponse = {
   message: string;
 };
+
+export type ActionMessageResponse = { message: string };

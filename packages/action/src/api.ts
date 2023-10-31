@@ -1,6 +1,12 @@
 import { createHash } from 'crypto';
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
-import { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
+import {
+  CreateActionRequest,
+  UpdateActionRequest,
+  GetSecretsResponse,
+  SaveSecretsRequest,
+  EnvironmentVariables,
+} from './models/action';
 import {
   ActionRunBase,
   ActionRunListParams,
@@ -8,7 +14,7 @@ import {
   ActionRunResponse,
   ActionRunStatus,
 } from './models/action-run.res';
-import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
+import { ActionDeleteResponse, ActionListResponse, ActionMessageResponse, ActionResponse } from './models/response';
 import { zipFolder, zipSources } from './zip';
 import { tailLogsFor, validateId, validatePath } from './utils';
 
@@ -123,6 +129,15 @@ export class ActionClient extends BaseApiClient {
   private async updateCode(id: string, { encodedZippedCode }: { encodedZippedCode: string }): Promise<void> {
     return this.apiCall(async (api) => {
       return await api.put(`/actions/${id}/code`, { encodedZippedCode });
+    });
+  }
+
+  public async updateEnvironmentVariables(
+    id: string,
+    { variables }: { variables: EnvironmentVariables },
+  ): Promise<ActionMessageResponse> {
+    return this.apiCall(async (api) => {
+      return await api.put(`/actions/${id}/environment`, { variables });
     });
   }
 

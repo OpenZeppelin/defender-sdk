@@ -17,6 +17,9 @@ async function main() {
       frequencyMinutes: 1500,
     },
     paused: false,
+    environmentVariables: {
+      hello: 'world!',
+    },
   };
 
   const createdAction = await client.action.create(myAction);
