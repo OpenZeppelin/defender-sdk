@@ -14,7 +14,7 @@ import {
   ActionRunResponse,
   ActionRunStatus,
 } from './models/action-run.res';
-import { ActionDeleteResponse, ActionListResponse, ActionMessageResponse, ActionResponse } from './models/response';
+import { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 import { zipFolder, zipSources } from './zip';
 import { tailLogsFor, validateId, validatePath } from './utils';
 
@@ -135,7 +135,7 @@ export class ActionClient extends BaseApiClient {
   public async updateEnvironmentVariables(
     id: string,
     { variables }: { variables: EnvironmentVariables },
-  ): Promise<ActionMessageResponse> {
+  ): Promise<EnvironmentVariables> {
     return this.apiCall(async (api) => {
       return await api.put(`/actions/${id}/environment`, { variables });
     });
