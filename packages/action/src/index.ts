@@ -7,7 +7,7 @@ export {
   EnvironmentVariables,
 } from './models/action';
 export { ActionRunBase, ActionRunListResponse, ActionRunResponse } from './models/action-run.res';
-export { ActionDeleteResponse, ActionListResponse, ActionResponse, ActionMessageResponse } from './models/response';
+export { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 export * from './models/action-event-utils';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

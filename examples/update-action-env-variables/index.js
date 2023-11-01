@@ -13,11 +13,15 @@ async function main() {
   // Setup client
   const client = new Defender({ apiKey, apiSecret });
 
+  // Get Variables
+  const currentVariables = await client.action.getEnvironmentVariables(actionId);
+  console.log('current environment variables', currentVariables);
+
   // Update Variables
   const variables = await client.action.updateEnvironmentVariables(actionId, {
     variables: { hello: 'world!', test: '123' },
   });
-  console.log(variables);
+  console.log('updated environment variables', variables);
 }
 
 if (require.main === module) {

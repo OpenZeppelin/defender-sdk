@@ -141,6 +141,12 @@ export class ActionClient extends BaseApiClient {
     });
   }
 
+  public async getEnvironmentVariables(id: string): Promise<EnvironmentVariables> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/actions/${id}/environment`);
+    });
+  }
+
   public async createSecrets(data: SaveSecretsRequest): Promise<GetSecretsResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/secrets`, data);
