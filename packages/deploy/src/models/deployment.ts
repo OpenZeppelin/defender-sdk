@@ -32,6 +32,7 @@ export interface DeployContractRequest {
   constructorInputs?: (string | boolean | number)[];
   relayerId?: string;
   approvalProcessId?: string;
+  createFactoryAddress?: string;
 }
 export interface DeployRequestLibraries {
   [k: string]: string;
@@ -45,6 +46,7 @@ export interface DeploymentResponse {
   network: Network;
   relayerId?: string;
   approvalProcessId?: string;
+  createFactoryAddress?: string;
   address?: Address;
   status: DeploymentStatus;
   pending?: number;
