@@ -24,7 +24,7 @@
     "aws-sdk": "^2.1366.0"
   },
   "dependencies": {
-    "amazon-cognito-identity-js": "^6.0.1",
+    "amazon-cognito-identity-js": "^6.3.6",
     "async-retry": "^1.3.3"
   },
   "publishConfig": {
