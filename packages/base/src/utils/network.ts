@@ -41,7 +41,8 @@ export type PublicNetwork =
   | 'linea'
   | 'mantle'
   | 'scroll'
-  | 'scroll-sepolia';
+  | 'scroll-sepolia'
+  | 'meld';
 export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-security-alliance';
 export type ForkedNetwork = string;
 
