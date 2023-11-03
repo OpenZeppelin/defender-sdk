@@ -39,7 +39,7 @@
     "@ethersproject/random": "^5.7.0",
     "@ethersproject/strings": "^5.7.0",
     "@openzeppelin/defender-sdk-base-client": "^1.3.0",
-    "amazon-cognito-identity-js": "^6.0.1",
+    "amazon-cognito-identity-js": "^6.3.6",
     "axios": "^1.4.0",
     "lodash": "^4.17.21"
   },

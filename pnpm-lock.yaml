@@ -286,8 +286,8 @@ importers:
   packages/base:
     dependencies:
       amazon-cognito-identity-js:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^6.3.6
+        version: 6.3.6
       async-retry:
         specifier: ^1.3.3
         version: 1.3.3
@@ -449,8 +449,8 @@ importers:
         specifier: ^1.3.0
         version: link:../base
       amazon-cognito-identity-js:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^6.3.6
+        version: 6.3.6
       axios:
         specifier: ^1.4.0
         version: 1.4.0
@@ -1967,7 +1967,7 @@ packages:
   /@openzeppelin/defender-sdk-base-client@1.2.0:
     resolution: {integrity: sha512-v/nzOABW4RH4wqVPG8gUICV48eZeO0kf6ZvNsd1aUP4i7NyCPv80gErjtW08SFzR/sTqsDN6PS3D+les8mGXvg==}
     dependencies:
-      amazon-cognito-identity-js: 6.0.1
+      amazon-cognito-identity-js: 6.3.6
       async-retry: 1.3.3
     transitivePeerDependencies:
       - encoding
@@ -1976,7 +1976,7 @@ packages:
   /@openzeppelin/defender-sdk-base-client@1.3.0:
     resolution: {integrity: sha512-OMMt7NaAL8C95ralF9nMeKZpg96COLZT9FPpGpPsI7aB8fVZfCM8+6k99gTF44hMS6IsRdN2WthS3m7VzQeeoA==}
     dependencies:
-      amazon-cognito-identity-js: 6.0.1
+      amazon-cognito-identity-js: 6.3.6
       async-retry: 1.3.3
     transitivePeerDependencies:
       - encoding
@@ -2070,7 +2070,7 @@ packages:
       '@ethersproject/strings': 5.7.0
       '@ethersproject/transactions': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.3.0
-      amazon-cognito-identity-js: 6.0.1
+      amazon-cognito-identity-js: 6.3.6
       axios: 1.4.0
       lodash: 4.17.21
       web3: 1.8.2
@@ -2550,8 +2550,8 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
-  /amazon-cognito-identity-js@6.0.1:
-    resolution: {integrity: sha512-j96DHquV9Jiabs+3/fuQwrSK+1WcxzmEfRuZlhajGxxUplzjt046pedCYiSkcFY+Wilun+I57iri5dXiaNDOsg==}
+  /amazon-cognito-identity-js@6.3.6:
+    resolution: {integrity: sha512-kBq+GE6OkLrxtFj3ZduIOlKBFYeOqZK3EhxbDBkv476UTvy+uwfR0tlriTq2QzNdnvlQAjBIXnXuOM7DwR1UEQ==}
     dependencies:
       '@aws-crypto/sha256-js': 1.2.2
       buffer: 4.9.2
