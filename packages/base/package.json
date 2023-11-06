@@ -20,7 +20,7 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/async-retry": "^1.4.4",
+    "@types/async-retry": "^1.4.7",
     "aws-sdk": "^2.1487.0"
   },
   "dependencies": {
