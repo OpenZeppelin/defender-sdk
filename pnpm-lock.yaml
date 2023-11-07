@@ -217,6 +217,15 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
 
+  examples/update-action-env-variables:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 1.3.0
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+
   examples/update-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':

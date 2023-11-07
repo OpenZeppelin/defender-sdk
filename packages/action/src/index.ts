@@ -1,5 +1,11 @@
 export { ActionClient } from './api';
-export { CreateActionRequest, UpdateActionRequest, GetSecretsResponse, SaveSecretsRequest } from './models/action';
+export {
+  CreateActionRequest,
+  UpdateActionRequest,
+  GetSecretsResponse,
+  SaveSecretsRequest,
+  EnvironmentVariables,
+} from './models/action';
 export { ActionRunBase, ActionRunListResponse, ActionRunResponse } from './models/action-run.res';
 export { ActionDeleteResponse, ActionListResponse, ActionResponse } from './models/response';
 export * from './models/action-event-utils';

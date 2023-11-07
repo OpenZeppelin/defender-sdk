@@ -10,6 +10,7 @@ export interface CreateActionRequest {
   paused: boolean;
   stackResourceId?: string;
   dependenciesVersion?: string;
+  environmentVariables?: EnvironmentVariables;
 }
 
 export interface UpdateActionRequest extends Omit<CreateActionRequest, 'encodedZippedCode'> {
@@ -37,7 +38,10 @@ export interface MonitorFilterTrigger {
 }
 
 export interface Action
-  extends Pick<CreateActionRequest, 'name' | 'relayerId' | 'paused' | 'stackResourceId' | 'dependenciesVersion'> {
+  extends Pick<
+    CreateActionRequest,
+    'name' | 'relayerId' | 'paused' | 'stackResourceId' | 'dependenciesVersion' | 'environmentVariables'
+  > {
   actionId: string;
   encodedZippedCode?: string;
   trigger: ScheduleTrigger | WebhookTrigger | SentinelTrigger | MonitorFilterTrigger;
@@ -56,3 +60,5 @@ export interface SecretsMap {
 export interface GetSecretsResponse {
   secretNames?: string[];
 }
+
+export type EnvironmentVariables = { [key: string]: string };
