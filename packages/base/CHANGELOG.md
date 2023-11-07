@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.4.0
+
+### Minor Changes
+
+- c538fb7: - feat: Add support to scroll mainnet
+  - feat: Added missing actions utilities
+  - chore: Bump platform SDK dependencies
+
 ## 1.3.0
 
 ### Minor Changes

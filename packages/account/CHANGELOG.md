@@ -1,4 +1,4 @@
-# @openzeppelin/defender-sdk-example-list-proposals
+# @openzeppelin/defender-sdk-account-client
 
 ## 1.4.0
 
@@ -11,4 +11,4 @@
 ### Patch Changes
 
 - Updated dependencies [c538fb7]
-  - @openzeppelin/defender-sdk@1.4.0
+  - @openzeppelin/defender-sdk-base-client@1.4.0

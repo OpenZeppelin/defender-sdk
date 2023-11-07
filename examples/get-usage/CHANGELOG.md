@@ -1,4 +1,4 @@
-# @openzeppelin/defender-sdk-example-list-proposals
+# @openzeppelin/defender-sdk-example-get-usage
 
 ## 1.4.0
 
