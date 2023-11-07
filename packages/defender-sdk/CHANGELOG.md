@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.4.0
+
+### Minor Changes
+
+- c538fb7: - feat: Add support to scroll mainnet
+  - feat: Added missing actions utilities
+  - chore: Bump platform SDK dependencies
+
+### Patch Changes
+
+- Updated dependencies [c538fb7]
+  - @openzeppelin/defender-sdk-account-client@1.4.0
+  - @openzeppelin/defender-sdk-action-client@1.4.0
+  - @openzeppelin/defender-sdk-base-client@1.4.0
+  - @openzeppelin/defender-sdk-deploy-client@1.4.0
+  - @openzeppelin/defender-sdk-monitor-client@1.4.0
+  - @openzeppelin/defender-sdk-network-client@1.4.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.4.0
+  - @openzeppelin/defender-sdk-proposal-client@1.4.0
+  - @openzeppelin/defender-sdk-relay-client@1.4.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.4.0
+
 ## 1.3.0
 
 ### Minor Changes

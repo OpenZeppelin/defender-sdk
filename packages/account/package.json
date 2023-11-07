@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-account-client",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -20,7 +20,7 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "^1.3.0",
+    "@openzeppelin/defender-sdk-base-client": "^1.4.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.21"
   },
