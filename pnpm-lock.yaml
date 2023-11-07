@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: 1.3.0
-        version: 1.3.0
+        specifier: 1.4.0
+        version: link:packages/base
       axios:
         specifier: ^1.4.0
         version: 1.4.0
