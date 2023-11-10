@@ -22,7 +22,7 @@
   "dependencies": {
     "@ethersproject/abi": "^5.7.0",
     "@openzeppelin/defender-sdk-base-client": "^1.5.0",
-    "axios": "^1.4.0",
+    "axios": "^1.6.1",
     "lodash": "^4.17.21"
   },
   "publishConfig": {
