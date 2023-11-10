@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-network-client
 
+## 1.5.0
+
+### Minor Changes
+
+- 29be958: feat: add environment variable endpoints to actions
+  feat: add meld network
+
+### Patch Changes
+
+- Updated dependencies [29be958]
+  - @openzeppelin/defender-sdk-base-client@1.5.0
+
 ## 1.4.0
 
 ### Minor Changes
