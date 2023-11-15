@@ -129,6 +129,12 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
+  public async listTenantBlockwatchers(): Promise<BlockWatcher[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/blockwatchers/tenant`);
+    });
+  }
+
   public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/notifications/${notification.type}`, notification);

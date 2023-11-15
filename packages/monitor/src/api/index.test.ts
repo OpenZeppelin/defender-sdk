@@ -559,6 +559,15 @@ describe('MonitorClient', () => {
     });
   });
 
+  describe('listTenantBlockwatchers', () => {
+    it('calls API correctly', async () => {
+      listBlockwatchersSpy.mockRestore();
+      await monitor.listTenantBlockwatchers();
+      expect(monitor.api.get).toBeCalledWith('/blockwatchers/tenant');
+      expect(createAuthenticatedApi).toBeCalled();
+    });
+  });
+
   describe('getBlockwatcherIdByNetwork', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
