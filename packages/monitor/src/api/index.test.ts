@@ -121,6 +121,7 @@ describe('MonitorClient', () => {
   beforeEach(() => {
     monitor = (new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown) as TestMonitorClient;
     createAuthenticatedApi.mockClear();
+
     listBlockwatchersSpy = jest.spyOn(monitor, 'listBlockwatchers').mockImplementation(async () => [
       {
         blockWatcherId: 'i-am-the-watcher',
