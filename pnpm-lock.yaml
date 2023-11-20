@@ -107,7 +107,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 1.0.0
-        version: 1.0.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.10.3)(web3-utils@1.8.2)(web3@1.8.2)
+        version: 1.0.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -305,8 +305,8 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
       aws-sdk:
-        specifier: ^2.1487.0
-        version: 2.1487.0
+        specifier: ^2.1499.0
+        version: 2.1499.0
 
   packages/defender-sdk:
     dependencies:
@@ -490,7 +490,7 @@ importers:
         version: 5.7.0
       jest-mock-extended:
         specifier: ^3.0.5
-        version: 3.0.5(jest@29.6.1)(typescript@4.9.5)
+        version: 3.0.5(jest@29.6.4)(typescript@4.9.5)
       web3-core:
         specifier: ^1.10.3
         version: 1.10.3
@@ -1535,49 +1535,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /@jest/core@29.6.1:
-    resolution: {integrity: sha512-CcowHypRSm5oYQ1obz1wfvkjZZ2qoQlrKKvlfPwh5jUXVU12TWr2qMeH8chLMuTFzHh5a1g2yaqlqDICbr+ukQ==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/console': 29.6.4
-      '@jest/reporters': 29.6.4
-      '@jest/test-result': 29.6.4
-      '@jest/transform': 29.6.4
-      '@jest/types': 29.6.1
-      '@types/node': 16.18.38
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      ci-info: 3.8.0
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      jest-changed-files: 29.6.3
-      jest-config: 29.6.4(@types/node@16.18.38)
-      jest-haste-map: 29.6.4
-      jest-message-util: 29.6.3
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.6.4
-      jest-resolve-dependencies: 29.6.4
-      jest-runner: 29.6.4
-      jest-runtime: 29.6.4
-      jest-snapshot: 29.6.4
-      jest-util: 29.6.3
-      jest-validate: 29.6.3
-      jest-watcher: 29.6.4
-      micromatch: 4.0.5
-      pretty-format: 29.6.3
-      slash: 3.0.0
-      strip-ansi: 6.0.1
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-    dev: true
-
   /@jest/core@29.6.4:
     resolution: {integrity: sha512-U/vq5ccNTSVgYH7mHnodHmCffGWHJnz/E1BEWlLuK5pM4FZmGfBn/nrJGLjUsSmyx3otCeqc1T31F4y08AMDLg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -2011,10 +1968,10 @@ packages:
     dev: true
     optional: true
 
-  /@openzeppelin/defender-sdk-action-client@1.4.0:
-    resolution: {integrity: sha512-kLwO5sVC2KUt+jyHe5GZr7+BEeKgkX4ZcZCqyg+ykRtqVjQOmufwjdVRpwaqKsetEJdqobwmDu0D5gZnjC9ZwQ==}
+  /@openzeppelin/defender-sdk-action-client@1.5.0:
+    resolution: {integrity: sha512-Mc2B1nc82iSo+OUhvGdcS2l8mwOQdjfpzPvLhY2iQJWawhermWWwdoaRW8WjTYWWxWaJc7S0s+FqzcSEUIn7+g==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       glob: 7.2.3
       jszip: 3.10.1
@@ -2024,8 +1981,8 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-base-client@1.4.0:
-    resolution: {integrity: sha512-aBDQpA4+ayFyx/2hQFRrBJqo6pKcF3eVbztjq49cHdg+cAQgM56Dy333Bp2z4bHzx1IbzmYcvhlhBH2LBnsdzg==}
+  /@openzeppelin/defender-sdk-base-client@1.5.0:
+    resolution: {integrity: sha512-8aN4sEE15/6LctA14ADr8c6QvEzEXfAtFlxo/Ys0N6UVfp8lRAYqDOpHd4mb8dMfkRzq5izMCuMYgAjC9GFflQ==}
     dependencies:
       amazon-cognito-identity-js: 6.3.6
       async-retry: 1.3.3
@@ -2033,11 +1990,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-deploy-client@1.4.0:
-    resolution: {integrity: sha512-uXsGKXhH0P4xRBD0WvR8eo830sFd2jbES2Uf7nQnd8jGK5wxUgCLGgfrRXFznEzAbXA3xs+a5IGcmHwbL9MxyQ==}
+  /@openzeppelin/defender-sdk-deploy-client@1.5.0:
+    resolution: {integrity: sha512-DbE4Rpa90vSN7o5/sim5qzAVVsSWkZBJ+Z9yjkc8qPRheh2dRk6oe2GhVoQfXI/04XwMb2uNvtfU1VAH8AzgaQ==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2045,11 +2002,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-monitor-client@1.4.0:
-    resolution: {integrity: sha512-I3LHhp4/BQjcCwhCfmzfrPNnnyRuMoJM0AtJYsyG7PTgfZe9UXnta5z4mJNJyBGBvOpg8v6Rt5k30uHDXReHhQ==}
+  /@openzeppelin/defender-sdk-monitor-client@1.5.0:
+    resolution: {integrity: sha512-kn1dVinDtcaf/u4/XqxeTPg55DiLG8Bb0yiWI+dtJtwspIFo6f70H4uYgglRynvw1LHorWel7Si6AUlYPnsSOw==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2057,11 +2014,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-notification-channel-client@1.4.0:
-    resolution: {integrity: sha512-cXsatNPUodwfwUAJJ/0P0PEtx2RhPbAa/W4x/pmBltmIB1YDjmbxqtjzWmxn7yZMcu4XcdxDIBH8GXINsWtexw==}
+  /@openzeppelin/defender-sdk-notification-channel-client@1.5.0:
+    resolution: {integrity: sha512-zSPHEsFpWwSe3OJ7M6Tko2LYHetVJAEuyY0tFOTxfhs4Td+pwZcljYsFNx1Jqewb7CSu4n5+qyrl6RQNXUHWoA==}
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2069,10 +2026,10 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-proposal-client@1.4.0:
-    resolution: {integrity: sha512-jhvVZOt9AlvsOzJZiU0nO61ew+AT25d6kVPMT3GeyoFo8v3P62U19w3RtTrozxvxppMadUsIm53mu8Y4JWL/Zg==}
+  /@openzeppelin/defender-sdk-proposal-client@1.5.0:
+    resolution: {integrity: sha512-1Ef5pehOz4aq7f85wlCkzjJQrOduWXmxDjk2g/YDcZqeoqP3j8lnQ5PpsmV9K5PGfBEGUuzPd1J6PhpK3u4s8Q==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       ethers: 5.7.2
       lodash: 4.17.21
@@ -2083,10 +2040,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-client@1.4.0:
-    resolution: {integrity: sha512-j6XmTTkfShN2VbR82aw/NiSD8ee6vMEmQDFtnNG3NIsl/FYygpIksGVef3gFsYPBCspQPQ0SdeKlwM0pU/+Sag==}
+  /@openzeppelin/defender-sdk-relay-client@1.5.0:
+    resolution: {integrity: sha512-jwNDtvmVGvuLWW1p62Avym2+D7nw/zLB0ecz4vZryAt/YGSMg4D0oIOQdxO6bAFg5JkXbAXAvmeQt6/m1QLjpg==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       axios: 1.4.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2094,8 +2051,8 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-signer-client@1.4.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.10.3)(web3-utils@1.8.2)(web3@1.8.2):
-    resolution: {integrity: sha512-BP2c3uEHTCxwdbSA7uhbeSpiBW7ti839bIJbojdd29HsEYNxX3Ng913QZtnn/MpfXVV8xKmnoTlplurozwEHTg==}
+  /@openzeppelin/defender-sdk-relay-signer-client@1.5.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
+    resolution: {integrity: sha512-nuEHSHdzmKPobWnkkI4GITqxSNGGbzUgWVRaFLeH6SVpunP5VrLt9HLlEUUDtyAJ5/st+cdkxOfk74BOcZjiSg==}
     peerDependencies:
       '@ethersproject/abstract-provider': ^5.6.1
       '@ethersproject/abstract-signer': ^5.6.2
@@ -2120,30 +2077,30 @@ packages:
       '@ethersproject/random': 5.7.0
       '@ethersproject/strings': 5.7.0
       '@ethersproject/transactions': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
       amazon-cognito-identity-js: 6.3.6
       axios: 1.4.0
       lodash: 4.17.21
       web3: 1.8.2
       web3-core: 1.10.3
-      web3-core-helpers: 1.8.2
-      web3-utils: 1.8.2
+      web3-core-helpers: 1.10.3
+      web3-utils: 1.10.3
     transitivePeerDependencies:
       - debug
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk@1.0.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.10.3)(web3-utils@1.8.2)(web3@1.8.2):
+  /@openzeppelin/defender-sdk@1.0.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
     resolution: {integrity: sha512-+Ayol7BsrgTxBB665hmDVa/lvEfRHbBTN4ENBUKRlBD0mra03doE1ROGXyOuSk6UdugNTxYOuEP1YlL5Hsb8Mw==}
     dependencies:
-      '@openzeppelin/defender-sdk-action-client': 1.4.0
-      '@openzeppelin/defender-sdk-base-client': 1.4.0
-      '@openzeppelin/defender-sdk-deploy-client': 1.4.0
-      '@openzeppelin/defender-sdk-monitor-client': 1.4.0
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.4.0
-      '@openzeppelin/defender-sdk-proposal-client': 1.4.0
-      '@openzeppelin/defender-sdk-relay-client': 1.4.0
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.4.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.8.2)(web3-core@1.10.3)(web3-utils@1.8.2)(web3@1.8.2)
+      '@openzeppelin/defender-sdk-action-client': 1.5.0
+      '@openzeppelin/defender-sdk-base-client': 1.5.0
+      '@openzeppelin/defender-sdk-deploy-client': 1.5.0
+      '@openzeppelin/defender-sdk-monitor-client': 1.5.0
+      '@openzeppelin/defender-sdk-notification-channel-client': 1.5.0
+      '@openzeppelin/defender-sdk-proposal-client': 1.5.0
+      '@openzeppelin/defender-sdk-relay-client': 1.5.0
+      '@openzeppelin/defender-sdk-relay-signer-client': 1.5.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
     transitivePeerDependencies:
       - '@ethersproject/abstract-provider'
       - '@ethersproject/abstract-signer'
@@ -2742,8 +2699,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1487.0:
-    resolution: {integrity: sha512-EqDn+beJU0pfANLdg8mh7OER5TH2W6DgZ78WWWgt9fOwczhJQYkQhqevSlCV700vtHtatRjYPG+Q47f5aurZVQ==}
+  /aws-sdk@2.1499.0:
+    resolution: {integrity: sha512-kh89lcXx7lP83uVjzRPkOueRoM8gQlep86W9+l3qCTHSLiVJuc0MiPmqCLMPlOAZil+35roFkwWIP2FJ1WcdXg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -5094,35 +5051,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli@29.6.1(@types/node@16.3.0):
-    resolution: {integrity: sha512-607dSgTA4ODIN6go9w6xY3EYkyPFGicx51a69H7yfvt7lN53xNswEVLovq+E77VsTRi5fWprLH0yl4DJgE8Ing==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    hasBin: true
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/core': 29.6.1
-      '@jest/test-result': 29.6.4
-      '@jest/types': 29.6.1
-      chalk: 4.1.2
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      import-local: 3.1.0
-      jest-config: 29.6.4(@types/node@16.3.0)
-      jest-util: 29.6.3
-      jest-validate: 29.6.3
-      prompts: 2.4.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-    dev: true
-
   /jest-cli@29.6.4(@types/node@16.3.0):
     resolution: {integrity: sha512-+uMCQ7oizMmh8ZwRfZzKIEszFY9ksjjEQnTEMTaL7fYiL3Kw4XhqT9bYh+A4DQKUb67hZn2KbtEnDuHvcgK4pQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -5369,13 +5297,13 @@ packages:
       stack-utils: 2.0.6
     dev: true
 
-  /jest-mock-extended@3.0.5(jest@29.6.1)(typescript@4.9.5):
+  /jest-mock-extended@3.0.5(jest@29.6.4)(typescript@4.9.5):
     resolution: {integrity: sha512-/eHdaNPUAXe7f65gHH5urc8SbRVWjYxBqmCgax2uqOBJy8UUcCBMN1upj1eZ8y/i+IqpyEm4Kq0VKss/GCCTdw==}
     peerDependencies:
       jest: ^24.0.0 || ^25.0.0 || ^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0
       typescript: ^3.0.0 || ^4.0.0 || ^5.0.0
     dependencies:
-      jest: 29.6.1(@types/node@16.3.0)
+      jest: 29.6.4(@types/node@16.3.0)
       ts-essentials: 7.0.3(typescript@4.9.5)
       typescript: 4.9.5
     dev: true
@@ -5576,27 +5504,6 @@ packages:
       jest-util: 29.6.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
-    dev: true
-
-  /jest@29.6.1(@types/node@16.3.0):
-    resolution: {integrity: sha512-Nirw5B4nn69rVUZtemCQhwxOBhm0nsp3hmtF4rzCeWD7BkjAXRIji7xWQfnTNbz9g0aVsBX6aZK3n+23LM6uDw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    hasBin: true
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/core': 29.6.1
-      '@jest/types': 29.6.1
-      import-local: 3.1.0
-      jest-cli: 29.6.1(@types/node@16.3.0)
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
     dev: true
 
   /jest@29.6.4(@types/node@16.3.0):
