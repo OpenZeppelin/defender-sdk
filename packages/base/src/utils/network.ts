@@ -1,6 +1,6 @@
 import { findKey } from 'lodash';
 
-export type Network = SupportedNetwork | ForkedNetwork;
+export type Network = SupportedNetwork | TenantNetwork;
 export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
   | 'mainnet'
@@ -45,7 +45,7 @@ export type PublicNetwork =
   | 'meld'
   | 'meld-kanazawa';
 export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-security-alliance';
-export type ForkedNetwork = string;
+export type TenantNetwork = string;
 
 export const Networks: Network[] = [
   'mainnet',

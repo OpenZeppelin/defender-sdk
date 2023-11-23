@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { NetworkClient } from '.';
-import { ForkedNetworkCreateRequest } from '../models/networks';
+import { TenantNetworkCreateRequest } from '../models/networks';
 
 jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
@@ -16,11 +16,12 @@ type TestNetworkClient = Omit<NetworkClient, 'api'> & {
   init: () => Promise<void>;
 };
 
-const createForkPayload: ForkedNetworkCreateRequest = {
+const createForkPayload: TenantNetworkCreateRequest = {
   name: 'mock-fork',
-  forkedNetwork: 'mainnet',
+  supportedNetwork: 'mainnet',
   rpcUrl: 'https://localhost:8585',
   blockExplorerUrl: 'https://localhost:8585/explorer',
+  networkType: 'fork',
 };
 
 describe('NetworkClient', () => {
