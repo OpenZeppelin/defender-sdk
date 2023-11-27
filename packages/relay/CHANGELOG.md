@@ -1,5 +1,16 @@
 # @openzeppelin/defender-sdk-relay-client
 
+## 1.6.0
+
+### Minor Changes
+
+- 9583851: Feat: Support Arbitrum sepolia
+
+### Patch Changes
+
+- Updated dependencies [9583851]
+  - @openzeppelin/defender-sdk-base-client@1.6.0
+
 ## 1.5.0
 
 ### Minor Changes
