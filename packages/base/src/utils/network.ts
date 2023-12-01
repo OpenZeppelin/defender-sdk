@@ -38,6 +38,7 @@ export type PublicNetwork =
   | 'zksync-goerli'
   | 'base'
   | 'base-goerli'
+  | 'base-sepolia'
   | 'linea-goerli'
   | 'linea'
   | 'mantle'
@@ -84,6 +85,7 @@ export const Networks: Network[] = [
   'zksync-goerli',
   'base',
   'base-goerli',
+  'base-sepolia',
   'linea-goerli',
   'linea',
   'x-dfk-avax-chain',
@@ -144,6 +146,7 @@ const chainIds: { [key in Network]: number } = {
   'zksync-goerli': 280,
   'base': 8453,
   'base-goerli': 84531,
+  'base-sepolia': 84532,
   'linea': 59144,
   'linea-goerli': 59140,
   'x-dfk-avax-chain': 53935,
