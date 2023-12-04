@@ -1,4 +1,4 @@
-import { BaseApiClient, Network } from '@openzeppelin/defender-sdk-base-client';
+import { BaseApiClient, Network, isValidNetwork } from '@openzeppelin/defender-sdk-base-client';
 import {
   ConditionSet,
   CreateMonitorRequest,
@@ -129,6 +129,12 @@ export class MonitorClient extends BaseApiClient {
     });
   }
 
+  public async listTenantBlockwatchers(): Promise<BlockWatcher[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(`/blockwatchers/tenant`);
+    });
+  }
+
   public async createNotificationChannel(notification: CreateNotificationRequest): Promise<NotificationResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`/notifications/${notification.type}`, notification);
@@ -185,7 +191,14 @@ export class MonitorClient extends BaseApiClient {
   }
 
   private async constructBlockMonitor(monitor: CreateBlockMonitorRequest): Promise<PartialCreateBlockMonitorRequest> {
-    const blockWatchers = await this.getBlockwatcherIdByNetwork(monitor.network);
+    let blockWatchers: BlockWatcher[] = [];
+    if (!isValidNetwork(monitor.network)) {
+      blockWatchers = (await this.listTenantBlockwatchers()).filter(
+        (blockwatcher) => blockwatcher.network === monitor.network,
+      );
+    } else {
+      blockWatchers = await this.getBlockwatcherIdByNetwork(monitor.network);
+    }
 
     let blockWatcherId;
 

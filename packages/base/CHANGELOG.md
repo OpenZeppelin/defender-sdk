@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.6.0
+
+### Minor Changes
+
+- 9583851: Feat: Support Arbitrum sepolia
+
 ## 1.5.0
 
 ### Minor Changes

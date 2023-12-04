@@ -26,4 +26,5 @@ module.exports = {
     delete: jest.fn(),
   })),
   BaseApiClient: MockBaseApiClient,
+  isValidNetwork: jest.fn((network: string) => network !== 'invalid'),
 };

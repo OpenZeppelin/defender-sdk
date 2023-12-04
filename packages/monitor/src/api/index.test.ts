@@ -121,6 +121,7 @@ describe('MonitorClient', () => {
   beforeEach(() => {
     monitor = (new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown) as TestMonitorClient;
     createAuthenticatedApi.mockClear();
+
     listBlockwatchersSpy = jest.spyOn(monitor, 'listBlockwatchers').mockImplementation(async () => [
       {
         blockWatcherId: 'i-am-the-watcher',
@@ -555,6 +556,15 @@ describe('MonitorClient', () => {
       listBlockwatchersSpy.mockRestore();
       await monitor.listBlockwatchers();
       expect(monitor.api.get).toBeCalledWith('/blockwatchers');
+      expect(createAuthenticatedApi).toBeCalled();
+    });
+  });
+
+  describe('listTenantBlockwatchers', () => {
+    it('calls API correctly', async () => {
+      listBlockwatchersSpy.mockRestore();
+      await monitor.listTenantBlockwatchers();
+      expect(monitor.api.get).toBeCalledWith('/blockwatchers/tenant');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
