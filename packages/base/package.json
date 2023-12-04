@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/async-retry": "^1.4.4",
-    "aws-sdk": "^2.1487.0"
+    "aws-sdk": "^2.1510.0"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^6.3.6",
