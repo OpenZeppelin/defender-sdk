@@ -42,9 +42,15 @@ export class ProposalClient extends BaseApiClient {
     });
   }
 
-  public async listContracts(): Promise<Omit<Contract, 'abi'>[]> {
+  public async listContracts(params: { includeAbi?: boolean } = {}): Promise<Contract[]> {
     return this.apiCall(async (api) => {
-      return (await api.get('/contracts')) as Omit<Contract, 'abi'>[];
+      return (await api.get('/contracts', { params })) as Contract[];
+    });
+  }
+
+  public async getContract(contractId: string): Promise<Contract[]> {
+    return this.apiCall(async (api) => {
+      return (await api.get(`/contracts/${contractId}`)) as Contract[];
     });
   }
 
