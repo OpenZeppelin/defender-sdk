@@ -41,13 +41,13 @@ async function main() {
   const sig = await signer.signMessage('0xdead');
   console.log(`Signature is ${sig}`);
 
-  const sigAddress = ethers.utils.verifyMessage('Funds are safu!', sig);
+  const sigAddress = ethers.verifyMessage('Funds are safu!', sig);
   console.log(`Signature address is ${sigAddress} matching relayer address ${mined.from}`);
 
   const typedSig = await signer._signTypedData(domain, types, value);
   console.log(`Typed data signature is ${typedSig}`);
 
-  const typedSigAddress = ethers.utils.verifyTypedData(domain, types, value, typedSig);
+  const typedSigAddress = ethers.verifyTypedData(domain, types, value, typedSig);
   console.log(`Typed data signature address is ${typedSigAddress} matching relayer address ${mined.from}`);
 }
 

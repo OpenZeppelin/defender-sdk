@@ -1,6 +1,6 @@
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
 import { isArray } from 'lodash';
-import { Interface } from 'ethers/lib/utils';
+import { Interface } from 'ethers';
 import {
   ExternalApiCreateProposalRequest as CreateProposalRequest,
   PartialContract,
