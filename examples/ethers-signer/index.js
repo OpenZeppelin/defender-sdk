@@ -11,17 +11,17 @@ async function main() {
     relayerApiKey: process.env.RELAYER_API_KEY,
     relayerApiSecret: process.env.RELAYER_API_SECRET,
   };
-  const validUntil = new Date(Date.now() + 1200 * 1000).toISOString();
+  const validUntil = new Date(Date.now() + 120 * 1000).toISOString();
 
   const client = new Defender(creds);
   const provider = client.relaySigner.getProvider();
-  const signer = client.relaySigner.getSigner(provider, { speed: 'fastest', validUntil });
+  const signer = client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
 
   const factory = new ethers.ContractFactory(ERC20Abi, ERC20Bytecode, signer);
 
-  // console.log(`Deploying ERC20 contract`);
-  // const erc20 = await factory.deploy(100, { gasLimit: 8000000, maxFeePerGas: 10000000000, gasPrice: 1e10 });
-  // console.log(`Contract deployed at address ${erc20.address}`);
+  console.log(`Deploying ERC20 contract`);
+  const erc20 = await factory.deploy(100, { gasLimit: 8000000, maxFeePerGas: 10000000000, gasPrice: 1e10 });
+  console.log(`Contract deployed at address ${erc20.address}`);
 
   const beneficiary = await ethers.Wallet.createRandom().getAddress();
 
