@@ -20,7 +20,7 @@ async function main() {
   const factory = new ethers.ContractFactory(ERC20Abi, ERC20Bytecode, signer);
 
   console.log(`Deploying ERC20 contract`);
-  const erc20 = await factory.deploy(100, { gasLimit: 8000000, maxFeePerGas: 10000000000, gasPrice: 1e10 });
+  const erc20 = await factory.deploy(100, { gasLimit: 8000000 });
   console.log(`Contract deployed at address ${erc20.address}`);
 
   const beneficiary = await ethers.Wallet.createRandom().getAddress();

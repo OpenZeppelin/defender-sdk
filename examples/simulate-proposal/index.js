@@ -31,7 +31,7 @@ async function main() {
       },
       functionInterface: { name: 'flash', inputs: [] },
       functionInputs: [],
-      via: '0xCB94dfA7820dcb3Ec1Fe6A0A6d83e3653680D2D1',
+      via: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
       viaType: 'EOA',
     },
   });
