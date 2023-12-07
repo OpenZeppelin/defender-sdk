@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
-const { utils } = require('ethers');
+const { Interface } = require('ethers');
 
 const contractABI = require('./abi/demoflash.json');
 
@@ -31,14 +31,14 @@ async function main() {
       },
       functionInterface: { name: 'flash', inputs: [] },
       functionInputs: [],
-      via: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+      via: '0xCB94dfA7820dcb3Ec1Fe6A0A6d83e3653680D2D1',
       viaType: 'EOA',
     },
   });
 
   console.log(`Created proposal (${proposal.proposalId})`);
 
-  const contractInterface = new utils.Interface(contractABI);
+  const contractInterface = new Interface(contractABI);
   // encode function data
   const data = contractInterface.encodeFunctionData(proposal.functionInterface.name, proposal.functionInputs);
 
