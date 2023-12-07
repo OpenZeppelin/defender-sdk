@@ -1,5 +1,12 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.7.0
+
+### Minor Changes
+
+- 97d593c: Feat: Add support to Base Sepolia & Optimism Sepolia networks.
+  Feat: Add support to ethers v6
+
 ## 1.6.0
 
 ### Minor Changes
