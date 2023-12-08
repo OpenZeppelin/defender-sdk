@@ -1,5 +1,26 @@
 # @openzeppelin/defender-sdk
 
+## 1.7.0
+
+### Minor Changes
+
+- 97d593c: Feat: Add support to Base Sepolia & Optimism Sepolia networks.
+  Feat: Add support to ethers v6
+
+### Patch Changes
+
+- Updated dependencies [97d593c]
+  - @openzeppelin/defender-sdk-account-client@1.7.0
+  - @openzeppelin/defender-sdk-action-client@1.7.0
+  - @openzeppelin/defender-sdk-base-client@1.7.0
+  - @openzeppelin/defender-sdk-deploy-client@1.7.0
+  - @openzeppelin/defender-sdk-monitor-client@1.7.0
+  - @openzeppelin/defender-sdk-network-client@1.7.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.7.0
+  - @openzeppelin/defender-sdk-proposal-client@1.7.0
+  - @openzeppelin/defender-sdk-relay-client@1.7.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.7.0
+
 ## 1.6.0
 
 ### Minor Changes

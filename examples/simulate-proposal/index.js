@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
-const { utils } = require('ethers');
+const { Interface } = require('ethers');
 
 const contractABI = require('./abi/demoflash.json');
 
@@ -38,7 +38,7 @@ async function main() {
 
   console.log(`Created proposal (${proposal.proposalId})`);
 
-  const contractInterface = new utils.Interface(contractABI);
+  const contractInterface = new Interface(contractABI);
   // encode function data
   const data = contractInterface.encodeFunctionData(proposal.functionInterface.name, proposal.functionInputs);
 
