@@ -1,35 +1,59 @@
-import { Network } from '@openzeppelin/defender-sdk-base-client';
+import { SupportedNetwork, TenantNetwork } from '@openzeppelin/defender-sdk-base-client';
 
 export type NetworkType = 'production' | 'test';
+export type TenantNetworkType = 'private' | 'fork';
+export type Address = string;
+
 export interface ListNetworkRequestOptions {
   networkType?: NetworkType;
 }
 
-export interface ForkedNetworkCreateRequest {
+export interface TenantNetworkCreateRequest {
   name: string;
-  forkedNetwork: Network;
+  supportedNetwork?: SupportedNetwork;
+  configuration?: TenantNetworkConfiguration;
   rpcUrl: string;
   blockExplorerUrl?: string;
+  networkType: TenantNetworkType;
   apiKey?: string;
   stackResourceId?: string;
 }
 
-export interface ForkedNetworkUpdateRequest {
-  forkedNetworkId: string;
+export interface TenantNetworkUpdateRequest {
+  tenantNetworkId: string;
   apiKey?: string;
   blockExplorerUrl?: string;
+  configuration?: TenantNetworkConfiguration;
   stackResourceId?: string;
 }
 
-export interface ForkedNetworkResponse {
-  forkedNetworkId: string;
-  name: string;
+export interface TenantNetworkResponse {
+  tenantNetworkId: string;
+  name: TenantNetwork;
   chainId: number;
-  forkedNetwork: Network;
+  supportedNetwork?: SupportedNetwork;
   rpcUrl: string;
   apiKey?: string;
   blockExplorerUrl?: string;
+  stackResourceId?: string;
+  networkType: TenantNetworkType;
+  configuration?: TenantNetworkConfiguration;
   createdAt: string;
   createdBy: string;
-  stackResourceId?: string;
+}
+
+export interface TenantNetworkConfiguration {
+  symbol: string;
+  eips?: TenantNetworkEIPConfiguration;
+  safeContracts?: SafeContracts;
+  subgraphURL?: string;
+}
+export interface TenantNetworkEIPConfiguration {
+  isEIP1559?: boolean;
+}
+export interface SafeContracts {
+  master: Address;
+  proxyFactory: Address;
+  multisendCallOnly: Address;
+  createCall?: Address;
 }

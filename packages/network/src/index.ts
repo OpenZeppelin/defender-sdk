@@ -1,11 +1,12 @@
 export { NetworkClient } from './api';
 
 export {
-  ForkedNetworkCreateRequest,
-  ForkedNetworkUpdateRequest,
+  TenantNetworkCreateRequest,
+  TenantNetworkUpdateRequest,
   ListNetworkRequestOptions,
   NetworkType,
-  ForkedNetworkResponse,
+  TenantNetworkType,
+  TenantNetworkResponse,
 } from './models/networks';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

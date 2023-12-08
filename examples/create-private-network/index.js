@@ -6,9 +6,9 @@ async function main() {
   const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
   const client = new Defender(creds);
 
-  // Create Forked Network
-  const network = await client.network.createForkedNetwork({
-    name: 'MyForkedNetwork',
+  // Create Private Network
+  const network = await client.network.createPrivateNetwork({
+    name: 'MyPrivateNetwork',
     supportedNetwork: 'mainnet',
     rpcUrl: '', // Add your RPC URL here
   });
