@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-ethers-signer",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
@@ -9,8 +9,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.6.0",
+    "@openzeppelin/defender-sdk": "1.7.0",
     "dotenv": "^16.3.1",
-    "ethers": "^5.6.1"
+    "ethers": "^6.9.0"
   }
 }
