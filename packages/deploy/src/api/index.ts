@@ -15,6 +15,7 @@ import {
   UpgradeContractResponse,
 } from '../models';
 import { Verification, VerificationRequest } from '../models/verification';
+import { reduceArtifactSize } from '../utils/deploy';
 
 const DEPLOYMENTS_PATH = '/deployments';
 const UPGRADES_PATH = '/upgrades';
@@ -39,6 +40,10 @@ export class DeployClient extends BaseApiClient {
       throw new Error(
         `Missing artifact in deploy request. Either artifactPayload or artifactUri must be included in the request.`,
       );
+
+    if (params.artifactPayload) {
+      params.artifactPayload = JSON.stringify(reduceArtifactSize(params));
+    }
 
     return this.apiCall(async (api) => {
       return api.post(`${DEPLOYMENTS_PATH}`, params);

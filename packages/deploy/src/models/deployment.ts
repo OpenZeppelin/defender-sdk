@@ -72,3 +72,25 @@ export interface BlockExplorerVerification {
   error?: string;
   etherscanGuid?: string;
 }
+
+export type RequestArtifact = Pick<DeployContractRequest, 'artifactPayload' | 'contractName' | 'contractPath'>;
+
+export type ContractArtifact = {
+  abi: any;
+  evm: {
+    bytecode: {
+      object: string;
+      linkReferences: any;
+    };
+  };
+};
+
+export type Artifact = {
+  output: {
+    contracts: {
+      [path: string]: {
+        [contractName: string]: ContractArtifact;
+      };
+    };
+  };
+};
