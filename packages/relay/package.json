@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/defender-sdk-base-client": "^1.7.0",
-    "axios": "^1.4.0",
+    "axios": "^1.6.2",
     "lodash": "^4.17.21"
   },
   "publishConfig": {
