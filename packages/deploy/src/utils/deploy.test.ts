@@ -1,11 +1,11 @@
-import { reduceArtifactSize } from './deploy';
+import { extractArtifact } from './deploy';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const artifact = require('../fixtures/Box.json');
 
 describe('Deploy utilities', () => {
-  it('reduceArtifactSize: only keeps the specified keys', () => {
-    const reducedArtifact = reduceArtifactSize({
+  it('extractArtifact: only keeps the specified keys', () => {
+    const reducedArtifact = extractArtifact({
       artifactPayload: JSON.stringify(artifact),
       contractName: 'Box',
       contractPath: 'contracts/Box.sol',
@@ -39,10 +39,10 @@ describe('Deploy utilities', () => {
     });
   });
 
-  it('reduceArtifactSize: big fixture', () => {
+  it('extractArtifact: reduces the original size', () => {
     const sizeBefore = JSON.stringify(artifact).length;
 
-    const reducedArtifact = reduceArtifactSize({
+    const reducedArtifact = extractArtifact({
       artifactPayload: JSON.stringify(artifact),
       contractName: 'Box',
       contractPath: 'contracts/Box.sol',
@@ -52,9 +52,9 @@ describe('Deploy utilities', () => {
     expect(sizeAfter).toBeLessThan(sizeBefore);
   });
 
-  it('reduceArtifactSize: throws if contract not found', () => {
+  it('extractArtifact: throws if contract not found', () => {
     expect(() => {
-      reduceArtifactSize({
+      extractArtifact({
         artifactPayload: JSON.stringify(artifact),
         contractName: 'Box',
         contractPath: 'contracts/Box2.sol',
@@ -62,9 +62,9 @@ describe('Deploy utilities', () => {
     }).toThrow();
   });
 
-  it('reduceArtifactSize: throws if artifact not found', () => {
+  it('extractArtifact: throws if artifact not found', () => {
     expect(() => {
-      reduceArtifactSize({
+      extractArtifact({
         artifactPayload: JSON.stringify(artifact),
         contractName: 'Box',
         contractPath: 'contracts/Box2.sol',
@@ -72,9 +72,9 @@ describe('Deploy utilities', () => {
     }).toThrow();
   });
 
-  it('reduceArtifactSize: throws if artifact is not valid json', () => {
+  it('extractArtifact: throws if artifact is not valid json', () => {
     expect(() => {
-      reduceArtifactSize({
+      extractArtifact({
         artifactPayload: 'invalid json',
         contractName: 'Box',
         contractPath: 'contracts/Box.sol',

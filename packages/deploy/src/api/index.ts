@@ -15,7 +15,7 @@ import {
   UpgradeContractResponse,
 } from '../models';
 import { Verification, VerificationRequest } from '../models/verification';
-import { reduceArtifactSize } from '../utils/deploy';
+import { extractArtifact } from '../utils/deploy';
 
 const DEPLOYMENTS_PATH = '/deployments';
 const UPGRADES_PATH = '/upgrades';
@@ -42,7 +42,7 @@ export class DeployClient extends BaseApiClient {
       );
 
     if (params.artifactPayload) {
-      params.artifactPayload = JSON.stringify(reduceArtifactSize(params));
+      params.artifactPayload = JSON.stringify(extractArtifact(params));
     }
 
     return this.apiCall(async (api) => {

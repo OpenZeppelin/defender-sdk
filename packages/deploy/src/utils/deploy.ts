@@ -1,6 +1,6 @@
 import { Artifact, ContractArtifact, RequestArtifact } from '../models';
 
-export function reduceArtifactSize(req: RequestArtifact): Artifact | undefined {
+export function extractArtifact(req: RequestArtifact): Artifact | undefined {
   const { artifactPayload: artifact, contractName: name, contractPath: path } = req;
   if (!artifact) return undefined;
 
