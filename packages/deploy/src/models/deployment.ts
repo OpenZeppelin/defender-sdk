@@ -18,6 +18,13 @@ export type SourceCodeLicense =
   | 'GNU AGPLv3'
   | 'BSL 1.1';
 
+export type TxOverrides = {
+  gasLimit?: number;
+  gasPrice?: string;
+  maxFeePerGas?: string;
+  maxPriorityFeePerGas?: string;
+};
+
 export interface DeployContractRequest {
   contractName: string;
   contractPath: string;
@@ -33,6 +40,11 @@ export interface DeployContractRequest {
   relayerId?: string;
   approvalProcessId?: string;
   createFactoryAddress?: string;
+  /**
+   * Only applies to Relayers apporval processes, for other default approval processes it has no effect
+   * @default undefined
+   */
+  txOverrides?: TxOverrides;
 }
 export interface DeployRequestLibraries {
   [k: string]: string;
