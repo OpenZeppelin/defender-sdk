@@ -83,9 +83,19 @@ export type ContractArtifact = {
       linkReferences: any;
     };
   };
+  metadata: string;
 };
 
 export type Artifact = {
+  input: {
+    sources: {
+      [path: string]: {
+        content: string;
+      };
+    };
+    settings: any;
+  };
+  metadata: string;
   output: {
     contracts: {
       [path: string]: {
