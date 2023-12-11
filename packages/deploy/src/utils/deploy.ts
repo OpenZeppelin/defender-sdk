@@ -1,7 +1,10 @@
 import { Artifact, ContractArtifact, RequestArtifact } from '../models';
 
-export function extractArtifact(req: RequestArtifact): Artifact | undefined {
-  const { artifactPayload: artifact, contractName: name, contractPath: path } = req;
+export function extractArtifact({
+  artifactPayload: artifact,
+  contractName: name,
+  contractPath: path,
+}: RequestArtifact): Artifact | undefined {
   if (!artifact) return undefined;
 
   const artifactObj = JSON.parse(artifact);
