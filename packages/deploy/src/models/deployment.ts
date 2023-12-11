@@ -95,7 +95,6 @@ export type Artifact = {
     };
     settings: any;
   };
-  metadata: string;
   output: {
     contracts: {
       [path: string]: {

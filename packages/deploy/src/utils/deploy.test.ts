@@ -12,6 +12,14 @@ describe('Deploy utilities', () => {
     });
 
     expect(reducedArtifact).toEqual({
+      input: {
+        sources: {
+          'contracts/Box.sol': {
+            content: artifact.input.sources['contracts/Box.sol'].content,
+          },
+        },
+        settings: artifact.input.settings,
+      },
       output: {
         contracts: {
           'contracts/Box.sol': {
@@ -23,6 +31,7 @@ describe('Deploy utilities', () => {
                   linkReferences: artifact.output.contracts['contracts/Box.sol'].Box.evm.bytecode.linkReferences,
                 },
               },
+              metadata: artifact.output.contracts['contracts/Box.sol'].Box.metadata,
             },
           },
         },

@@ -21,7 +21,6 @@ export function reduceArtifactSize(req: RequestArtifact): Artifact | undefined {
       },
       settings,
     },
-    metadata: contract.metadata,
     output: {
       contracts: {
         [path]: {
