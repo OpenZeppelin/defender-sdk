@@ -41,7 +41,7 @@ export interface DeployContractRequest {
   approvalProcessId?: string;
   createFactoryAddress?: string;
   /**
-   * Only applies to Relayers approval processes, for other default approval processes it has no effect
+   * Only applies to approval processes associated with Relayers, for other approval processes this has no effect
    * @default undefined
    */
   txOverrides?: TxOverrides;
