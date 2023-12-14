@@ -8,6 +8,10 @@ contract Box {
     // Emitted when the stored value changes
     event ValueChanged(uint256 value);
 
+    constructor(uint value) {
+        _value = value;
+    }
+
     // Stores a new value in the contract
     function store(uint256 value) public {
         _value = value;

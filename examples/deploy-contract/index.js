@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
+const { AbiCoder } = require('ethers');
 
 const artifactFile = require('./artifacts/Box.json');
 
@@ -9,7 +10,7 @@ async function main() {
   const client = new Defender(creds);
 
   // await client.deploy.createBlockExplorerApiKey({
-  //   network: 'goerli',
+  //   network: 'sepolia',
   //   key: process.env.BLOCKEXPLORER_API_KEY,
   // });
 
@@ -17,16 +18,17 @@ async function main() {
   console.log(keys);
 
   // Get approval process for deployment on sepolia
-  const config = await client.deploy.getDeployApprovalProcess('goerli');
+  const config = await client.deploy.getDeployApprovalProcess('sepolia');
   console.log(config);
 
   const deployment = await client.deploy.deployContract({
     contractName: 'Box',
     contractPath: 'contracts/Box.sol',
-    network: 'goerli',
+    network: 'sepolia',
     artifactPayload: JSON.stringify(artifactFile),
     licenseType: 'MIT',
     verifySourceCode: true,
+    constructorBytecode: AbiCoder.defaultAbiCoder().encode(['uint'], ['5']), // or constructorInputs: [5],
   });
 
   const deploymentStatus = await client.deploy.getDeployedContract(deployment.deploymentId);
