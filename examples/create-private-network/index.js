@@ -7,10 +7,12 @@ async function main() {
   const client = new Defender(creds);
 
   // Create Private Network
-  const network = await client.network.createPrivateNetwork({
+  const network = await client.network.createForkedNetwork({
     name: 'MyPrivateNetwork',
-    supportedNetwork: 'mainnet',
     rpcUrl: '', // Add your RPC URL here
+    configuration: {
+      symbol: 'ETH',
+    },
   });
 
   console.log(network);
