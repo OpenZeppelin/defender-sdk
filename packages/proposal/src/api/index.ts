@@ -6,7 +6,7 @@ import {
   PartialContract,
   ProposalListPaginatedResponse,
 } from '../models/proposal';
-import { SimulationRequest as SimulationTransaction, SimulationResponse } from '../models/simulation';
+import { SimulationRequest as SimulationTransactionData, SimulationResponse } from '../models/simulation';
 import { ExternalApiProposalResponse as ProposalResponse, ProposalResponseWithUrl } from '../models/response';
 import { getProposalUrl } from './utils';
 import { Contract } from '../models/contract';
@@ -14,7 +14,7 @@ import { Contract } from '../models/contract';
 type CreateProposalParams = {
   proposal: CreateProposalRequest;
   simulate?: boolean;
-  overrideSimulationOpts?: SimulationTransaction;
+  overrideSimulationOpts?: SimulationTransactionData;
 };
 
 export class ProposalClient extends BaseApiClient {
@@ -177,7 +177,7 @@ export class ProposalClient extends BaseApiClient {
 
   public async simulate(
     proposalId: string,
-    params: { contractId: string; transaction: SimulationTransaction },
+    params: { contractId: string; transaction: SimulationTransactionData },
   ): Promise<SimulationResponse> {
     return this.apiCall(async (api) => {
       const response = (await api.post(
