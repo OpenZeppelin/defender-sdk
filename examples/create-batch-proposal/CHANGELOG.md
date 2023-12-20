@@ -1,5 +1,21 @@
 # @openzeppelin/defender-sdk-example-create-batch-proposal
 
+## 1.8.0
+
+### Minor Changes
+
+- 688e4de: chore: Remove all non-required attributes from artifact
+  feat: Add new private network endpoints
+  feat: Add abi configuration for listing contracts
+  chore: Add missing artifact attributes
+  chore: Rename simulation transaction type
+  chore: Add txOverrides parameter
+
+### Patch Changes
+
+- Updated dependencies [688e4de]
+  - @openzeppelin/defender-sdk@1.8.0
+
 ## 1.7.0
 
 ### Minor Changes
