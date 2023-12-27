@@ -1,5 +1,30 @@
 # @openzeppelin/defender-sdk
 
+## 1.8.0
+
+### Minor Changes
+
+- 688e4de: chore: Remove all non-required attributes from artifact
+  feat: Add new private network endpoints
+  feat: Add abi configuration for listing contracts
+  chore: Add missing artifact attributes
+  chore: Rename simulation transaction type
+  chore: Add txOverrides parameter
+
+### Patch Changes
+
+- Updated dependencies [688e4de]
+  - @openzeppelin/defender-sdk-account-client@1.8.0
+  - @openzeppelin/defender-sdk-action-client@1.8.0
+  - @openzeppelin/defender-sdk-base-client@1.8.0
+  - @openzeppelin/defender-sdk-deploy-client@1.8.0
+  - @openzeppelin/defender-sdk-monitor-client@1.8.0
+  - @openzeppelin/defender-sdk-network-client@1.8.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.8.0
+  - @openzeppelin/defender-sdk-proposal-client@1.8.0
+  - @openzeppelin/defender-sdk-relay-client@1.8.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.8.0
+
 ## 1.7.0
 
 ### Minor Changes

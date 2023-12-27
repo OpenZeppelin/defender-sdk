@@ -34,7 +34,6 @@ There are a number of optional fields depending on what you are deploying, these
 - `libraries` - If you contract uses any external libraries they will need to be added here in the format `{ [LibraryName]: LibraryAddress }`.
 - `relayerId` - This property will override the default relayer assigned to the approval process for deployments. You may define this property if you wish to use a different relayer than the one assigned to the approval process in the deploy environment.
 
-
 Below is an example of a contract deployment request which responds with a `DeploymentResponse`
 
 ```js
@@ -129,8 +128,5 @@ And updating the Api Key for a given network
 
 ```js
 const apiKeyId = '8181d9e0-88ce-4db0-802a-2b56e2e6a7b1';
-await client.deploy.updateBlockExplorerApiKey(
-  apiKeyId,
-  { key: 'LDNWOWFNEJ2WEL4WLKNWEF8F2MNWKEF' },
-);
+await client.deploy.updateBlockExplorerApiKey(apiKeyId, { key: 'LDNWOWFNEJ2WEL4WLKNWEF8F2MNWKEF' });
 ```
