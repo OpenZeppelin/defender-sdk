@@ -26,7 +26,8 @@ Additionally you must provide your compilation artifact from hardhat. The compil
 
 There are a number of optional fields depending on what you are deploying, these include:
 
-- `constructorInputs` - The inputs to your contract constructor,
+- `constructorInputs` - The inputs to your contract constructor.
+- `constructorBytecode` - Alternative to `constructorInputs`.
 - `value` - ETH to be sent with the deployment.
 - `salt` - deployments are done using the CREATE2 opcode, you can provide a salt or we can generate one for you if none is supplied.
 - `licenseType` - This will be displayed on Etherscan e.g MIT.
@@ -37,14 +38,13 @@ Below is an example of a contract deployment request which responds with a `Depl
 
 ```js
 await client.deploy.deployContract({
-  contract: {
-    contractName: 'Greeter',
-    contractPath: 'contracts/Greeter.sol',
-    network: 'sepolia',
-    artifactPayload: JSON.stringify(artifactFile),
-    licenseType: 'MIT',
-    constructorInputs: ['Hello World!'],
-  },
+  contractName: 'Box',
+  contractPath: 'contracts/Box.sol',
+  network: 'sepolia',
+  artifactPayload: JSON.stringify(artifactFile),
+  licenseType: 'MIT',
+  verifySourceCode: true,
+  constructorBytecode: AbiCoder.defaultAbiCoder().encode(['uint'], ['5']), // or constructorInputs: [5],
 });
 ```
 
@@ -58,13 +58,13 @@ As well as fetching a deployment via it's ID
 
 ```js
 const deploymentId = '8181d9e0-88ce-4db0-802a-2b56e2e6a7b1';
-await client.deploy.getDeployedContract({ deploymentId });
+await client.deploy.getDeployedContract(deploymentId);
 ```
 
 You can also retrieve the deploy approval process for a given network, which will return a `ApprovalProcessResponse` object
 
 ```js
-await client.deploy.getDeployApprovalProcess({ network: 'sepolia' });
+await client.deploy.getDeployApprovalProcess('sepolia');
 ```
 
 ### Upgrade
@@ -86,13 +86,11 @@ Below is an example of a contract upgrade request which responds with a `Upgrade
 
 ```js
 await client.deploy.upgradeContract({
-  upgradeParams: {
-    proxyAddress: '0xABC1234...',
-    proxyAdminAddress: '0xDEF1234...',
-    newImplementationABI: JSON.stringify(boxABIFile),
-    newImplementationAddress: '0xABCDEF1....',
-    network: 'sepolia',
-  },
+  proxyAddress: '0xABC1234...',
+  proxyAdminAddress: '0xDEF1234...',
+  newImplementationABI: JSON.stringify(boxABIFile),
+  newImplementationAddress: '0xABCDEF1....',
+  network: 'sepolia',
 });
 ```
 
@@ -123,15 +121,12 @@ As well as fetching a your Api Key via it's ID
 
 ```js
 const apiKeyId = '8181d9e0-88ce-4db0-802a-2b56e2e6a7b1';
-await client.deploy.getBlockExplorerApiKey({ apiKeyId });
+await client.deploy.getBlockExplorerApiKey(apiKeyId);
 ```
 
 And updating the Api Key for a given network
 
 ```js
 const apiKeyId = '8181d9e0-88ce-4db0-802a-2b56e2e6a7b1';
-await client.deploy.updateBlockExplorerApiKey({
-  apiKeyId,
-  { key: 'LDNWOWFNEJ2WEL4WLKNWEF8F2MNWKEF' },
-});
+await client.deploy.updateBlockExplorerApiKey(apiKeyId, { key: 'LDNWOWFNEJ2WEL4WLKNWEF8F2MNWKEF' });
 ```

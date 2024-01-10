@@ -37,6 +37,7 @@ export interface DeployContractRequest {
   licenseType?: SourceCodeLicense;
   libraries?: DeployRequestLibraries;
   constructorInputs?: (string | boolean | number)[];
+  constructorBytecode?: string;
   relayerId?: string;
   approvalProcessId?: string;
   createFactoryAddress?: string;
