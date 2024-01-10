@@ -9,8 +9,10 @@ async function main() {
   // Create Private Network
   const network = await client.network.createPrivateNetwork({
     name: 'MyPrivateNetwork',
-    supportedNetwork: 'mainnet',
     rpcUrl: '', // Add your RPC URL here
+    configuration: {
+      symbol: 'ETH',
+    },
   });
 
   console.log(network);
