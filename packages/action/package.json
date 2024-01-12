@@ -4,8 +4,11 @@
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "bin": {
+    "defender-action": "./lib/bin.js"
+  },
   "scripts": {
-    "build": "rm -rf lib && tsc",
+    "build": "rm -rf lib && tsc && chmod a+x ./lib/bin.js",
     "test": "npm run test:unit",
     "test:unit": "jest --verbose --passWithNoTests --forceExit",
     "watch": "tsc -w",
