@@ -15,7 +15,7 @@
     "@types/jest": "^29.5.4",
     "@types/lodash": "^4.14.157",
     "@types/node": "^16.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "code-style": "git+https://github.com/OpenZeppelin/configs.git",
     "eslint": "^8.42.0",
