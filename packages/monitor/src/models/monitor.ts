@@ -8,8 +8,8 @@ export interface ExternalBaseCreateMonitorRequest {
   abi?: string;
   paused?: boolean;
   alertThreshold?: Threshold;
-  autotaskCondition?: string;
-  autotaskTrigger?: string;
+  actionCondition?: string;
+  actionTrigger?: string;
   alertTimeoutMs?: number;
   alertMessageBody?: string;
   alertMessageSubject?: string;
@@ -114,7 +114,7 @@ export interface FortaRule {
   // agentIDs should be a list of Bot IDs
   agentIDs?: string[];
   conditions: FortaConditionSet;
-  autotaskCondition?: AutotaskCondition;
+  actionCondition?: ActionCondition;
 }
 export interface FortaConditionSet {
   alertIDs?: string[];
@@ -132,7 +132,7 @@ export type MonitorRiskCategory = 'NONE' | 'GOVERNANCE' | 'ACCESS-CONTROL' | 'SU
 export type Address = string;
 export interface AddressRule {
   conditions: ConditionSet[];
-  autotaskCondition?: AutotaskCondition;
+  actionCondition?: ActionCondition;
   addresses: Address[];
   abi?: string;
 }
@@ -153,8 +153,8 @@ export interface FunctionCondition {
   functionSignature: string;
   expression?: string | null;
 }
-export interface AutotaskCondition {
-  autotaskId: string;
+export interface ActionCondition {
+  actionId: string;
 }
 export interface Threshold {
   amount: number;
@@ -163,7 +163,7 @@ export interface Threshold {
 export interface Notifications {
   notifications: NotificationReference[];
   notificationCategoryId?: string;
-  autotaskId?: string;
+  actionId?: string;
   messageBody?: string;
   messageSubject?: string;
   timeoutMs: number;

@@ -55,7 +55,7 @@ export async function tailLogsFor(client: ActionClient, actionId: string) {
           console.log(`\n${runDetails.decodedLogs}`);
         } else if (status === 'throttled') {
           console.warn(
-            `\nThis autotask run was canceled since the hourly run capacity for your account has been exceeded. Contact us at defender-support@openzeppelin.com for additional capacity.`,
+            `\nThis action run was canceled since the hourly run capacity for your account has been exceeded. Contact us at defender-support@openzeppelin.com for additional capacity.`,
           );
         }
       }

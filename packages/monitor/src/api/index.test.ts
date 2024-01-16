@@ -206,7 +206,7 @@ describe('MonitorClient', () => {
           {
             abi,
             addresses: addresses,
-            autotaskCondition: undefined,
+            actionCondition: undefined,
             conditions: [
               {
                 eventConditions,
@@ -224,7 +224,7 @@ describe('MonitorClient', () => {
         alertThreshold: undefined,
         blockWatcherId: 'i-am-the-watcher',
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
@@ -245,14 +245,14 @@ describe('MonitorClient', () => {
         network,
         alertThreshold: undefined,
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
         fortaRule: {
           addresses: addresses,
           agentIDs: undefined,
-          autotaskCondition: undefined,
+          actionCondition: undefined,
           conditions: fortaConditions,
         },
       };
@@ -272,14 +272,14 @@ describe('MonitorClient', () => {
         privateFortaNodeId: '0x123',
         alertThreshold: undefined,
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
         fortaRule: {
           addresses: addresses,
           agentIDs: undefined,
-          autotaskCondition: undefined,
+          actionCondition: undefined,
           conditions: fortaConditions,
         },
       };
@@ -323,7 +323,7 @@ describe('MonitorClient', () => {
           {
             abi,
             addresses: addresses,
-            autotaskCondition: undefined,
+            actionCondition: undefined,
             conditions: [
               {
                 eventConditions,
@@ -341,7 +341,7 @@ describe('MonitorClient', () => {
         alertThreshold: undefined,
         blockWatcherId: 'i-am-the-watcher',
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
@@ -378,14 +378,14 @@ describe('MonitorClient', () => {
         network,
         alertThreshold: undefined,
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
         fortaRule: {
           addresses: addresses,
           agentIDs: undefined,
-          autotaskCondition: undefined,
+          actionCondition: undefined,
           conditions: fortaConditions,
         },
       };
@@ -410,14 +410,14 @@ describe('MonitorClient', () => {
           {
             abi: oldBlockMonitor.addressRules[0].abi,
             addresses: oldBlockMonitor.addressRules[0].addresses,
-            autotaskCondition: undefined,
+            actionCondition: undefined,
             conditions: [],
           },
         ],
         blockWatcherId: oldBlockMonitor.blockWatcherId,
         network: oldBlockMonitor.network,
         notifyConfig: {
-          autotaskId: undefined,
+          actionId: undefined,
           notifications: [],
           timeoutMs: 0,
         },
