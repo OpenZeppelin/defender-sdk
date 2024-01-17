@@ -47,9 +47,9 @@ async function main() {
     // optional
     txCondition: 'gasPrice > 0',
     // optional
-    autotaskCondition: '3dcfee82-f5bd-43e3-8480-0676e5c28964',
+    actionCondition: '3dcfee82-f5bd-43e3-8480-0676e5c28964',
     // optional
-    autotaskTrigger: undefined,
+    actionTrigger: undefined,
     // optional
     alertThreshold: {
       amount: 2,
@@ -79,9 +79,9 @@ async function main() {
     // optional
     paused: false,
     // optional
-    autotaskCondition: '3dcfee82-f5bd-43e3-8480-0676e5c28964',
+    actionCondition: '3dcfee82-f5bd-43e3-8480-0676e5c28964',
     // optional
-    autotaskTrigger: undefined,
+    actionTrigger: undefined,
     // optional
     alertThreshold: {
       amount: 2,
