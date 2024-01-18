@@ -176,7 +176,7 @@ export interface NotificationReference {
 
 // Copied from ui/src/components/monitor/types.ts
 
-import { EventFragment, FunctionFragment } from '@ethersproject/abi';
+import { EventFragment, FunctionFragment } from 'ethers';
 
 export type Description = EventFragment | FunctionFragment;
 export type Condition = EventCondition | FunctionCondition | undefined;

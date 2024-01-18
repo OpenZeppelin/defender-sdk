@@ -9,7 +9,7 @@ import {
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
 import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
-import { Provider } from '@ethersproject/abstract-provider';
+import { Provider } from 'ethers';
 
 export class Relayer implements IRelayer {
   private relayer: IRelayer;
