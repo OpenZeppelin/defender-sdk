@@ -7,7 +7,7 @@ set -euo pipefail
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
 
 echo "DOWN"
-echo $CHANGESETS_STATUS_JSON
+cat $CHANGESETS_STATUS_JSON
 echo "TOP"
 
 # Save changeset status to temp file
