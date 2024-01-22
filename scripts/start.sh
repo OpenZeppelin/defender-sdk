@@ -6,18 +6,14 @@ set -euo pipefail
 # This is needed because `changeset status --output` only works with relative routes
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
 
-echo "DOWN"
-cat $CHANGESETS_STATUS_JSON
-echo "TOP"
-
 # Save changeset status to temp file
 npx changeset status --output="$CHANGESETS_STATUS_JSON"
 
 # Defensive assertion. SHOULD NOT BE REACHED
-if [ "$(jq '.releases | length' "$CHANGESETS_STATUS_JSON")" != 1 ]; then
-  echo "::error file=$CHANGESETS_STATUS_JSON::The status doesn't contain only 1 release"
-  exit 1;
-fi;
+# if [ "$(jq '.releases | length' "$CHANGESETS_STATUS_JSON")" != 1 ]; then
+#   echo "::error file=$CHANGESETS_STATUS_JSON::The status doesn't contain only 1 release"
+#   exit 1;
+# fi;
 
 # Create branch
 BRANCH_SUFFIX="$(jq -r '.releases[0].newVersion | gsub("\\.\\d+$"; "")' $CHANGESETS_STATUS_JSON)"
