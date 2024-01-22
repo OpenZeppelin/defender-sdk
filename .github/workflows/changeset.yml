@@ -35,18 +35,18 @@ jobs:
           fetch-depth: 0 # To get all tags
       - name: Set up environment
         uses: ./.github/actions/setup
-      - name: Set release title
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: await require('./scripts/set-changesets-pr-title.js')({ core })
+      # - name: Set release title
+      #   uses: actions/github-script@v6
+      #   with:
+      #     result-encoding: string
+      #     script: await require('./scripts/set-changesets-pr-title.js')({ core })
       - name: Create PR
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: ${{ env.TITLE }}
-          commit: ${{ env.TITLE }}
+          # title: ${{ env.TITLE }}
+          # commit: ${{ env.TITLE }}
           body: |
             This is an automated PR for releasing ${{ github.repository }}
-            Check [CHANGELOG.md](${{ github.repository }}/CHANGELOG.md)
+
