@@ -6,6 +6,10 @@ set -euo pipefail
 # This is needed because `changeset status --output` only works with relative routes
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
 
+echo "DOWN"
+echo $CHANGESETS_STATUS_JSON
+echo "TOP"
+
 # Save changeset status to temp file
 npx changeset status --output="$CHANGESETS_STATUS_JSON"
 
