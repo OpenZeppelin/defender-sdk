@@ -14,7 +14,6 @@ jobs:
     permissions:
       contents: write
       actions: write
-    if: needs.state.outputs.start == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +31,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: needs.state.outputs.changesets == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
