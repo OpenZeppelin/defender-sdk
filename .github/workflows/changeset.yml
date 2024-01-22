@@ -22,9 +22,6 @@ jobs:
       - run: |
             git config user.name 'github-actions'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-      - id: start
-        name: Create branch with release candidate
-        run: bash scripts/start.sh
 
   changesets:
     name: Update PR to release
