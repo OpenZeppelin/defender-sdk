@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-action-client
 
+## 1.8.1
+
+### Patch Changes
+
+- 0dbf080: Testing changeset
+- Updated dependencies [0dbf080]
+  - @openzeppelin/defender-sdk-base-client@1.8.1
+
 ## 1.8.0
 
 ### Minor Changes
