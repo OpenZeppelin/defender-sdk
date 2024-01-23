@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.8.1
+
+### Patch Changes
+
+- 0dbf080: Testing changeset
+
 ## 1.8.0
 
 ### Minor Changes
