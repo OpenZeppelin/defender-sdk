@@ -3,6 +3,7 @@ import { AccountUsageResponse } from '../models/account';
 
 const PATH = '/account';
 
+//
 export class AccountClient extends BaseApiClient {
   protected getPoolId(): string {
     return process.env.DEFENDER_POOL_ID ?? 'us-west-2_94f3puJWv';
@@ -21,7 +22,6 @@ export class AccountClient extends BaseApiClient {
       ...(params?.quotas && { quotas: params.quotas.join(',') }),
       ...(params?.date && { date: new Date(params.date).toISOString() }),
     });
-
     return this.apiCall(async (api) => api.get(`${PATH}/usage?${searchParams.toString()}`));
   }
 }
