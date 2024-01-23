@@ -17,6 +17,7 @@
     "@types/node": "^16.1.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "@manypkg/get-packages": "^1.1.3",
     "code-style": "git+https://github.com/OpenZeppelin/configs.git",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
@@ -44,7 +45,7 @@
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
-    "version": "changeset version && node ./scripts/bump-peer-dep-ranges.js"
+    "version-set": "changeset version && node ./scripts/bump-peer-dep-ranges.js"
   },
   "repository": {
     "type": "git",
