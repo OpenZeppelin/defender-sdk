@@ -43,7 +43,8 @@
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
-    "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
+    "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
+    "version": "changeset version && node ./scripts/bump-peer-dep-ranges.js"
   },
   "repository": {
     "type": "git",
