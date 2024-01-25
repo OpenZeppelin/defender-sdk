@@ -75,6 +75,6 @@ export class DefenderRelayProvider extends StaticJsonRpcProvider {
   }
 
   getSigner(): JsonRpcSigner {
-    return (new DefenderRelaySigner(this.relayer, this, {}) as any) as JsonRpcSigner;
+    return new DefenderRelaySigner(this.relayer, this, {}) as any as JsonRpcSigner;
   }
 }

@@ -38,7 +38,7 @@ describe('NetworkClient', () => {
   let networkClient: TestNetworkClient;
 
   beforeEach(() => {
-    networkClient = (new NetworkClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown) as TestNetworkClient;
+    networkClient = new NetworkClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown as TestNetworkClient;
     createAuthenticatedApi.mockClear();
   });
 
