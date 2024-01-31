@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-update-action-env-variables",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
