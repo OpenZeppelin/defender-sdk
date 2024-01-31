@@ -6,13 +6,13 @@ export const mockAxiosError: AxiosError = {
   config: {
     url: '/relayer',
     method: 'get',
-    headers: ({
+    headers: {
       'Accept': 'application/json, text/plain, */*',
       'X-Api-Key': '4Rfp2GEHDjgesA6MdseUM1n8B8kT9hgs',
       'Authorization': 'Bearer WRONG',
       'Content-Type': 'application/json',
       'User-Agent': 'axios/0.21.4',
-    } as unknown) as AxiosRequestHeaders,
+    } as unknown as AxiosRequestHeaders,
     baseURL: 'https://defender-api.openzeppelin.com/',
     timeout: 0,
     xsrfCookieName: 'XSRF-TOKEN',
@@ -142,13 +142,13 @@ export const mockAxiosError: AxiosError = {
       maxContentLength: -1,
       maxBodyLength: -1,
       data: undefined,
-      headers: ({
+      headers: {
         'Accept': 'application/json, text/plain, */*',
         'X-Api-Key': '4Rfp2GEHDjgesA6MdseUM1n8B8kT9hgs',
         'Authorization': 'Bearer WRONG',
         'Content-Type': 'application/json',
         'User-Agent': 'axios/0.21.4',
-      } as unknown) as AxiosRequestHeaders,
+      } as unknown as AxiosRequestHeaders,
     },
     request: {
       _eventsCount: 7,
