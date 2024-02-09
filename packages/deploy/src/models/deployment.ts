@@ -23,6 +23,7 @@ export type TxOverrides = {
   gasPrice?: string;
   maxFeePerGas?: string;
   maxPriorityFeePerGas?: string;
+  confirmations?: number;
 };
 
 export interface DeployContractRequest {
