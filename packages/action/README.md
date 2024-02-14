@@ -39,5 +39,5 @@ $ defender-action update-code $ACTION_ID $PATH
 #### Tail action run logs
 
 ```sh
-$ defender-action tail-runs $ACTION_ID $PATH
+$ defender-action tail-runs $ACTION_ID
 ```
