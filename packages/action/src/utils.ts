@@ -66,3 +66,14 @@ export async function tailLogsFor(client: ActionClient, actionId: string) {
     throw e;
   }
 }
+
+/**
+ * Verifies that the environment variables are present and initializes the client.
+ * @returns The initialized client instance.
+ */
+export function initClient(): ActionClient {
+  const { API_KEY: apiKey, API_SECRET: apiSecret } = process.env;
+  if (!apiKey || !apiSecret) throw new Error(`API_KEY or API_SECRET env vars are missing`);
+  const client = new ActionClient({ apiKey, apiSecret });
+  return client;
+}

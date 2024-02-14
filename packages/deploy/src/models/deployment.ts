@@ -23,6 +23,7 @@ export type TxOverrides = {
   gasPrice?: string;
   maxFeePerGas?: string;
   maxPriorityFeePerGas?: string;
+  confirmations?: number;
 };
 
 export interface DeployContractRequest {
@@ -35,6 +36,9 @@ export interface DeployContractRequest {
   salt?: string;
   verifySourceCode: boolean;
   licenseType?: SourceCodeLicense;
+  /**
+   * @example { "contracts/Library.sol:LibraryName": "0x1234567890123456789012345678901234567890" }
+   */
   libraries?: DeployRequestLibraries;
   constructorInputs?: (string | boolean | number)[];
   constructorBytecode?: string;
@@ -48,7 +52,7 @@ export interface DeployContractRequest {
   txOverrides?: TxOverrides;
 }
 export interface DeployRequestLibraries {
-  [k: string]: string;
+  [k: `${string}:${string}`]: string;
 }
 
 export interface DeploymentResponse {

@@ -1,10 +1,10 @@
 {
   "name": "@openzeppelin/defender-sdk",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "private": true,
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "1.8.0",
+    "@openzeppelin/defender-sdk-base-client": "1.9.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.21"
   },
@@ -15,7 +15,7 @@
     "@types/jest": "^29.5.4",
     "@types/lodash": "^4.14.157",
     "@types/node": "^16.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "code-style": "git+https://github.com/OpenZeppelin/configs.git",
     "eslint": "^8.42.0",
@@ -24,7 +24,7 @@
     "jest": "^29.6.4",
     "nx": "^16.5.0",
     "nx-cloud": "^16.5.2",
-    "prettier": "^2.0.4",
+    "prettier": "^2.4.1",
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.3"
   },
