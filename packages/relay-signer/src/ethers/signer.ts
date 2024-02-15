@@ -186,7 +186,6 @@ export class DefenderRelaySigner extends JsonRpcSigner {
       };
     }
 
-    // TODO get signature from relayer.
     return (this.provider as ProviderWithWrapTransaction)._wrapTransactionResponse(
       {
         ...omit(relayedTransaction, 'gasPrice', 'maxPriorityFeePerGas', 'maxFeePerGas'),
@@ -194,6 +193,7 @@ export class DefenderRelaySigner extends JsonRpcSigner {
         gasLimit: BigInt(relayedTransaction.gasLimit.toString()),
         value: BigInt(relayedTransaction.value?.toString() ?? '0'),
         data: relayedTransaction.data ?? '',
+        signature: relayedTransaction.signature,
       },
       relayedTransaction.hash,
     );
@@ -205,7 +205,7 @@ export class DefenderRelaySigner extends JsonRpcSigner {
     const tx: DefenderTransactionRequest = await resolveProperties(this.checkTransaction(transaction));
     if (tx.to != null) {
       const toAsString = await resolveAddress(tx.to);
-      tx.to = await this.resolveName(toAsString);
+      tx.to = (await this.resolveName(toAsString)) ?? toAsString;
     }
 
     if (tx.gasLimit == null) {

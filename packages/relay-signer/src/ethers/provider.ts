@@ -2,7 +2,15 @@ import { RelayerParams } from '../models/relayer';
 import { DefenderRelaySigner } from './signer';
 import { getRelaySignerApiUrl } from '../api';
 import { Relayer } from '../relayer';
-import { JsonRpcError, JsonRpcProvider, JsonRpcResult, Network, getBigInt, JsonRpcSigner } from 'ethers';
+import {
+  JsonRpcError,
+  JsonRpcProvider,
+  JsonRpcResult,
+  Network,
+  getBigInt,
+  JsonRpcSigner,
+  JsonRpcPayload,
+} from 'ethers';
 
 export class DefenderRelayProvider extends JsonRpcProvider {
   private relayer: Relayer;
@@ -13,25 +21,11 @@ export class DefenderRelayProvider extends JsonRpcProvider {
     this.relayer = new Relayer(credentials);
   }
 
-  // Logic from JsonRpcProvider.detectNetwork
-  async detectNetwork(): Promise<Network> {
-    if (this._network != null) {
-      return this._network;
-    }
-
-    if (this.ready) {
-      this.pendingNetwork = (async () => {
-        const result = Network.from(getBigInt(await this.send('eth_chainId', [])));
-        this.pendingNetwork = null;
-        return result;
-      })();
-      return await this.pendingNetwork;
-    }
-
+  async _detectNetwork(): Promise<Network> {
     this.pendingNetwork = (async () => {
       let result: JsonRpcResult | JsonRpcError;
       try {
-        result = (await this.send('eth_chainId', []))[0];
+        result = await this.send('eth_chainId', []);
         this.pendingNetwork = null;
       } catch (error) {
         this.pendingNetwork = null;
@@ -39,6 +33,10 @@ export class DefenderRelayProvider extends JsonRpcProvider {
       }
 
       this.emit('debug', { action: 'receiveRpcResult', result });
+
+      if ((result && typeof result === 'string') || typeof result === 'number') {
+        return Network.from(getBigInt(result));
+      }
 
       if (result && 'result' in result) {
         return Network.from(getBigInt(result.result));
@@ -48,6 +46,18 @@ export class DefenderRelayProvider extends JsonRpcProvider {
     })();
 
     return await this.pendingNetwork;
+  }
+
+  // Logic from JsonRpcProvider.detectNetwork
+  async detectNetwork(): Promise<Network> {
+    return this._detectNetwork();
+  }
+
+  async _send(payload: JsonRpcPayload | JsonRpcPayload[]): Promise<JsonRpcResult[]> {
+    if (Array.isArray(payload)) {
+      return Promise.all(payload.map((p) => this.send(p.method, p.params as Array<any>)));
+    }
+    return [await this.send(payload.method, payload.params as Array<any>)];
   }
 
   async send(method: string, params: Array<any>): Promise<any> {

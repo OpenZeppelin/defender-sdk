@@ -22,23 +22,26 @@ async function main() {
 
   console.log(`Deploying ERC20 contract`);
   const erc20 = await factory.deploy(100, { gasLimit: 8000000 });
-  console.log(`Contract deployed at address ${erc20.address}`);
+
+  console.log(`Waiting for contract deployment...`);
+  await erc20.deploymentTransaction().wait();
+
+  const contractAddress = await erc20.getAddress();
+  console.log(`Contract deployed at address ${contractAddress}`);
 
   const beneficiary = await ethers.Wallet.createRandom().getAddress();
 
   const addr = await signer.getAddress();
   console.log(`Relayer address is ${addr}`);
 
-  const contractAddress = await erc20.getAddress();
-
   console.log(`Sending approve transaction for ${beneficiary} to token ${contractAddress}...`);
-  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e8 });
+  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e8, gasLimit: 8000000 });
   console.log(`Transaction sent:`, tx);
 
   const mined = await tx.wait();
   console.log(`Transaction mined:`, mined);
 
-  const allowance = await erc20.allowance(tx.from, beneficiary);
+  const allowance = await erc20.allowance(addr, beneficiary);
   console.log(`Allowance now is:`, allowance.toString());
 
   const sig = await signer.signMessage('0xdead');
