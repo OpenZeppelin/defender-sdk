@@ -3,7 +3,7 @@
 import {
   Signature,
   toUtf8Bytes,
-  Provider,
+  JsonRpcProvider,
   TransactionRequest,
   TransactionResponse,
   TypedDataDomain,
@@ -12,10 +12,10 @@ import {
   hexlify,
   BytesLike,
   resolveProperties,
-  Transaction,
-  AbstractSigner,
   TransactionLike,
   resolveAddress,
+  JsonRpcSigner,
+  toBeHex,
 } from 'ethers';
 import { Relayer } from '../relayer';
 import { omit } from 'lodash';
@@ -53,20 +53,20 @@ export type DefenderRelaySignerOptions = Partial<
   }
 >;
 
-type ProviderWithWrapTransaction = Provider & {
-  _wrapTransaction(tx: Transaction, hash?: string): TransactionResponse;
+type ProviderWithWrapTransaction = JsonRpcProvider & {
+  _wrapTransactionResponse(tx: TransactionLike, hash?: string): TransactionResponse;
 };
 
-export class DefenderRelaySigner extends AbstractSigner {
+export class DefenderRelaySigner extends JsonRpcSigner {
   private readonly relayer: Relayer;
-  private address?: string;
 
   constructor(
     readonly relayerCredentials: RelayerParams | Relayer,
-    readonly provider: Provider,
+    provider: JsonRpcProvider,
+    address: string,
     readonly options: DefenderRelaySignerOptions = {},
   ) {
-    super();
+    super(provider, address);
     this.relayer = isRelayer(relayerCredentials) ? relayerCredentials : new Relayer(relayerCredentials);
     if (options) {
       const getUnnecesaryExtraFields = (invalidFields: (keyof GasOptions)[]) =>
@@ -128,8 +128,8 @@ export class DefenderRelaySigner extends AbstractSigner {
     throw new Error('DefenderRelaySigner#signTransaction: method not yet supported');
   }
 
-  public connect(provider: Provider): DefenderRelaySigner {
-    return new DefenderRelaySigner(this.relayerCredentials, provider, this.options);
+  public connect(provider: JsonRpcProvider): DefenderRelaySigner {
+    return new DefenderRelaySigner(this.relayerCredentials, provider, this.address, this.options);
   }
 
   signTypedData(
@@ -149,21 +149,21 @@ export class DefenderRelaySigner extends AbstractSigner {
 
     if (isLegacyTx(tx) && tx.gasPrice !== undefined) {
       payloadGasParams = {
-        gasPrice: hexlify(tx.gasPrice.toString()),
+        gasPrice: toBeHex(tx.gasPrice),
       };
     } else if (isEIP1559Tx(tx) && tx.maxFeePerGas !== undefined && tx.maxPriorityFeePerGas !== undefined) {
       payloadGasParams = {
-        maxFeePerGas: hexlify(tx.maxFeePerGas.toString()),
-        maxPriorityFeePerGas: hexlify(tx.maxPriorityFeePerGas.toString()),
+        maxFeePerGas: toBeHex(tx.maxFeePerGas),
+        maxPriorityFeePerGas: toBeHex(tx.maxPriorityFeePerGas),
       };
     }
 
     const payload = {
       to: tx.to?.toString(),
-      gasLimit: hexlify(tx.gasLimit.toString()),
-      data: tx.data ? hexlify(tx.data) : undefined,
+      gasLimit: toBeHex(tx.gasLimit),
+      data: tx.data ? toBeHex(tx.data) : undefined,
       speed: tx.speed ?? 'fast',
-      value: tx.value ? hexlify(tx.value.toString()) : undefined,
+      value: tx.value ? toBeHex(tx.value) : undefined,
       validUntil: tx.validUntil ? new Date(tx.validUntil).toISOString() : undefined,
       isPrivate: tx.isPrivate,
       ...payloadGasParams,
@@ -186,14 +186,15 @@ export class DefenderRelaySigner extends AbstractSigner {
       };
     }
 
-    return (this.provider as ProviderWithWrapTransaction)._wrapTransaction(
-      Transaction.from({
+    // TODO get signature from relayer.
+    return (this.provider as ProviderWithWrapTransaction)._wrapTransactionResponse(
+      {
         ...omit(relayedTransaction, 'gasPrice', 'maxPriorityFeePerGas', 'maxFeePerGas'),
         ...gasParams,
         gasLimit: BigInt(relayedTransaction.gasLimit.toString()),
         value: BigInt(relayedTransaction.value?.toString() ?? '0'),
         data: relayedTransaction.data ?? '',
-      }),
+      },
       relayedTransaction.hash,
     );
   }
