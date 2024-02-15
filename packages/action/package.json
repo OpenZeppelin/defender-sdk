@@ -28,7 +28,8 @@
     "@openzeppelin/defender-sdk-base-client": "^1.9.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
-    "glob": "^7.1.6"
+    "glob": "^7.1.6",
+    "dotenv": "^16.3.1"
   },
   "publishConfig": {
     "access": "public"
