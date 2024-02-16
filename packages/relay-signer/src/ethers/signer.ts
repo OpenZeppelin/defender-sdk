@@ -162,7 +162,7 @@ export class DefenderRelaySigner extends JsonRpcSigner {
       to: tx.to?.toString(),
       gasLimit: toBeHex(tx.gasLimit),
       data: tx.data ? toBeHex(tx.data) : undefined,
-      speed: tx.speed ?? 'fast',
+      speed: tx.speed,
       value: tx.value ? toBeHex(tx.value) : undefined,
       validUntil: tx.validUntil ? new Date(tx.validUntil).toISOString() : undefined,
       isPrivate: tx.isPrivate,
