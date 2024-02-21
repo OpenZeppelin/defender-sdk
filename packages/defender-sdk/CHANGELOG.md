@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.10.0
+
+### Minor Changes
+
+- 7e14499: fix: Add missing dependencies for cli tool to manage actions.
+  fix: Add confirmation property to tx override.
+  refactor: Remove deprecated config resources
+
+### Patch Changes
+
+- Updated dependencies [7e14499]
+  - @openzeppelin/defender-sdk-account-client@1.10.0
+  - @openzeppelin/defender-sdk-action-client@1.10.0
+  - @openzeppelin/defender-sdk-base-client@1.10.0
+  - @openzeppelin/defender-sdk-deploy-client@1.10.0
+  - @openzeppelin/defender-sdk-monitor-client@1.10.0
+  - @openzeppelin/defender-sdk-network-client@1.10.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.10.0
+  - @openzeppelin/defender-sdk-proposal-client@1.10.0
+  - @openzeppelin/defender-sdk-relay-client@1.10.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.10.0
+
 ## 1.9.0
 
 ### Minor Changes
