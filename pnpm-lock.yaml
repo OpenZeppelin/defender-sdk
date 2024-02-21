@@ -15,8 +15,8 @@ importers:
         specifier: 1.9.0
         version: link:packages/base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -301,8 +301,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -313,8 +313,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -386,8 +386,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -401,8 +401,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -416,8 +416,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -431,8 +431,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -443,8 +443,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -458,8 +458,8 @@ importers:
         specifier: ^1.9.0
         version: link:../base
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -497,8 +497,8 @@ importers:
         specifier: ^6.3.6
         version: 6.3.6
       axios:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.6.7
+        version: 1.6.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1931,7 +1931,7 @@ packages:
     resolution: {integrity: sha512-B6Iimv9uLZ2OnLp8J+H1E1hjnZv/s6zKjGzRtF+K62w1rdD8q1fx4RU3oCYQMI3VFxBA2pXPYa78cYW1Rypqiw==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -1943,7 +1943,7 @@ packages:
     hasBin: true
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       glob: 7.2.3
       jszip: 3.10.1
       lodash: 4.17.21
@@ -1966,7 +1966,7 @@ packages:
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -1978,7 +1978,7 @@ packages:
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -1990,7 +1990,7 @@ packages:
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2002,7 +2002,7 @@ packages:
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2013,7 +2013,7 @@ packages:
     resolution: {integrity: sha512-xTM/SdC5eR502+czvSdCOpdtBFqOoUkfFPx3CAhhPH9ObUMDdlPfFFAazaPDYGNimfuB6KqO5SXjxUoY7ov6Fw==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       ethers: 6.9.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2027,7 +2027,7 @@ packages:
     resolution: {integrity: sha512-N15+3xzMUgWWRC0Kdc8SH80hrTUYxg7SSskNE/+MIigLrj4UDHMK+dmIS3A6fdYLqQVBu4GZ0nREDgjZM6IBjA==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.9.0
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2062,7 +2062,7 @@ packages:
       '@ethersproject/transactions': 5.7.0
       '@openzeppelin/defender-sdk-base-client': 1.9.0
       amazon-cognito-identity-js: 6.3.6
-      axios: 1.4.0
+      axios: 1.6.7
       lodash: 4.17.21
       web3: 1.8.2
       web3-core: 1.10.3
@@ -2691,17 +2691,17 @@ packages:
   /axios@1.1.3:
     resolution: {integrity: sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.5
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: true
 
-  /axios@1.4.0:
-    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
+  /axios@1.6.7:
+    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.5
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -4159,8 +4159,8 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /follow-redirects@1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+  /follow-redirects@1.15.5:
+    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -6109,7 +6109,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.4.0
+      axios: 1.6.7
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
