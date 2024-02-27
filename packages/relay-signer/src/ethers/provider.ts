@@ -87,7 +87,7 @@ export class DefenderRelayProvider extends JsonRpcProvider {
       );
     }
     if (address) {
-      new DefenderRelaySigner(this.relayer, this, address, {}) as any as JsonRpcSigner;
+      return new DefenderRelaySigner(this.relayer, this, address, {}) as any as JsonRpcSigner;
     }
     const relayer = await this.relayer.getRelayer();
     return new DefenderRelaySigner(this.relayer, this, relayer.address, {}) as any as JsonRpcSigner;
