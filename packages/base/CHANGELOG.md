@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.10.0
+
+### Minor Changes
+
+- 7e14499: fix: Add missing dependencies for cli tool to manage actions.
+  fix: Add confirmation property to tx override.
+  refactor: Remove deprecated config resources
+
 ## 1.9.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @openzeppelin/defender-sdk-example-get-usage
 
+## 1.10.0
+
+### Minor Changes
+
+- 7e14499: fix: Add missing dependencies for cli tool to manage actions.
+  fix: Add confirmation property to tx override.
+  refactor: Remove deprecated config resources
+
+### Patch Changes
+
+- Updated dependencies [7e14499]
+  - @openzeppelin/defender-sdk@1.10.0
+
 ## 1.9.0
 
 ### Minor Changes

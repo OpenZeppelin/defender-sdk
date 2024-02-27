@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-base-client",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/async-retry": "^1.4.4",
-    "aws-sdk": "^2.1487.0"
+    "aws-sdk": "^2.1560.0"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^6.3.6",
