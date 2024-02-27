@@ -377,7 +377,7 @@ importers:
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.8.0
+        specifier: ^1.9.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -389,7 +389,7 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.8.0
+        specifier: ^1.9.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -404,7 +404,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.8.0
+        specifier: ^1.9.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -416,7 +416,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.8.0
+        specifier: ^1.9.0
         version: link:../base
       axios:
         specifier: ^1.4.0
@@ -455,7 +455,7 @@ importers:
   packages/relay-signer:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.8.0
+        specifier: ^1.9.0
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.3.6

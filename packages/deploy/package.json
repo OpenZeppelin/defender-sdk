@@ -22,7 +22,7 @@
   "author": "Dylan Kilkenny <dylan@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "^1.8.0",
+    "@openzeppelin/defender-sdk-base-client": "^1.9.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.21"
   },
