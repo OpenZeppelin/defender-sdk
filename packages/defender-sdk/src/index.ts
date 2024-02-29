@@ -6,6 +6,7 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
+import { ApprovalProcessClient } from '@openzeppelin/defender-sdk-approval-process-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
@@ -60,6 +61,10 @@ export class Defender {
 
   get account() {
     return getClient(AccountClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+  }
+
+  get approvalProcess() {
+    return getClient(ApprovalProcessClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
   }
 
   get monitor() {
