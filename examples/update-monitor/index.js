@@ -61,6 +61,8 @@ async function main() {
     // optional
     alertTimeoutMs: 0,
     notificationChannels: [notification.notificationId],
+    // optional (LOW, MEDIUM, HIGH)
+    severityLevel: 'MEDIUM',
     // optional
     riskCategory: 'TECHNICAL',
   };
