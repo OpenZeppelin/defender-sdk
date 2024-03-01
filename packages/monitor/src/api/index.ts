@@ -17,10 +17,6 @@ import { BlockWatcher } from '../models/blockwatcher';
 
 import _ from 'lodash';
 import getConditionSets, { getMonitorConditions } from '../utils';
-import {
-  NotificationCategory as NotificationCategoryResponse,
-  UpdateNotificationCategoryRequest,
-} from '../models/category';
 import { NotificationResponse } from '..';
 import { CreateNotificationRequest, NotificationType, UpdateNotificationRequest } from '../models/notification';
 
@@ -98,27 +94,6 @@ export class MonitorClient extends BaseApiClient {
           paused: false,
         }),
       );
-    });
-  }
-
-  public async listNotificationCategories(): Promise<NotificationCategoryResponse[]> {
-    return this.apiCall(async (api) => {
-      return await api.get(`/notifications/categories`);
-    });
-  }
-
-  public async getNotificationCategory(id: string): Promise<NotificationCategoryResponse> {
-    return this.apiCall(async (api) => {
-      return await api.get(`/notifications/categories/${id}`);
-    });
-  }
-
-  public async updateNotificationCategory(
-    id: string,
-    params: UpdateNotificationCategoryRequest,
-  ): Promise<NotificationCategoryResponse> {
-    return this.apiCall(async (api) => {
-      return await api.put(`/notifications/categories/${id}`, params);
     });
   }
 
@@ -304,7 +279,7 @@ export class MonitorClient extends BaseApiClient {
       alertThreshold: monitor.alertThreshold,
       notifyConfig: {
         notifications: notificationChannels,
-        notificationCategoryId: _.isEmpty(notificationChannels) ? monitor.notificationCategoryId : undefined,
+        severityLevel: monitor.severityLevel,
         actionId: monitor.actionTrigger ? monitor.actionTrigger : undefined,
         timeoutMs: monitor.alertTimeoutMs ? monitor.alertTimeoutMs : 0,
         messageBody: monitor.alertMessageBody ? monitor.alertMessageBody : undefined,
@@ -346,7 +321,7 @@ export class MonitorClient extends BaseApiClient {
       alertMessageSubject: monitor.notifyConfig?.messageSubject,
       alertMessageBody: monitor.notifyConfig?.messageBody,
       notificationChannels: monitor.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
-      notificationCategoryId: monitor.notifyConfig?.notificationCategoryId,
+      severityLevel: monitor.notifyConfig?.severityLevel,
       network: monitor.network,
       confirmLevel: parseInt(_.last(monitor.blockWatcherId.split('-')) as string), // We're sure there is always a last number if the convention is followd
     };
@@ -364,7 +339,7 @@ export class MonitorClient extends BaseApiClient {
       alertMessageSubject: monitor.notifyConfig?.messageSubject,
       alertMessageBody: monitor.notifyConfig?.messageBody,
       notificationChannels: monitor.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
-      notificationCategoryId: monitor.notifyConfig?.notificationCategoryId,
+      severityLevel: monitor.notifyConfig?.severityLevel,
       network: monitor.network,
       fortaLastProcessedTime: monitor.fortaLastProcessedTime,
       addresses: monitor.fortaRule.addresses,
