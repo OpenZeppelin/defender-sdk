@@ -49,6 +49,11 @@ interface RelayerTransactionBase {
   sentAt?: string;
   pricedAt?: string;
   isPrivate?: boolean;
+  signature?: {
+    v: string;
+    r: string;
+    s: string;
+  };
 }
 
 interface RelayerLegacyTransaction extends RelayerTransactionBase {

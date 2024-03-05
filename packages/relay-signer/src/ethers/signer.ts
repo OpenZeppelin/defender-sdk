@@ -1,21 +1,31 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { toUtf8Bytes } from '@ethersproject/strings';
-import { Provider, TransactionRequest, TransactionResponse } from '@ethersproject/abstract-provider';
-import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from '@ethersproject/abstract-signer';
-import { Bytes, hexlify, joinSignature } from '@ethersproject/bytes';
-import { BigNumber } from '@ethersproject/bignumber';
-import { Logger } from '@ethersproject/logger';
-import { _TypedDataEncoder } from '@ethersproject/hash';
-import { Deferrable, resolveProperties, shallowCopy } from '@ethersproject/properties';
+import {
+  Signature,
+  toUtf8Bytes,
+  JsonRpcProvider,
+  TransactionRequest,
+  TransactionResponse,
+  TypedDataDomain,
+  TypedDataField,
+  TypedDataEncoder,
+  hexlify,
+  BytesLike,
+  resolveProperties,
+  TransactionLike,
+  resolveAddress,
+  JsonRpcSigner,
+  toBeHex,
+} from 'ethers';
 import { Relayer } from '../relayer';
-import { Transaction } from '@ethersproject/transactions';
 import { omit } from 'lodash';
 import { Speed } from '../models/transactions';
 import { RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
-const logger = new Logger(`@openzeppelin/defender-relay-client`);
+export type Deferrable<T> = {
+  [K in keyof T]: T[K] | Promise<T[K]>;
+};
 
 const allowedTransactionKeys: Array<string> = [
   'chainId',
@@ -32,9 +42,9 @@ const allowedTransactionKeys: Array<string> = [
   'isPrivate',
 ];
 
-type GasOptions = Pick<TransactionRequest, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
+type GasOptions = Pick<TransactionLike<string>, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
 
-export type DefenderTransactionRequest = TransactionRequest &
+export type DefenderTransactionRequest = TransactionLike<string> &
   Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
 export type DefenderRelaySignerOptions = Partial<
   GasOptions & {
@@ -43,20 +53,20 @@ export type DefenderRelaySignerOptions = Partial<
   }
 >;
 
-type ProviderWithWrapTransaction = Provider & {
-  _wrapTransaction(tx: Transaction, hash?: string): TransactionResponse;
+type ProviderWithWrapTransaction = JsonRpcProvider & {
+  _wrapTransactionResponse(tx: TransactionLike, hash?: string): TransactionResponse;
 };
 
-export class DefenderRelaySigner extends Signer implements TypedDataSigner {
+export class DefenderRelaySigner extends JsonRpcSigner {
   private readonly relayer: Relayer;
-  private address?: string;
 
   constructor(
     readonly relayerCredentials: RelayerParams | Relayer,
-    readonly provider: Provider,
+    provider: JsonRpcProvider,
+    address: string,
     readonly options: DefenderRelaySignerOptions = {},
   ) {
-    super();
+    super(provider, address);
     this.relayer = isRelayer(relayerCredentials) ? relayerCredentials : new Relayer(relayerCredentials);
     if (options) {
       const getUnnecesaryExtraFields = (invalidFields: (keyof GasOptions)[]) =>
@@ -96,10 +106,10 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
   }
 
   // Returns the signed prefixed-message. This MUST treat:
-  // - Bytes as a binary message
+  // - BytesLike as a binary message
   // - string as a UTF8-message
   // i.e. "0x1234" is a SIX (6) byte string, NOT 2 bytes of data
-  public async signMessage(message: string | Bytes): Promise<string> {
+  public async signMessage(message: string | BytesLike): Promise<string> {
     if (typeof message === 'string') {
       message = toUtf8Bytes(message);
     }
@@ -107,76 +117,83 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
     const sig = await this.relayer.sign({
       message: hexlify(message),
     });
-    return joinSignature(sig);
+    return Signature.from(sig).serialized;
   }
 
   // Signs a transaction and returns the fully serialized, signed transaction.
   // The EXACT transaction MUST be signed, and NO additional properties to be added.
   // - This MAY throw if signing transactions is not supports, but if
   //   it does, sentTransaction MUST be overridden.
-  public async signTransaction(transaction: Deferrable<TransactionRequest>): Promise<string> {
+  public async signTransaction(transaction: TransactionRequest): Promise<string> {
     throw new Error('DefenderRelaySigner#signTransaction: method not yet supported');
   }
 
-  public connect(provider: Provider): Signer {
-    return new DefenderRelaySigner(this.relayerCredentials, provider, this.options);
+  public connect(provider: JsonRpcProvider): DefenderRelaySigner {
+    return new DefenderRelaySigner(this.relayerCredentials, provider, this.address, this.options);
   }
 
-  public async sendTransaction(transaction: Deferrable<DefenderTransactionRequest>): Promise<TransactionResponse> {
-    this._checkProvider('sendTransaction');
+  signTypedData(
+    domain: TypedDataDomain,
+    types: Record<string, TypedDataField[]>,
+    value: Record<string, any>,
+  ): Promise<string> {
+    return this._signTypedData(domain, types, value);
+  }
 
+  public async sendTransaction(transaction: DefenderTransactionRequest): Promise<TransactionResponse> {
     const tx = await this.populateTransaction(transaction);
     if (!tx.gasLimit) throw new Error('DefenderRelaySigner#sendTransacton: relayer gas estimation not yet supported');
-    const nonce = tx.nonce === undefined ? undefined : BigNumber.from(tx.nonce).toNumber();
+    const nonce = tx.nonce === undefined ? undefined : BigInt(tx.nonce ?? '0').valueOf();
 
     let payloadGasParams;
 
     if (isLegacyTx(tx) && tx.gasPrice !== undefined) {
       payloadGasParams = {
-        gasPrice: hexlify(tx.gasPrice),
+        gasPrice: toBeHex(tx.gasPrice),
       };
     } else if (isEIP1559Tx(tx) && tx.maxFeePerGas !== undefined && tx.maxPriorityFeePerGas !== undefined) {
       payloadGasParams = {
-        maxFeePerGas: hexlify(tx.maxFeePerGas),
-        maxPriorityFeePerGas: hexlify(tx.maxPriorityFeePerGas),
+        maxFeePerGas: toBeHex(tx.maxFeePerGas),
+        maxPriorityFeePerGas: toBeHex(tx.maxPriorityFeePerGas),
       };
     }
 
     const payload = {
-      to: tx.to,
-      gasLimit: hexlify(tx.gasLimit),
-      data: tx.data ? hexlify(tx.data) : undefined,
+      to: tx.to?.toString(),
+      gasLimit: toBeHex(tx.gasLimit),
+      data: tx.data ? toBeHex(tx.data) : undefined,
       speed: tx.speed,
-      value: tx.value ? hexlify(tx.value) : undefined,
+      value: tx.value ? toBeHex(tx.value) : undefined,
       validUntil: tx.validUntil ? new Date(tx.validUntil).toISOString() : undefined,
       isPrivate: tx.isPrivate,
       ...payloadGasParams,
     };
 
     const relayedTransaction = nonce
-      ? await this.relayer.replaceTransactionByNonce(nonce, payload)
+      ? await this.relayer.replaceTransactionByNonce(Number(nonce), payload)
       : await this.relayer.sendTransaction(payload);
 
     let gasParams;
 
     if (isEIP1559Tx(relayedTransaction)) {
       gasParams = {
-        maxFeePerGas: BigNumber.from(relayedTransaction.maxFeePerGas),
-        maxPriorityFeePerGas: BigNumber.from(relayedTransaction.maxPriorityFeePerGas),
+        maxFeePerGas: BigInt(relayedTransaction.maxFeePerGas.toString()),
+        maxPriorityFeePerGas: BigInt(relayedTransaction.maxPriorityFeePerGas.toString()),
       };
     } else {
       gasParams = {
-        gasPrice: BigNumber.from(relayedTransaction.gasPrice),
+        gasPrice: BigInt(relayedTransaction.gasPrice.toString()),
       };
     }
 
-    return (this.provider as ProviderWithWrapTransaction)._wrapTransaction(
+    return (this.provider as ProviderWithWrapTransaction)._wrapTransactionResponse(
       {
         ...omit(relayedTransaction, 'gasPrice', 'maxPriorityFeePerGas', 'maxFeePerGas'),
         ...gasParams,
-        gasLimit: BigNumber.from(relayedTransaction.gasLimit),
-        value: BigNumber.from(relayedTransaction.value ?? 0),
+        gasLimit: BigInt(relayedTransaction.gasLimit.toString()),
+        value: BigInt(relayedTransaction.value?.toString() ?? '0'),
         data: relayedTransaction.data ?? '',
+        signature: relayedTransaction.signature,
       },
       relayedTransaction.hash,
     );
@@ -184,22 +201,20 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
   // Defender relay does not require all fields to be populated
-  async populateTransaction(transaction: Deferrable<DefenderTransactionRequest>): Promise<DefenderTransactionRequest> {
-    const tx: Deferrable<DefenderTransactionRequest> = await resolveProperties(this.checkTransaction(transaction));
+  async populateTransaction(transaction: DefenderTransactionRequest): Promise<DefenderTransactionRequest> {
+    const tx: DefenderTransactionRequest = await resolveProperties(this.checkTransaction(transaction));
     if (tx.to != null) {
-      tx.to = Promise.resolve(tx.to).then((to) => this.resolveName(to!));
+      const toAsString = await resolveAddress(tx.to);
+      tx.to = (await this.resolveName(toAsString)) ?? toAsString;
     }
 
     if (tx.gasLimit == null) {
-      tx.gasLimit = this.estimateGas(tx).catch((error) => {
-        return logger.throwError(
-          'cannot estimate gas; transaction may fail or may require manual gas limit',
-          Logger.errors.UNPREDICTABLE_GAS_LIMIT,
-          {
-            error: error,
-            tx: tx,
-          },
-        );
+      tx.gasLimit = await this.estimateGas(tx as DefenderTransactionRequest).catch((error) => {
+        console.error('cannot estimate gas; transaction may fail or may require manual gas limit', {
+          error: error,
+          tx: tx,
+        });
+        return null;
       });
     }
 
@@ -218,7 +233,7 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
       tx.validUntil = new Date(Date.now() + this.options.validForSeconds * 1000);
     }
 
-    return await resolveProperties(tx);
+    return tx;
   }
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
@@ -226,14 +241,14 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
   checkTransaction(transaction: Deferrable<DefenderTransactionRequest>): Deferrable<DefenderTransactionRequest> {
     for (const key in transaction) {
       if (allowedTransactionKeys.indexOf(key) === -1) {
-        logger.throwArgumentError('invalid transaction key: ' + key, 'transaction', transaction);
+        console.error('invalid transaction key: ' + key, 'transaction', transaction);
       }
     }
-    const tx = shallowCopy(transaction);
+    const tx: Deferrable<DefenderTransactionRequest> = { ...transaction };
 
     tx.from = Promise.all([Promise.resolve(tx.from), this.getAddress()]).then((result) => {
       if (!!result[0] && result[0].toLowerCase() !== result[1].toLowerCase()) {
-        logger.throwArgumentError('from address mismatch', 'transaction', transaction);
+        console.error('from address mismatch', 'transaction', transaction);
       }
       return result[1];
     });
@@ -255,14 +270,14 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
     types: Record<string, Array<TypedDataField>>,
     value: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any
   ): Promise<string> {
-    const domainSeparator = _TypedDataEncoder.hashDomain(domain);
-    const hashStructMessage = _TypedDataEncoder.from(types).hash(value);
+    const domainSeparator = TypedDataEncoder.hashDomain(domain);
+    const hashStructMessage = TypedDataEncoder.from(types).hash(value);
 
     const sig = await this.relayer.signTypedData({
       domainSeparator: hexlify(domainSeparator),
       hashStructMessage: hexlify(hashStructMessage),
     });
 
-    return joinSignature(sig);
+    return Signature.from(sig).serialized;
   }
 }

@@ -11,7 +11,7 @@ import {
   TxCondition,
 } from '../models/monitor';
 
-import { Interface, EventFragment, FunctionFragment } from '@ethersproject/abi';
+import { Interface, EventFragment, FunctionFragment } from 'ethers';
 import { isTransactionMethod } from '../models/ethers';
 
 // converts to payload for save API
@@ -109,8 +109,10 @@ export function getMonitorConditions(addressRules: AddressRule[]): Conditions {
     const abiInterface = getAbiInterface(rule.abi);
 
     if (abiInterface) {
-      const events = uniqBy(Object.values(abiInterface.events), (e) => e.format());
-      const functions = uniqBy(Object.values(abiInterface.functions), (e) => e.format()).filter(isTransactionMethod);
+      const events = [] as EventFragment[];
+      const functions = [] as FunctionFragment[];
+      abiInterface.forEachEvent((e) => events.push(e));
+      abiInterface.forEachFunction((f) => (isTransactionMethod(f) ? functions.push(f) : null));
 
       if (events.length) abiEvents.push(...events);
       if (functions.length) abiFunctions.push(...functions);

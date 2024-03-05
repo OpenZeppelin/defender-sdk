@@ -15,40 +15,46 @@ async function main() {
 
   const client = new Defender(creds);
   const provider = client.relaySigner.getProvider();
-  const signer = client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
+  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
+  const signerAddress = await signer.getAddress();
 
   const factory = new ethers.ContractFactory(ERC20Abi, ERC20Bytecode, signer);
 
   console.log(`Deploying ERC20 contract`);
   const erc20 = await factory.deploy(100, { gasLimit: 8000000 });
-  console.log(`Contract deployed at address ${erc20.address}`);
+
+  console.log(`Waiting for contract deployment...`);
+  await erc20.deploymentTransaction().wait();
+
+  const contractAddress = await erc20.getAddress();
+  console.log(`Contract deployed at address ${contractAddress}`);
 
   const beneficiary = await ethers.Wallet.createRandom().getAddress();
 
   const addr = await signer.getAddress();
   console.log(`Relayer address is ${addr}`);
 
-  console.log(`Sending approve transaction for ${beneficiary} to token ${erc20.address}...`);
-  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e8 });
+  console.log(`Sending approve transaction for ${beneficiary} to token ${contractAddress}...`);
+  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e8, gasLimit: 8000000 });
   console.log(`Transaction sent:`, tx);
 
   const mined = await tx.wait();
   console.log(`Transaction mined:`, mined);
 
-  const allowance = await erc20.allowance(tx.from, beneficiary);
+  const allowance = await erc20.allowance(addr, beneficiary);
   console.log(`Allowance now is:`, allowance.toString());
 
   const sig = await signer.signMessage('0xdead');
   console.log(`Signature is ${sig}`);
 
   const sigAddress = ethers.verifyMessage('Funds are safu!', sig);
-  console.log(`Signature address is ${sigAddress} matching relayer address ${mined.from}`);
+  console.log(`Signature address is ${sigAddress} matching relayer address ${signerAddress}`);
 
   const typedSig = await signer._signTypedData(domain, types, value);
   console.log(`Typed data signature is ${typedSig}`);
 
   const typedSigAddress = ethers.verifyTypedData(domain, types, value, typedSig);
-  console.log(`Typed data signature address is ${typedSigAddress} matching relayer address ${mined.from}`);
+  console.log(`Typed data signature address is ${typedSigAddress} matching relayer address ${signerAddress}`);
 }
 
 if (require.main === module) {
