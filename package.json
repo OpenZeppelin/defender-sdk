@@ -45,11 +45,15 @@
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
-    "version-set": "changeset version"
+    "version-set": "changeset version",
+    "publish-package": "changeset publish"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenZeppelin/defender-sdk.git"
+  },
+  "publishConfig": {
+    "provenance": true
   },
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
