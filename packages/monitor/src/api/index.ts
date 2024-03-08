@@ -59,10 +59,8 @@ export class MonitorClient extends BaseApiClient {
   }
 
   public async update(id: string, params: UpdateMonitorRequest): Promise<CreateMonitorResponse> {
-    const currentMonitor = await this.get(id);
-
     return this.apiCall(async (api) => {
-      return await api.put(`/monitors/${id}`, await this.mergeApiMonitorWithUpdateMonitor(currentMonitor, params));
+      return await api.put(`/monitors/${id}`, params);
     });
   }
 
@@ -74,30 +72,14 @@ export class MonitorClient extends BaseApiClient {
   }
 
   public async pause(id: string): Promise<ExternalCreateMonitorRequest> {
-    const monitor = await this.get(id);
     return this.apiCall(async (api) => {
-      return await api.put(
-        `/monitors/${id}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, {
-          monitorId: id,
-          type: monitor.type,
-          paused: true,
-        }),
-      );
+      return await api.put(`/monitors/${id}`, { paused: true });
     });
   }
 
   public async unpause(id: string): Promise<ExternalCreateMonitorRequest> {
-    const monitor = await this.get(id);
     return this.apiCall(async (api) => {
-      return await api.put(
-        `/monitors/${id}`,
-        await this.mergeApiMonitorWithUpdateMonitor(monitor, {
-          monitorId: id,
-          type: monitor.type,
-          paused: false,
-        }),
-      );
+      return await api.put(`/monitors/${id}`, { paused: false });
     });
   }
 
