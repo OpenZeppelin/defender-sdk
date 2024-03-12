@@ -5,6 +5,7 @@ export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
   | 'mainnet'
   | 'sepolia'
+  | 'holesky'
   | 'goerli'
   | 'xdai'
   | 'sokol'
@@ -55,6 +56,7 @@ export type TenantNetwork = string;
 export const Networks: Network[] = [
   'mainnet',
   'sepolia',
+  'holesky',
   'goerli',
   'xdai',
   'sokol',
@@ -119,6 +121,7 @@ export function toChainId(network: Network): number | undefined {
 const chainIds: { [key in Network]: number } = {
   'mainnet': 1,
   'sepolia': 11155111,
+  'holesky': 17000,
   'goerli': 5,
   'xdai': 100,
   'sokol': 77,
