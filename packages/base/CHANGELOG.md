@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.11.0
+
+### Minor Changes
+
+- 49c1994: refactor: Deprecate optimism-goerli network
+  chore: Enable zkEVM networks
+  chore: Upgrade npm packages
+
 ## 1.10.0
 
 ### Minor Changes
