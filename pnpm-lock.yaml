@@ -157,8 +157,8 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
 
   examples/ethers-signer:
     dependencies:
@@ -169,8 +169,8 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
 
   examples/get-usage:
     dependencies:
@@ -238,8 +238,8 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
 
   examples/update-action:
     dependencies:
@@ -398,8 +398,8 @@ importers:
         specifier: ^1.6.7
         version: 1.6.7
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -437,8 +437,8 @@ importers:
         specifier: ^1.6.7
         version: 1.6.7
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -467,8 +467,8 @@ importers:
         specifier: ^1.6.7
         version: 1.6.7
       ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.11.1
+        version: 6.11.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -511,8 +511,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@adraffy/ens-normalize@1.10.0:
-    resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
+  /@adraffy/ens-normalize@1.10.1:
+    resolution: {integrity: sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==}
     dev: false
 
   /@ampproject/remapping@2.2.1:
@@ -1908,7 +1908,7 @@ packages:
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.10.0
       axios: 1.6.7
-      ethers: 6.9.0
+      ethers: 6.11.1
       lodash: 4.17.21
     transitivePeerDependencies:
       - bufferutil
@@ -3795,11 +3795,11 @@ packages:
       ethereum-cryptography: 0.1.3
       rlp: 2.2.7
 
-  /ethers@6.9.0:
-    resolution: {integrity: sha512-pmfNyQzc2mseLe91FnT2vmNaTt8dDzhxZ/xItAV7uGsF4dI4ek2ufMu3rAkgQETL/TIs0GS5A+U05g9QyWnv3Q==}
+  /ethers@6.11.1:
+    resolution: {integrity: sha512-mxTAE6wqJQAbp5QAe/+o+rXOID7Nw91OZXvgpjDa1r4fAbq2Nu314oEZSbjoRLacuCzs7kUC3clEvkCQowffGg==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@adraffy/ens-normalize': 1.10.0
+      '@adraffy/ens-normalize': 1.10.1
       '@noble/curves': 1.2.0
       '@noble/hashes': 1.3.2
       '@types/node': 18.15.13
@@ -7791,7 +7791,7 @@ packages:
     resolution: {integrity: sha512-nj0JfeD45BbzVJcVYpUJnSo8iwDcY9CQ7CZhhIVVOFjvpMAPw0zEwjTvZEIQyCW61OoDG9xcBzwxe2tZoYhMRw==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
-      '@adraffy/ens-normalize': 1.10.0
+      '@adraffy/ens-normalize': 1.10.1
       web3-core: 4.3.2
       web3-errors: 1.1.4
       web3-eth: 4.3.1(typescript@4.9.5)
