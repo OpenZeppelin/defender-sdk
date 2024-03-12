@@ -70,7 +70,10 @@ async function main() {
   console.log('created monitor id', created.monitorId);
 
   const updated = await client.monitor.update(created.monitorId, {
+    // updates monitor name
     name: 'Monitor name updated!',
+    // removes notification channels
+    notificationChannels: [],
   });
 
   console.log('new name:', updated.name);
