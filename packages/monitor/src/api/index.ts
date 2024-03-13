@@ -362,20 +362,4 @@ export class MonitorClient extends BaseApiClient {
 
     throw new Error(`Invalid monitor type. Type must be FORTA or BLOCK`);
   }
-
-  private mergeApiMonitorWithUpdateMonitor(
-    apiMonitor: CreateMonitorResponse,
-    monitor: UpdateMonitorRequest,
-  ): Promise<CreateMonitorRequest> {
-    const newMonitor: ExternalCreateMonitorRequest = this.toCreateMonitorRequest(apiMonitor);
-
-    const updatedProperties = Object.keys(monitor) as Array<keyof typeof monitor>;
-    for (const prop of updatedProperties) {
-      if (prop !== 'monitorId') {
-        (newMonitor[prop] as any) = monitor[prop];
-      }
-    }
-
-    return this.constructMonitorRequest(newMonitor);
-  }
 }
