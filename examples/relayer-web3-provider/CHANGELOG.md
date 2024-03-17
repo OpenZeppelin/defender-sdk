@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.3.1
+
+### Patch Changes
+
+- 086927c: This is a temporary test
+- Updated dependencies [086927c]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.11.1
+
 ## 1.3.0
 
 ### Minor Changes

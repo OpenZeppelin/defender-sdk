@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-create-forked-network
 
+## 1.11.1
+
+### Patch Changes
+
+- 086927c: This is a temporary test
+- Updated dependencies [086927c]
+  - @openzeppelin/defender-sdk@1.11.1
+
 ## 1.11.0
 
 ### Minor Changes
