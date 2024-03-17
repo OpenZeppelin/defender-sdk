@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.20.0
 
       - name: Install Dependencies
         run: yarn
