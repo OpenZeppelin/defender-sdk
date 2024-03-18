@@ -3,7 +3,7 @@ name: Version Package
 on:
   push:
     branches:
-      - PLAT-4351 # temp for testing
+      - PLAT-4351 # temp
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
