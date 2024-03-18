@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.12.0
+
+### Minor Changes
+
+- 28e62c5: Temporary testing
+
 ## 1.11.0
 
 ### Minor Changes
