@@ -1,5 +1,16 @@
 # @openzeppelin/defender-sdk-example-relay-signer-action
 
+## 1.12.0
+
+### Minor Changes
+
+- 28e62c5: Temporary testing
+
+### Patch Changes
+
+- Updated dependencies [28e62c5]
+  - @openzeppelin/defender-sdk@1.12.0
+
 ## 1.11.0
 
 ### Minor Changes
