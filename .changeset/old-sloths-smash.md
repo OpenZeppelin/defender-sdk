@@ -34,4 +34,4 @@
 '@openzeppelin/defender-sdk-relay-signer-client': minor
 ---
 
-Temporary test
+Temporary testing
