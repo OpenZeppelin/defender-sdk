@@ -1,5 +1,25 @@
 # @openzeppelin/defender-sdk
 
+## 1.12.0
+
+### Minor Changes
+
+- 28e62c5: Temporary testing
+
+### Patch Changes
+
+- Updated dependencies [28e62c5]
+  - @openzeppelin/defender-sdk-account-client@1.12.0
+  - @openzeppelin/defender-sdk-action-client@1.12.0
+  - @openzeppelin/defender-sdk-base-client@1.12.0
+  - @openzeppelin/defender-sdk-deploy-client@1.12.0
+  - @openzeppelin/defender-sdk-monitor-client@1.12.0
+  - @openzeppelin/defender-sdk-network-client@1.12.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.12.0
+  - @openzeppelin/defender-sdk-proposal-client@1.12.0
+  - @openzeppelin/defender-sdk-relay-client@1.12.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.12.0
+
 ## 1.11.0
 
 ### Minor Changes
