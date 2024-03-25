@@ -34,7 +34,7 @@ jobs:
         uses: ./.github/actions/prepare
 
       - name: Create Release Pull Request
-        uses: changesets/action@f13b1baaa620fde937751f5d2c3572b9da32af23 # v1.4.5
+        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
