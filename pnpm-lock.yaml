@@ -107,7 +107,7 @@ importers:
     dependencies:
       '@openzeppelin/defender-sdk':
         specifier: 1.10.0
-        version: 1.10.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
+        version: 1.10.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -341,8 +341,8 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
       aws-sdk:
-        specifier: ^2.1560.0
-        version: 2.1560.0
+        specifier: ^2.1584.0
+        version: 2.1584.0
 
   packages/defender-sdk:
     dependencies:
@@ -1198,6 +1198,7 @@ packages:
     dependencies:
       '@ethersproject/bytes': 5.7.0
       '@ethersproject/properties': 5.7.0
+    dev: true
 
   /@ethersproject/bignumber@5.7.0:
     resolution: {integrity: sha512-n1CAdIHRWjSucQO3MC1zPSVgV/6dy/fjL9pMrPP9peL+QxEg9wOsVqwD4+818B6LUEtaXzVHQiuivzRoxPxUGw==}
@@ -1215,21 +1216,6 @@ packages:
     resolution: {integrity: sha512-DHI+y5dBNvkpYUMiRQyxRBYBefZkJfo70VUkUAsRjcPs47muV9evftfZ0PJVCXYbAiCgght0DtcF9srFQmIgWA==}
     dependencies:
       '@ethersproject/bignumber': 5.7.0
-
-  /@ethersproject/contracts@5.7.0:
-    resolution: {integrity: sha512-5GJbzEU3X+d33CdfPhcyS+z8MzsTrBGk/sc+G+59+tPa9yFkl6HQ9D6L0QMgNTA9q8dT0XKxxkyp883XsQvbbg==}
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@ethersproject/abstract-provider': 5.7.0
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/constants': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-    dev: false
 
   /@ethersproject/hash@5.7.0:
     resolution: {integrity: sha512-qX5WrQfnah1EFnO5zJv1v46a8HW0+E5xuBBDTwMFZLuVTx0tbU2kkx15NqdjxecrLGatQN9FGQKpb1FKdHCt+g==}
@@ -1289,12 +1275,14 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    dev: true
 
   /@ethersproject/random@5.7.0:
     resolution: {integrity: sha512-19WjScqRA8IIeWclFme75VMXSBvi4e6InrUNuaR4s5pTF2qNhcGdCUwdxUVGtDDqC00sDLCO93jPQoDUH4HVmQ==}
     dependencies:
       '@ethersproject/bytes': 5.7.0
       '@ethersproject/logger': 5.7.0
+    dev: true
 
   /@ethersproject/rlp@5.7.0:
     resolution: {integrity: sha512-rBxzX2vK8mVF7b0Tol44t5Tb8gomOHkj5guL+HhzQ1yBh/ydjGnpw6at+X6Iw0Kp3OzzzkcKp8N9r0W4kYSs9w==}
@@ -1308,6 +1296,7 @@ packages:
       '@ethersproject/bytes': 5.7.0
       '@ethersproject/logger': 5.7.0
       hash.js: 1.1.7
+    dev: true
 
   /@ethersproject/signing-key@5.7.0:
     resolution: {integrity: sha512-MZdy2nL3wO0u7gkB4nA/pEf8lu1TlFswPNmy8AiYkfKTdO6eXBJyUdmHO/ehm/htHw9K/qF8ujnTyUAD+Ry54Q==}
@@ -1820,10 +1809,10 @@ packages:
     dev: true
     optional: true
 
-  /@openzeppelin/defender-sdk-account-client@1.10.0:
-    resolution: {integrity: sha512-Zs1DbnzUizlmghv8FuOsiHcs9sBuJzP685YY0/u8l0TsG6SOlNnqlF7O94OecF4gJ2chNVLmCrPltcycjI21vg==}
+  /@openzeppelin/defender-sdk-account-client@1.11.0:
+    resolution: {integrity: sha512-2MiPlf0bJG/KmcIHCHaz9SO2NX90Th0yPJTcbdByFIgiczsywLriBXZpGQbx9tc2/X6OwUuVdV6Klrqj7q7PTQ==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1831,11 +1820,11 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-action-client@1.10.0:
-    resolution: {integrity: sha512-1RoNbqpkEz69XA5TeUzDw17ua3/7exRYrDgbJQv4VLtoHLWD3bkNFJCStdAFiyBd5x06quW1QSg11KkiNBjkRg==}
+  /@openzeppelin/defender-sdk-action-client@1.11.0:
+    resolution: {integrity: sha512-2V/vAbi/9oIPoltY/naYmHOol1Lmxz7lLKFQ4z7eRLCPwZeCnTuP1dvyDbqq4JIP2aBQtB0Ba7s1poW0s3xHhA==}
     hasBin: true
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       axios: 1.6.7
       dotenv: 16.3.1
       glob: 7.2.3
@@ -1846,8 +1835,8 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-base-client@1.10.0:
-    resolution: {integrity: sha512-V21oI4G54sdEJ9lVN8q5OqfFRUoVDzjeXfWgpQvUpfy69r56NnE57D6e5RLG1fRp1J0APfW3lFjaaLwl0kqZpg==}
+  /@openzeppelin/defender-sdk-base-client@1.11.0:
+    resolution: {integrity: sha512-HNcbRhbcMZZM5Ri5IfUwJaiJZGIrc0yboRZRlXJfG2aFS/EMfUFnQHC0tyyXtCOAoAZcn+iMlsSj5h8CoUeCfw==}
     dependencies:
       amazon-cognito-identity-js: 6.3.6
       async-retry: 1.3.3
@@ -1855,11 +1844,10 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-deploy-client@1.10.0:
-    resolution: {integrity: sha512-PckmUQYwe26/u/s3sjLateSNtKQ0tdAaOyP6spsgaT+us+XUUqAt/EUfEJdGpt8JApsRWYzrQzH6Z0ywoUyqyw==}
+  /@openzeppelin/defender-sdk-deploy-client@1.11.0:
+    resolution: {integrity: sha512-ELYVihsrTOlH7Sy5C/+Yf64hV3ICeTY2OcczOWVQ/o6rHBWKSnHSZCE/oB1cfOpyg/gCrCLXozs4NyrS5z3GUw==}
     dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1867,46 +1855,10 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-monitor-client@1.10.0:
-    resolution: {integrity: sha512-89d0+g/7/7ZIcjuW564z4f2iHHQswCpMuOb8LpjQWt6PkMDOQdiVU/v7+kve3ixZODTRamY7cx+OGz5+n93Mkw==}
+  /@openzeppelin/defender-sdk-monitor-client@1.11.0:
+    resolution: {integrity: sha512-ErDLkkRHDrq+fDQq2oKGtiowOwzkGY1AhDZ09yyED8f2+7tdU54O5tD24BD8Ia4G+uiVwh8CKxKxhw7nIDQmdQ==}
     dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-network-client@1.10.0:
-    resolution: {integrity: sha512-nrSuJ4KKhTIO2f1WIKtCq0XbeHb4ExqvpIE2g4yf/k8DmZuM9SR6xNDLz7wuKt11u+U88AYBN9MoiKRo/ybp6w==}
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-notification-channel-client@1.10.0:
-    resolution: {integrity: sha512-TLDsKU5RMyayAaulHXA2SurRuSJy0+59HEM/gHUf/eQTH8MXIhq+MWaxRCBZdcAm6OSkl3xI9gc791VJ1kTToA==}
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-proposal-client@1.10.0:
-    resolution: {integrity: sha512-t5nIoeusfDzyyTro45u1nuVQ8wrt9oCscDcOmkRyrQCaOUWxFz7i7xYAt3pC4vOjeMpVGfm68fp/VgLvU0S5Rw==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       axios: 1.6.7
       ethers: 6.9.0
       lodash: 4.17.21
@@ -1917,10 +1869,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-client@1.10.0:
-    resolution: {integrity: sha512-0m15nNDZ3U5imFarl/0up/RoltvhHQBPNUuXAXiLAFoeDx9i2W5VjWvHbTqeUREqyJKyruuPQgxT9zk4oHX4KQ==}
+  /@openzeppelin/defender-sdk-network-client@1.11.0:
+    resolution: {integrity: sha512-CPy1TA6RyFYtACbvXZJhJpsYW2u4yxTSNU8cVIw1lH/9iArXzfWuJ2p8Deidc0sJBbMeJYkv1AvqTBJNifjKMg==}
     dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       axios: 1.6.7
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1928,35 +1880,55 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk-relay-signer-client@1.10.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
-    resolution: {integrity: sha512-ne/rB7HMho8RBJKc0lb0Fg/A6gLNxW6Qgbq9rvuxm7C+X976Egws67wwQvG4yIHVi8bjXbOvJrv5QRLqhZ99kQ==}
+  /@openzeppelin/defender-sdk-notification-channel-client@1.11.0:
+    resolution: {integrity: sha512-V6bq15MtsKg9raaleiMiGyYDlZXv0Wt/GIMtkGZYuZSuXx12TBmz0NXNMI0OdxP6y0EB36ShbRf5rxxDtE3fAg==}
+    dependencies:
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
+      axios: 1.6.7
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - debug
+      - encoding
+    dev: false
+
+  /@openzeppelin/defender-sdk-proposal-client@1.11.0:
+    resolution: {integrity: sha512-Dy4PZnKKrNlvRdLzmpkcDhUuj4rFm5YOd0ePQeuj2vM/XX9nPZxpUZIWxqZPoTEXLaZy/VvPlYxFjmdjAYNXnw==}
+    dependencies:
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
+      axios: 1.6.7
+      ethers: 6.9.0
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - utf-8-validate
+    dev: false
+
+  /@openzeppelin/defender-sdk-relay-client@1.11.0:
+    resolution: {integrity: sha512-fzs5jZNqI0c8imDQ3fwr3jg4zOc4Jp4brZAYmq36QMWxdJNKtiZ+5T1E/HXKDy5or7fgRGL1PWlizyvgsE6IwQ==}
+    dependencies:
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
+      axios: 1.6.7
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - debug
+      - encoding
+    dev: false
+
+  /@openzeppelin/defender-sdk-relay-signer-client@1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
+    resolution: {integrity: sha512-Y6kl5ZeW8MVACvC8SZua8nugsH1LB2WKKb6M2OSOFItuGV6X2ERygiQ1HijZRoShwQ7AJkGrRRD3NEeXBYFqVA==}
     peerDependencies:
-      '@ethersproject/abstract-provider': ^5.6.1
-      '@ethersproject/abstract-signer': ^5.6.2
-      '@ethersproject/hash': ^5.6.1
-      '@ethersproject/providers': ^5.6.8
-      '@ethersproject/transactions': ^5.6.2
+      ethers: ^6.9.0
       web3: ^1.8.2
       web3-core: ^1.10.3
       web3-core-helpers: ^1.8.2
       web3-utils: ^1.8.2
     dependencies:
-      '@ethersproject/abstract-provider': 5.7.0
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/contracts': 5.7.0
-      '@ethersproject/hash': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/networks': 5.7.1
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
-      '@ethersproject/random': 5.7.0
-      '@ethersproject/strings': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
       amazon-cognito-identity-js: 6.3.6
       axios: 1.6.7
+      ethers: 6.9.0
       lodash: 4.17.21
       web3: 1.8.2
       web3-core: 1.10.3
@@ -1967,28 +1939,24 @@ packages:
       - encoding
     dev: false
 
-  /@openzeppelin/defender-sdk@1.10.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
+  /@openzeppelin/defender-sdk@1.10.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
     resolution: {integrity: sha512-pHkHedLb5bAIRSrEpNvJ+lnb4bRwzVi/psU8Q+wQW/K4Er4hYc5Ei/utuz1gATr5v9aMoR1etUqZXVDZT0Obcw==}
     dependencies:
-      '@openzeppelin/defender-sdk-account-client': 1.10.0
-      '@openzeppelin/defender-sdk-action-client': 1.10.0
-      '@openzeppelin/defender-sdk-base-client': 1.10.0
-      '@openzeppelin/defender-sdk-deploy-client': 1.10.0
-      '@openzeppelin/defender-sdk-monitor-client': 1.10.0
-      '@openzeppelin/defender-sdk-network-client': 1.10.0
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.10.0
-      '@openzeppelin/defender-sdk-proposal-client': 1.10.0
-      '@openzeppelin/defender-sdk-relay-client': 1.10.0
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.10.0(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/transactions@5.7.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
+      '@openzeppelin/defender-sdk-account-client': 1.11.0
+      '@openzeppelin/defender-sdk-action-client': 1.11.0
+      '@openzeppelin/defender-sdk-base-client': 1.11.0
+      '@openzeppelin/defender-sdk-deploy-client': 1.11.0
+      '@openzeppelin/defender-sdk-monitor-client': 1.11.0
+      '@openzeppelin/defender-sdk-network-client': 1.11.0
+      '@openzeppelin/defender-sdk-notification-channel-client': 1.11.0
+      '@openzeppelin/defender-sdk-proposal-client': 1.11.0
+      '@openzeppelin/defender-sdk-relay-client': 1.11.0
+      '@openzeppelin/defender-sdk-relay-signer-client': 1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
     transitivePeerDependencies:
-      - '@ethersproject/abstract-provider'
-      - '@ethersproject/abstract-signer'
-      - '@ethersproject/hash'
-      - '@ethersproject/providers'
-      - '@ethersproject/transactions'
       - bufferutil
       - debug
       - encoding
+      - ethers
       - utf-8-validate
       - web3
       - web3-core
@@ -2556,9 +2524,10 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-sdk@2.1560.0:
-    resolution: {integrity: sha512-nakTZHytnhKWZpwu9d1crqjoegBRG+j1/rflsVnckXxoIwlKM0D/v/NIe+BJmRnCA2aCdwuMx3dtkgLz/AB6VA==}
+  /aws-sdk@2.1584.0:
+    resolution: {integrity: sha512-57Qizb+bLOhrBLWQSWw6WXTtbO/lFKzLouHxTfm/QeXm38gs0Q0knFxhdH+sWc/DPPJYSRGy7MNiuQcmsq5zxA==}
     engines: {node: '>= 10.0.0'}
+    requiresBuild: true
     dependencies:
       buffer: 4.9.2
       events: 1.1.1
@@ -2690,6 +2659,7 @@ packages:
 
   /bech32@1.1.4:
     resolution: {integrity: sha512-s0IrSOzLlbvX7yp4WBfPITzpAU8sqQcpsmwXDiKwrG4r491vwCO/XpejasRNl0piBMe/DvP4Tz0mIS/X1DPJBQ==}
+    dev: true
 
   /better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
@@ -8283,6 +8253,7 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: true
 
   /ws@8.15.1:
     resolution: {integrity: sha512-W5OZiCjXEmk0yZ66ZN82beM5Sz7l7coYxpRkzS+p9PP+ToQry8szKh+61eNktr7EA9DOwvFGhfC605jDHbP6QQ==}
