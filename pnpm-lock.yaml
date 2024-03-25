@@ -268,15 +268,6 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
 
-  examples/update-notification-category:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.11.0
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
   examples/update-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
