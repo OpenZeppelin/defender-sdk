@@ -31,7 +31,7 @@ async function main() {
 
   const blockRequestParameters = {
     type: 'BLOCK', // BLOCK or FORTA
-    network: 'goerli',
+    network: 'sepolia',
     // optional
     confirmLevel: 1, // if not set, we pick the blockwatcher for the chosen network with the lowest offset
     name: 'My Monitor',
@@ -72,7 +72,10 @@ async function main() {
   console.log('created monitor id', created.monitorId);
 
   const updated = await client.monitor.update(created.monitorId, {
+    // updates monitor name
     name: 'Monitor name updated!',
+    // removes notification channels
+    notificationChannels: [],
   });
 
   console.log('new name:', updated.name);

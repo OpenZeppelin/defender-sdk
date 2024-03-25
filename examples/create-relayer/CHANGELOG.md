@@ -1,5 +1,18 @@
 # example-create-relayer
 
+## 1.11.0
+
+### Minor Changes
+
+- 49c1994: refactor: Deprecate optimism-goerli network
+  chore: Enable zkEVM networks
+  chore: Upgrade npm packages
+
+### Patch Changes
+
+- Updated dependencies [49c1994]
+  - @openzeppelin/defender-sdk@1.11.0
+
 ## 1.10.0
 
 ### Minor Changes
