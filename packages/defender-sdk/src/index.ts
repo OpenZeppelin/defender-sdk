@@ -55,7 +55,11 @@ export class Defender {
   }
 
   public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
-    return getClient(NetworkClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listSupportedNetworks(opts);
+    return getClient(NetworkClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+    }).listSupportedNetworks(opts);
   }
 
   get network() {
