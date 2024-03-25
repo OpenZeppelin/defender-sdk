@@ -204,8 +204,8 @@ export class DefenderRelaySigner extends JsonRpcSigner {
   async populateTransaction(transaction: DefenderTransactionRequest): Promise<DefenderTransactionRequest> {
     const tx: DefenderTransactionRequest = await resolveProperties(this.checkTransaction(transaction));
     if (tx.to != null) {
-      const toAsString = await resolveAddress(tx.to);
-      tx.to = (await this.resolveName(toAsString)) ?? toAsString;
+      // relayer provider acts as name resolver if parameter is an ENS name
+      tx.to = await resolveAddress(tx.to, this.provider);
     }
 
     if (tx.gasLimit == null) {
