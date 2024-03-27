@@ -55,7 +55,7 @@
     "url": "https://github.com/OpenZeppelin/defender-sdk/issues"
   },
   "engines": {
-    "node": "16.20.0",
+    "node": "20.11.1",
     "npm": "use pnpm",
     "pnpm": ">=7",
     "yarn": "use pnpm"
