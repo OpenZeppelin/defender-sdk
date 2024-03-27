@@ -8,13 +8,20 @@ export function rejectWithDefenderApiError(axiosError: AxiosError): Promise<neve
   return Promise.reject(new DefenderApiResponseError(axiosError));
 }
 
-export function createApi(key: string, token: string, apiUrl: string, httpsAgent?: https.Agent): AxiosInstance {
+export function createApi(
+  key: string,
+  token: string,
+  apiUrl: string,
+  httpsAgent?: https.Agent,
+  headers?: Record<string, string>,
+): AxiosInstance {
   const instance = axios.create({
     baseURL: apiUrl,
     headers: {
       'X-Api-Key': key,
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
+      ...headers,
     },
     httpsAgent,
   });
@@ -28,8 +35,9 @@ export function createAuthenticatedApi(
   session: CognitoUserSession,
   apiUrl: string,
   httpsAgent?: https.Agent,
+  headers?: Record<string, string>,
 ): AxiosInstance {
   const accessToken = session.getAccessToken().getJwtToken();
 
-  return createApi(username, accessToken, apiUrl, httpsAgent);
+  return createApi(username, accessToken, apiUrl, httpsAgent, headers);
 }
