@@ -64,6 +64,10 @@ export abstract class BaseApiClient {
         const api = await this.refresh();
         return await fn(api);
       }
+      // Cloudflare error
+      if (error.response && error.response.status === 520 && error.response.data.includes('Cloudflare')) {
+        return await fn(api);
+      }
       throw error;
     }
   }
