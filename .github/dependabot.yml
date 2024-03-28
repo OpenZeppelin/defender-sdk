@@ -91,11 +91,6 @@ updates:
       interval: daily
 
   - package-ecosystem: npm
-    directory: /examples/update-notification-category
-    schedule:
-      interval: daily
-
-  - package-ecosystem: npm
     directory: /examples/update-relayer
     schedule:
       interval: daily

@@ -5,6 +5,8 @@ export type ExternalUpdateMonitorRequest = ExternalUpdateBlockMonitorRequest | E
 export interface ExternalBaseCreateMonitorRequest {
   name: string;
   addresses?: string[];
+  type: 'FORTA' | 'BLOCK';
+  notificationChannels: string[];
   abi?: string;
   paused?: boolean;
   alertThreshold?: Threshold;
@@ -13,9 +15,7 @@ export interface ExternalBaseCreateMonitorRequest {
   alertTimeoutMs?: number;
   alertMessageBody?: string;
   alertMessageSubject?: string;
-  notificationChannels: string[];
-  notificationCategoryId?: string;
-  type: 'FORTA' | 'BLOCK';
+  severityLevel?: NotificationSeverityLevel;
   riskCategory?: MonitorRiskCategory;
   stackResourceId?: string;
 }
@@ -128,6 +128,7 @@ export enum MonitorType {
 }
 
 export type MonitorRiskCategory = 'NONE' | 'GOVERNANCE' | 'ACCESS-CONTROL' | 'SUSPICIOUS' | 'FINANCIAL' | 'TECHNICAL';
+export type NotificationSeverityLevel = 'LOW' | 'MEDIUM' | 'HIGH';
 
 export type Address = string;
 export interface AddressRule {
@@ -162,7 +163,7 @@ export interface Threshold {
 }
 export interface Notifications {
   notifications: NotificationReference[];
-  notificationCategoryId?: string;
+  severityLevel?: NotificationSeverityLevel;
   actionId?: string;
   messageBody?: string;
   messageSubject?: string;
@@ -176,7 +177,7 @@ export interface NotificationReference {
 
 // Copied from ui/src/components/monitor/types.ts
 
-import { EventFragment, FunctionFragment } from '@ethersproject/abi';
+import { EventFragment, FunctionFragment } from 'ethers';
 
 export type Description = EventFragment | FunctionFragment;
 export type Condition = EventCondition | FunctionCondition | undefined;

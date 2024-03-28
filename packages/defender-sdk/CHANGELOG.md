@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.11.0
+
+### Minor Changes
+
+- 49c1994: refactor: Deprecate optimism-goerli network
+  chore: Enable zkEVM networks
+  chore: Upgrade npm packages
+
+### Patch Changes
+
+- Updated dependencies [49c1994]
+  - @openzeppelin/defender-sdk-account-client@1.11.0
+  - @openzeppelin/defender-sdk-action-client@1.11.0
+  - @openzeppelin/defender-sdk-base-client@1.11.0
+  - @openzeppelin/defender-sdk-deploy-client@1.11.0
+  - @openzeppelin/defender-sdk-monitor-client@1.11.0
+  - @openzeppelin/defender-sdk-network-client@1.11.0
+  - @openzeppelin/defender-sdk-notification-channel-client@1.11.0
+  - @openzeppelin/defender-sdk-proposal-client@1.11.0
+  - @openzeppelin/defender-sdk-relay-client@1.11.0
+  - @openzeppelin/defender-sdk-relay-signer-client@1.11.0
+
 ## 1.10.0
 
 ### Minor Changes

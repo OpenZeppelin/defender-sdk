@@ -5,6 +5,7 @@ export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
   | 'mainnet'
   | 'sepolia'
+  | 'holesky'
   | 'goerli'
   | 'xdai'
   | 'sokol'
@@ -18,8 +19,8 @@ export type PublicNetwork =
   | 'moonbeam'
   | 'matic'
   | 'mumbai'
-  // | 'matic-zkevm'
-  // | 'matic-zkevm-testnet'
+  | 'matic-zkevm'
+  | 'matic-zkevm-testnet'
   | 'avalanche'
   | 'fuji'
   | 'arbitrum'
@@ -27,7 +28,6 @@ export type PublicNetwork =
   | 'arbitrum-goerli'
   | 'arbitrum-sepolia'
   | 'optimism'
-  | 'optimism-goerli'
   | 'optimism-sepolia'
   | 'celo'
   | 'alfajores'
@@ -56,6 +56,7 @@ export type TenantNetwork = string;
 export const Networks: Network[] = [
   'mainnet',
   'sepolia',
+  'holesky',
   'goerli',
   'xdai',
   'sokol',
@@ -69,6 +70,8 @@ export const Networks: Network[] = [
   'moonbeam',
   'matic',
   'mumbai',
+  'matic-zkevm',
+  'matic-zkevm-testnet',
   'avalanche',
   'fuji',
   'arbitrum',
@@ -76,7 +79,6 @@ export const Networks: Network[] = [
   'arbitrum-goerli',
   'arbitrum-sepolia',
   'optimism',
-  'optimism-goerli',
   'optimism-sepolia',
   'celo',
   'alfajores',
@@ -119,6 +121,7 @@ export function toChainId(network: Network): number | undefined {
 const chainIds: { [key in Network]: number } = {
   'mainnet': 1,
   'sepolia': 11155111,
+  'holesky': 17000,
   'goerli': 5,
   'xdai': 100,
   'sokol': 77,
@@ -132,12 +135,11 @@ const chainIds: { [key in Network]: number } = {
   'moonbeam': 1284,
   'matic': 137,
   'mumbai': 80001,
-  // 'matic-zkevm': 1101,
-  // 'matic-zkevm-testnet': 1442,
+  'matic-zkevm': 1101,
+  'matic-zkevm-testnet': 1442,
   'avalanche': 0xa86a,
   'fuji': 0xa869,
   'optimism': 10,
-  'optimism-goerli': 420,
   'optimism-sepolia': 11155420,
   'arbitrum': 42161,
   'arbitrum-nova': 42170,

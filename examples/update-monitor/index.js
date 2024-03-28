@@ -24,14 +24,19 @@ async function ensureNotificationChannelExists(client) {
 }
 
 async function main() {
-  const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
+  const creds = {
+    apiKey: process.env.API_KEY,
+    apiSecret: process.env.API_SECRET,
+    //optional https config to keep connection alive. You can pass any configs that are accepted by https.Agent
+    httpsAgent: https.Agent({ keepAlive: true }),
+  };
   const client = new Defender(creds);
 
   const notification = await ensureNotificationChannelExists(client);
 
   const blockRequestParameters = {
     type: 'BLOCK', // BLOCK or FORTA
-    network: 'goerli',
+    network: 'sepolia',
     // optional
     confirmLevel: 1, // if not set, we pick the blockwatcher for the chosen network with the lowest offset
     name: 'My Monitor',
@@ -61,6 +66,8 @@ async function main() {
     // optional
     alertTimeoutMs: 0,
     notificationChannels: [notification.notificationId],
+    // optional (LOW, MEDIUM, HIGH)
+    severityLevel: 'MEDIUM',
     // optional
     riskCategory: 'TECHNICAL',
   };
@@ -70,7 +77,10 @@ async function main() {
   console.log('created monitor id', created.monitorId);
 
   const updated = await client.monitor.update(created.monitorId, {
+    // updates monitor name
     name: 'Monitor name updated!',
+    // removes notification channels
+    notificationChannels: [],
   });
 
   console.log('new name:', updated.name);

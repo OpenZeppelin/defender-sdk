@@ -9,7 +9,7 @@ import {
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
 import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
-import { Provider } from '@ethersproject/abstract-provider';
+import { JsonRpcProvider } from 'ethers';
 
 export class Relayer implements IRelayer {
   private relayer: IRelayer;
@@ -43,9 +43,13 @@ export class Relayer implements IRelayer {
     return new DefenderRelayProvider(this.credentials);
   }
 
-  public getSigner(provider: Provider, options: DefenderRelaySignerOptions = {}): DefenderRelaySigner {
+  public async getSigner(
+    provider: JsonRpcProvider,
+    options: DefenderRelaySignerOptions = {},
+  ): Promise<DefenderRelaySigner> {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
-    return new DefenderRelaySigner(this.credentials, provider, options);
+    const relayer = await this.relayer.getRelayer();
+    return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
   }
 
   public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {

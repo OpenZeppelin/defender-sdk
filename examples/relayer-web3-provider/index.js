@@ -13,6 +13,8 @@ async function main() {
     {
       apiKey: process.env.RELAYER_API_KEY,
       apiSecret: process.env.RELAYER_API_SECRET,
+      // optional, httpsAgent config
+      httpsAgent: https.Agent({ keepAlive: true }),
     },
     { speed: 'fast', validUntil },
   );
