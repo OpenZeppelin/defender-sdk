@@ -35,7 +35,7 @@ export abstract class BaseApiClient {
     return this.api;
   }
 
-  protected async refresh(): Promise<AxiosInstance> {
+  protected async refresh(overrides?: { headers: Record<string, string> }): Promise<AxiosInstance> {
     if (!this.session) {
       return this.init();
     }
@@ -43,7 +43,13 @@ export abstract class BaseApiClient {
       const userPass = { Username: this.apiKey, Password: this.apiSecret };
       const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
       this.session = await refreshSession(userPass, poolData, this.session);
-      this.api = createAuthenticatedApi(userPass.Username, this.session, this.getApiUrl(), this.httpsAgent);
+      this.api = createAuthenticatedApi(
+        userPass.Username,
+        this.session,
+        this.getApiUrl(),
+        this.httpsAgent,
+        overrides?.headers,
+      );
 
       return this.api;
     } catch (e) {
@@ -62,6 +68,17 @@ export abstract class BaseApiClient {
         this.api = undefined;
 
         const api = await this.refresh();
+        return await fn(api);
+      }
+      // Cloudflare error
+      if (error.response && error.response.status === 520 && error.response.data.includes('Cloudflare')) {
+        this.api = undefined;
+
+        const headersOverride: Record<string, string> = {
+          'Connection': 'upgrade',
+          'Upgrade': 'HTTP/2.0'
+        };
+        const api = await this.refresh({ headers: headersOverride });
         return await fn(api);
       }
       throw error;
