@@ -10,12 +10,25 @@ const token = 'token';
 describe('createApi', () => {
   test('passes correct arguments to axios', () => {
     createApi(key, token, apiUrl);
-    expect(axios.create).toBeCalledWith({
+    expect(axios.create).toHaveBeenCalledWith({
       baseURL: apiUrl,
       headers: {
         'X-Api-Key': key,
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
+      },
+    });
+  });
+
+  test('include headers overrides', () => {
+    createApi(key, token, apiUrl, undefined, { 'X-Test': 'test' });
+    expect(axios.create).toHaveBeenCalledWith({
+      baseURL: apiUrl,
+      headers: {
+        'X-Api-Key': key,
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'X-Test': 'test',
       },
     });
   });
