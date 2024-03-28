@@ -10,6 +10,8 @@ async function main() {
   const creds = {
     relayerApiKey: process.env.RELAYER_API_KEY,
     relayerApiSecret: process.env.RELAYER_API_SECRET,
+    //optional https config to keep connection alive. You can pass any configs that are accepted by https.Agent
+    httpsAgent: https.Agent({ keepAlive: true }),
   };
   const validUntil = new Date(Date.now() + 120 * 1000).toISOString();
 
