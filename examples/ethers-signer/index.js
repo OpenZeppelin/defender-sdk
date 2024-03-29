@@ -5,6 +5,7 @@ const ERC20Abi = require('./erc20.json');
 const ERC20Bytecode = require('./bytecode.json')[0].data.bytecode.object;
 const { domain, types, value } = require('./typedData.json');
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 async function main() {
   const creds = {

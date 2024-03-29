@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { DefenderRelayProvider } = require('@openzeppelin/defender-sdk-relay-signer-client/lib/web3');
 const { Web3 } = require('web3');
+const https = require('https');
 
 const ERC20Abi = require('./erc20.json');
 const ERC20Bytecode = require('./bytecode.json')[0].data.bytecode.object;

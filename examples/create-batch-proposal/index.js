@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 const ERC20Token = '0x24B5C627cF54582F93eDbcF6186989227400Ac75';
 const RolesContract = '0xa50d145697530e8fef3F59a9643c6E9992d0f30D';
