@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
 const { AbiCoder } = require('ethers');
+const https = require('https');
 
 const artifactFile = require('./artifacts/Box.json');
 

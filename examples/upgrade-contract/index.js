@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 const boxAbiFile = require('./abis/Box.json');
 
