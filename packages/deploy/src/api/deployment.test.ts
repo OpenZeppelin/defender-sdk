@@ -15,15 +15,15 @@ describe('Deploy Client', () => {
   const deployCreatePayload: DeployContractRequest = {
     contractName: 'ERC20',
     contractPath: 'contracts/ERC20.sol',
-    network: 'goerli',
+    network: 'sepolia',
     artifactUri: 'url',
     verifySourceCode: true,
   };
   beforeEach(() => {
-    deployClient = new DeployClient({
+    deployClient = (new DeployClient({
       apiKey: 'key',
       apiSecret: 'secret',
-    }) as unknown as TestClient<DeployClient>;
+    }) as unknown) as TestClient<DeployClient>;
     createAuthenticatedApi.mockClear();
   });
   describe('constructor', () => {
