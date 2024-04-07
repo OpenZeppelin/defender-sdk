@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const abi = require('./abis/erc721.json');
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 async function ensureNotificationChannelExists(client) {
   // use an existing notification channel
