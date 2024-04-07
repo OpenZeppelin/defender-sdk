@@ -34,5 +34,7 @@ jobs:
         uses: changesets/action@v1
         with:
           setupGitUser: false
+          version: pnpm ci:version
+          title: "Update the version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
