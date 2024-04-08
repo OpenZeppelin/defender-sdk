@@ -19,6 +19,7 @@ export type PublicNetwork =
   | 'moonbeam'
   | 'matic'
   | 'mumbai'
+  | 'amoy'
   | 'matic-zkevm'
   | 'matic-zkevm-testnet'
   | 'avalanche'
@@ -70,6 +71,7 @@ export const Networks: Network[] = [
   'moonbeam',
   'matic',
   'mumbai',
+  'amoy',
   'matic-zkevm',
   'matic-zkevm-testnet',
   'avalanche',
@@ -135,6 +137,7 @@ const chainIds: { [key in Network]: number } = {
   'moonbeam': 1284,
   'matic': 137,
   'mumbai': 80001,
+  'amoy': 80002,
   'matic-zkevm': 1101,
   'matic-zkevm-testnet': 1442,
   'avalanche': 0xa86a,
