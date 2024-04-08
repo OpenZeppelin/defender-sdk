@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.12.0
+
+### Minor Changes
+
+- 6b45bce: - feat: Support Holesky & Amoy networks.
+  - chore: Add retries to 520 errors.
+  - feat: Allow optional httpsAgent options.
+  - fix: Avoid relaySigner ENS resolution by default.
+  - chore: Upgrade dependencies.
+
 ## 1.11.0
 
 ### Minor Changes
