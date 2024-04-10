@@ -106,8 +106,8 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.11.0
-        version: 1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
+        specifier: 1.12.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -1135,6 +1135,7 @@ packages:
       '@ethereumjs/rlp': 4.0.1
       ethereum-cryptography: 2.1.2
       micro-ftch: 0.3.1
+    dev: true
 
   /@ethersproject/abi@5.7.0:
     resolution: {integrity: sha512-351ktp42TiRcYB3H1OP8yajPeAQstMW/yCFokj/AthP9bLHzQFPlOrxOcwYEDkUAICmOHljvN4K39OMTMUa9RA==}
@@ -1799,161 +1800,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@openzeppelin/defender-sdk-account-client@1.11.0:
-    resolution: {integrity: sha512-2MiPlf0bJG/KmcIHCHaz9SO2NX90Th0yPJTcbdByFIgiczsywLriBXZpGQbx9tc2/X6OwUuVdV6Klrqj7q7PTQ==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-action-client@1.11.0:
-    resolution: {integrity: sha512-2V/vAbi/9oIPoltY/naYmHOol1Lmxz7lLKFQ4z7eRLCPwZeCnTuP1dvyDbqq4JIP2aBQtB0Ba7s1poW0s3xHhA==}
-    hasBin: true
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      dotenv: 16.3.1
-      glob: 7.2.3
-      jszip: 3.10.1
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-base-client@1.11.0:
-    resolution: {integrity: sha512-HNcbRhbcMZZM5Ri5IfUwJaiJZGIrc0yboRZRlXJfG2aFS/EMfUFnQHC0tyyXtCOAoAZcn+iMlsSj5h8CoUeCfw==}
-    dependencies:
-      amazon-cognito-identity-js: 6.3.6
-      async-retry: 1.3.3
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-deploy-client@1.11.0:
-    resolution: {integrity: sha512-ELYVihsrTOlH7Sy5C/+Yf64hV3ICeTY2OcczOWVQ/o6rHBWKSnHSZCE/oB1cfOpyg/gCrCLXozs4NyrS5z3GUw==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-monitor-client@1.11.0:
-    resolution: {integrity: sha512-ErDLkkRHDrq+fDQq2oKGtiowOwzkGY1AhDZ09yyED8f2+7tdU54O5tD24BD8Ia4G+uiVwh8CKxKxhw7nIDQmdQ==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      ethers: 6.9.0
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-    dev: false
-
-  /@openzeppelin/defender-sdk-network-client@1.11.0:
-    resolution: {integrity: sha512-CPy1TA6RyFYtACbvXZJhJpsYW2u4yxTSNU8cVIw1lH/9iArXzfWuJ2p8Deidc0sJBbMeJYkv1AvqTBJNifjKMg==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-notification-channel-client@1.11.0:
-    resolution: {integrity: sha512-V6bq15MtsKg9raaleiMiGyYDlZXv0Wt/GIMtkGZYuZSuXx12TBmz0NXNMI0OdxP6y0EB36ShbRf5rxxDtE3fAg==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-proposal-client@1.11.0:
-    resolution: {integrity: sha512-Dy4PZnKKrNlvRdLzmpkcDhUuj4rFm5YOd0ePQeuj2vM/XX9nPZxpUZIWxqZPoTEXLaZy/VvPlYxFjmdjAYNXnw==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      ethers: 6.9.0
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-    dev: false
-
-  /@openzeppelin/defender-sdk-relay-client@1.11.0:
-    resolution: {integrity: sha512-fzs5jZNqI0c8imDQ3fwr3jg4zOc4Jp4brZAYmq36QMWxdJNKtiZ+5T1E/HXKDy5or7fgRGL1PWlizyvgsE6IwQ==}
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      axios: 1.6.7
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk-relay-signer-client@1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
-    resolution: {integrity: sha512-Y6kl5ZeW8MVACvC8SZua8nugsH1LB2WKKb6M2OSOFItuGV6X2ERygiQ1HijZRoShwQ7AJkGrRRD3NEeXBYFqVA==}
-    peerDependencies:
-      ethers: ^6.9.0
-      web3: ^1.8.2
-      web3-core: ^1.10.3
-      web3-core-helpers: ^1.8.2
-      web3-utils: ^1.8.2
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      amazon-cognito-identity-js: 6.3.6
-      axios: 1.6.7
-      ethers: 6.9.0
-      lodash: 4.17.21
-      web3: 1.8.2
-      web3-core: 1.10.3
-      web3-core-helpers: 1.10.3
-      web3-utils: 1.10.3
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
-  /@openzeppelin/defender-sdk@1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2):
-    resolution: {integrity: sha512-fjVv33cEbRjBA0B5BwD7tVxz7SmvfX+qsNP9fGjdxUx2aAxKIxCa9myNK/RBiLMLubBOnCqdUNIu2UhFoTv0eg==}
-    dependencies:
-      '@openzeppelin/defender-sdk-account-client': 1.11.0
-      '@openzeppelin/defender-sdk-action-client': 1.11.0
-      '@openzeppelin/defender-sdk-base-client': 1.11.0
-      '@openzeppelin/defender-sdk-deploy-client': 1.11.0
-      '@openzeppelin/defender-sdk-monitor-client': 1.11.0
-      '@openzeppelin/defender-sdk-network-client': 1.11.0
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.11.0
-      '@openzeppelin/defender-sdk-proposal-client': 1.11.0
-      '@openzeppelin/defender-sdk-relay-client': 1.11.0
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.11.0(ethers@6.9.0)(web3-core-helpers@1.10.3)(web3-core@1.10.3)(web3-utils@1.10.3)(web3@1.8.2)
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - ethers
-      - utf-8-validate
-      - web3
-      - web3-core
-      - web3-core-helpers
-      - web3-utils
-    dev: false
 
   /@parcel/watcher@2.0.4:
     resolution: {integrity: sha512-cTDi+FUDBIUOBKEtj+nhiJ71AZVlkAsQFuGQTun5tV9mwQBQgZvhCzG+URPQc8myeN32yRVZEfVAPCs1RW+Jvg==}
@@ -5619,6 +5465,7 @@ packages:
 
   /micro-ftch@0.3.1:
     resolution: {integrity: sha512-/0LLxhzP0tfiR5hcQebtudP56gUurs2CLkGarnCiB/OqEyUFQ6U3paQi/tgLv0hBJYt2rnr9MNpxz4fiiugstg==}
+    dev: true
 
   /micromatch@4.0.5:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
@@ -7459,6 +7306,7 @@ packages:
     dependencies:
       web3-eth-iban: 1.10.3
       web3-utils: 1.10.3
+    dev: true
 
   /web3-core-helpers@1.8.2:
     resolution: {integrity: sha512-6B1eLlq9JFrfealZBomd1fmlq1o4A09vrCVQSa51ANoib/jllT3atZrRDr0zt1rfI7TSZTZBXdN/aTdeN99DWw==}
@@ -7476,6 +7324,7 @@ packages:
       web3-core-promievent: 1.10.3
       web3-core-subscriptions: 1.10.3
       web3-utils: 1.10.3
+    dev: true
 
   /web3-core-method@1.8.2:
     resolution: {integrity: sha512-1qnr5mw5wVyULzLOrk4B+ryO3gfGjGd/fx8NR+J2xCGLf1e6OSjxT9vbfuQ3fErk/NjSTWWreieYWLMhaogcRA==}
@@ -7493,6 +7342,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.4
+    dev: true
 
   /web3-core-promievent@1.8.2:
     resolution: {integrity: sha512-nvkJWDVgoOSsolJldN33tKW6bKKRJX3MCPDYMwP5SUFOA/mCzDEoI88N0JFofDTXkh1k7gOqp1pvwi9heuaxGg==}
@@ -7513,6 +7363,7 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
 
   /web3-core-requestmanager@1.8.2:
     resolution: {integrity: sha512-p1d090RYs5Mu7DK1yyc3GCBVZB/03rBtFhYFoS2EruGzOWs/5Q0grgtpwS/DScdRAm8wB8mYEBhY/RKJWF6B2g==}
@@ -7534,6 +7385,7 @@ packages:
     dependencies:
       eventemitter3: 4.0.4
       web3-core-helpers: 1.10.3
+    dev: true
 
   /web3-core-subscriptions@1.8.2:
     resolution: {integrity: sha512-vXQogHDmAIQcKpXvGiMddBUeP9lnKgYF64+yQJhPNE5PnWr1sAibXuIPV7mIPihpFr/n/DORRj6Wh1pUv9zaTw==}
@@ -7557,6 +7409,7 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
 
   /web3-core@1.8.2:
     resolution: {integrity: sha512-DJTVEAYcNqxkqruJE+Rxp3CIv0y5AZMwPHQmOkz/cz+MM75SIzMTc0AUdXzGyTS8xMF8h3YWMQGgGEy8SBf1PQ==}
@@ -7735,6 +7588,7 @@ packages:
     dependencies:
       bn.js: 5.2.1
       web3-utils: 1.10.3
+    dev: true
 
   /web3-eth-iban@1.8.2:
     resolution: {integrity: sha512-h3vNblDWkWMuYx93Q27TAJz6lhzpP93EiC3+45D6xoz983p6si773vntoQ+H+5aZhwglBtoiBzdh7PSSOnP/xQ==}
@@ -7866,6 +7720,7 @@ packages:
       web3-core-helpers: 1.10.3
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /web3-providers-http@1.8.2:
     resolution: {integrity: sha512-2xY94IIEQd16+b+vIBF4IC1p7GVaz9q4EUFscvMUjtEq4ru4Atdzjs9GP+jmcoo49p70II0UV3bqQcz0TQfVyQ==}
@@ -7897,6 +7752,7 @@ packages:
     dependencies:
       oboe: 2.1.5
       web3-core-helpers: 1.10.3
+    dev: true
 
   /web3-providers-ipc@1.8.2:
     resolution: {integrity: sha512-p6fqKVGFg+WiXGHWnB1hu43PbvPkDHTz4RgoEzbXugv5rtv5zfYLqm8Ba6lrJOS5ks9kGKR21a0y3NzE3u7V4w==}
@@ -7926,6 +7782,7 @@ packages:
       websocket: 1.0.34
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /web3-providers-ws@1.8.2:
     resolution: {integrity: sha512-3s/4K+wHgbiN+Zrp9YjMq2eqAF6QGABw7wFftPdx+m5hWImV27/MoIx57c6HffNRqZXmCHnfWWFCNHHsi7wXnA==}
@@ -7997,6 +7854,7 @@ packages:
       number-to-bn: 1.7.0
       randombytes: 2.1.0
       utf8: 3.0.0
+    dev: true
 
   /web3-utils@1.8.2:
     resolution: {integrity: sha512-v7j6xhfLQfY7xQDrUP0BKbaNrmZ2/+egbqP9q3KYmOiPpnvAfol+32slgL0WX/5n8VPvKCK5EZ1HGrAVICSToA==}
