@@ -47,7 +47,7 @@ type ProviderWithWrapTransaction = Provider & {
   _wrapTransaction(tx: Transaction, hash?: string): TransactionResponse;
 };
 
-export class DefenderRelaySigner extends Signer implements TypedDataSigner {
+export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
   private readonly relayer: Relayer;
   private address?: string;
 
@@ -119,7 +119,7 @@ export class DefenderRelaySigner extends Signer implements TypedDataSigner {
   }
 
   public connect(provider: Provider): Signer {
-    return new DefenderRelaySigner(this.relayerCredentials, provider, this.options);
+    return new DefenderRelaySignerV5(this.relayerCredentials, provider, this.options);
   }
 
   public async sendTransaction(transaction: Deferrable<DefenderTransactionRequest>): Promise<TransactionResponse> {

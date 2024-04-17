@@ -1,13 +1,13 @@
 import { JsonRpcSigner, Network, StaticJsonRpcProvider } from '@ethersproject/providers';
 import { RelayerParams } from '../models/relayer';
-import { DefenderRelaySigner } from './signer';
+import { DefenderRelaySignerV5 } from './signer-v5';
 import { defineReadOnly, getStatic } from '@ethersproject/properties';
 import { Networkish } from '@ethersproject/networks';
 import { BigNumber } from '@ethersproject/bignumber';
 import { getRelaySignerApiUrl } from '../api';
 import { Relayer } from '../relayer';
 
-export class DefenderRelayProvider extends StaticJsonRpcProvider {
+export class DefenderRelayProviderV5 extends StaticJsonRpcProvider {
   private relayer: Relayer;
 
   constructor(readonly credentials: RelayerParams) {
@@ -75,6 +75,6 @@ export class DefenderRelayProvider extends StaticJsonRpcProvider {
   }
 
   getSigner(): JsonRpcSigner {
-    return new DefenderRelaySigner(this.relayer, this, {}) as any as JsonRpcSigner;
+    return new DefenderRelaySignerV5(this.relayer, this, {}) as any as JsonRpcSigner;
   }
 }
