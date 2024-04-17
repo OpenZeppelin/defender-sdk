@@ -36,6 +36,7 @@ type GasOptions = Pick<TransactionRequest, 'gasPrice' | 'maxFeePerGas' | 'maxPri
 
 export type DefenderTransactionRequest = TransactionRequest &
   Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
+
 export type DefenderRelaySignerOptions = Partial<
   GasOptions & {
     speed: Speed;
