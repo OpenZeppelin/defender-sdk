@@ -37,7 +37,7 @@ type GasOptions = Pick<TransactionRequest, 'gasPrice' | 'maxFeePerGas' | 'maxPri
 export type DefenderTransactionRequest = TransactionRequest &
   Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
 
-export type DefenderRelaySignerOptions = Partial<
+export type DefenderRelaySignerOptionsV5 = Partial<
   GasOptions & {
     speed: Speed;
     validForSeconds: number;
@@ -55,7 +55,7 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
   constructor(
     readonly relayerCredentials: RelayerParams | Relayer,
     readonly provider: Provider,
-    readonly options: DefenderRelaySignerOptions = {},
+    readonly options: DefenderRelaySignerOptionsV5 = {},
   ) {
     super();
     this.relayer = isRelayer(relayerCredentials) ? relayerCredentials : new Relayer(relayerCredentials);
