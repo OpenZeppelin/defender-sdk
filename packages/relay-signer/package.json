@@ -30,10 +30,11 @@
     "web3-core-helpers": "^1.8.2"
   },
   "dependencies": {
-    "ethers": "^6.9.0",
     "@openzeppelin/defender-sdk-base-client": "^1.12.0",
     "amazon-cognito-identity-js": "^6.3.6",
     "axios": "^1.6.7",
+    "ethers": "^6.9.0",
+    "ethers-v5": "npm:ethers@^5.7.2",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
