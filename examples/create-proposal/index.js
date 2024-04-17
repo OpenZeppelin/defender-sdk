@@ -16,7 +16,7 @@ async function main() {
     proposal: {
       contract: {
         address: '0x76d1d77e2b571f332e1128bDd6640C68aa3d136d',
-        network: 'goerli',
+        network: 'sepolia',
       },
       title: 'Set number',
       description: 'Set value to 42',

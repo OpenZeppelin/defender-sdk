@@ -14,16 +14,16 @@ describe('Block Explorer Api Key Client', () => {
 
   const createPaylod: CreateBlockExplorerApiKeyRequest = {
     key: 'random-key',
-    network: 'goerli',
+    network: 'sepolia',
   };
   const updatePaylod: UpdateBlockExplorerApiKeyRequest = {
     key: 'random-key',
   };
   beforeEach(() => {
-    client = new DeployClient({
+    client = (new DeployClient({
       apiKey: 'key',
       apiSecret: 'secret',
-    }) as unknown as TestClient<DeployClient>;
+    }) as unknown) as TestClient<DeployClient>;
     createAuthenticatedApi.mockClear();
   });
   describe('constructor', () => {

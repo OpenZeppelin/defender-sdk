@@ -6,7 +6,6 @@ export type PublicNetwork =
   | 'mainnet'
   | 'sepolia'
   | 'holesky'
-  | 'goerli'
   | 'xdai'
   | 'sokol'
   | 'fuse'
@@ -26,7 +25,6 @@ export type PublicNetwork =
   | 'fuji'
   | 'arbitrum'
   | 'arbitrum-nova'
-  | 'arbitrum-goerli'
   | 'arbitrum-sepolia'
   | 'optimism'
   | 'optimism-sepolia'
@@ -39,10 +37,8 @@ export type PublicNetwork =
   | 'hedera'
   | 'hederatest'
   | 'zksync'
-  | 'zksync-goerli'
   | 'zksync-sepolia'
   | 'base'
-  | 'base-goerli'
   | 'base-sepolia'
   | 'linea-goerli'
   | 'linea'
@@ -58,7 +54,6 @@ export const Networks: Network[] = [
   'mainnet',
   'sepolia',
   'holesky',
-  'goerli',
   'xdai',
   'sokol',
   'fuse',
@@ -78,7 +73,6 @@ export const Networks: Network[] = [
   'fuji',
   'arbitrum',
   'arbitrum-nova',
-  'arbitrum-goerli',
   'arbitrum-sepolia',
   'optimism',
   'optimism-sepolia',
@@ -91,10 +85,8 @@ export const Networks: Network[] = [
   'hedera',
   'hederatest',
   'zksync',
-  'zksync-goerli',
   'zksync-sepolia',
   'base',
-  'base-goerli',
   'base-sepolia',
   'linea-goerli',
   'linea',
@@ -124,7 +116,6 @@ const chainIds: { [key in Network]: number } = {
   'mainnet': 1,
   'sepolia': 11155111,
   'holesky': 17000,
-  'goerli': 5,
   'xdai': 100,
   'sokol': 77,
   'fuse': 122,
@@ -146,7 +137,6 @@ const chainIds: { [key in Network]: number } = {
   'optimism-sepolia': 11155420,
   'arbitrum': 42161,
   'arbitrum-nova': 42170,
-  'arbitrum-goerli': 421613,
   'arbitrum-sepolia': 421614,
   'celo': 42220,
   'alfajores': 44787,
@@ -157,10 +147,8 @@ const chainIds: { [key in Network]: number } = {
   'hedera': 295,
   'hederatest': 296,
   'zksync': 324,
-  'zksync-goerli': 280,
   'zksync-sepolia': 300,
   'base': 8453,
-  'base-goerli': 84531,
   'base-sepolia': 84532,
   'linea': 59144,
   'linea-goerli': 59140,
