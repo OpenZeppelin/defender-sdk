@@ -119,7 +119,7 @@ describe('MonitorClient', () => {
   };
 
   beforeEach(() => {
-    monitor = (new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown) as TestMonitorClient;
+    monitor = new MonitorClient({ apiKey: 'key', apiSecret: 'secret' }) as unknown as TestMonitorClient;
     createAuthenticatedApi.mockClear();
 
     listBlockwatchersSpy = jest.spyOn(monitor, 'listBlockwatchers').mockImplementation(async () => [
@@ -185,17 +185,8 @@ describe('MonitorClient', () => {
 
   describe('create', () => {
     it('passes correct BLOCK type arguments to the API', async () => {
-      const {
-        name,
-        network,
-        paused,
-        type,
-        addresses,
-        abi,
-        txCondition,
-        eventConditions,
-        functionConditions,
-      } = createBlockPayload;
+      const { name, network, paused, type, addresses, abi, txCondition, eventConditions, functionConditions } =
+        createBlockPayload;
 
       const expectedApiRequest = {
         paused,

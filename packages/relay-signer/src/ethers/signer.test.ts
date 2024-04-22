@@ -85,14 +85,14 @@ describe('ethers/signer', () => {
         };
       }
 
-      return ({
+      return {
         ...omit({ ...tx, ...arg }, 'gasPrice', 'maxFeePerGas', 'maxPriorityFeePerGas'),
         ...gasParams,
         confirmations: 0,
         wait: () => {
           throw new Error();
         },
-      } as any) as TransactionResponse;
+      } as any as TransactionResponse;
     });
 
     provider.resolveName.mockImplementation((arg) => Promise.resolve(arg));
