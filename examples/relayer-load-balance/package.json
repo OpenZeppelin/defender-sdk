@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/defender-sdk-example-relay-signer-action",
+  "name": "@openzeppelin/defender-sdk-example-relayer-load-balance",
   "version": "1.12.0",
   "private": true,
   "main": "index.js",
