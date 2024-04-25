@@ -23,6 +23,7 @@ export interface SendBaseTransactionRequest {
   gasLimit: BigUInt;
   validUntil?: string;
   isPrivate?: boolean;
+  privateMode?: PrivateTransactionMode;
 }
 
 export interface SendSpeedTransactionRequest extends SendBaseTransactionRequest {
@@ -140,6 +141,7 @@ interface RelayerTransactionBase {
   sentAt?: string;
   pricedAt?: string;
   isPrivate?: boolean;
+  privateMode?: PrivateTransactionMode;
 }
 
 interface RelayerLegacyTransaction extends RelayerTransactionBase {
