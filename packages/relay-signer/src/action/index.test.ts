@@ -1,8 +1,13 @@
 import { ActionRelayer } from '.';
 import Lambda from '../__mocks__/aws-sdk/clients/lambda';
+import { Lambda as LambdaV3 } from '../__mocks__/@aws-sdk/client-lambda';
+jest.mock('node:process', () => ({
+  ...jest.requireActual('node:process'),
+  version: 'v16.0.3',
+}));
 
 type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
-  lambda: ReturnType<typeof Lambda>;
+  lambda: ReturnType<typeof Lambda | typeof LambdaV3>;
   arn: string;
 };
 
@@ -21,6 +26,8 @@ describe('ActionRelayer', () => {
   let relayer: TestActionRelayer;
 
   beforeEach(async function () {
+    jest.mock('aws-sdk/clients/lambda', () => Lambda);
+    jest.mock('@aws-sdk/client-lambda', () => ({ Lambda: LambdaV3 }));
     relayer = new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
@@ -37,7 +44,7 @@ describe('ActionRelayer', () => {
   describe('sendTransaction', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.sendTransaction(payload);
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"send-tx","payload":{"to":"0x0","gasLimit":21000}}',
@@ -77,7 +84,7 @@ describe('ActionRelayer', () => {
   describe('replaceTransaction', () => {
     test('passes nonce to the API', async () => {
       await relayer.replaceTransactionByNonce(10, payload);
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000}}',
@@ -86,7 +93,7 @@ describe('ActionRelayer', () => {
 
     test('passes txId to the API', async () => {
       await relayer.replaceTransactionById('123-456-abc', payload);
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"replace-tx","txPayload":{"to":"0x0","gasLimit":21000,"id":"123-456-abc"}}',
@@ -97,7 +104,7 @@ describe('ActionRelayer', () => {
   describe('getRelayer', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.getRelayer();
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"get-self"}',
@@ -108,7 +115,7 @@ describe('ActionRelayer', () => {
   describe('sign', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.sign({ message: 'test' });
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"sign","payload":{"message":"test"}}',
@@ -119,7 +126,7 @@ describe('ActionRelayer', () => {
   describe('signTypedData', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.signTypedData({ domainSeparator: 'test', hashStructMessage: 'test' });
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"signTypedData","payload":{"domainSeparator":"test","hashStructMessage":"test"}}',
@@ -130,7 +137,7 @@ describe('ActionRelayer', () => {
   describe('query', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.getTransaction('42');
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"get-tx","payload":"42"}',
@@ -141,7 +148,7 @@ describe('ActionRelayer', () => {
   describe('list', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.listTransactions({ limit: 20 });
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload: '{"action":"list-txs","payload":{"limit":20}}',
@@ -152,7 +159,7 @@ describe('ActionRelayer', () => {
   describe('call', () => {
     test('passes correct arguments to the API', async () => {
       await relayer.call({ method: 'eth_call', params: ['0xa', '0xb'] });
-      expect(relayer.lambda.invoke).toBeCalledWith({
+      expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
         Payload:

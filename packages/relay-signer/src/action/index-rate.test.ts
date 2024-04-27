@@ -1,8 +1,9 @@
 import { ActionRelayer } from '.';
 import Lambda from '../__mocks__/aws-sdk/clients/lambda';
+import { Lambda as LambdaV3 } from '../__mocks__/@aws-sdk/client-lambda';
 
 type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
-  lambda: ReturnType<typeof Lambda>;
+  lambda: ReturnType<typeof Lambda | typeof LambdaV3>;
   arn: string;
 };
 
