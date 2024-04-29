@@ -1,41 +1,12 @@
+import {
+  LambdaLike,
+  PayloadResponseV2,
+  PayloadResponseV3,
+  getLambdaFromCredentials,
+  isLambdaV3,
+} from '../utils/lambda';
 import { rateLimitModule, RateLimitModule } from '../utils/rate-limit';
 import { getTimestampInSeconds } from '../utils/time';
-import { version } from 'node:process';
-
-const NODE_MIN_VERSION_FOR_V3 = 'v20.0.0';
-
-type InvokeResponse = {
-  FunctionError?: string;
-  Payload: PayloadResponseV2 | PayloadResponseV3;
-};
-
-type InvokeResponseV2 = {
-  promise: () => Promise<InvokeResponse>;
-};
-
-type PayloadResponseV3 = {
-  transformToString: () => string;
-};
-
-type PayloadResponseV2 = string | Buffer | Uint8Array | Blob;
-
-type LambdaV2 = {
-  invoke: (params: { FunctionName: string; Payload: string; InvocationType: string }) => InvokeResponseV2;
-};
-
-type LambdaV3 = {
-  invoke: (params: { FunctionName: string; Payload: string; InvocationType: string }) => Promise<InvokeResponse>;
-};
-
-type LambdaLike = LambdaV2 | LambdaV3;
-
-function isLambdaV3Compatible() {
-  return version >= NODE_MIN_VERSION_FOR_V3;
-}
-
-function isLambdaV3(lambda: LambdaLike): lambda is LambdaV3 {
-  return isLambdaV3Compatible();
-}
 
 // do our best to get .errorMessage, but return object by default
 function cleanError(payload?: PayloadResponseV2 | PayloadResponseV3): PayloadResponseV2 | PayloadResponseV3 {
@@ -56,35 +27,9 @@ export abstract class BaseActionClient {
   private invocationRateLimit: RateLimitModule;
 
   public constructor(credentials: string, private arn: string) {
-    const creds = credentials ? JSON.parse(credentials) : undefined;
-
     this.invocationRateLimit = rateLimitModule.createCounterFor(arn, 300);
 
-    if (isLambdaV3Compatible()) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { Lambda } = require('@aws-sdk/client-lambda');
-      this.lambda = new Lambda({
-        credentials: {
-          accessKeyId: creds.AccessKeyId,
-          secretAccessKey: creds.SecretAccessKey,
-          sessionToken: creds.SessionToken,
-        },
-      });
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const Lambda = require('aws-sdk/clients/lambda');
-      this.lambda = new Lambda(
-        creds
-          ? {
-              credentials: {
-                accessKeyId: creds.AccessKeyId,
-                secretAccessKey: creds.SecretAccessKey,
-                sessionToken: creds.SessionToken,
-              },
-            }
-          : undefined,
-      );
-    }
+    this.lambda = getLambdaFromCredentials(credentials);
   }
 
   private async invoke(FunctionName: string, Payload: string) {
@@ -119,7 +64,7 @@ export abstract class BaseActionClient {
     }
 
     return JSON.parse(
-      isLambdaV3Compatible()
+      isLambdaV3(this.lambda)
         ? (invocationRequestResult.Payload as PayloadResponseV3).transformToString()
         : (invocationRequestResult.Payload as string),
     ) as T;
