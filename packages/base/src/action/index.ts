@@ -1,9 +1,15 @@
-import Lambda, { _Blob } from 'aws-sdk/clients/lambda';
+import {
+  LambdaLike,
+  PayloadResponseV2,
+  PayloadResponseV3,
+  getLambdaFromCredentials,
+  isLambdaV3,
+} from '../utils/lambda';
 import { rateLimitModule, RateLimitModule } from '../utils/rate-limit';
 import { getTimestampInSeconds } from '../utils/time';
 
 // do our best to get .errorMessage, but return object by default
-function cleanError(payload?: _Blob): _Blob {
+function cleanError(payload?: PayloadResponseV2 | PayloadResponseV3): PayloadResponseV2 | PayloadResponseV3 {
   if (!payload) {
     return 'Error occurred, but error payload was not defined';
   }
@@ -17,26 +23,31 @@ function cleanError(payload?: _Blob): _Blob {
 }
 
 export abstract class BaseActionClient {
-  private lambda: Lambda;
-
+  private lambda: LambdaLike;
   private invocationRateLimit: RateLimitModule;
 
   public constructor(credentials: string, private arn: string) {
-    const creds = credentials ? JSON.parse(credentials) : undefined;
-
     this.invocationRateLimit = rateLimitModule.createCounterFor(arn, 300);
 
-    this.lambda = new Lambda(
-      creds
-        ? {
-            credentials: {
-              accessKeyId: creds.AccessKeyId,
-              secretAccessKey: creds.SecretAccessKey,
-              sessionToken: creds.SessionToken,
-            },
-          }
-        : undefined,
-    );
+    this.lambda = getLambdaFromCredentials(credentials);
+  }
+
+  private async invoke(FunctionName: string, Payload: string) {
+    if (isLambdaV3(this.lambda)) {
+      return this.lambda.invoke({
+        FunctionName,
+        Payload,
+        InvocationType: 'RequestResponse',
+      });
+    } else {
+      return this.lambda
+        .invoke({
+          FunctionName,
+          Payload,
+          InvocationType: 'RequestResponse',
+        })
+        .promise();
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -46,18 +57,16 @@ export abstract class BaseActionClient {
     this.invocationRateLimit.checkRateFor(invocationTimeStamp);
     this.invocationRateLimit.incrementRateFor(invocationTimeStamp);
 
-    const invocationRequestResult = await this.lambda
-      .invoke({
-        FunctionName: this.arn,
-        Payload: JSON.stringify(request),
-        InvocationType: 'RequestResponse',
-      })
-      .promise();
+    const invocationRequestResult = await this.invoke(this.arn, JSON.stringify(request));
 
     if (invocationRequestResult.FunctionError) {
       throw new Error(`Error while attempting request: ${cleanError(invocationRequestResult.Payload)}`);
     }
 
-    return JSON.parse(invocationRequestResult.Payload as string) as T;
+    return JSON.parse(
+      isLambdaV3(this.lambda)
+        ? (invocationRequestResult.Payload as PayloadResponseV3).transformToString()
+        : (invocationRequestResult.Payload as string),
+    ) as T;
   }
 }
