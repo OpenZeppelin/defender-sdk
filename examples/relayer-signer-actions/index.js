@@ -44,6 +44,12 @@ async function sign(msg) {
   console.log('signResponse', signResponse);
 }
 
+async function signTypedData(msg) {
+  if (!msg) throw new Error(`Missing msg to sign`);
+  const signTypedDataResponse = await client.relaySigner.signTypedData(msg);
+  console.log('signTypedDataResponse', signTypedDataResponse);
+}
+
 async function query(id) {
   if (!id) throw new Error(`Missing id`);
   const txUpdate = await client.relaySigner.getTransaction(id);
@@ -94,6 +100,8 @@ async function main() {
         return await replace(process.argv[3]);
       case 'sign':
         return await sign(process.argv[3]);
+      case 'sign-typed-data':
+        return await signTypedData(process.argv[3]);
       case 'balance':
         return await balance(process.argv[3]);
       case 'list':
