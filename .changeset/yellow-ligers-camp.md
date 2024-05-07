@@ -34,6 +34,6 @@
 '@openzeppelin/defender-sdk-relay-signer-client': minor
 ---
 
-- add exponential backoff logic for retry
-- add conditional imports for v2 and v3 for actions
-- add loadbalance example for rate limit number of transactions
+- feat: add exponential backoff logic for retry
+- fix: add conditional imports for v2 and v3 for actions
+- chore: add loadbalance example for rate limit number of transactions
