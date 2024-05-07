@@ -1,5 +1,18 @@
 # @openzeppelin/defender-sdk-example-create-proposal
 
+## 1.13.0
+
+### Minor Changes
+
+- ff4a967: - feat: add exponential backoff logic for retry
+  - fix: add conditional imports for v2 and v3 for actions
+  - chore: add loadbalance example for rate limit number of transactions
+
+### Patch Changes
+
+- Updated dependencies [ff4a967]
+  - @openzeppelin/defender-sdk@1.13.0
+
 ## 1.12.0
 
 ### Minor Changes
