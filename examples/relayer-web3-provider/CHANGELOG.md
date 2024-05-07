@@ -1,5 +1,18 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.5.0
+
+### Minor Changes
+
+- 29e457f: - feat: add exponential backoff logic for retry
+  - fix: add conditional imports for v2 and v3 for actions
+  - chore: add loadbalance example for rate limit number of transactions
+
+### Patch Changes
+
+- Updated dependencies [29e457f]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.0
+
 ## 1.4.0
 
 ### Minor Changes
