@@ -43,6 +43,7 @@ export type PublicNetwork =
   | 'linea-goerli'
   | 'linea'
   | 'mantle'
+  | 'mantle-sepolia'
   | 'scroll'
   | 'scroll-sepolia'
   | 'meld'
@@ -94,6 +95,7 @@ export const Networks: Network[] = [
   'x-dfk-avax-chain-test',
   'x-security-alliance',
   'mantle',
+  'mantle-sepolia',
   'scroll',
   'scroll-sepolia',
   'meld',
@@ -160,4 +162,5 @@ const chainIds: { [key in Network]: number } = {
   'scroll-sepolia': 534351,
   'meld': 0x13d92e8d,
   'meld-kanazawa': 0xd3b745e,
+  'mantle-sepolia': 5003,
 };
