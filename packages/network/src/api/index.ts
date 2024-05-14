@@ -74,7 +74,10 @@ export class NetworkClient extends BaseApiClient {
     network: Omit<TenantNetworkCreateRequest, 'networkType'>,
   ): Promise<TenantNetworkResponse> {
     return this.apiCall(async (api) => {
-      return await api.post(`${PATH}/private`, { ...network, networkType: 'private' });
+      return await api.post(
+        `${PATH}/private`,
+        this.toValidPrivateNetworkRequest({ ...network, networkType: 'private' }),
+      );
     });
   }
 
@@ -97,5 +100,22 @@ export class NetworkClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return await api.put(`${PATH}/private/${id}`, { ...network, tenantNetworkId: id });
     });
+  }
+
+  private toValidPrivateNetworkRequest(network: TenantNetworkCreateRequest): TenantNetworkCreateRequest {
+    if (network.configuration && network.configuration.safeTxServiceURL) {
+      let safeTxServiceURL = network.configuration.safeTxServiceURL;
+      if (safeTxServiceURL.endsWith('/')) {
+        safeTxServiceURL = safeTxServiceURL.slice(0, -1);
+      }
+      if (safeTxServiceURL.startsWith('https://')) {
+        safeTxServiceURL = safeTxServiceURL.replace('https://', '');
+      }
+      if (safeTxServiceURL.startsWith('http://')) {
+        safeTxServiceURL = safeTxServiceURL.replace('http://', '');
+      }
+      network.configuration.safeTxServiceURL = safeTxServiceURL;
+    }
+    return network;
   }
 }
