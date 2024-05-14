@@ -19,7 +19,7 @@ import {
 } from 'ethers';
 import { Relayer } from '../relayer';
 import { omit } from 'lodash';
-import { Speed } from '../models/transactions';
+import { PrivateTransactionMode, Speed } from '../models/transactions';
 import { RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
@@ -40,12 +40,13 @@ const allowedTransactionKeys: Array<string> = [
   'value',
   'speed',
   'isPrivate',
+  'privateMode',
 ];
 
 type GasOptions = Pick<TransactionLike<string>, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
 
 export type DefenderTransactionRequest = TransactionLike<string> &
-  Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
+  Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean; privateMode?: PrivateTransactionMode }>;
 export type DefenderRelaySignerOptions = Partial<
   GasOptions & {
     speed: Speed;
@@ -166,6 +167,7 @@ export class DefenderRelaySigner extends JsonRpcSigner {
       value: tx.value ? toBeHex(tx.value) : undefined,
       validUntil: tx.validUntil ? new Date(tx.validUntil).toISOString() : undefined,
       isPrivate: tx.isPrivate,
+      privateMode: tx.privateMode,
       ...payloadGasParams,
     };
 
