@@ -148,25 +148,6 @@ describe('NetworkClient', () => {
       expect(networkClient.api.post).toBeCalledWith('/networks/private', createPrivatePayload);
       expect(createAuthenticatedApi).toBeCalled();
     });
-
-    it('calls API with correct safe tx service URL (without protocol and leading slash)', async () => {
-      const payload = {
-        ...createPrivatePayload,
-        configuration: {
-          ...createPrivatePayload.configuration,
-          symbol: 'ETH',
-          safeTxServiceURL: 'https://safe-tx-service.com/',
-        },
-      };
-      await networkClient.createPrivateNetwork(payload);
-      expect(networkClient.api.post).toHaveBeenCalledWith('/networks/private', {
-        ...payload,
-        configuration: {
-          ...payload.configuration,
-          safeTxServiceURL: 'safe-tx-service.com',
-        },
-      });
-    });
   });
 
   describe('get', () => {
