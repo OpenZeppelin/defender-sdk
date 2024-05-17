@@ -4,22 +4,23 @@ import {
   PayloadResponseV3,
   getLambdaFromCredentials,
   isLambdaV3,
+  isV3ResponsePayload,
 } from '../utils/lambda';
 import { rateLimitModule, RateLimitModule } from '../utils/rate-limit';
 import { getTimestampInSeconds } from '../utils/time';
 
-// do our best to get .errorMessage, but return object by default
 function cleanError(payload?: PayloadResponseV2 | PayloadResponseV3): PayloadResponseV2 | PayloadResponseV3 {
   if (!payload) {
     return 'Error occurred, but error payload was not defined';
   }
+  const error = isV3ResponsePayload(payload) ? payload.transformToString() : payload;
   try {
-    const errMsg = JSON.parse(payload.toString()).errorMessage;
+    const errMsg = JSON.parse(error.toString()).errorMessage;
     if (errMsg) {
       return errMsg;
     }
   } catch (e) {}
-  return payload;
+  return error;
 }
 
 export abstract class BaseActionClient {
