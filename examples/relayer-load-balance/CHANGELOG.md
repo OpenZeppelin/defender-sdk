@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-relayer-load-balance
 
+## 1.13.1
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+- Updated dependencies [e55d50a]
+  - @openzeppelin/defender-sdk@1.13.1
+
 ## 1.13.0
 
 ### Minor Changes

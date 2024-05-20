@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.13.1
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+
 ## 1.13.0
 
 ### Minor Changes

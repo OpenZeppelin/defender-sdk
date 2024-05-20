@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.5.1
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+- Updated dependencies [e55d50a]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.1
+
 ## 1.5.0
 
 ### Minor Changes
