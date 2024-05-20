@@ -1,5 +1,22 @@
 # @openzeppelin/defender-sdk
 
+## 1.13.1
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+- Updated dependencies [e55d50a]
+  - @openzeppelin/defender-sdk-account-client@1.13.1
+  - @openzeppelin/defender-sdk-action-client@1.13.1
+  - @openzeppelin/defender-sdk-base-client@1.13.1
+  - @openzeppelin/defender-sdk-deploy-client@1.13.1
+  - @openzeppelin/defender-sdk-monitor-client@1.13.1
+  - @openzeppelin/defender-sdk-network-client@1.13.1
+  - @openzeppelin/defender-sdk-notification-channel-client@1.13.1
+  - @openzeppelin/defender-sdk-proposal-client@1.13.1
+  - @openzeppelin/defender-sdk-relay-client@1.13.1
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.1
+
 ## 1.13.0
 
 ### Minor Changes
