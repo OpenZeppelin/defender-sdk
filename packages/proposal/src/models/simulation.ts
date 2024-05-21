@@ -9,7 +9,7 @@ export type Log = [
   Address | string[] | string,
   Address | string[] | string,
   Address | string[] | string,
-  ...(Address | string[] | string)[]
+  ...(Address | string[] | string)[],
 ];
 export type BigUInt = string | string | number;
 

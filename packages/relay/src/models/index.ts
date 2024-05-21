@@ -8,6 +8,14 @@ export type Hex = string;
 export type Speed = 'safeLow' | 'average' | 'fast' | 'fastest';
 export type Status = 'pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed';
 
+export type PrivateTransactionMode = FlashbotTransactionMode;
+/**
+ * Fast mode has 2 key differences from the default Protect experience:
+ * 1. Shared with all builders: By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all registered builders to increase the number of blocks the user's transaction can be included in.
+ * 2. Larger refund paid to validator: By default, only 10% of MEV-Share refunds are paid to validators. In fast mode, validators receive 50% of refunds which makes it more likely that the user’s transactions will be chosen in a given block.
+ */
+export type FlashbotTransactionMode = 'flashbots-normal' | 'flashbots-fast';
+
 export interface SendBaseTransactionRequest {
   to?: Address;
   value?: BigUInt;
@@ -15,6 +23,7 @@ export interface SendBaseTransactionRequest {
   gasLimit: BigUInt;
   validUntil?: string;
   isPrivate?: boolean;
+  privateMode?: PrivateTransactionMode;
 }
 
 export interface SendSpeedTransactionRequest extends SendBaseTransactionRequest {
@@ -88,7 +97,11 @@ export interface UpdateRelayerPoliciesRequest {
   gasPriceCap?: BigUInt;
   whitelistReceivers?: Address[];
   EIP1559Pricing?: boolean;
-  privateTransactions?: boolean;
+  /**
+   * Allowing boolean for backwards compatibility.
+   * New relayers should use PrivateTransactionMode.
+   */
+  privateTransactions?: boolean | PrivateTransactionMode;
 }
 
 export interface UpdateRelayerRequest {
@@ -128,6 +141,7 @@ interface RelayerTransactionBase {
   sentAt?: string;
   pricedAt?: string;
   isPrivate?: boolean;
+  privateMode?: PrivateTransactionMode;
 }
 
 interface RelayerLegacyTransaction extends RelayerTransactionBase {

@@ -3,6 +3,7 @@ import { Network } from '@openzeppelin/defender-sdk-base-client';
 import {
   ListTransactionsRequest,
   PaginatedTransactionResponse,
+  PrivateTransactionMode,
   RelayerTransaction,
   RelayerTransactionPayload,
 } from './transactions';
@@ -53,7 +54,11 @@ export interface UpdateRelayerPoliciesRequest {
   gasPriceCap?: BigUInt;
   whitelistReceivers?: Address[];
   EIP1559Pricing?: boolean;
-  privateTransactions?: boolean;
+  /**
+   * Allowing boolean for backwards compatibility.
+   * New relayers should use PrivateTransactionMode.
+   */
+  privateTransactions?: boolean | PrivateTransactionMode;
 }
 
 export interface IRelayer {

@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 async function main() {
   // Gather actionId and api key
@@ -11,7 +12,12 @@ async function main() {
   if (!apiKey || !apiSecret) throw new Error(`Team API Key missing`);
 
   // Setup client
-  const client = new Defender({ apiKey, apiSecret });
+  const client = new Defender({
+    apiKey,
+    apiSecret,
+    //optional https config to keep connection alive. You can pass any configs that are accepted by https.Agent
+    httpsAgent: https.Agent({ keepAlive: true }),
+  });
 
   // Get Variables
   const currentVariables = await client.action.getEnvironmentVariables(actionId);

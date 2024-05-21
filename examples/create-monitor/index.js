@@ -3,9 +3,15 @@ require('dotenv').config();
 
 const abi = require('./abis/erc721.json');
 const { Defender } = require('@openzeppelin/defender-sdk');
+const https = require('https');
 
 async function main() {
-  const creds = { apiKey: process.env.API_KEY, apiSecret: process.env.API_SECRET };
+  const creds = {
+    apiKey: process.env.API_KEY,
+    apiSecret: process.env.API_SECRET,
+    //optional https config to keep connection alive. You can pass any configs that are accepted by https.Agent
+    httpsAgent: https.Agent({ keepAlive: true }),
+  };
   const client = new Defender(creds);
 
   let notification;
@@ -28,7 +34,7 @@ async function main() {
 
   const blockRequestParameters = {
     type: 'BLOCK', // BLOCK or FORTA
-    network: 'goerli',
+    network: 'sepolia',
     // optional
     confirmLevel: 1, // if not set, we pick the blockwatcher for the chosen network with the lowest offset
     name: 'MyNewMonitor',
@@ -58,6 +64,8 @@ async function main() {
     // optional
     alertTimeoutMs: 0,
     notificationChannels: [notification.notificationId],
+    // optional (LOW, MEDIUM, HIGH)
+    severityLevel: 'LOW',
     // optional
     riskCategory: 'TECHNICAL',
   };

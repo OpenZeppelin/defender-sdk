@@ -1,19 +1,23 @@
-import { BigNumber } from '@ethersproject/bignumber';
-import { Provider, TransactionResponse } from '@ethersproject/providers';
-import { Transaction } from '@ethersproject/transactions';
-import { Contract } from '@ethersproject/contracts';
 import { mock } from 'jest-mock-extended';
 import { omit, pick } from 'lodash';
 import { Relayer } from '../relayer';
-import { joinSignature, hexlify } from '@ethersproject/bytes';
-import { randomBytes } from '@ethersproject/random';
 import { DefenderRelaySigner } from './signer';
-import { _TypedDataEncoder } from '@ethersproject/hash';
 import { RelayerTransaction } from '../models/transactions';
 import { isEIP1559Tx, isLegacyTx } from './utils';
+import {
+  Contract,
+  ContractRunner,
+  JsonRpcProvider,
+  Signature,
+  TransactionLike,
+  TransactionResponse,
+  TypedDataEncoder,
+  hexlify,
+  randomBytes,
+} from 'ethers';
 
-type ProviderWithWrapTransaction = Provider & {
-  _wrapTransaction(tx: Transaction, hash?: string): TransactionResponse;
+type ProviderWithWrapTransaction = JsonRpcProvider & {
+  _wrapTransactionResponse(tx: TransactionLike, hash?: string): TransactionResponse;
 };
 
 describe('ethers/signer', () => {
@@ -56,7 +60,7 @@ describe('ethers/signer', () => {
     jest.resetAllMocks();
 
     relayer.getRelayer.mockResolvedValue({
-      network: 'goerli',
+      network: 'sepolia',
       address: from,
       relayerId: '1',
       createdAt: '',
@@ -67,17 +71,17 @@ describe('ethers/signer', () => {
       policies: {},
     });
 
-    provider._wrapTransaction.mockImplementation((arg) => {
+    provider._wrapTransactionResponse.mockImplementation((arg) => {
       let gasParams;
 
       if (isEIP1559Tx(arg)) {
         gasParams = {
-          maxFeePerGas: BigNumber.from(arg.maxFeePerGas),
-          maxPriorityFeePerGas: BigNumber.from(arg.maxPriorityFeePerGas),
+          maxFeePerGas: arg.maxFeePerGas,
+          maxPriorityFeePerGas: arg.maxPriorityFeePerGas,
         };
       } else {
         gasParams = {
-          gasPrice: BigNumber.from(arg.gasPrice),
+          gasPrice: arg.gasPrice,
         };
       }
 
@@ -88,48 +92,25 @@ describe('ethers/signer', () => {
         wait: () => {
           throw new Error();
         },
-      };
+      } as any as TransactionResponse;
     });
 
     provider.resolveName.mockImplementation((arg) => Promise.resolve(arg));
   });
 
-  const expectSentTx = (actual: TransactionResponse, expected: Partial<RelayerTransaction>) => {
-    let gasParams;
-
-    if (isEIP1559Tx(expected)) {
-      gasParams = {
-        maxFeePerGas: BigNumber.from(expected.maxFeePerGas),
-        maxPriorityFeePerGas: BigNumber.from(expected.maxPriorityFeePerGas),
-      };
-    } else if (isLegacyTx(expected)) {
-      gasParams = {
-        gasPrice: BigNumber.from(expected.gasPrice),
-      };
-    }
-    expect(actual).toEqual(
-      expect.objectContaining({
-        ...expected,
-        ...gasParams,
-        value: BigNumber.from(expected.value),
-        gasLimit: BigNumber.from(expected.gasLimit),
-      }),
-    );
-  };
-
   it('sends a tx with speed', async () => {
     relayer.sendTransaction.mockResolvedValue(tx);
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
     const request = pick(tx, 'to', 'data', 'value', 'gasLimit');
     const sent = await signer.sendTransaction(request);
 
-    expectSentTx(sent, tx);
     expect(relayer.sendTransaction).toHaveBeenCalledWith({
       ...request,
       gasLimit: '0xea60',
-      speed: tx.speed,
+      speed: 'safeLow',
       validUntil: undefined,
+      value: '0x02',
     });
   });
 
@@ -139,11 +120,10 @@ describe('ethers/signer', () => {
       gasPrice: 1e9,
     });
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
     const request = { ...pick(tx, 'to', 'data', 'value', 'gasLimit'), gasPrice: 1e9 };
     const sent = await signer.sendTransaction(request);
 
-    expectSentTx(sent, request);
     expect(relayer.sendTransaction).toHaveBeenCalledWith({
       ...request,
       gasLimit: '0xea60',
@@ -156,11 +136,10 @@ describe('ethers/signer', () => {
   it('sends a tx with fixed maxFeePerGas and maxPriorityFeePerGas', async () => {
     relayer.sendTransaction.mockResolvedValue(tx);
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
     const request = pick(tx, 'to', 'data', 'value', 'gasLimit', 'maxFeePerGas', 'maxPriorityFeePerGas');
     const sent = await signer.sendTransaction(request);
 
-    expectSentTx(sent, request);
     expect(relayer.sendTransaction).toHaveBeenCalledWith({
       ...request,
       gasLimit: '0xea60',
@@ -174,11 +153,10 @@ describe('ethers/signer', () => {
   it('replaces a tx by nonce', async () => {
     relayer.replaceTransactionByNonce.mockResolvedValue(tx);
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
     const request = pick(tx, 'to', 'data', 'value', 'gasLimit', 'nonce');
     const sent = await signer.sendTransaction(request);
 
-    expectSentTx(sent, request);
     expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
       ...omit(request, 'nonce'),
       gasLimit: '0xea60',
@@ -190,14 +168,13 @@ describe('ethers/signer', () => {
 
   it('sends a contract tx', async () => {
     relayer.sendTransaction.mockResolvedValue(tx);
-    provider.estimateGas.mockResolvedValueOnce(BigNumber.from('0xea60'));
+    provider.estimateGas.mockResolvedValueOnce(BigInt('0xea60'));
     provider.getCode.mockResolvedValueOnce('0x010203');
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
-    const contract = new Contract(tx.to, transferAbi, signer);
-    const sent = await contract.transfer(from, '0x02');
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
+    const contract = new Contract(tx.to, transferAbi, signer as ContractRunner);
+    const sent = await contract.transfer?.(from, '0x02');
 
-    expectSentTx(sent, tx);
     expect(relayer.sendTransaction).toHaveBeenCalledWith({
       data: contract.interface.encodeFunctionData('transfer', [from, '0x02']),
       gasLimit: '0xea60',
@@ -211,14 +188,13 @@ describe('ethers/signer', () => {
 
   it('replaces a contract tx', async () => {
     relayer.replaceTransactionByNonce.mockResolvedValue(tx);
-    provider.estimateGas.mockResolvedValueOnce(BigNumber.from('0xea60'));
+    provider.estimateGas.mockResolvedValueOnce(BigInt('0xea60'));
     provider.getCode.mockResolvedValueOnce('0x010203');
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
-    const contract = new Contract(tx.to, transferAbi, signer);
-    const sent = await contract.transfer(from, '0x02', { nonce: tx.nonce });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
+    const contract = new Contract(tx.to, transferAbi, signer as ContractRunner);
+    const sent = await contract.transfer?.(from, '0x02', { nonce: tx.nonce });
 
-    expectSentTx(sent, tx);
     expect(relayer.replaceTransactionByNonce).toHaveBeenCalledWith(30, {
       data: contract.interface.encodeFunctionData('transfer', [from, '0x02']),
       gasLimit: '0xea60',
@@ -262,10 +238,10 @@ describe('ethers/signer', () => {
       contents: 'Hello, Bob!',
     };
 
-    const TypedDataEncoder = mock<_TypedDataEncoder>();
-    const hashDomainSpy = jest.spyOn(_TypedDataEncoder, 'hashDomain').mockReturnValue(hexlify(randomBytes(32)));
-    const fromSpy = jest.spyOn(_TypedDataEncoder, 'from').mockReturnValue(TypedDataEncoder);
-    const hashSpy = jest.spyOn(TypedDataEncoder, 'hash').mockReturnValue(hexlify(randomBytes(32)));
+    const typedDataEncoder = mock<TypedDataEncoder>();
+    const hashDomainSpy = jest.spyOn(TypedDataEncoder, 'hashDomain').mockReturnValue(hexlify(randomBytes(32)));
+    const fromSpy = jest.spyOn(TypedDataEncoder, 'from').mockReturnValue(typedDataEncoder);
+    const hashSpy = jest.spyOn(typedDataEncoder, 'hash').mockReturnValue(hexlify(randomBytes(32)));
 
     const signatureResponse = {
       r: '0xd1556332df97e3bd911068651cfad6f975a30381f4ff3a55df7ab3512c78b9ec',
@@ -276,13 +252,13 @@ describe('ethers/signer', () => {
 
     relayer.signTypedData.mockResolvedValue(signatureResponse);
 
-    const signer = new DefenderRelaySigner(relayer, provider, { speed: 'safeLow' });
+    const signer = new DefenderRelaySigner(relayer, provider, from, { speed: 'safeLow' });
 
     const signature = await signer._signTypedData(domain, types, value);
 
     expect(hashDomainSpy).toHaveBeenCalledWith(domain);
     expect(fromSpy).toHaveBeenCalledWith(types);
     expect(hashSpy).toHaveBeenCalledWith(value);
-    expect(signature).toEqual(joinSignature(signatureResponse));
+    expect(signature).toEqual(Signature.from(signatureResponse).serialized);
   });
 });

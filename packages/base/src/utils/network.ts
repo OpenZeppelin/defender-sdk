@@ -5,7 +5,7 @@ export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
   | 'mainnet'
   | 'sepolia'
-  | 'goerli'
+  | 'holesky'
   | 'xdai'
   | 'sokol'
   | 'fuse'
@@ -18,14 +18,15 @@ export type PublicNetwork =
   | 'moonbeam'
   | 'matic'
   | 'mumbai'
+  | 'amoy'
+  | 'matic-zkevm'
+  | 'matic-zkevm-testnet'
   | 'avalanche'
   | 'fuji'
   | 'arbitrum'
   | 'arbitrum-nova'
-  | 'arbitrum-goerli'
   | 'arbitrum-sepolia'
   | 'optimism'
-  | 'optimism-goerli'
   | 'optimism-sepolia'
   | 'celo'
   | 'alfajores'
@@ -36,13 +37,13 @@ export type PublicNetwork =
   | 'hedera'
   | 'hederatest'
   | 'zksync'
-  | 'zksync-goerli'
+  | 'zksync-sepolia'
   | 'base'
-  | 'base-goerli'
   | 'base-sepolia'
   | 'linea-goerli'
   | 'linea'
   | 'mantle'
+  | 'mantle-sepolia'
   | 'scroll'
   | 'scroll-sepolia'
   | 'meld'
@@ -53,7 +54,7 @@ export type TenantNetwork = string;
 export const Networks: Network[] = [
   'mainnet',
   'sepolia',
-  'goerli',
+  'holesky',
   'xdai',
   'sokol',
   'fuse',
@@ -66,14 +67,15 @@ export const Networks: Network[] = [
   'moonbeam',
   'matic',
   'mumbai',
+  'amoy',
+  'matic-zkevm',
+  'matic-zkevm-testnet',
   'avalanche',
   'fuji',
   'arbitrum',
   'arbitrum-nova',
-  'arbitrum-goerli',
   'arbitrum-sepolia',
   'optimism',
-  'optimism-goerli',
   'optimism-sepolia',
   'celo',
   'alfajores',
@@ -84,9 +86,8 @@ export const Networks: Network[] = [
   'hedera',
   'hederatest',
   'zksync',
-  'zksync-goerli',
+  'zksync-sepolia',
   'base',
-  'base-goerli',
   'base-sepolia',
   'linea-goerli',
   'linea',
@@ -94,6 +95,7 @@ export const Networks: Network[] = [
   'x-dfk-avax-chain-test',
   'x-security-alliance',
   'mantle',
+  'mantle-sepolia',
   'scroll',
   'scroll-sepolia',
   'meld',
@@ -115,7 +117,7 @@ export function toChainId(network: Network): number | undefined {
 const chainIds: { [key in Network]: number } = {
   'mainnet': 1,
   'sepolia': 11155111,
-  'goerli': 5,
+  'holesky': 17000,
   'xdai': 100,
   'sokol': 77,
   'fuse': 122,
@@ -128,14 +130,15 @@ const chainIds: { [key in Network]: number } = {
   'moonbeam': 1284,
   'matic': 137,
   'mumbai': 80001,
+  'amoy': 80002,
+  'matic-zkevm': 1101,
+  'matic-zkevm-testnet': 1442,
   'avalanche': 0xa86a,
   'fuji': 0xa869,
   'optimism': 10,
-  'optimism-goerli': 420,
   'optimism-sepolia': 11155420,
   'arbitrum': 42161,
   'arbitrum-nova': 42170,
-  'arbitrum-goerli': 421613,
   'arbitrum-sepolia': 421614,
   'celo': 42220,
   'alfajores': 44787,
@@ -146,9 +149,8 @@ const chainIds: { [key in Network]: number } = {
   'hedera': 295,
   'hederatest': 296,
   'zksync': 324,
-  'zksync-goerli': 280,
+  'zksync-sepolia': 300,
   'base': 8453,
-  'base-goerli': 84531,
   'base-sepolia': 84532,
   'linea': 59144,
   'linea-goerli': 59140,
@@ -160,4 +162,5 @@ const chainIds: { [key in Network]: number } = {
   'scroll-sepolia': 534351,
   'meld': 0x13d92e8d,
   'meld-kanazawa': 0xd3b745e,
+  'mantle-sepolia': 5003,
 };

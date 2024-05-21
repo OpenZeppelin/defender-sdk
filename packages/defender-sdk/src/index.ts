@@ -10,7 +10,8 @@ import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
-import { Network } from '@openzeppelin/defender-sdk-base-client';
+import { Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
+import https from 'https';
 
 interface DefenderOptions {
   apiKey?: string;
@@ -19,6 +20,8 @@ interface DefenderOptions {
   relayerApiSecret?: string;
   credentials?: ActionRelayerParams;
   relayerARN?: string;
+  httpsAgent?: https.Agent;
+  retryConfig?: RetryConfig;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
@@ -39,6 +42,8 @@ export class Defender {
   private relayerApiSecret: string | undefined;
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
+  private httpsAgent?: https.Agent;
+  private retryConfig?: RetryConfig;
 
   constructor(options: DefenderOptions) {
     this.apiKey = options.apiKey;
@@ -48,46 +53,95 @@ export class Defender {
     // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
+    this.httpsAgent = options.httpsAgent;
+    this.retryConfig = options.retryConfig;
   }
 
   public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
-    return getClient(NetworkClient, { apiKey: this.apiKey, apiSecret: this.apiSecret }).listSupportedNetworks(opts);
+    return getClient(NetworkClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    }).listSupportedNetworks(opts);
   }
 
   get network() {
-    return getClient(NetworkClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(NetworkClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get account() {
-    return getClient(AccountClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(AccountClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get monitor() {
-    return getClient(MonitorClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(MonitorClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get action() {
-    return getClient(ActionClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(ActionClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get relay() {
-    return getClient(RelayClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(RelayClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get proposal() {
-    return getClient(ProposalClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(ProposalClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get deploy() {
-    return getClient(DeployClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(DeployClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get notificationChannel() {
-    return getClient(NotificationChannelClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+    return getClient(NotificationChannelClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+    });
   }
 
   get relaySigner() {
     return getClient(RelaySignerClient, {
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
       ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
