@@ -108,6 +108,7 @@ export interface UpdateRelayerRequest {
   name?: string;
   policies?: UpdateRelayerPoliciesRequest;
   minBalance?: BigUInt;
+  stackResourceId?: string;
 }
 
 export interface RelayerApiKey {
