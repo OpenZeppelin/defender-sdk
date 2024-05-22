@@ -118,7 +118,7 @@ export abstract class BaseApiClient {
 
       if (updatedRetryState.retryCount > this.retryConfig.retries) throw error;
 
-      if (isCloudFlareError(error) && this.apiSecret) {
+      if (isCloudFlareError(error)) {
         const apiWithUpgradeHeaders = await this.refresh({
           headers: {
             Connection: 'upgrade',
