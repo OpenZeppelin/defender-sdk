@@ -24,6 +24,7 @@ export abstract class BaseApiClient {
   private api: AxiosInstance | undefined;
   private apiKey: string;
   private session: CognitoUserSession | undefined;
+  private sessionV2: { accessToken: string; refreshToken: string } | undefined;
   private apiSecret: string;
   private httpsAgent?: https.Agent;
   private retryConfig: RetryConfig;
@@ -64,8 +65,8 @@ export abstract class BaseApiClient {
       secretKey: this.apiSecret,
       type: this.authConfig.type,
     };
-    const auth = await authenticateV2(credentials, this.getApiUrl('admin'));
-    return auth.accessToken;
+    this.sessionV2 = await authenticateV2(credentials, this.getApiUrl('admin'));
+    return this.sessionV2.accessToken;
   }
 
   private async refreshSession(): Promise<string> {
@@ -78,11 +79,11 @@ export abstract class BaseApiClient {
 
   private async refreshSessionV2(): Promise<string> {
     if (!this.authConfig.type) throw new Error('Auth type is required to refresh session in auth v2');
-    if (!this.session) return this.getAccessTokenV2();
+    if (!this.sessionV2) return this.getAccessTokenV2();
     const credentials = {
       apiKey: this.apiKey,
       secretKey: this.apiSecret,
-      refreshToken: this.session.getRefreshToken().getToken(),
+      refreshToken: this.sessionV2.refreshToken,
       type: this.authConfig.type,
     };
     const auth = await refreshSessionV2(credentials, this.getApiUrl('admin'));
@@ -101,7 +102,7 @@ export abstract class BaseApiClient {
   }
 
   protected async refresh(overrides?: { headers?: Record<string, string> }): Promise<AxiosInstance> {
-    if (!this.session) {
+    if (!this.session && !this.sessionV2) {
       return this.init();
     }
     try {
