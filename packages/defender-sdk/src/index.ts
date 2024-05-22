@@ -23,7 +23,7 @@ export interface DefenderOptions {
   relayerARN?: string;
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
-  authV2?: boolean;
+  useCredentialsCaching?: boolean;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
@@ -59,7 +59,7 @@ export class Defender {
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
     this.authConfig = {
-      authV2: options.authV2 ?? false,
+      useCredentialsCaching: options.useCredentialsCaching ?? false,
       type: isRelaySignerOptions(options) ? 'relay' : 'admin',
     };
   }

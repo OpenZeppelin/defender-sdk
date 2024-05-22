@@ -15,7 +15,7 @@ export type RetryConfig = {
 };
 
 export type AuthConfig = {
-  authV2: boolean;
+  useCredentialsCaching: boolean;
   type: AuthType;
 };
 
@@ -47,7 +47,7 @@ export abstract class BaseApiClient {
     this.apiSecret = params.apiSecret;
     this.httpsAgent = params.httpsAgent;
     this.retryConfig = { retries: 3, retryDelay: exponentialDelay, ...params.retryConfig };
-    this.authConfig = params.authConfig ?? { authV2: false, type: 'admin' };
+    this.authConfig = params.authConfig ?? { useCredentialsCaching: false, type: 'admin' };
   }
 
   private async getAccessToken(): Promise<string> {
@@ -91,7 +91,9 @@ export abstract class BaseApiClient {
 
   protected async init(): Promise<AxiosInstance> {
     if (!this.api) {
-      const accessToken = this.authConfig.authV2 ? await this.getAccessTokenV2() : await this.getAccessToken();
+      const accessToken = this.authConfig.useCredentialsCaching
+        ? await this.getAccessTokenV2()
+        : await this.getAccessToken();
 
       this.api = createAuthenticatedApi(this.apiKey, accessToken, this.getApiUrl(), this.httpsAgent);
     }
@@ -103,7 +105,9 @@ export abstract class BaseApiClient {
       return this.init();
     }
     try {
-      const accessToken = this.authConfig.authV2 ? await this.refreshSessionV2() : await this.refreshSession();
+      const accessToken = this.authConfig.useCredentialsCaching
+        ? await this.refreshSessionV2()
+        : await this.refreshSession();
 
       this.api = createAuthenticatedApi(
         this.apiKey,

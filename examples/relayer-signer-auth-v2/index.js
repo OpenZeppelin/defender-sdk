@@ -6,7 +6,7 @@ async function main() {
   const client = new Defender({
     relayerApiKey: process.env.RELAYER_API_KEY,
     relayerApiSecret: process.env.RELAYER_API_SECRET,
-    authV2: true,
+    useCredentialsCaching: true,
   });
 
   const status = await client.relaySigner.getRelayerStatus();
