@@ -31,7 +31,7 @@ export abstract class BaseApiClient {
 
   protected abstract getPoolId(): string;
   protected abstract getPoolClientId(): string;
-  protected abstract getApiUrl(): string;
+  protected abstract getApiUrl(type?: AuthType): string;
 
   public constructor(params: {
     apiKey: string;
@@ -64,7 +64,7 @@ export abstract class BaseApiClient {
       secretKey: this.apiSecret,
       type: this.authConfig.type,
     };
-    const auth = await authenticateV2(credentials, this.getApiUrl());
+    const auth = await authenticateV2(credentials, this.getApiUrl('admin'));
     return auth.accessToken;
   }
 
@@ -85,7 +85,7 @@ export abstract class BaseApiClient {
       refreshToken: this.session.getRefreshToken().getToken(),
       type: this.authConfig.type,
     };
-    const auth = await refreshSessionV2(credentials, this.getApiUrl());
+    const auth = await refreshSessionV2(credentials, this.getApiUrl('admin'));
     return auth.accessToken;
   }
 
