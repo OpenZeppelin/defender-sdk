@@ -208,6 +208,15 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
 
+  examples/relayer-load-balance:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 1.13.1
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/defender-sdk':
