@@ -18,35 +18,50 @@ export abstract class BaseApiClient {
   private api: AxiosInstance | undefined;
   private apiKey: string;
   private session: CognitoUserSession | undefined;
-  private apiSecret: string;
+  private apiSecret: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig: RetryConfig;
+  private accessToken: string | undefined;
 
   protected abstract getPoolId(): string;
   protected abstract getPoolClientId(): string;
   protected abstract getApiUrl(): string;
 
   public constructor(params: {
-    apiKey: string;
-    apiSecret: string;
+    apiKey?: string;
+    apiSecret?: string;
     httpsAgent?: https.Agent;
     retryConfig?: Partial<RetryConfig>;
+    accessToken?: string;
   }) {
     if (!params.apiKey) throw new Error(`API key is required`);
-    if (!params.apiSecret) throw new Error(`API secret is required`);
+    if (!params.apiSecret && !params.accessToken) throw new Error(`API secret or access token is required`);
 
     this.apiKey = params.apiKey;
     this.apiSecret = params.apiSecret;
+    this.accessToken = params.accessToken;
     this.httpsAgent = params.httpsAgent;
     this.retryConfig = { retries: 3, retryDelay: exponentialDelay, ...params.retryConfig };
   }
 
+  protected getKey(): string {
+    return this.apiKey;
+  }
+
+  protected async getToken(): Promise<string> {
+    if (this.accessToken) return this.accessToken;
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
+
+    const userPass = { Username: this.apiKey, Password: this.apiSecret };
+    const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
+    this.session = await authenticate(userPass, poolData);
+    return this.session.getAccessToken().getJwtToken();
+  }
+
   protected async init(): Promise<AxiosInstance> {
     if (!this.api) {
-      const userPass = { Username: this.apiKey, Password: this.apiSecret };
-      const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
-      this.session = await authenticate(userPass, poolData);
-      this.api = createAuthenticatedApi(userPass.Username, this.session, this.getApiUrl(), this.httpsAgent);
+      const token = await this.getToken();
+      this.api = createAuthenticatedApi(this.apiKey, token, this.getApiUrl(), this.httpsAgent);
     }
     return this.api;
   }
@@ -55,13 +70,16 @@ export abstract class BaseApiClient {
     if (!this.session) {
       return this.init();
     }
+    if (!this.apiSecret) {
+      throw new Error('Cannot refresh session without API secret.');
+    }
     try {
       const userPass = { Username: this.apiKey, Password: this.apiSecret };
       const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
       this.session = await refreshSession(userPass, poolData, this.session);
       this.api = createAuthenticatedApi(
         userPass.Username,
-        this.session,
+        this.session.getAccessToken().getJwtToken(),
         this.getApiUrl(),
         this.httpsAgent,
         overrides?.headers,
@@ -82,8 +100,11 @@ export abstract class BaseApiClient {
       await sleep(retryDelay);
       return await apiFunction(axiosInstance);
     } catch (error: any) {
-      // this means ID token has expired so we'll recreate session and try again
+      // this means ID token has expired
       if (isAuthenticationError(error)) {
+        // if using custom access token, throw error.
+        if (this.accessToken) throw error;
+
         this.api = undefined;
 
         const api = await this.refresh();
@@ -97,7 +118,7 @@ export abstract class BaseApiClient {
 
       if (updatedRetryState.retryCount > this.retryConfig.retries) throw error;
 
-      if (isCloudFlareError(error)) {
+      if (isCloudFlareError(error) && this.apiSecret) {
         const apiWithUpgradeHeaders = await this.refresh({
           headers: {
             Connection: 'upgrade',
