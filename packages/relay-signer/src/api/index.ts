@@ -10,7 +10,7 @@ import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessag
 import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
 
 export const getRelaySignerApiUrl = () =>
-  process.env.DEFENDER_RELAY_SIGNER_ACTION_API_URL || 'https://api.defender.openzeppelin.com/';
+  process.env.DEFENDER_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
 export const getAdminApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
 
 export class RelaySignerClient extends BaseApiClient implements IRelayer {
