@@ -1,6 +1,6 @@
 export { createApi, createAuthenticatedApi } from './api/api';
 export { authenticate } from './api/auth';
-export { BaseApiClient, RetryConfig } from './api/client';
+export { BaseApiClient, RetryConfig, AuthConfig } from './api/client';
 export * from './utils/network';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

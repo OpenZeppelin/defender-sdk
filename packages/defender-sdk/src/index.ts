@@ -10,10 +10,11 @@ import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
-import { Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
+import { AuthConfig, Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
 import https from 'https';
+import { isRelaySignerOptions } from './utils';
 
-interface DefenderOptions {
+export interface DefenderOptions {
   apiKey?: string;
   apiSecret?: string;
   relayerApiKey?: string;
@@ -22,6 +23,7 @@ interface DefenderOptions {
   relayerARN?: string;
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
+  authV2?: boolean;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
@@ -44,6 +46,7 @@ export class Defender {
   private actionRelayerArn: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig?: RetryConfig;
+  private authConfig?: AuthConfig;
 
   constructor(options: DefenderOptions) {
     this.apiKey = options.apiKey;
@@ -55,6 +58,10 @@ export class Defender {
     this.actionRelayerArn = options.relayerARN;
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
+    this.authConfig = {
+      authV2: options.authV2 ?? false,
+      type: isRelaySignerOptions(options) ? 'relay' : 'admin',
+    };
   }
 
   public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
@@ -63,6 +70,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     }).listSupportedNetworks(opts);
   }
 
@@ -72,6 +80,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -81,6 +90,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -90,6 +100,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -99,6 +110,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -108,6 +120,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -117,6 +130,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -126,6 +140,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -135,6 +150,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -142,6 +158,7 @@ export class Defender {
     return getClient(RelaySignerClient, {
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
       ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
