@@ -18,6 +18,7 @@ interface DefenderOptions {
   apiSecret?: string;
   relayerApiKey?: string;
   relayerApiSecret?: string;
+  accessToken?: string;
   credentials?: ActionRelayerParams;
   relayerARN?: string;
   httpsAgent?: https.Agent;
@@ -27,9 +28,10 @@ interface DefenderOptions {
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
   if (
     !('credentials' in credentials && 'relayerARN' in credentials) &&
-    !('apiKey' in credentials && 'apiSecret' in credentials)
+    !('apiKey' in credentials) &&
+    !('accessToken' in credentials || 'apiSecret' in credentials)
   ) {
-    throw new Error(`API key and secret are required`);
+    throw new Error(`API authentication credentials required`);
   }
 
   return new Client(credentials);
@@ -40,6 +42,7 @@ export class Defender {
   private apiSecret: string | undefined;
   private relayerApiKey: string | undefined;
   private relayerApiSecret: string | undefined;
+  private accessToken: string | undefined;
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
   private httpsAgent?: https.Agent;
@@ -50,6 +53,7 @@ export class Defender {
     this.apiSecret = options.apiSecret;
     this.relayerApiKey = options.relayerApiKey;
     this.relayerApiSecret = options.relayerApiSecret;
+    this.accessToken = options.accessToken;
     // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
@@ -146,6 +150,7 @@ export class Defender {
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
+      ...(this.accessToken ? { accessToken: this.accessToken } : undefined),
     });
   }
 }

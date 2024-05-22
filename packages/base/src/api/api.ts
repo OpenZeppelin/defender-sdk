@@ -32,12 +32,10 @@ export function createApi(
 
 export function createAuthenticatedApi(
   username: string,
-  session: CognitoUserSession,
+  token: string,
   apiUrl: string,
   httpsAgent?: https.Agent,
   headers?: Record<string, string>,
 ): AxiosInstance {
-  const accessToken = session.getAccessToken().getJwtToken();
-
-  return createApi(username, accessToken, apiUrl, httpsAgent, headers);
+  return createApi(username, token, apiUrl, httpsAgent, headers);
 }

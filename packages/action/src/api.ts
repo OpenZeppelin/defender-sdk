@@ -37,6 +37,14 @@ export class ActionClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
   }
 
+  public getApiKey(): string {
+    return this.getKey();
+  }
+
+  public getAccessToken(): Promise<string> {
+    return this.getToken();
+  }
+
   public async list(): Promise<ActionListResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/actions`);
