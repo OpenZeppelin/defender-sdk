@@ -48,4 +48,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+        uses: cat ~/.npmrc
