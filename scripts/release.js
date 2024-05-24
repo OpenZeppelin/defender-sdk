@@ -2,8 +2,8 @@ const path = require("path");
 const { exec, getExecOutput } = require("@actions/exec");
 
 const { version } = require("../package.json");
-const tag = `v${version}`;
-const releaseLine = `v${version.split(".")[0]}`;
+const tag = `${version}`;
+const releaseLine = `${version.split(".")[0]}`;
 
 process.chdir(path.join(__dirname, ".."));
 
