@@ -3,7 +3,7 @@ name: PR
 on:
   push:
     branches:
-      - SRE-221-automation
+      - SRE-221-automation-test
   workflow_dispatch: {}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
