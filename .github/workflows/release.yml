@@ -59,11 +59,3 @@ jobs:
         uses: anchore/sbom-action/publish-sbom@ab5d7b5f48981941c4c5d6bf33aeb98fe3bae38c # v0.15.10
         with:
           sbom-artifact-match: ".*${{ inputs.tag }}.spdx\\.json"
-
-      - name: Publish Package
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        with:
-          version: pnpm publish-package
