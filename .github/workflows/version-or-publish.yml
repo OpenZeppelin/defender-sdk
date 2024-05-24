@@ -3,9 +3,9 @@ name: Version or Publish Package
 on:
   push:
     branches:
-      # - main
-      - SRE-221-automation
-      - changeset-test
+      - main-branch
+      # - SRE-221-automation
+      # - changeset-test
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
