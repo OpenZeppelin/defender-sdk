@@ -3,8 +3,7 @@ name: Version or Publish Package
 on:
   push:
     branches:
-      # - main
-      - SRE-221-automation
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
