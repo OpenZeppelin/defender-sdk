@@ -5,6 +5,7 @@
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {
     "@openzeppelin/defender-sdk-base-client": "1.13.1",
+    "@actions/exec": "^1.1.1",
     "axios": "^1.6.7",
     "lodash": "^4.17.21"
   },
@@ -47,7 +48,7 @@
     "style": "pnpm lint:fix",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
     "version-set": "changeset version",
-    "publish-package": "changeset publish"
+    "release": "node ./scripts/release.js"
   },
   "repository": {
     "type": "git",
