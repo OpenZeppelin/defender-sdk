@@ -5,6 +5,7 @@ on:
     branches:
       # - main
       - SRE-221-automation
+      - changeset-test
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
