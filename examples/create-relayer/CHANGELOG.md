@@ -1,5 +1,13 @@
 # example-create-relayer
 
+## 1.13.2
+
+### Patch Changes
+
+- 7743e3e: Test releasing the SDK via GA
+- Updated dependencies [7743e3e]
+  - @openzeppelin/defender-sdk@1.13.2
+
 ## 1.13.1
 
 ### Patch Changes

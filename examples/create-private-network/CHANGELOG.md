@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-create-private-network
 
+## 1.13.2
+
+### Patch Changes
+
+- 7743e3e: Test releasing the SDK via GA
+- Updated dependencies [7743e3e]
+  - @openzeppelin/defender-sdk@1.13.2
+
 ## 1.13.1
 
 ### Patch Changes

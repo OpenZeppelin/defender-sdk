@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.13.2
+
+### Patch Changes
+
+- 7743e3e: Test releasing the SDK via GA
+
 ## 1.13.1
 
 ### Patch Changes
