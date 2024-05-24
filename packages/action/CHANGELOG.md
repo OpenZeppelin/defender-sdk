@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-action-client
 
+## 1.13.2
+
+### Patch Changes
+
+- 0dbf080: Testing changeset
+- Updated dependencies [0dbf080]
+  - @openzeppelin/defender-sdk-base-client@1.13.2
+
 ## 1.13.1
 
 ### Patch Changes
