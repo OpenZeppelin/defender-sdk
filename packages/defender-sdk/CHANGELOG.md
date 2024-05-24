@@ -1,5 +1,22 @@
 # @openzeppelin/defender-sdk
 
+## 1.13.2
+
+### Patch Changes
+
+- 7743e3e: Test releasing the SDK via GA
+- Updated dependencies [7743e3e]
+  - @openzeppelin/defender-sdk-account-client@1.13.2
+  - @openzeppelin/defender-sdk-action-client@1.13.2
+  - @openzeppelin/defender-sdk-base-client@1.13.2
+  - @openzeppelin/defender-sdk-deploy-client@1.13.2
+  - @openzeppelin/defender-sdk-monitor-client@1.13.2
+  - @openzeppelin/defender-sdk-network-client@1.13.2
+  - @openzeppelin/defender-sdk-notification-channel-client@1.13.2
+  - @openzeppelin/defender-sdk-proposal-client@1.13.2
+  - @openzeppelin/defender-sdk-relay-client@1.13.2
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.2
+
 ## 1.13.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.5.2
+
+### Patch Changes
+
+- 7743e3e: Test releasing the SDK via GA
+- Updated dependencies [7743e3e]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.2
+
 ## 1.5.1
 
 ### Patch Changes
