@@ -41,7 +41,7 @@ jobs:
           setupGitUser: false
           version: pnpm ci:version
           title: "Update the version packages"
-          publish: yarn release
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
