@@ -23,7 +23,7 @@ jobs:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
     with:
       run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
-      node-version: "16.20.0"
+      node-version: "20.11.1"
       ## Remove after making repo public
       rekor-log-public: true
 
@@ -41,9 +41,9 @@ jobs:
           egress-policy: audit
 
       - name: Use node@20
-        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8  # v4.0.1
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: 20
+          node-version: 20.11.1
 
       - name: Publish to NPM
         id: publish
