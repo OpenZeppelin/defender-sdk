@@ -35,7 +35,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout Repo
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v3.6.0
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
         with:
           ref: refs/tags/${{ inputs.tag }}
 
