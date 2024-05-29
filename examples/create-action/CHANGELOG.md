@@ -1,12 +1,21 @@
 # @openzeppelin/defender-sdk-example-create-action
 
-## 1.13.1
+## 1.13.3
+
+### Patch Changes
+
+- 2d1655d: feat: Add stackId in update relayer request
+  feat: Add Auth v2 support with `useCredentialsCaching` to cache access token
+- Updated dependencies [2d1655d]
+  - @openzeppelin/defender-sdk@1.13.3
+
+## 1.13.3
 
 ### Patch Changes
 
 - e55d50a: Patch: Fix aws-sdk v3 action error payload
 - Updated dependencies [e55d50a]
-  - @openzeppelin/defender-sdk@1.13.1
+  - @openzeppelin/defender-sdk@1.13.3
 
 ## 1.13.0
 
