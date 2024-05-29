@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.5.2
+
+### Patch Changes
+
+- 2d1655d: feat: Add stackId in update relayer request
+  feat: Add Auth v2 support with `useCredentialsCaching` to cache access token
+- Updated dependencies [2d1655d]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.2
+
 ## 1.5.1
 
 ### Patch Changes
