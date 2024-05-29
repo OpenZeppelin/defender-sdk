@@ -1,6 +1,6 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
-## 1.5.2
+## 1.13.3
 
 ### Patch Changes
 
