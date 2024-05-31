@@ -4,6 +4,7 @@ import { ContractFactory } from 'ethers';
 import ERC20Abi from '../erc20.json';
 import ERC20Bytecode from '../bytecode.json';
 import { fileURLToPath } from 'node:url';
+import dotenv from 'dotenv';
 
 export async function handler(event: ActionEvent | DefenderOptions) {
   const client = new Defender(event as DefenderOptions);
@@ -24,10 +25,16 @@ export async function handler(event: ActionEvent | DefenderOptions) {
   return 0;
 }
 
+type Credentials = {
+  RELAYER_API_KEY: string;
+  RELAYER_API_SECRET: string;
+};
+
 // To run locally (this code will not be executed in Autotasks)
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  // Create DefenderOptions object from process.env values
-  const { relayerApiKey, relayerApiSecret } = process.env as DefenderOptions;
+  dotenv.config();
+
+  const { RELAYER_API_KEY: relayerApiKey, RELAYER_API_SECRET: relayerApiSecret } = process.env as Credentials;
 
   // Call handler function
   handler({ relayerApiKey, relayerApiSecret })
