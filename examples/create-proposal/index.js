@@ -15,15 +15,15 @@ async function main() {
   const proposal = await client.proposal.create({
     proposal: {
       contract: {
-        address: '0x76d1d77e2b571f332e1128bDd6640C68aa3d136d',
-        network: 'goerli',
+        address: '0x63966e9D09bf401106c515E71A426A160ee5C771',
+        network: 'sepolia',
       },
       title: 'Set number',
       description: 'Set value to 42',
       type: 'custom',
       functionInterface: { name: 'setNumber', inputs: [{ name: 'value', type: 'uint256' }] },
       functionInputs: ['42'],
-      via: '0x534Fba01B138915C9F6D2b58bCF5C4712852cfE8',
+      via: '0xA285339861363492ed1dC276b0399eA1fC184E10',
       viaType: 'Safe',
     },
   });

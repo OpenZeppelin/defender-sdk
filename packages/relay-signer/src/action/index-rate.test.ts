@@ -1,8 +1,13 @@
 import { ActionRelayer } from '.';
 import Lambda from '../__mocks__/aws-sdk/clients/lambda';
+import { Lambda as LambdaV3 } from '../__mocks__/@aws-sdk/client-lambda';
+jest.mock('node:process', () => ({
+  ...jest.requireActual('node:process'),
+  version: 'v16.0.3',
+}));
 
 type TestActionRelayer = Omit<ActionRelayer, 'lambda' | 'relayerARN'> & {
-  lambda: ReturnType<typeof Lambda>;
+  lambda: ReturnType<typeof Lambda | typeof LambdaV3>;
   arn: string;
 };
 
@@ -35,10 +40,13 @@ describe('ActionRelayer', () => {
     relayer = new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
+      authConfig: { type: 'relay', useCredentialsCaching: false },
     }) as unknown as TestActionRelayer;
   });
 
   describe('get rate limited', () => {
+    jest.mock('aws-sdk/clients/lambda', () => Lambda);
+    jest.mock('@aws-sdk/client-lambda', () => ({ Lambda: LambdaV3 }));
     test('throw Rate limit error after 300 requests', async () => {
       const rateLimit = 300;
 

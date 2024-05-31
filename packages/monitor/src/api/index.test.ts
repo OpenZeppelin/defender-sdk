@@ -68,7 +68,7 @@ describe('MonitorClient', () => {
     name: 'Test BLOCK monitor',
     addresses: ['0xdead'],
     notificationChannels: [],
-    network: 'goerli',
+    network: 'sepolia',
     confirmLevel: 1,
     paused: false,
     abi: ABI,
@@ -89,7 +89,7 @@ describe('MonitorClient', () => {
   const createFortaPayload: ExternalCreateFortaMonitorRequest = {
     type: 'FORTA',
     name: 'Test FORTA monitor',
-    network: 'goerli',
+    network: 'sepolia',
     addresses: ['0xdead'],
     notificationChannels: [],
     paused: false,
@@ -102,7 +102,7 @@ describe('MonitorClient', () => {
     name: 'Previous monitor',
     paused: false,
     blockWatcherId: 'i-am-the-watcher',
-    network: 'goerli',
+    network: 'sepolia',
     addressRules: [
       {
         abi: '[{ method: "type" }]',
@@ -427,7 +427,7 @@ describe('MonitorClient', () => {
   describe('getBlockwatcherIdByNetwork', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
-      const results = await monitor.getBlockwatcherIdByNetwork('goerli');
+      const results = await monitor.getBlockwatcherIdByNetwork('sepolia');
       if (!results[0]) throw new Error('results is empty');
       expect(results[0].blockWatcherId).toEqual('i-am-the-watcher');
     });

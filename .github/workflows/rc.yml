@@ -25,7 +25,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout Repo
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v3.6.0
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -48,7 +48,7 @@ jobs:
   #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.7.0
   #   with:
   #     run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
-  #     node-version: "16.20.0"
+  #     node-version: "20.11.1"
   #     # Remove after making repo public
   #     rekor-log-public: true
 
@@ -72,7 +72,7 @@ jobs:
   #         egress-policy: audit
 
   #     - name: Checkout
-  #       uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v3.6.0
+  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
   #       with:
   #         token: ${{ secrets.SAI_PAT }}
 

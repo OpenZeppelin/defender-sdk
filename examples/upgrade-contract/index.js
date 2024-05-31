@@ -15,7 +15,7 @@ async function main() {
   const client = new Defender(creds);
 
   // Get approval process for deployment on Sepolia
-  const config = await client.deploy.getUpgradeApprovalProcess('goerli');
+  const config = await client.deploy.getUpgradeApprovalProcess('sepolia');
   console.log(config);
 
   const upgrade = await client.deploy.upgradeContract({
@@ -23,7 +23,7 @@ async function main() {
     proxyAdminAddress: '0xDEF1234...',
     newImplementationABI: JSON.stringify(boxAbiFile),
     newImplementationAddress: '0xABCDEF1....',
-    network: 'goerli',
+    network: 'sepolia',
   });
 
   console.log(upgrade);
