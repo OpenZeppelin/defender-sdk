@@ -10,19 +10,17 @@ export async function handler(event: ActionEvent & DefenderOptions) {
   const signer = await client.relaySigner.getSigner(provider, { speed: 'fast' });
 
   const erc20BytesLike = ERC20Bytecode[0].data.bytecode.object;
-
-  // Deploy new ERC20 contract
   const factory = new ContractFactory(ERC20Abi, erc20BytesLike, signer);
 
-  // console.log(`Deploying ERC20 contract`);
-  // const erc20 = await factory.deploy(100, { gasLimit: 8000000 });
+  console.log(`Deploying ERC20 contract`);
+  const erc20 = await factory.deploy(100, { gasLimit: 8000000 });
 
-  // console.log(`Waiting for contract deployment...`);
-  // await erc20.deploymentTransaction().wait();
+  console.log(`Waiting for contract deployment...`);
+  await erc20.deploymentTransaction().wait();
 
-  // const contractAddress = await erc20.getAddress();
-  // console.log(`Contract deployed at address ${contractAddress}`);
-  return {};
+  const contractAddress = await erc20.getAddress();
+  console.log(`Contract deployed at address ${contractAddress}`);
+  return 0;
 }
 
 // To run locally (this code will not be executed in Autotasks)
