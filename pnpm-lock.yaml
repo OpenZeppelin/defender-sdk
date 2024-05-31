@@ -487,6 +487,9 @@ importers:
       '@ethersproject/bytes':
         specifier: ^5.7.0
         version: 5.7.0
+      '@ethersproject/logger':
+        specifier: ^5.7.0
+        version: 5.7.0
       '@ethersproject/networks':
         specifier: ^5.7.1
         version: 5.7.1
