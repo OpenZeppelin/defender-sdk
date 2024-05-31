@@ -3,9 +3,10 @@ import { type ActionEvent } from '@openzeppelin/defender-sdk-action-client';
 import { ContractFactory } from 'ethers';
 import ERC20Abi from '../erc20.json';
 import ERC20Bytecode from '../bytecode.json';
+import { fileURLToPath } from 'node:url';
 
-export async function handler(event: ActionEvent & DefenderOptions) {
-  const client = new Defender(event);
+export async function handler(event: ActionEvent | DefenderOptions) {
+  const client = new Defender(event as DefenderOptions);
   const provider = client.relaySigner.getProvider();
   const signer = await client.relaySigner.getSigner(provider, { speed: 'fast' });
 
@@ -24,7 +25,15 @@ export async function handler(event: ActionEvent & DefenderOptions) {
 }
 
 // To run locally (this code will not be executed in Autotasks)
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Create DefenderOptions object from process.env values
+  const { relayerApiKey, relayerApiSecret } = process.env as DefenderOptions;
+
   // Call handler function
+  handler({ relayerApiKey, relayerApiSecret })
+    .then(() => process.exit(0))
+    .catch((error: Error) => {
+      console.error(error);
+      process.exit(1);
+    });
 }
