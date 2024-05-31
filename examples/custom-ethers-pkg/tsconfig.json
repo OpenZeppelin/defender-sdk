@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "bundler",
-    "allowJs": true,
-    "resolveJsonModule": true
+    "paths": {
+      "ethers": ["node_modules/ethers/lib.esm/index"]
+    },
+    "module": "nodenext",
+
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "target": "esnext",
+
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src", "rollup.config.ts"]
 }
