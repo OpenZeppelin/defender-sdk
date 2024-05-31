@@ -16,7 +16,7 @@ export default defineConfig({
   input: 'src/index.ts',
   output: {
     file: 'dist/index.js',
-    format: 'cjs',
+    format: 'es',
   },
   plugins: [
     fixPluginTypeImport(json)({ compact: true }),
