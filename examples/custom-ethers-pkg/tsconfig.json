@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "ethers": ["node_modules/ethers/lib.esm/index"]
     },
