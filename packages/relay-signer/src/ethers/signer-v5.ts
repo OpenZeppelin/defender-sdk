@@ -34,7 +34,7 @@ const allowedTransactionKeys: Array<string> = [
 
 type GasOptions = Pick<TransactionRequest, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
 
-export type DefenderTransactionRequest = TransactionRequest &
+export type DefenderTransactionRequestV5 = TransactionRequest &
   Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
 
 export type DefenderRelaySignerOptionsV5 = Partial<
@@ -123,7 +123,7 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
     return new DefenderRelaySignerV5(this.relayerCredentials, provider, this.options);
   }
 
-  public async sendTransaction(transaction: Deferrable<DefenderTransactionRequest>): Promise<TransactionResponse> {
+  public async sendTransaction(transaction: Deferrable<DefenderTransactionRequestV5>): Promise<TransactionResponse> {
     this._checkProvider('sendTransaction');
 
     const tx = await this.populateTransaction(transaction);
@@ -185,8 +185,10 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
   // Defender relay does not require all fields to be populated
-  async populateTransaction(transaction: Deferrable<DefenderTransactionRequest>): Promise<DefenderTransactionRequest> {
-    const tx: Deferrable<DefenderTransactionRequest> = await resolveProperties(this.checkTransaction(transaction));
+  async populateTransaction(
+    transaction: Deferrable<DefenderTransactionRequestV5>,
+  ): Promise<DefenderTransactionRequestV5> {
+    const tx: Deferrable<DefenderTransactionRequestV5> = await resolveProperties(this.checkTransaction(transaction));
     if (tx.to != null) {
       tx.to = Promise.resolve(tx.to).then((to) => this.resolveName(to!));
     }
@@ -224,7 +226,7 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
   // Defender relay accepts more transaction keys
-  checkTransaction(transaction: Deferrable<DefenderTransactionRequest>): Deferrable<DefenderTransactionRequest> {
+  checkTransaction(transaction: Deferrable<DefenderTransactionRequestV5>): Deferrable<DefenderTransactionRequestV5> {
     for (const key in transaction) {
       if (allowedTransactionKeys.indexOf(key) === -1) {
         logger.throwArgumentError('invalid transaction key: ' + key, 'transaction', transaction);

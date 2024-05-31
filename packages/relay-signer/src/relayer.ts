@@ -46,7 +46,7 @@ export class Relayer implements IRelayer {
     else return new DefenderRelayProvider(this.credentials);
   }
 
-  public getProviderV5(): DefenderRelayProvider | DefenderRelayProviderV5 {
+  public getProviderV5(): DefenderRelayProviderV5 {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
     return new DefenderRelayProviderV5(this.credentials);
   }
@@ -60,9 +60,8 @@ export class Relayer implements IRelayer {
     return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
   }
 
-  public async getSignerV5(provider: Provider, options: DefenderRelaySignerOptionsV5): Promise<DefenderRelaySignerV5> {
+  public getSignerV5(provider: Provider, options: DefenderRelaySignerOptionsV5): DefenderRelaySignerV5 {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
-    const relayer = await this.relayer.getRelayer();
     return new DefenderRelaySignerV5(this.credentials, provider, options);
   }
 

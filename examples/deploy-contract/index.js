@@ -24,7 +24,7 @@ async function main() {
   console.log(keys);
 
   // Get approval process for deployment on sepolia
-  const config = await client.deploy.getDeployApprovalProcess('sepolia');
+  const config = await client.deploy.getDeployApprovalProcess('japan-testnet');
   console.log(config);
 
   const deployment = await client.deploy.deployContract({
