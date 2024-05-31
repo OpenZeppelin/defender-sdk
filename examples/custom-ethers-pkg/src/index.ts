@@ -1,5 +1,5 @@
-import { Defender, DefenderOptions } from '@openzeppelin/defender-sdk';
-import { ActionEvent } from '@openzeppelin/defender-sdk-action-client';
+import { Defender, type DefenderOptions } from '@openzeppelin/defender-sdk';
+import { type ActionEvent } from '@openzeppelin/defender-sdk-action-client';
 import { ContractFactory } from 'ethers';
 import ERC20Abi from '../erc20.json';
 import ERC20Bytecode from '../bytecode.json';
