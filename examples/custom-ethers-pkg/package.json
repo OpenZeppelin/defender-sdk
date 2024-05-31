@@ -13,6 +13,7 @@
   "dependencies": {
     "@openzeppelin/defender-sdk": "1.13.3",
     "@openzeppelin/defender-sdk-action-client": "1.13.3",
+    "dotenv": "^16.4.5",
     "ethers": "^6.9.0"
   },
   "devDependencies": {
