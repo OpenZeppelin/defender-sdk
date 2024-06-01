@@ -15,7 +15,7 @@ import { Speed } from '../models/transactions';
 import { RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
-const logger = new Logger(`@openzeppelin/defender-relay-client`);
+const logger = new Logger(`@openzeppelin/defender-sdk-relay-client`);
 
 const allowedTransactionKeys: Array<string> = [
   'chainId',

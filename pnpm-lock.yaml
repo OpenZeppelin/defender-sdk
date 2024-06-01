@@ -511,9 +511,6 @@ importers:
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
-      ethers-v5:
-        specifier: npm:ethers@^5.7.2
-        version: /ethers@5.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
