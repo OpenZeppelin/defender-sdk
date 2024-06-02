@@ -16,7 +16,8 @@ export default defineConfig({
   input: 'src/index.ts',
   output: {
     file: 'dist/index.js',
-    format: 'es',
+    // Defender Actions only support CJS at this time
+    format: 'cjs',
   },
   plugins: [
     fixPluginTypeImport(json)({ compact: true }),

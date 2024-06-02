@@ -4,9 +4,12 @@ import { ContractFactory } from 'ethers';
 import ERC20Abi from '../erc20.json';
 import ERC20Bytecode from '../bytecode.json';
 import { fileURLToPath } from 'node:url';
+import { ethers } from 'ethers';
 import dotenv from 'dotenv';
 
 export async function handler(event: ActionEvent | DefenderOptions) {
+  console.log(ethers.version);
+
   const client = new Defender(event as DefenderOptions);
   const provider = client.relaySigner.getProvider();
   const signer = await client.relaySigner.getSigner(provider, { speed: 'fast' });
