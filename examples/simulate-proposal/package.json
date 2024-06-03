@@ -11,6 +11,6 @@
   "dependencies": {
     "@openzeppelin/defender-sdk": "1.13.3",
     "dotenv": "^16.3.1",
-    "ethers": "^6.9.0"
+    "ethers": "^6.12.2"
   }
 }
