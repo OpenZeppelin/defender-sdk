@@ -15,8 +15,8 @@ importers:
         specifier: 1.13.3
         version: link:packages/base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -300,7 +300,7 @@ importers:
         version: 16.3.1
       web3:
         specifier: ^4.3.0
-        version: 4.7.0(typescript@4.9.5)
+        version: 4.7.0(typescript@5.4.5)
 
   examples/simulate-proposal:
     dependencies:
@@ -365,8 +365,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -377,8 +377,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -450,8 +450,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -462,8 +462,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -477,8 +477,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -489,8 +489,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -501,8 +501,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -516,8 +516,8 @@ importers:
         specifier: ^1.13.3
         version: link:../base
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -549,8 +549,8 @@ importers:
         specifier: ^6.3.6
         version: 6.3.6
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -581,7 +581,7 @@ importers:
         version: 5.7.0
       jest-mock-extended:
         specifier: ^3.0.5
-        version: 3.0.5(jest@29.7.0)(typescript@4.9.5)
+        version: 3.0.5(jest@29.7.0)(typescript@5.4.5)
       web3-core:
         specifier: ^1.10.3
         version: 1.10.3
@@ -3502,7 +3502,7 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /abitype@0.7.1(typescript@4.9.5):
+  /abitype@0.7.1(typescript@5.4.5):
     resolution: {integrity: sha512-VBkRHTDZf9Myaek/dO3yMmOzB/y2s3Zo6nVU7yaw1G+TvCHAjwaJzNGN9yo4K5D8bU/VZXKP1EJpRhFr862PlQ==}
     peerDependencies:
       typescript: '>=4.9.4'
@@ -3511,7 +3511,7 @@ packages:
       zod:
         optional: true
     dependencies:
-      typescript: 4.9.5
+      typescript: 5.4.5
     dev: false
 
   /abortcontroller-polyfill@1.7.5:
@@ -3708,17 +3708,17 @@ packages:
   /axios@1.1.3:
     resolution: {integrity: sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: true
 
-  /axios@1.6.7:
-    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
+  /axios@1.6.8:
+    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
     dependencies:
-      follow-redirects: 1.15.5
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -5275,18 +5275,8 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /follow-redirects@1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: true
-
-  /follow-redirects@1.15.5:
-    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -6350,15 +6340,15 @@ packages:
       stack-utils: 2.0.6
     dev: true
 
-  /jest-mock-extended@3.0.5(jest@29.7.0)(typescript@4.9.5):
+  /jest-mock-extended@3.0.5(jest@29.7.0)(typescript@5.4.5):
     resolution: {integrity: sha512-/eHdaNPUAXe7f65gHH5urc8SbRVWjYxBqmCgax2uqOBJy8UUcCBMN1upj1eZ8y/i+IqpyEm4Kq0VKss/GCCTdw==}
     peerDependencies:
       jest: ^24.0.0 || ^25.0.0 || ^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0
       typescript: ^3.0.0 || ^4.0.0 || ^5.0.0
     dependencies:
       jest: 29.7.0(@types/node@16.18.91)
-      ts-essentials: 7.0.3(typescript@4.9.5)
-      typescript: 4.9.5
+      ts-essentials: 7.0.3(typescript@5.4.5)
+      typescript: 5.4.5
     dev: true
 
   /jest-mock@29.7.0:
@@ -7225,7 +7215,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.6.7
+      axios: 1.6.8
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -8443,12 +8433,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-essentials@7.0.3(typescript@4.9.5):
+  /ts-essentials@7.0.3(typescript@5.4.5):
     resolution: {integrity: sha512-8+gr5+lqO3G84KdiTSMRLtuyJ+nTBVRKuCrK4lidMPdVeEp0uqC875uE5NMcaA7YYMN7XsNiFQuMvasF8HT/xQ==}
     peerDependencies:
       typescript: '>=3.7.0'
     dependencies:
-      typescript: 4.9.5
+      typescript: 5.4.5
     dev: true
 
   /ts-jest@29.1.2(@babel/core@7.22.8)(jest@29.7.0)(typescript@4.9.5):
@@ -8610,12 +8600,12 @@ packages:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /ultron@1.1.1:
     resolution: {integrity: sha512-UIEXBNeYmKptWH6z8ZnqTeS8fV74zG0/eRU9VGkpzz+LIJNs8W/zM/L+7ctCkRrgbNnnR0xxw4bKOr0cW0N0Og==}
@@ -8953,11 +8943,11 @@ packages:
       web3-utils: 1.8.2
     dev: false
 
-  /web3-eth-abi@4.2.0(typescript@4.9.5):
+  /web3-eth-abi@4.2.0(typescript@5.4.5):
     resolution: {integrity: sha512-x7dUCmk6th+5N63s5kUusoNtsDJKUUQgl9+jECvGTBOTiyHe/V6aOY0120FUjaAGaapOnR7BImQdhqHv6yT2YQ==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
-      abitype: 0.7.1(typescript@4.9.5)
+      abitype: 0.7.1(typescript@5.4.5)
       web3-errors: 1.1.4
       web3-types: 1.5.0
       web3-utils: 4.2.2
@@ -9016,14 +9006,14 @@ packages:
       - supports-color
     dev: false
 
-  /web3-eth-contract@4.3.0(typescript@4.9.5):
+  /web3-eth-contract@4.3.0(typescript@5.4.5):
     resolution: {integrity: sha512-4fzSklA65zUn6SthU3T3tbVJacfP8/wkJmCuvmPaf2ZTFdnhsF96G5IQtCRf0+wASb4yk0A6IBvXZfk1B4R4HA==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
       web3-core: 4.3.2
       web3-errors: 1.1.4
-      web3-eth: 4.5.0(typescript@4.9.5)
-      web3-eth-abi: 4.2.0(typescript@4.9.5)
+      web3-eth: 4.5.0(typescript@5.4.5)
+      web3-eth-abi: 4.2.0(typescript@5.4.5)
       web3-types: 1.5.0
       web3-utils: 4.2.2
       web3-validator: 2.0.5
@@ -9052,15 +9042,15 @@ packages:
       - supports-color
     dev: false
 
-  /web3-eth-ens@4.2.0(typescript@4.9.5):
+  /web3-eth-ens@4.2.0(typescript@5.4.5):
     resolution: {integrity: sha512-qYj34te2UctoObt8rlEIY/t2MuTMiMiiHhO2JAHRGqSLCQ7b8DM3RpvkiiSB0N0ZyEn+CetZqJCTYb8DNKBS/g==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
       web3-core: 4.3.2
       web3-errors: 1.1.4
-      web3-eth: 4.5.0(typescript@4.9.5)
-      web3-eth-contract: 4.3.0(typescript@4.9.5)
+      web3-eth: 4.5.0(typescript@5.4.5)
+      web3-eth-contract: 4.3.0(typescript@5.4.5)
       web3-net: 4.0.7
       web3-types: 1.5.0
       web3-utils: 4.2.2
@@ -9113,12 +9103,12 @@ packages:
       - supports-color
     dev: false
 
-  /web3-eth-personal@4.0.8(typescript@4.9.5):
+  /web3-eth-personal@4.0.8(typescript@5.4.5):
     resolution: {integrity: sha512-sXeyLKJ7ddQdMxz1BZkAwImjqh7OmKxhXoBNF3isDmD4QDpMIwv/t237S3q4Z0sZQamPa/pHebJRWVuvP8jZdw==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
       web3-core: 4.3.2
-      web3-eth: 4.5.0(typescript@4.9.5)
+      web3-eth: 4.5.0(typescript@5.4.5)
       web3-rpc-methods: 1.2.0
       web3-types: 1.5.0
       web3-utils: 4.2.2
@@ -9152,14 +9142,14 @@ packages:
       - supports-color
     dev: false
 
-  /web3-eth@4.5.0(typescript@4.9.5):
+  /web3-eth@4.5.0(typescript@5.4.5):
     resolution: {integrity: sha512-crisE46o/SHMVm+XHAXEaR8k76NCImq+hi0QQEJ+VaLZbDobI/Gvog1HwTukDUDRgnYSAFGqD0cTRyAwDurwpA==}
     engines: {node: '>=14', npm: '>=6.12.0'}
     dependencies:
       setimmediate: 1.0.5
       web3-core: 4.3.2
       web3-errors: 1.1.4
-      web3-eth-abi: 4.2.0(typescript@4.9.5)
+      web3-eth-abi: 4.2.0(typescript@5.4.5)
       web3-eth-accounts: 4.1.1
       web3-net: 4.0.7
       web3-providers-ws: 4.0.7
@@ -9400,19 +9390,19 @@ packages:
       - utf-8-validate
     dev: false
 
-  /web3@4.7.0(typescript@4.9.5):
+  /web3@4.7.0(typescript@5.4.5):
     resolution: {integrity: sha512-3g+1e7B/IW0Nw9WP1dotrZKWD9o5IBfl27dxEnE1LxBZBax6ZkviiAwf18utIhlNBD07RgI+PPfKDXxfDBlHWA==}
     engines: {node: '>=14.0.0', npm: '>=6.12.0'}
     dependencies:
       web3-core: 4.3.2
       web3-errors: 1.1.4
-      web3-eth: 4.5.0(typescript@4.9.5)
-      web3-eth-abi: 4.2.0(typescript@4.9.5)
+      web3-eth: 4.5.0(typescript@5.4.5)
+      web3-eth-abi: 4.2.0(typescript@5.4.5)
       web3-eth-accounts: 4.1.1
-      web3-eth-contract: 4.3.0(typescript@4.9.5)
-      web3-eth-ens: 4.2.0(typescript@4.9.5)
+      web3-eth-contract: 4.3.0(typescript@5.4.5)
+      web3-eth-ens: 4.2.0(typescript@5.4.5)
       web3-eth-iban: 4.0.7
-      web3-eth-personal: 4.0.8(typescript@4.9.5)
+      web3-eth-personal: 4.0.8(typescript@5.4.5)
       web3-net: 4.0.7
       web3-providers-http: 4.1.0
       web3-providers-ws: 4.0.7

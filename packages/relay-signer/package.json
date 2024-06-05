@@ -38,7 +38,7 @@
     "@ethersproject/logger": "^5.7.0",
     "@openzeppelin/defender-sdk-base-client": "^1.13.3",
     "amazon-cognito-identity-js": "^6.3.6",
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "ethers": "^6.9.0",
     "lodash": "^4.17.21"
   },
