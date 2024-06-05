@@ -30,14 +30,19 @@
     "web3-core-helpers": "^1.8.2"
   },
   "dependencies": {
-    "ethers": "^6.9.0",
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "@ethersproject/networks": "^5.7.1",
+    "@ethersproject/properties": "^5.7.0",
+    "@ethersproject/strings": "^5.7.0",
+    "@ethersproject/logger": "^5.7.0",
     "@openzeppelin/defender-sdk-base-client": "^1.13.3",
     "amazon-cognito-identity-js": "^6.3.6",
     "axios": "^1.6.7",
+    "ethers": "^6.9.0",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "ethers": "^6.9.0",
     "web3": "^1.8.2",
     "web3-core": "^1.10.3",
     "web3-core-helpers": "^1.8.2",

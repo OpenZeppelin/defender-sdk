@@ -1,31 +1,21 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  Signature,
-  toUtf8Bytes,
-  JsonRpcProvider,
-  TransactionRequest,
-  TransactionResponse,
-  TypedDataDomain,
-  TypedDataField,
-  TypedDataEncoder,
-  hexlify,
-  BytesLike,
-  resolveProperties,
-  TransactionLike,
-  resolveAddress,
-  JsonRpcSigner,
-  toBeHex,
-} from 'ethers';
+import { toUtf8Bytes } from '@ethersproject/strings';
+import { Provider, TransactionRequest, TransactionResponse } from '@ethersproject/abstract-provider';
+import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from '@ethersproject/abstract-signer';
+import { Bytes, hexlify, joinSignature } from '@ethersproject/bytes';
+import { BigNumber } from '@ethersproject/bignumber';
+import { Logger } from '@ethersproject/logger';
+import { _TypedDataEncoder } from '@ethersproject/hash';
+import { Deferrable, resolveProperties, shallowCopy } from '@ethersproject/properties';
 import { Relayer } from '../relayer';
+import { Transaction } from '@ethersproject/transactions';
 import { omit } from 'lodash';
-import { PrivateTransactionMode, Speed } from '../models/transactions';
+import { Speed } from '../models/transactions';
 import { RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
-export type Deferrable<T> = {
-  [K in keyof T]: T[K] | Promise<T[K]>;
-};
+const logger = new Logger(`@openzeppelin/defender-sdk-relay-client`);
 
 const allowedTransactionKeys: Array<string> = [
   'chainId',
@@ -40,35 +30,34 @@ const allowedTransactionKeys: Array<string> = [
   'value',
   'speed',
   'isPrivate',
-  'privateMode',
 ];
 
-type GasOptions = Pick<TransactionLike<string>, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
+type GasOptions = Pick<TransactionRequest, 'gasPrice' | 'maxFeePerGas' | 'maxPriorityFeePerGas'>;
 
-export type DefenderTransactionRequest = TransactionLike<string> &
-  Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean; privateMode?: PrivateTransactionMode }>;
+export type DefenderTransactionRequestV5 = TransactionRequest &
+  Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean }>;
 
-export type DefenderRelaySignerOptions = Partial<
+export type DefenderRelaySignerOptionsV5 = Partial<
   GasOptions & {
     speed: Speed;
     validForSeconds: number;
   }
 >;
 
-type ProviderWithWrapTransaction = JsonRpcProvider & {
-  _wrapTransactionResponse(tx: TransactionLike, hash?: string): TransactionResponse;
+type ProviderWithWrapTransaction = Provider & {
+  _wrapTransaction(tx: Transaction, hash?: string): TransactionResponse;
 };
 
-export class DefenderRelaySigner extends JsonRpcSigner {
+export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
   private readonly relayer: Relayer;
+  private address?: string;
 
   constructor(
     readonly relayerCredentials: RelayerParams | Relayer,
-    provider: JsonRpcProvider,
-    address: string,
-    readonly options: DefenderRelaySignerOptions = {},
+    readonly provider: Provider,
+    readonly options: DefenderRelaySignerOptionsV5 = {},
   ) {
-    super(provider, address);
+    super();
     this.relayer = isRelayer(relayerCredentials) ? relayerCredentials : new Relayer(relayerCredentials);
     if (options) {
       const getUnnecesaryExtraFields = (invalidFields: (keyof GasOptions)[]) =>
@@ -108,10 +97,10 @@ export class DefenderRelaySigner extends JsonRpcSigner {
   }
 
   // Returns the signed prefixed-message. This MUST treat:
-  // - BytesLike as a binary message
+  // - Bytes as a binary message
   // - string as a UTF8-message
   // i.e. "0x1234" is a SIX (6) byte string, NOT 2 bytes of data
-  public async signMessage(message: string | BytesLike): Promise<string> {
+  public async signMessage(message: string | Bytes): Promise<string> {
     if (typeof message === 'string') {
       message = toUtf8Bytes(message);
     }
@@ -119,84 +108,76 @@ export class DefenderRelaySigner extends JsonRpcSigner {
     const sig = await this.relayer.sign({
       message: hexlify(message),
     });
-    return Signature.from(sig).serialized;
+    return joinSignature(sig);
   }
 
   // Signs a transaction and returns the fully serialized, signed transaction.
   // The EXACT transaction MUST be signed, and NO additional properties to be added.
   // - This MAY throw if signing transactions is not supports, but if
   //   it does, sentTransaction MUST be overridden.
-  public async signTransaction(transaction: TransactionRequest): Promise<string> {
+  public async signTransaction(transaction: Deferrable<TransactionRequest>): Promise<string> {
     throw new Error('DefenderRelaySigner#signTransaction: method not yet supported');
   }
 
-  public connect(provider: JsonRpcProvider): DefenderRelaySigner {
-    return new DefenderRelaySigner(this.relayerCredentials, provider, this.address, this.options);
+  public connect(provider: Provider): Signer {
+    return new DefenderRelaySignerV5(this.relayerCredentials, provider, this.options);
   }
 
-  signTypedData(
-    domain: TypedDataDomain,
-    types: Record<string, TypedDataField[]>,
-    value: Record<string, any>,
-  ): Promise<string> {
-    return this._signTypedData(domain, types, value);
-  }
+  public async sendTransaction(transaction: Deferrable<DefenderTransactionRequestV5>): Promise<TransactionResponse> {
+    this._checkProvider('sendTransaction');
 
-  public async sendTransaction(transaction: DefenderTransactionRequest): Promise<TransactionResponse> {
     const tx = await this.populateTransaction(transaction);
     if (!tx.gasLimit) throw new Error('DefenderRelaySigner#sendTransacton: relayer gas estimation not yet supported');
-    const nonce = tx.nonce === undefined ? undefined : BigInt(tx.nonce ?? '0').valueOf();
+    const nonce = tx.nonce === undefined ? undefined : BigNumber.from(tx.nonce).toNumber();
 
     let payloadGasParams;
 
     if (isLegacyTx(tx) && tx.gasPrice !== undefined) {
       payloadGasParams = {
-        gasPrice: toBeHex(tx.gasPrice),
+        gasPrice: hexlify(tx.gasPrice),
       };
     } else if (isEIP1559Tx(tx) && tx.maxFeePerGas !== undefined && tx.maxPriorityFeePerGas !== undefined) {
       payloadGasParams = {
-        maxFeePerGas: toBeHex(tx.maxFeePerGas),
-        maxPriorityFeePerGas: toBeHex(tx.maxPriorityFeePerGas),
+        maxFeePerGas: hexlify(tx.maxFeePerGas),
+        maxPriorityFeePerGas: hexlify(tx.maxPriorityFeePerGas),
       };
     }
 
     const payload = {
-      to: tx.to?.toString(),
-      gasLimit: toBeHex(tx.gasLimit),
-      data: tx.data ? toBeHex(tx.data) : undefined,
+      to: tx.to,
+      gasLimit: hexlify(tx.gasLimit),
+      data: tx.data ? hexlify(tx.data) : undefined,
       speed: tx.speed,
-      value: tx.value ? toBeHex(tx.value) : undefined,
+      value: tx.value ? hexlify(tx.value) : undefined,
       validUntil: tx.validUntil ? new Date(tx.validUntil).toISOString() : undefined,
       isPrivate: tx.isPrivate,
-      privateMode: tx.privateMode,
       ...payloadGasParams,
     };
 
     const relayedTransaction = nonce
-      ? await this.relayer.replaceTransactionByNonce(Number(nonce), payload)
+      ? await this.relayer.replaceTransactionByNonce(nonce, payload)
       : await this.relayer.sendTransaction(payload);
 
     let gasParams;
 
     if (isEIP1559Tx(relayedTransaction)) {
       gasParams = {
-        maxFeePerGas: BigInt(relayedTransaction.maxFeePerGas.toString()),
-        maxPriorityFeePerGas: BigInt(relayedTransaction.maxPriorityFeePerGas.toString()),
+        maxFeePerGas: BigNumber.from(relayedTransaction.maxFeePerGas),
+        maxPriorityFeePerGas: BigNumber.from(relayedTransaction.maxPriorityFeePerGas),
       };
     } else {
       gasParams = {
-        gasPrice: BigInt(relayedTransaction.gasPrice.toString()),
+        gasPrice: BigNumber.from(relayedTransaction.gasPrice),
       };
     }
 
-    return (this.provider as ProviderWithWrapTransaction)._wrapTransactionResponse(
+    return (this.provider as ProviderWithWrapTransaction)._wrapTransaction(
       {
         ...omit(relayedTransaction, 'gasPrice', 'maxPriorityFeePerGas', 'maxFeePerGas'),
         ...gasParams,
-        gasLimit: BigInt(relayedTransaction.gasLimit.toString()),
-        value: BigInt(relayedTransaction.value?.toString() ?? '0'),
+        gasLimit: BigNumber.from(relayedTransaction.gasLimit),
+        value: BigNumber.from(relayedTransaction.value ?? 0),
         data: relayedTransaction.data ?? '',
-        signature: relayedTransaction.signature,
       },
       relayedTransaction.hash,
     );
@@ -204,20 +185,24 @@ export class DefenderRelaySigner extends JsonRpcSigner {
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
   // Defender relay does not require all fields to be populated
-  async populateTransaction(transaction: DefenderTransactionRequest): Promise<DefenderTransactionRequest> {
-    const tx: DefenderTransactionRequest = await resolveProperties(this.checkTransaction(transaction));
+  async populateTransaction(
+    transaction: Deferrable<DefenderTransactionRequestV5>,
+  ): Promise<DefenderTransactionRequestV5> {
+    const tx: Deferrable<DefenderTransactionRequestV5> = await resolveProperties(this.checkTransaction(transaction));
     if (tx.to != null) {
-      // relayer provider acts as name resolver if parameter is an ENS name
-      tx.to = await resolveAddress(tx.to, this.provider);
+      tx.to = Promise.resolve(tx.to).then((to) => this.resolveName(to!));
     }
 
     if (tx.gasLimit == null) {
-      tx.gasLimit = await this.estimateGas(tx as DefenderTransactionRequest).catch((error) => {
-        console.error('cannot estimate gas; transaction may fail or may require manual gas limit', {
-          error: error,
-          tx: tx,
-        });
-        return null;
+      tx.gasLimit = this.estimateGas(tx).catch((error) => {
+        return logger.throwError(
+          'cannot estimate gas; transaction may fail or may require manual gas limit',
+          Logger.errors.UNPREDICTABLE_GAS_LIMIT,
+          {
+            error: error,
+            tx: tx,
+          },
+        );
       });
     }
 
@@ -236,22 +221,22 @@ export class DefenderRelaySigner extends JsonRpcSigner {
       tx.validUntil = new Date(Date.now() + this.options.validForSeconds * 1000);
     }
 
-    return tx;
+    return await resolveProperties(tx);
   }
 
   // Adapted from ethers-io/ethers.js/packages/abstract-signer/src.ts/index.ts
   // Defender relay accepts more transaction keys
-  checkTransaction(transaction: Deferrable<DefenderTransactionRequest>): Deferrable<DefenderTransactionRequest> {
+  checkTransaction(transaction: Deferrable<DefenderTransactionRequestV5>): Deferrable<DefenderTransactionRequestV5> {
     for (const key in transaction) {
       if (allowedTransactionKeys.indexOf(key) === -1) {
-        console.error('invalid transaction key: ' + key, 'transaction', transaction);
+        logger.throwArgumentError('invalid transaction key: ' + key, 'transaction', transaction);
       }
     }
-    const tx: Deferrable<DefenderTransactionRequest> = { ...transaction };
+    const tx = shallowCopy(transaction);
 
     tx.from = Promise.all([Promise.resolve(tx.from), this.getAddress()]).then((result) => {
       if (!!result[0] && result[0].toLowerCase() !== result[1].toLowerCase()) {
-        console.error('from address mismatch', 'transaction', transaction);
+        logger.throwArgumentError('from address mismatch', 'transaction', transaction);
       }
       return result[1];
     });
@@ -273,14 +258,14 @@ export class DefenderRelaySigner extends JsonRpcSigner {
     types: Record<string, Array<TypedDataField>>,
     value: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any
   ): Promise<string> {
-    const domainSeparator = TypedDataEncoder.hashDomain(domain);
-    const hashStructMessage = TypedDataEncoder.from(types).hash(value);
+    const domainSeparator = _TypedDataEncoder.hashDomain(domain);
+    const hashStructMessage = _TypedDataEncoder.from(types).hash(value);
 
     const sig = await this.relayer.signTypedData({
       domainSeparator: hexlify(domainSeparator),
       hashStructMessage: hexlify(hashStructMessage),
     });
 
-    return Signature.from(sig).serialized;
+    return joinSignature(sig);
   }
 }

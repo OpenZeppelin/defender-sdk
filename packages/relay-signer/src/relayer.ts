@@ -10,6 +10,9 @@ import { isApiCredentials, isActionCredentials, validatePayload } from './ethers
 import { RelaySignerClient } from './api';
 import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
 import { JsonRpcProvider } from 'ethers';
+import { DefenderRelayProviderV5 } from './ethers/provider-v5';
+import { DefenderRelaySignerOptionsV5, DefenderRelaySignerV5 } from './ethers/signer-v5';
+import { Provider } from '@ethersproject/abstract-provider';
 
 export class Relayer implements IRelayer {
   private relayer: IRelayer;
@@ -40,7 +43,12 @@ export class Relayer implements IRelayer {
 
   public getProvider(): DefenderRelayProvider {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
-    return new DefenderRelayProvider(this.credentials);
+    else return new DefenderRelayProvider(this.credentials);
+  }
+
+  public getProviderV5(): DefenderRelayProviderV5 {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
+    return new DefenderRelayProviderV5(this.credentials);
   }
 
   public async getSigner(
@@ -50,6 +58,11 @@ export class Relayer implements IRelayer {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
     const relayer = await this.relayer.getRelayer();
     return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
+  }
+
+  public getSignerV5(provider: Provider, options: DefenderRelaySignerOptionsV5): DefenderRelaySignerV5 {
+    if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
+    return new DefenderRelaySignerV5(this.credentials, provider, options);
   }
 
   public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
