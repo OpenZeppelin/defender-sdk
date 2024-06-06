@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.13.4
+
+### Patch Changes
+
+- 985443f: feat: add backwards compatibility to ethersv5
+
 ## 1.13.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-create-proposal
 
+## 1.13.4
+
+### Patch Changes
+
+- 985443f: feat: add backwards compatibility to ethersv5
+- Updated dependencies [985443f]
+  - @openzeppelin/defender-sdk@1.13.4
+
 ## 1.13.3
 
 ### Patch Changes

@@ -1,10 +1,10 @@
 {
   "name": "@openzeppelin/defender-sdk",
-  "version": "1.13.3",
+  "version": "1.13.4",
   "private": true,
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "1.13.3",
+    "@openzeppelin/defender-sdk-base-client": "1.13.4",
     "axios": "^1.6.8",
     "lodash": "^4.17.21"
   },
