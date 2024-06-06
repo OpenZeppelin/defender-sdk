@@ -15,8 +15,8 @@ async function main() {
 
   const client = new Defender(creds);
   console.log('using ethers version ', version);
-  const provider = client.relaySigner.getProviderV5();
-  const signer = client.relaySigner.getSignerV5(provider, { speed: 'fast', validUntil });
+  const provider = client.relaySigner.getProvider();
+  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
 
   const factory = new ethers.ContractFactory(ERC20Abi, ERC20Bytecode, signer);
 
@@ -30,7 +30,7 @@ async function main() {
   console.log(`Relayer address is ${addr}`);
 
   console.log(`Sending approve transaction for ${beneficiary} to token ${erc20.address}...`);
-  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e9 });
+  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e10, gasLimit: 8000000 });
   console.log(`Transaction sent:`, tx);
 
   const mined = await tx.wait();
