@@ -1,4 +1,4 @@
-import { RelayerParams } from '../models/relayer';
+import { EthersVersion, RelayerParams } from '../models/relayer';
 import { DefenderRelaySigner } from './signer';
 import { getRelaySignerApiUrl } from '../api';
 import { Relayer } from '../relayer';
@@ -11,6 +11,10 @@ import {
   JsonRpcSigner,
   JsonRpcPayload,
 } from 'ethers';
+
+export type DefenderRelayProviderOptions = {
+  ethersVersion: EthersVersion;
+};
 
 export class DefenderRelayProvider extends JsonRpcProvider {
   private relayer: Relayer;

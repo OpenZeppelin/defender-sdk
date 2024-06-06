@@ -12,7 +12,7 @@ import { Relayer } from '../relayer';
 import { Transaction } from '@ethersproject/transactions';
 import { omit } from 'lodash';
 import { Speed } from '../models/transactions';
-import { RelayerParams } from '../models/relayer';
+import { EthersVersion, RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
 const logger = new Logger(`@openzeppelin/defender-sdk-relay-client`);
@@ -41,6 +41,7 @@ export type DefenderRelaySignerOptionsV5 = Partial<
   GasOptions & {
     speed: Speed;
     validForSeconds: number;
+    ethersVersion?: EthersVersion;
   }
 >;
 

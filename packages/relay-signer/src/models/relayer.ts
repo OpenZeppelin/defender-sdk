@@ -66,6 +66,8 @@ export interface UpdateRelayerPoliciesRequest {
   privateTransactions?: boolean | PrivateTransactionMode;
 }
 
+export type EthersVersion = 'v5' | 'v6';
+
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse>;
   getRelayerStatus(): Promise<RelayerStatus>;
