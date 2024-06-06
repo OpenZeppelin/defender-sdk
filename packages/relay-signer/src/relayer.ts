@@ -85,7 +85,7 @@ export class Relayer implements IRelayer {
       const relayer = await this.relayer.getRelayer();
       return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
     }
-    throw new Error(`Invalid state provider and options must be for the same ethers version.`);
+    throw new Error(`Invalid state, provider and options must be for the same ethers version.`);
   }
 
   public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
