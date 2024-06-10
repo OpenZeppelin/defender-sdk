@@ -15,8 +15,8 @@ importers:
         specifier: 1.13.4
         version: link:packages/base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -365,8 +365,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -377,8 +377,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -450,8 +450,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -462,8 +462,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -477,8 +477,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -489,8 +489,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -501,8 +501,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -516,8 +516,8 @@ importers:
         specifier: ^1.13.4
         version: link:../base
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -549,8 +549,8 @@ importers:
         specifier: ^6.3.6
         version: 6.3.6
       axios:
-        specifier: ^1.6.8
-        version: 1.6.8
+        specifier: ^1.7.2
+        version: 1.7.2
       ethers:
         specifier: ^6.9.0
         version: 6.9.0
@@ -2480,7 +2480,7 @@ packages:
     resolution: {integrity: sha512-5nF5ZSFxHz94ZbxsgKMzOAWufOH05JuBEBOOyVMp8XQuh8XMb/YmtuGlLHmt1l66VZqLZ6a9i7bbGZIRNW279A==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2492,7 +2492,7 @@ packages:
     hasBin: true
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       dotenv: 16.4.5
       glob: 7.2.3
       jszip: 3.10.1
@@ -2515,7 +2515,7 @@ packages:
     resolution: {integrity: sha512-V4Hhx0xdIUiaY04YHQHR4yZolgPAVrRrrwWiG2vA1xu90LJ9Btd99coCC+WasLd21vsqY4D3UT8QMGgPZgCTqw==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2526,7 +2526,7 @@ packages:
     resolution: {integrity: sha512-QrNmQUawTp/OBWJbxnrVx3GxtetdcY7JAEsxcFrUSXJcf/KR/l7Fyb38jLD7F6u6lKVDb5C5LTkVdLPI9mXtzw==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       ethers: 6.9.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2540,7 +2540,7 @@ packages:
     resolution: {integrity: sha512-H4TNJAGYWwCozPWEAdYxOi2havYCB7780LR/uEpaNu+c24TrccMwttzjxDoKZHiIqLaa6+Ktd0TZJV1QGCyTEg==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2551,7 +2551,7 @@ packages:
     resolution: {integrity: sha512-QaDVBWb8rK7LGiI/tKu/gbUr+rAWy9Z/AzlFz3c3fa1xXqBKXcBj9+oQ9DFqe5y0/mD+2qNHNJRA6s99vKLiMg==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2562,7 +2562,7 @@ packages:
     resolution: {integrity: sha512-pvmLrS8EqKStDXOyi2wiwUpjKa97REIG4DHs6x1mWakgYSrJ8Cws+3zMfoQ65Rc2KwVxiEnh6ph+FL3JN16wcQ==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       ethers: 6.9.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -2576,7 +2576,7 @@ packages:
     resolution: {integrity: sha512-4ydt/yi8EgQfrXELlQuPHpUdq6KBeoGnh/Eg3agTaMms2riJnk8XKbXcGVWPDbUfalNLE7DEOfB7RgUSYJreVw==}
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
-      axios: 1.6.8
+      axios: 1.7.2
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
@@ -2594,7 +2594,7 @@ packages:
     dependencies:
       '@openzeppelin/defender-sdk-base-client': 1.13.3
       amazon-cognito-identity-js: 6.3.6
-      axios: 1.6.8
+      axios: 1.7.2
       ethers: 6.9.0
       lodash: 4.17.21
       web3: 1.8.2
@@ -3867,8 +3867,8 @@ packages:
       - debug
     dev: true
 
-  /axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+  /axios@1.7.2:
+    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
@@ -7407,7 +7407,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.6.8
+      axios: 1.7.2
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
