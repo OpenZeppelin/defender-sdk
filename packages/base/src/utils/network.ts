@@ -47,7 +47,9 @@ export type PublicNetwork =
   | 'scroll'
   | 'scroll-sepolia'
   | 'meld'
-  | 'meld-kanazawa';
+  | 'meld-kanazawa'
+  | 'japan'
+  | 'japan-testnet';
 export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-security-alliance';
 export type TenantNetwork = string;
 
@@ -100,6 +102,8 @@ export const Networks: Network[] = [
   'scroll-sepolia',
   'meld',
   'meld-kanazawa',
+  'japan',
+  'japan-testnet',
 ];
 
 export function isValidNetwork(text: string): text is Network {
@@ -163,4 +167,6 @@ const chainIds: { [key in Network]: number } = {
   'meld': 0x13d92e8d,
   'meld-kanazawa': 0xd3b745e,
   'mantle-sepolia': 5003,
+  'japan': 81,
+  'japan-testnet': 10081,
 };
