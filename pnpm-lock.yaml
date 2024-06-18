@@ -263,6 +263,18 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
 
+  examples/relayer-call-contract-function:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 1.13.4
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.4.5
+      ethers:
+        specifier: ^5.6.1
+        version: 5.7.2
+
   examples/relayer-load-balance:
     dependencies:
       '@openzeppelin/defender-sdk':
