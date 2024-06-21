@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-relay-client
 
+## 1.13.5
+
+### Patch Changes
+
+- 552931e: SDK automation
+
 ## 1.13.4
 
 ### Patch Changes
