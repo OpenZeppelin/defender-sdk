@@ -3,7 +3,7 @@ name: Version or Publish Package
 on:
   push:
     branches:
-      - main
+      - SRE-221-automation
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -43,4 +43,4 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.EXAMPLE }}
