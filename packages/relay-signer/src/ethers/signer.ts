@@ -20,7 +20,7 @@ import {
 import { Relayer } from '../relayer';
 import { omit } from 'lodash';
 import { PrivateTransactionMode, Speed } from '../models/transactions';
-import { RelayerParams } from '../models/relayer';
+import { EthersVersion, RelayerParams } from '../models/relayer';
 import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
 
 export type Deferrable<T> = {
@@ -47,10 +47,12 @@ type GasOptions = Pick<TransactionLike<string>, 'gasPrice' | 'maxFeePerGas' | 'm
 
 export type DefenderTransactionRequest = TransactionLike<string> &
   Partial<{ speed: Speed; validUntil: Date | string; isPrivate?: boolean; privateMode?: PrivateTransactionMode }>;
+
 export type DefenderRelaySignerOptions = Partial<
   GasOptions & {
     speed: Speed;
     validForSeconds: number;
+    ethersVersion?: EthersVersion;
   }
 >;
 

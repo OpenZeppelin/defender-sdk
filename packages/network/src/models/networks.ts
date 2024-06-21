@@ -47,6 +47,7 @@ export interface TenantNetworkConfiguration {
   eips?: TenantNetworkEIPConfiguration;
   safeContracts?: SafeContracts;
   subgraphURL?: string;
+  safeTxServiceURL?: string;
 }
 export interface TenantNetworkEIPConfiguration {
   isEIP1559?: boolean;

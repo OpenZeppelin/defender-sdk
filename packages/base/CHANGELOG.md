@@ -1,6 +1,19 @@
 # @openzeppelin/defender-sdk-base-client
 
-## 1.13.1
+## 1.13.4
+
+### Patch Changes
+
+- 985443f: feat: add backwards compatibility to ethersv5
+
+## 1.13.3
+
+### Patch Changes
+
+- 2d1655d: feat: Add stackId in update relayer request
+  feat: Add Auth v2 support with `useCredentialsCaching` to cache access token
+
+## 1.13.3
 
 ### Patch Changes
 
