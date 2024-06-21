@@ -109,6 +109,10 @@ export interface UpdateRelayerRequest {
   policies?: UpdateRelayerPoliciesRequest;
   minBalance?: BigUInt;
   stackResourceId?: string;
+  notificationChannels?: {
+    events: ('pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed')[];
+    notificationIds: string[];
+  };
 }
 
 export interface RelayerApiKey {
