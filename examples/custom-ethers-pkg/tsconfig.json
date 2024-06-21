@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "ethers": ["node_modules/ethers/lib.esm/index"]
+    },
+    "module": "nodenext",
+
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "target": "esnext",
+
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src", "rollup.config.ts"]
+}

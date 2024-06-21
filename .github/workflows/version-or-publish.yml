@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
         with:
           token: ${{ secrets.SAI_PAT }}
 
@@ -24,7 +24,7 @@ jobs:
         run: pnpm build
 
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef
+        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
         with:
           gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
           passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}

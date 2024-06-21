@@ -40,6 +40,7 @@ describe('ActionRelayer', () => {
     relayer = new ActionRelayer({
       credentials: JSON.stringify(credentials),
       relayerARN: 'arn',
+      authConfig: { type: 'relay', useCredentialsCaching: false },
     }) as unknown as TestActionRelayer;
   });
 

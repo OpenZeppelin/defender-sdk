@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
         with:
           egress-policy: audit
 
       - name: Checkout Repo
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v3.6.0
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -48,7 +48,7 @@ jobs:
   #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.7.0
   #   with:
   #     run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
-  #     node-version: "16.20.0"
+  #     node-version: "20.11.1"
   #     # Remove after making repo public
   #     rekor-log-public: true
 
@@ -67,12 +67,12 @@ jobs:
   #     changed_packages: ${{ steps.tag_check_changes.outputs.changed_packages }}
   #   steps:
   #     - name: Harden Runner
-  #       uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+  #       uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
   #       with:
   #         egress-policy: audit
 
   #     - name: Checkout
-  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v3.6.0
+  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
   #       with:
   #         token: ${{ secrets.SAI_PAT }}
 
