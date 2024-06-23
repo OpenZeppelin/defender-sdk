@@ -19,5 +19,5 @@ runs:
         cache: 'pnpm'
     - name: Install dependencies
       run: |
-        pnpm install-deps
+        pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
       shell: bash
