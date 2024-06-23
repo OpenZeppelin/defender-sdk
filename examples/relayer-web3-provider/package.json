@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-web3-provider",
-  "version": "1.13.5",
+  "version": "1.13.6",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk-relay-signer-client": "1.13.5",
+    "@openzeppelin/defender-sdk-relay-signer-client": "1.13.6",
     "dotenv": "^16.3.1",
     "web3": "^4.3.0"
   }
