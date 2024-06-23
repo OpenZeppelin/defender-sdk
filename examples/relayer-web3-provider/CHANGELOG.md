@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-web3-provider
 
+## 1.13.6
+
+### Patch Changes
+
+- 88e15d7: Automation test
+- Updated dependencies [88e15d7]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.6
+
 ## 1.13.5
 
 ### Patch Changes
