@@ -17,7 +17,8 @@ runs:
       with:
         node-version: 20.11.1
         cache: 'pnpm'
-    # - name: Install dependencies
-    #   run: |
-    #     pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
-    #   shell: bash
+
+    - name: Install dependencies
+      run: |
+        pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
+      shell: bash
