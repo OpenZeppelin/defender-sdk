@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk-relay-client
 
+## 1.13.7
+
+### Patch Changes
+
+- 88e15d7: Automation test
+- Updated dependencies [88e15d7]
+  - @openzeppelin/defender-sdk-base-client@1.13.6
+
+## 1.13.6
+
+### Patch Changes
+
+- 15d2e73: Automation
+- Updated dependencies [15d2e73]
+  - @openzeppelin/defender-sdk-base-client@1.13.5
+
+## 1.13.5
+
+### Patch Changes
+
+- 552931e: SDK automation
+
 ## 1.13.4
 
 ### Patch Changes

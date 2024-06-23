@@ -1,5 +1,21 @@
 # @openzeppelin/defender-sdk-example-upgrade-contract
 
+## 1.13.6
+
+### Patch Changes
+
+- 88e15d7: Automation test
+- Updated dependencies [88e15d7]
+  - @openzeppelin/defender-sdk@1.13.6
+
+## 1.13.5
+
+### Patch Changes
+
+- 15d2e73: Automation
+- Updated dependencies [15d2e73]
+  - @openzeppelin/defender-sdk@1.13.5
+
 ## 1.13.4
 
 ### Patch Changes
