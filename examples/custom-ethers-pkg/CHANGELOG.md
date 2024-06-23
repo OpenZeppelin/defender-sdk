@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 1.13.8
+
+### Patch Changes
+
+- 3e02f2a: Automation test
+- Updated dependencies [3e02f2a]
+  - @openzeppelin/defender-sdk@1.13.8
+  - @openzeppelin/defender-sdk-action-client@1.13.8
+
 ## 1.13.7
 
 ### Patch Changes
