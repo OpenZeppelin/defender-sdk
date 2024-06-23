@@ -17,8 +17,13 @@ jobs:
         with:
           token: ${{ secrets.SAI_PAT }}
 
-      - name: Prepare pre-requisites
-        uses: ./.github/actions/prepare
+      # - name: Prepare pre-requisites
+      #   uses: ./.github/actions/prepare
+
+      - name: Install dependencies
+        run: |
+          pnpm install-deps
+        shell: bash
 
       - name: Build packages
         run: pnpm run build
