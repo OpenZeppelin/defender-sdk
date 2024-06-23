@@ -25,15 +25,15 @@ process.chdir(path.join(__dirname, ".."));
     throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
   }
 
-  await exec("changeset", ["publish"]);
+  await exec("npm", ["publish --dry-run"]);
   
-  await exec("changeset", ["tag"]);
+  // await exec("changeset", ["tag"]);
 
-  await exec("git", [
-    "push",
-    "--force",
-    "--follow-tags",
-    "origin",
-    `HEAD:refs/heads/${releaseLine}`,
-  ]);
+  // await exec("git", [
+  //   "push",
+  //   "--force",
+  //   "--follow-tags",
+  //   "origin",
+  //   `HEAD:refs/heads/${releaseLine}`,
+  // ]);
 })();
