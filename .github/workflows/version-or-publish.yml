@@ -20,13 +20,8 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
-      # - name: Install dependencies
-      #   run: |
-      #     find . -name "node_modules" -type d -prune -exec rm -rf {} +
-      #     pnpm install-deps
-
-      # - name: Build packages
-      #   run: pnpm run build
+      - name: Build packages
+        run: pnpm nx-build-skip-cache
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
