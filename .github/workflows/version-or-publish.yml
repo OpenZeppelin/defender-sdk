@@ -43,4 +43,4 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.EXAMPLE }}
+          NPM_TOKEN: ${{ secrets.TEST_EXAMPLE }}
