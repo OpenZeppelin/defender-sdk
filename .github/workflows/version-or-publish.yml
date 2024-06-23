@@ -17,8 +17,8 @@ jobs:
         with:
           token: ${{ secrets.SAI_PAT }}
 
-      # - name: Prepare pre-requisites
-      #   uses: ./.github/actions/prepare
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
 
       - name: Install dependencies
         run: |
