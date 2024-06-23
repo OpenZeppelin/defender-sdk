@@ -1,5 +1,21 @@
 # @openzeppelin/defender-sdk-example-get-usage
 
+## 1.13.8
+
+### Patch Changes
+
+- 3e02f2a: Automation test
+- Updated dependencies [3e02f2a]
+  - @openzeppelin/defender-sdk@1.13.8
+
+## 1.13.7
+
+### Patch Changes
+
+- 9f18778: Automation test
+- Updated dependencies [9f18778]
+  - @openzeppelin/defender-sdk@1.13.7
+
 ## 1.13.6
 
 ### Patch Changes
