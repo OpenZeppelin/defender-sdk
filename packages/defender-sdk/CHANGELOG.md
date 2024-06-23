@@ -1,5 +1,22 @@
 # @openzeppelin/defender-sdk
 
+## 1.13.8
+
+### Patch Changes
+
+- 3e02f2a: Automation test
+- Updated dependencies [3e02f2a]
+  - @openzeppelin/defender-sdk-notification-channel-client@1.13.8
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.8
+  - @openzeppelin/defender-sdk-proposal-client@1.13.8
+  - @openzeppelin/defender-sdk-account-client@1.13.8
+  - @openzeppelin/defender-sdk-monitor-client@1.13.8
+  - @openzeppelin/defender-sdk-network-client@1.13.8
+  - @openzeppelin/defender-sdk-action-client@1.13.8
+  - @openzeppelin/defender-sdk-deploy-client@1.13.8
+  - @openzeppelin/defender-sdk-relay-client@1.13.9
+  - @openzeppelin/defender-sdk-base-client@1.13.8
+
 ## 1.13.7
 
 ### Patch Changes
