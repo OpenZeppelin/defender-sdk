@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.13.5
+
+### Patch Changes
+
+- 15d2e73: Automation
+
 ## 1.13.4
 
 ### Patch Changes
