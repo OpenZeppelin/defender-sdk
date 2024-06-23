@@ -1,5 +1,22 @@
 # @openzeppelin/defender-sdk
 
+## 1.13.5
+
+### Patch Changes
+
+- 15d2e73: Automation
+- Updated dependencies [15d2e73]
+  - @openzeppelin/defender-sdk-notification-channel-client@1.13.5
+  - @openzeppelin/defender-sdk-relay-signer-client@1.13.5
+  - @openzeppelin/defender-sdk-proposal-client@1.13.5
+  - @openzeppelin/defender-sdk-account-client@1.13.5
+  - @openzeppelin/defender-sdk-monitor-client@1.13.5
+  - @openzeppelin/defender-sdk-network-client@1.13.5
+  - @openzeppelin/defender-sdk-action-client@1.13.5
+  - @openzeppelin/defender-sdk-deploy-client@1.13.5
+  - @openzeppelin/defender-sdk-relay-client@1.13.6
+  - @openzeppelin/defender-sdk-base-client@1.13.5
+
 ## 1.13.4
 
 ### Patch Changes

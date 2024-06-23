@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-relay-client
 
+## 1.13.6
+
+### Patch Changes
+
+- 15d2e73: Automation
+- Updated dependencies [15d2e73]
+  - @openzeppelin/defender-sdk-base-client@1.13.5
+
 ## 1.13.5
 
 ### Patch Changes
