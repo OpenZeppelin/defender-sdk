@@ -54,7 +54,7 @@ jobs:
       node-version: "20.11.1"
       ## Remove after making repo public
       rekor-log-public: true
-   steps:
+    steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.5.4
 
