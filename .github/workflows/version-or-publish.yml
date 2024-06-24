@@ -52,16 +52,19 @@ jobs:
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
       node-version: "20.11.1"
 
-  # download:
-  #   needs: [provenance]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download provenance
-  #       uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@v2.0.0
-  #       with:
-  #         name: ${{ needs.build.outputs.provenance-download-name }}
-  #         path: "attestations"
-  #         sha256: ${{ needs.build.outputs.provenance-download-sha256 }}
+  download:
+    needs: [provenance]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download provenance
+        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@v2.0.0
+        with:
+          name: ${{ needs.build.outputs.provenance-download-name }}
+          path: "attestations"
+          sha256: ${{ needs.build.outputs.provenance-download-sha256 }}
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
   # provenance:
   #   permissions:
@@ -100,12 +103,9 @@ jobs:
           output-file: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
           upload-artifact-retention: 1
 
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
-
-      - uses: actions/attest-build-provenance@v1
-        with:
-          subject-path: ${{ needs.provenance.outputs.package-download-name }}
+      # - uses: actions/attest-build-provenance@v1
+      #   with:
+      #     subject-path: ${{ needs.provenance.outputs.package-download-name }}
 
   #     - name: Import GPG key
   #       uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
