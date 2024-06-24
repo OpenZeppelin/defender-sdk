@@ -65,9 +65,8 @@ jobs:
       - name: Downlod Artifacts 
         uses: actions/download-artifact@v3
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
-
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
   # provenance:
   #   permissions:
   #     id-token: write
@@ -105,9 +104,9 @@ jobs:
   #         output-file: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
   #         upload-artifact-retention: 1
 
-      # - uses: actions/attest-build-provenance@v1
-      #   with:
-      #     subject-path: ${{ needs.provenance.outputs.package-download-name }}
+      - uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
 
   #     - name: Import GPG key
   #       uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
