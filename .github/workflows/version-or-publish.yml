@@ -38,8 +38,9 @@ jobs:
 
   pnpm:
     uses: pnpm/action-setup@v2
-      with:
-        version: 8
+    with:
+      version: 8
+      
   provenance:
     permissions:
       id-token: write
