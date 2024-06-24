@@ -35,13 +35,11 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-        
-      - name: Save node_modules
-        uses: actions/upload-artifact@v2
-        with:
-          name: node-modules
-          path: node_modules
-          
+
+  pnpm:
+    uses: pnpm/action-setup@v2
+      with:
+        version: 8
   provenance:
     permissions:
       id-token: write
@@ -54,15 +52,6 @@ jobs:
       node-version: "20.11.1"
       ## Remove after making repo public
       rekor-log-public: true
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4.5.4
-
-      - name: Download node_modules
-        uses: actions/download-artifact@v3
-        with:
-          name: node-modules
-          path: node_modules
 
   # provenance:
   #   permissions:
