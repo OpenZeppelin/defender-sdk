@@ -24,6 +24,24 @@ permissions:
   actions: read
 
 jobs:
+  install:
+    name: Version or Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+        with:
+          token: ${{ secrets.SAI_PAT }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        
+      - name: Save node_modules
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-modules
+          path: node_modules
+          
   provenance:
     permissions:
       id-token: write
@@ -36,18 +54,15 @@ jobs:
       node-version: "20.11.1"
       ## Remove after making repo public
       rekor-log-public: true
-
-  install:
-    name: Version or Publish
-    runs-on: ubuntu-latest
-    steps:
+   steps:
       - name: Checkout Repo
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
-        with:
-          token: ${{ secrets.SAI_PAT }}
+        uses: actions/checkout@v4.5.4
 
-      - name: Prepare pre-requisites
-        uses: ./.github/actions/prepare
+      - name: Download node_modules
+        uses: actions/download-artifact@v3
+        with:
+          name: node-modules
+          path: node_modules
 
   # provenance:
   #   permissions:
