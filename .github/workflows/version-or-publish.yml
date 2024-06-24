@@ -1,14 +1,29 @@
 name: Version or Publish Package
 
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: Tag to trigger release
+        type: string
+      prerelease:
+        required: true
+        description: Whether to release as a prerelease
+        type: boolean
   push:
     branches:
       - SRE-221-automation
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  id-token: write
+  contents: read
+  attestations: write
+
 jobs:
-  release:
+  install:
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
@@ -19,28 +34,76 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
+  provenance:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    # if: |
+    #   (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/v')) ||
+    #   (startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-rc.'))
+    # Deterministic Build & tests
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+    with:
+      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      node-version: "20.11.1"
 
-      - name: Build packages
-        run: pnpm nx-build-skip-cache
+  # release:
+  #   name: Version or Publish
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+  #       with:
+  #         token: ${{ secrets.SAI_PAT }}
 
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
-        with:
-          gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
-          passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
-          git_config_global: true
-          git_tag_gpgsign: true
-          git_user_signingkey: true
-          git_commit_gpgsign: true
+  #     - name: Prepare pre-requisites
+  #       uses: ./.github/actions/prepare
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          setupGitUser: false
-          version: pnpm ci:version
-          title: "Update the version packages"
-          publish: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.TEST_EXAMPLE }}
+  #     - name: Build packages
+  #       run: pnpm nx-build-skip-cache
+      
+  #     - name: Generate SBOM
+  #       uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
+  #       with:
+  #         artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
+  #         output-file: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
+  #         upload-artifact-retention: 1
+
+  #     - name: Import GPG key
+  #       uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+  #       with:
+  #         gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
+  #         passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
+  #         git_config_global: true
+  #         git_tag_gpgsign: true
+  #         git_user_signingkey: true
+  #         git_commit_gpgsign: true
+
+  #     - name: Create Release Pull Request or Publish to npm
+  #       id: changesets
+  #       uses: changesets/action@v1
+  #       with:
+  #         setupGitUser: false
+  #         version: pnpm ci:version
+  #         title: "Update the version packages"
+  #         publish: pnpm release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.TEST_EXAMPLE }}
+
+  #     - name: Create release
+  #       if: steps.changesets.outputs.id != ''
+  #       uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1.14.0
+  #       with:
+  #         tag: ${{ inputs.tag }}
+  #         skipIfReleaseExists: true
+  #         generateReleaseNotes: true
+  #         draft: ${{ inputs.prerelease }}
+  #         prerelease: ${{ inputs.prerelease }}
+
+  #     - name: Publish SBOM
+  #       if: steps.changesets.outputs.id != ''
+  #       uses: anchore/sbom-action/publish-sbom@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
+  #       with:
+  #         sbom-artifact-match: ".*${{ inputs.tag }}.spdx\\.json"
