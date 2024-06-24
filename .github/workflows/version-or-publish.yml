@@ -21,6 +21,7 @@ permissions:
   id-token: write
   contents: read
   attestations: write
+  actions: read
 
 jobs:
   install:
@@ -34,19 +35,24 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-  provenance:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    # if: |
-    #   (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/v')) ||
-    #   (startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-rc.'))
-    # Deterministic Build & tests
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
-    with:
-      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
-      node-version: "20.11.1"
+
+      - uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+        with:
+          run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+          node-version: "20.11.1"
+  # provenance:
+  #   permissions:
+  #     id-token: write
+  #     contents: read
+  #     actions: read
+  #   # if: |
+  #   #   (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/v')) ||
+  #   #   (startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-rc.'))
+  #   # Deterministic Build & tests
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+  #   with:
+  #     run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+  #     node-version: "20.11.1"
 
   # release:
   #   name: Version or Publish
