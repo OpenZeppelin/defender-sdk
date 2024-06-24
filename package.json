@@ -48,7 +48,8 @@
     "style": "pnpm lint:fix",
     "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
     "version-set": "changeset version",
-    "release": "node ./scripts/release.js"
+    "release": "node ./scripts/release.js",
+    "install-pnpm": "npm install -g pnpm"
   },
   "repository": {
     "type": "git",
