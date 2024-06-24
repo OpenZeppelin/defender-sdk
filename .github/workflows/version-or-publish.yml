@@ -41,18 +41,18 @@ jobs:
   #   with:
   #     version: 8
 
-  provenance:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    # Deterministic Build & tests
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
-    with:
-      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
-      node-version: "20.11.1"
-      ## Remove after making repo public
-      rekor-log-public: true
+  # provenance:
+  #   permissions:
+  #     id-token: write
+  #     contents: read
+  #     actions: read
+  #   # Deterministic Build & tests
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+  #   with:
+  #     run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+  #     node-version: "20.11.1"
+  #     ## Remove after making repo public
+  #     rekor-log-public: true
 
   # provenance:
   #   permissions:
@@ -69,20 +69,20 @@ jobs:
   #     node-version: "20.11.1"
 
   release:
-    needs: provenance
+    # needs: provenance
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
-  #       with:
-  #         token: ${{ secrets.SAI_PAT }}
+      - name: Checkout Repo
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+        with:
+          token: ${{ secrets.SAI_PAT }}
 
-  #     - name: Prepare pre-requisites
-  #       uses: ./.github/actions/prepare
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
 
-  #     - name: Build packages
-  #       run: pnpm nx-build-skip-cache
+      - name: Build packages
+        run: pnpm nx-build-skip-cache
       
       - name: Generate SBOM
         uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
