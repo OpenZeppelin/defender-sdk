@@ -56,12 +56,14 @@ jobs:
     needs: [provenance]
     runs-on: ubuntu-latest
     steps:
-      - name: Download provenance
-        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@v2.0.0
-        with:
-          name: ${{ needs.provenance.outputs.provenance-download-name }}
-          # path: "attestations"
-          sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
+      # - name: Download provenance
+      #   uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@v2.0.0
+      #   with:
+      #     name: ${{ needs.provenance.outputs.provenance-download-name }}
+      #     # path: "attestations"
+      #     sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
+      - name: Downlod Artifacts 
+        uses: actions/download-artifact@v3
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
