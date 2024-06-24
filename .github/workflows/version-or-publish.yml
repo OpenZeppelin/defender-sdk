@@ -69,6 +69,7 @@ jobs:
   #     node-version: "20.11.1"
 
   release:
+    needs: provenance
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
@@ -89,6 +90,10 @@ jobs:
           artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
           output-file: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
           upload-artifact-retention: 1
+
+      - uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: 'attestations'
 
   #     - name: Import GPG key
   #       uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
