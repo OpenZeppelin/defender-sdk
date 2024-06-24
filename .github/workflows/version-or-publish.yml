@@ -60,7 +60,7 @@ jobs:
         uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@v2.0.0
         with:
           name: ${{ needs.provenance.outputs.provenance-download-name }}
-          path: "attestations"
+          # path: "attestations"
           sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
 
       - name: Setup upterm session
