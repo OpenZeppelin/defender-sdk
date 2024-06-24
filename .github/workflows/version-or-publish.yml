@@ -26,7 +26,7 @@ permissions:
 jobs:
   install:
     name: Version or Publish
-    # runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
@@ -49,7 +49,7 @@ jobs:
     # Deterministic Build & tests
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
     with:
-      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
       node-version: "20.11.1"
       ## Remove after making repo public
       rekor-log-public: true
