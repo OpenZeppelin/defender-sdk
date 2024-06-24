@@ -24,6 +24,19 @@ permissions:
   actions: read
 
 jobs:
+  provenance:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    # Deterministic Build & tests
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+    with:
+      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      node-version: "20.11.1"
+      ## Remove after making repo public
+      rekor-log-public: true
+
   install:
     name: Version or Publish
     runs-on: ubuntu-latest
@@ -36,10 +49,6 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
-      - uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
-        with:
-          run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
-          node-version: "20.11.1"
   # provenance:
   #   permissions:
   #     id-token: write
