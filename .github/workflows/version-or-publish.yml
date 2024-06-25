@@ -1,17 +1,35 @@
 name: Version or Publish Package
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  id-token: write
+  contents: read
+  attestations: write
+  actions: read
+
 jobs:
+  provenance:
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+    with:
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      node-version: "20.11.1"
+
   release:
+    needs: [provenance]
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
+      - name: Downlod Artifacts 
+        uses: actions/download-artifact@v3
+
       - name: Checkout Repo
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
         with:
@@ -19,9 +37,6 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-
-      - name: Build packages
-        run: pnpm nx-build-skip-cache
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
@@ -44,3 +59,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload attestations
+        if: steps.changesets.outputs.id != ''
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+
