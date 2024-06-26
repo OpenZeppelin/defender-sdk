@@ -56,13 +56,12 @@ export class NotificationChannelClient extends BaseApiClient {
     });
   }
 
-  public verifySignature(params: { signature: string; firstHash: string; secret: string }): boolean {
+  public verifySignature(params: { signature: string; secret: string }): boolean {
     if (!params.secret) throw new Error('Secret is missing');
-    if (!params.firstHash) throw new Error('First hash is missing');
     if (!params.signature) throw new Error('Signature is missing');
 
     const hmac = crypto.createHmac('sha256', params.secret);
-    hmac.update(params.firstHash);
+    hmac.update('defender');
     const generatedSignature = hmac.digest('hex');
 
     return generatedSignature === params.signature;

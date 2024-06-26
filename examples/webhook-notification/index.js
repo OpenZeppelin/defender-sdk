@@ -12,7 +12,6 @@ function webhook(req, res) {
 
   const valid = client.notificationChannel.verifySignature({
     secret: WEBHOOK_SECRET,
-    firstHash: req.events[0].hash,
     signature: req.signature,
   });
 
@@ -22,11 +21,7 @@ function webhook(req, res) {
 function main() {
   // example webhook payload
   const req = {
-    events: [
-      {
-        hash: '0x1dc91b98249fa9f2c5c37486a2427a3a7825be240c1c84961dfb3063d9c04d50',
-      },
-    ],
+    events: [],
     signature: '0b9e477b432546d9ec2e026d1a2e81ac92dd822a871ceff3300f1ac04c5863bd',
   };
   const res = { json: console.log };
