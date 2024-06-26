@@ -5,6 +5,7 @@ import {
   NotificationSummary as NotificationResponse,
   NotificationType,
 } from '../models/notification';
+import jwt from 'jsonwebtoken';
 
 const PATH = '/notifications';
 
@@ -53,5 +54,10 @@ export class NotificationChannelClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return await api.put(`${PATH}/${type}/${id}`, notification);
     });
+  }
+
+  public verifySignature(params: { signature: string; secret: string }): boolean {
+    const res = jwt.verify(params.signature, params.secret, { algorithms: ['HS256'] });
+    return !!res;
   }
 }
