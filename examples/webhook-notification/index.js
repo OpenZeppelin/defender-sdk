@@ -22,7 +22,7 @@ function main() {
   // example webhook payload
   const req = {
     events: [],
-    signature: '0b9e477b432546d9ec2e026d1a2e81ac92dd822a871ceff3300f1ac04c5863bd',
+    signature: '0d85d9d705054c179e4a33290da3d44e7a32368d0a6d771785fa4b683e905338',
   };
   const res = { json: console.log };
   webhook(req, res);
