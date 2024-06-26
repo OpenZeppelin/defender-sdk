@@ -5,7 +5,7 @@ import {
   NotificationSummary as NotificationResponse,
   NotificationType,
 } from '../models/notification';
-import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 
 const PATH = '/notifications';
 
@@ -56,8 +56,15 @@ export class NotificationChannelClient extends BaseApiClient {
     });
   }
 
-  public verifySignature(params: { signature: string; secret: string }): boolean {
-    const res = jwt.verify(params.signature, params.secret, { algorithms: ['HS256'] });
-    return !!res;
+  public verifySignature(params: { signature: string; firstHash: string; secret: string }): boolean {
+    if (!params.secret) throw new Error('Secret is missing');
+    if (!params.firstHash) throw new Error('First hash is missing');
+    if (!params.signature) throw new Error('Signature is missing');
+
+    const hmac = crypto.createHmac('sha256', params.secret);
+    hmac.update(params.firstHash);
+    const generatedSignature = hmac.digest('hex');
+
+    return generatedSignature === params.signature;
   }
 }

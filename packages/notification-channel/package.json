@@ -21,9 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/defender-sdk-base-client": "^1.13.4",
-    "@types/jsonwebtoken": "^9.0.6",
     "axios": "^1.7.2",
-    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21"
   },
   "publishConfig": {
