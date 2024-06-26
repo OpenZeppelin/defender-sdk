@@ -6,6 +6,7 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
+import { RelayGroupClient } from '@openzeppelin/defender-sdk-relay-group-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
@@ -116,6 +117,16 @@ export class Defender {
 
   get relay() {
     return getClient(RelayClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+    });
+  }
+
+  get relayGroup() {
+    return getClient(RelayGroupClient, {
       apiKey: this.apiKey,
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
