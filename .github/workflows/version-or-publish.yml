@@ -16,22 +16,7 @@ permissions:
   actions: read
 
 jobs:
-  # install:
-  #   name: Prepare
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
-  #       with:
-  #         token: ${{ secrets.SAI_PAT }}
-
-  #     - name: Prepare pre-requisites
-  #       uses: ./.github/actions/prepare
-
   provenance:
-    # permissions:
-    #   id-token: write
-    #   contents: read
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
     with:
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
@@ -63,21 +48,38 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          setupGitUser: false
-          version: pnpm ci:version
-          title: "Update the version packages"
-          publish: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.TEST_EXAMPLE }}
+      # - name: Create Release Pull Request or Publish to npm
+      #   id: changesets
+      #   uses: changesets/action@v1
+      #   with:
+      #     setupGitUser: false
+      #     version: pnpm ci:version
+      #     title: "Update the version packages"
+      #     publish: pnpm release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.TEST_EXAMPLE }}
 
-      - name: Upload attestations
-        if: steps.changesets.outputs.id != ''
-        uses: actions/attest-build-provenance@v1
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
         with:
-          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          artifact-name: sbom-${{ github.event.repository.name }}-v1.spdx.json
+          output-file: sbom-${{ github.event.repository.name }}-v1.spdx.json
+          upload-artifact-retention: 1
 
+      - name: Publish SBOM
+        uses: anchore/sbom-action/publish-sbom@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
+        with:
+          sbom-artifact-match: ".*$v1.spdx\\.json"
+
+      # - name: Upload attestations SLSA
+      #   if: steps.changesets.outputs.id != ''
+      #   uses: actions/attest-build-provenance@v1
+      #   with:
+      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+
+      # - name: Upload attestations SBOM
+      #   if: steps.changesets.outputs.id != ''
+      #   uses: actions/attest-build-provenance@v1
+      #   with:
+      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
