@@ -24,7 +24,6 @@ jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
     with:
-      path: ${{ github.event.repository.name }}-v1.0.1-test
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
       node-version: "20.11.1"
 
@@ -79,6 +78,7 @@ jobs:
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-v1.0.1-test
 
       - name: Upload attestations SBOM
         # if: steps.changesets.outputs.id != ''
