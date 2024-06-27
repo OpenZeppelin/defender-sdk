@@ -32,8 +32,6 @@ jobs:
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
-      - name: Downlod Artifacts 
-        uses: actions/download-artifact@v3
 
       - name: Checkout Repo
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
@@ -71,6 +69,9 @@ jobs:
           artifact-name: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
           output-file: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
           upload-artifact-retention: 1
+
+      - name: Downlod Artifacts 
+        uses: actions/download-artifact@v3
 
       - name: Upload attestations SLSA
         # if: steps.changesets.outputs.id != ''
