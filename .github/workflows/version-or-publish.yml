@@ -73,13 +73,13 @@ jobs:
           upload-artifact-retention: 1
 
       - name: Upload attestations SLSA
-        if: steps.changesets.outputs.id != ''
+        # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
 
       - name: Upload attestations SBOM
-        if: steps.changesets.outputs.id != ''
+        # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
