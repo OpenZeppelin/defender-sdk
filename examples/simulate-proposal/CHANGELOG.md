@@ -1,5 +1,37 @@
 # @openzeppelin/defender-sdk-example-simulate-proposal
 
+## 1.13.8
+
+### Patch Changes
+
+- 3e02f2a: Automation test
+- Updated dependencies [3e02f2a]
+  - @openzeppelin/defender-sdk@1.13.8
+
+## 1.13.7
+
+### Patch Changes
+
+- 9f18778: Automation test
+- Updated dependencies [9f18778]
+  - @openzeppelin/defender-sdk@1.13.7
+
+## 1.13.6
+
+### Patch Changes
+
+- 88e15d7: Automation test
+- Updated dependencies [88e15d7]
+  - @openzeppelin/defender-sdk@1.13.6
+
+## 1.13.5
+
+### Patch Changes
+
+- 15d2e73: Automation
+- Updated dependencies [15d2e73]
+  - @openzeppelin/defender-sdk@1.13.5
+
 ## 1.13.4
 
 ### Patch Changes
