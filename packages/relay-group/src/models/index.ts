@@ -38,11 +38,9 @@ export type RelayerGroupRelayer = {
 export interface RelayerGroupResponse {
   relayerGroupId: string;
   name: string;
-  networks: {
-    name: Network;
-    policies: RelayerGroupPolicies;
-    minBalance: BigUInt;
-  }[];
+  network: Network;
+  policies: RelayerGroupPolicies;
+  minBalance: BigUInt;
   relayers: RelayerGroupRelayer[];
   paused: boolean;
   systemPaused: boolean;
@@ -56,11 +54,9 @@ export interface RelayerGroupResponse {
 
 export interface CreateRelayerGroupRequest {
   name: string;
-  networks: {
-    policies?: RelayerGroupPolicies;
-    name: Network;
-    minBalance: BigUInt;
-  }[];
+  policies?: RelayerGroupPolicies;
+  network: Network;
+  minBalance: BigUInt;
   stackResourceId?: string;
   relayers?: number;
 }
@@ -70,11 +66,8 @@ export interface UpdateRelayerGroupRequest {
   name?: string;
   paused?: boolean;
   stackResourceId?: string;
-  networks?: {
-    policies?: RelayerGroupPolicies;
-    minBalance?: BigUInt;
-    name: string;
-  }[];
+  policies?: RelayerGroupPolicies;
+  minBalance?: BigUInt;
   notificationChannels?: {
     events: ('pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed')[];
     notificationIds: string[];

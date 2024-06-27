@@ -34,9 +34,9 @@ export class RelayGroupClient extends BaseApiClient {
     });
   }
 
-  public async create(relayer: CreateRelayerGroupRequest): Promise<RelayerGroupResponse> {
+  public async create(relayerGroup: CreateRelayerGroupRequest): Promise<RelayerGroupResponse> {
     return this.apiCall(async (api) => {
-      return await api.post('/relayer-groups', relayer);
+      return await api.post('/relayer-groups', relayerGroup);
     });
   }
 
