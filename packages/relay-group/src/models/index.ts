@@ -27,20 +27,26 @@ export enum TxStatus {
   Failed = 'failed', // terminal failure for any reason (bad nonce, too many retries)
 }
 
+export type RelayerGroupRelayer = {
+  relayerId: string;
+  address: string;
+  keyId: string;
+  relayerShortId: string;
+  network: Network;
+};
+
 export interface RelayerGroupResponse {
   relayerGroupId: string;
   name: string;
-  relayers: {
-    relayerId: string;
-    address: string;
-    network: Network;
-    keyId: string;
+  networks: {
+    name: Network;
+    policies: RelayerGroupPolicies;
+    minBalance: BigUInt;
   }[];
-  networks: Network[];
+  relayers: RelayerGroupRelayer[];
   paused: boolean;
   systemPaused: boolean;
   createdAt: string;
-  policies: RelayerGroupPolicies;
   stackResourceId?: string;
   notificationChannels?: {
     events: TxStatus[];
@@ -50,21 +56,25 @@ export interface RelayerGroupResponse {
 
 export interface CreateRelayerGroupRequest {
   name: string;
-  networks: Network[];
-  minBalance: BigUInt;
-  policies?: RelayerGroupPolicies;
+  networks: {
+    policies?: RelayerGroupPolicies;
+    name: Network;
+    minBalance: BigUInt;
+  }[];
   stackResourceId?: string;
   relayers?: number;
 }
 
 
 export interface UpdateRelayerGroupRequest {
-  relayerGroupId: string;
   name?: string;
   paused?: boolean;
   stackResourceId?: string;
-  policies?: RelayerGroupPolicies;
-  minBalance?: BigUInt;
+  networks?: {
+    policies?: RelayerGroupPolicies;
+    minBalance?: BigUInt;
+    name: string;
+  }[];
   notificationChannels?: {
     events: ('pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed')[];
     notificationIds: string[];

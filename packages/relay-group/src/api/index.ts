@@ -41,17 +41,8 @@ export class RelayGroupClient extends BaseApiClient {
   }
 
   public async update(id: string, relayerUpdateParams: UpdateRelayerGroupRequest): Promise<RelayerGroupResponse> {
-    const currentRelayer = await this.get(id);
-
     return this.apiCall(async (api) => {
-      return await api.put(`/relayer-groups/${id}`, {
-        ...currentRelayer,
-        ...relayerUpdateParams,
-        policies: {
-          ...currentRelayer.policies,
-          ...relayerUpdateParams.policies,
-        },
-      });
+      return await api.put(`/relayer-groups/${id}`, relayerUpdateParams);
     });
   }
 

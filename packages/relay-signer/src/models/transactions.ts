@@ -1,4 +1,5 @@
 import { Address, BigUInt } from './relayer';
+import { Network } from '@openzeppelin/defender-sdk-base-client';
 
 export type Speed = 'safeLow' | 'average' | 'fast' | 'fastest';
 export type Status = 'pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed';
@@ -12,6 +13,7 @@ export interface SendBaseTransactionRequest {
   validUntil?: string;
   isPrivate?: boolean;
   privateMode?: PrivateTransactionMode;
+  network?: Network;
 }
 
 export interface SendSpeedTransactionRequest extends SendBaseTransactionRequest {
