@@ -26,9 +26,9 @@ process.chdir(path.join(__dirname, ".."));
   }
 
   // await exec("npm publish --dry-run");
-  await exec("changeset", ["publish"]);
+  // await exec("changeset", ["publish"]);
   
-  // await exec("changeset", ["tag"]);
+  await exec("changeset", ["tag"]);
 
   // await exec("git", [
   //   "push",
