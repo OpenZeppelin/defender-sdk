@@ -28,13 +28,6 @@ process.chdir(path.join(__dirname, ".."));
   // await exec("npm publish --dry-run");
   // await exec("changeset", ["publish"]);
   
-  await exec("changeset", ["tag"]);
+  // await exec("changeset", ["tag"]);
 
-  // await exec("git", [
-  //   "push",
-  //   "--force",
-  //   "--follow-tags",
-  //   "origin",
-  //   `HEAD:refs/heads/${releaseLine}`,
-  // ]);
 })();
