@@ -24,6 +24,7 @@ jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
     with:
+      path: ${{ github.event.repository.name }}-v1.0.1-test
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
       node-version: "20.11.1"
 
@@ -66,8 +67,8 @@ jobs:
       - name: Generate SBOM
         uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
         with:
-          artifact-name: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
-          output-file: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
+          artifact-name: sbom-${{ github.event.repository.name }}-v1.0.1-test.spdx.json
+          output-file: sbom-${{ github.event.repository.name }}-v1.0.1-test.spdx.json
           upload-artifact-retention: 1
 
       - name: Downlod Artifacts 
@@ -83,4 +84,4 @@ jobs:
         # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@v1
         with:
-          subject-path: sbom-${{ github.event.repository.name }}-v1.0.0-test.spdx.json
+          subject-path: sbom-${{ github.event.repository.name }}-v1.0.1-test.spdx.json
