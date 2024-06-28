@@ -3,7 +3,6 @@ const { exec, getExecOutput } = require("@actions/exec");
 
 const { version } = require("../package.json");
 const tag = `${version}`;
-const releaseLine = `${version.split(".")[0]}`;
 
 process.chdir(path.join(__dirname, ".."));
 
@@ -28,12 +27,4 @@ process.chdir(path.join(__dirname, ".."));
   await exec("changeset", ["publish"]);
   
   await exec("changeset", ["tag"]);
-
-  await exec("git", [
-    "push",
-    "--force",
-    "--follow-tags",
-    "origin",
-    `HEAD:refs/heads/${releaseLine}`,
-  ]);
 })();

@@ -2,16 +2,17 @@ name: Version or Publish Package
 
 on:
   workflow_dispatch:
-
-  push:
-    branches:
-      - main
+    inputs:
+      version_tag:
+        required: true
+        description: The release version
+        type: string
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
   attestations: write
   actions: read
 
@@ -60,9 +61,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Upload attestations
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751
+        with:
+          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          output-file: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          upload-artifact-retention: 1
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Upload attestations SLSA
         if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
 
+      - name: Upload attestations SBOM
+        if: steps.changesets.outputs.id != ''
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
