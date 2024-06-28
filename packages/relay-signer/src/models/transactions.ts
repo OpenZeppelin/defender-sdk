@@ -83,7 +83,6 @@ export type ListTransactionsRequest = {
   limit?: number;
   next?: string;
   sort?: 'asc' | 'desc';
-  usePagination?: boolean;
 };
 
 export type PaginatedTransactionResponse = {
