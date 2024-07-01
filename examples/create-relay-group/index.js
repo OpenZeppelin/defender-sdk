@@ -13,7 +13,7 @@ async function main() {
   const client = new Defender(creds);
 
   const createParams = {
-    name: 'MyNewGroupRelayerTest',
+    name: 'MyNewGroupRelayer',
     networks: ['sepolia'],
     relayers: 2,
     minBalance: BigInt(1e17).toString(),
