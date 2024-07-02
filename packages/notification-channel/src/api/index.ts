@@ -5,6 +5,7 @@ import {
   NotificationSummary as NotificationResponse,
   NotificationType,
 } from '../models/notification';
+import crypto from 'crypto';
 
 const PATH = '/notifications';
 
@@ -53,5 +54,16 @@ export class NotificationChannelClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return await api.put(`${PATH}/${type}/${id}`, notification);
     });
+  }
+
+  public verifySignature(params: { signature: string; secret: string }): boolean {
+    if (!params.secret) throw new Error('Secret is missing');
+    if (!params.signature) throw new Error('Signature is missing');
+
+    const hmac = crypto.createHmac('sha256', params.secret);
+    hmac.update('defender');
+    const generatedSignature = hmac.digest('hex');
+
+    return generatedSignature === params.signature;
   }
 }
