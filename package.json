@@ -5,6 +5,7 @@
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {
     "@openzeppelin/defender-sdk-base-client": "1.13.4",
+    "@actions/exec": "^1.1.1",
     "axios": "^1.7.2",
     "lodash": "^4.17.21"
   },
@@ -29,7 +30,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
+    "install-deps": "pnpm i --ignore-scripts --prefer-offline",
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
@@ -44,7 +45,8 @@
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
-    "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
+    "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
+    "release": "node ./scripts/release.js"
   },
   "repository": {
     "type": "git",
