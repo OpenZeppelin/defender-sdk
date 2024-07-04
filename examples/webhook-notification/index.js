@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Defender } = require('@openzeppelin/defender-sdk');
 
-const WEBHOOK_SECRET = 'ece309aa-bb4c-4dd5-995d-ad35e83f9924';
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || '9b07149008666eef75a1262af0fb8c4b';
 
 function webhook(req, res) {
   const creds = {
@@ -13,6 +13,8 @@ function webhook(req, res) {
   const valid = client.notificationChannel.verifySignature({
     secret: WEBHOOK_SECRET,
     signature: req.signature,
+    timestamp: req.timestamp,
+    validityInMs: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years (defaults to 10 minutes)
   });
 
   res.json({ message: valid ? 'valid signature' : 'invalid signature' });
@@ -22,7 +24,8 @@ function main() {
   // example webhook payload
   const req = {
     events: [],
-    signature: '0d85d9d705054c179e4a33290da3d44e7a32368d0a6d771785fa4b683e905338',
+    timestamp: '2024-07-04T17:02:40.364Z',
+    signature: 'b20d0784b9d82f61fd22ce4fc1ae486b213b3d8d9e24e0ad2e9194d95bca1ece',
   };
   const res = { json: console.log };
   webhook(req, res);

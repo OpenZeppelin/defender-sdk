@@ -6,6 +6,7 @@ import {
   NotificationType,
 } from '../models/notification';
 import crypto from 'crypto';
+import { getMillisSince } from './utils';
 
 const PATH = '/notifications';
 
@@ -56,14 +57,30 @@ export class NotificationChannelClient extends BaseApiClient {
     });
   }
 
-  public verifySignature(params: { signature: string; secret: string }): boolean {
+  public verifySignature(params: {
+    signature: string;
+    secret: string;
+    timestamp: string;
+    validityInMs?: number;
+  }): boolean {
     if (!params.secret) throw new Error('Secret is missing');
     if (!params.signature) throw new Error('Signature is missing');
+    if (!params.timestamp) throw new Error('Timestamp is missing');
 
-    const hmac = crypto.createHmac('sha256', params.secret);
-    hmac.update('defender');
-    const generatedSignature = hmac.digest('hex');
+    try {
+      const TEN_MINUTES_IN_MS = 1000 * 60 * 10;
+      const validityInMillis = params.validityInMs || TEN_MINUTES_IN_MS;
+      const createdAt = new Date(params.timestamp);
 
-    return generatedSignature === params.signature;
+      const millisSince = getMillisSince(createdAt);
+      const isRecent = millisSince <= validityInMillis && millisSince >= 0;
+
+      const generatedSignature = crypto.createHmac('sha256', params.secret).update(params.timestamp).digest('hex');
+      const signatureValid = generatedSignature === params.signature;
+
+      return signatureValid && isRecent;
+    } catch (e) {
+      return false;
+    }
   }
 }
