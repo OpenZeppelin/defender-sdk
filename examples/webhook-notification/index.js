@@ -1,3 +1,14 @@
+/**
+ * Example showcasing a webhook implementation for receiving Defender notifications such as
+ * Relayer transactions statuses or Monitor alerts.
+ *
+ * webhook() function represents the webhook endpoint that will receive the Defender notifications.
+ *
+ * Defender sends a POST request to the webhook with a Defender-Timestamp and Defender-Signature
+ * headers containing a HMAC signature of the request body. The webhook should verify the signature
+ * using the shared WEBHOOK_SECRET.
+ */
+
 require('dotenv').config();
 const { Defender } = require('@openzeppelin/defender-sdk');
 const ReqBody = require('./body.json');
@@ -19,7 +30,7 @@ function webhook(req, res) {
     signature,
     timestamp,
     secret: WEBHOOK_SECRET,
-    validityInMs: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years (defaults to 10 minutes)
+    validityInMs: 1000 * 60 * 10, // 10 minutes
   });
 
   res.json({ message: result.valid ? 'Valid signature' : result.error });

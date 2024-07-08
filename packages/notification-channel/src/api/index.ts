@@ -8,7 +8,6 @@ import {
 import crypto from 'crypto';
 import { getMillisSince } from './utils';
 import { SignatureVerificationParams } from '../models/webhook';
-import { timeStamp } from 'console';
 
 const PATH = '/notifications';
 
