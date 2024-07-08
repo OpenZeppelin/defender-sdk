@@ -27,6 +27,12 @@ repos:
         exclude: fixtures/.*
   - repo: local
     hooks:
+      - id: sort networks
+        name: Sort networks
+        entry: pnpm sort:networks
+        language: system
+  - repo: local
+    hooks:
       - id: style-fixes
         name: Run lint & format with fixes
         exclude: (\.md|\.sh)$
