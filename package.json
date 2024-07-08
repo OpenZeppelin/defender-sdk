@@ -38,8 +38,8 @@
     "build-test": "nx run-many -t style,build,test --projects=@openzeppelin/defender-base-client,*  --parallel=false",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
-    "prettier:check": "prettier --check '**/*.{js,ts,tsx}'",
-    "prettier:fix": "prettier --write .",
+    "prettier:check": "prettier --check '**/*.{js,ts,tsx}' '!**/.nx/**'",
+    "prettier:fix": "prettier --write . '!**/.nx/**'",
     "test": "nx run-many -t test --parallel=1",
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
@@ -67,6 +67,8 @@
     "ws": "^8.17.0",
     "braces": "^3.0.3",
     "es5-ext": "^0.10.63",
-    "semver": "^6.3.1"
+    "semver": "^6.3.1",
+    "tough-cookie": "^4.0.0",
+    "tar": "^6.2.1"
   }
 }
