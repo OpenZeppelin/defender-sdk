@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/defender-sdk-example-create-monitor",
+  "name": "@openzeppelin/defender-sdk-example-update-monitor",
   "version": "1.13.4",
   "private": true,
   "main": "index.js",
