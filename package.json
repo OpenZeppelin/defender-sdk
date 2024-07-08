@@ -9,7 +9,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.7",
     "@npmcli/fs": "3.1.0",
     "@types/glob": "^8.1.0",
     "@types/jest": "^29.5.12",
@@ -63,6 +63,10 @@
   },
   "homepage": "https://github.com/OpenZeppelin/defender-sdk#readme",
   "resolutions": {
-    "@ethersproject/abstract-provider": "^5.6.1"
+    "@ethersproject/abstract-provider": "^5.6.1",
+    "ws": "^8.17.0",
+    "braces": "^3.0.3",
+    "es5-ext": "^0.10.63",
+    "semver": "^6.3.1"
   }
 }
