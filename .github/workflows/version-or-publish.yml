@@ -27,7 +27,7 @@ jobs:
   #     node-version: "20.11.1"
 
   release:
-    needs: [provenance]
+    # needs: [provenance]
     name: Version or Publish
     runs-on: ubuntu-latest
     steps:
