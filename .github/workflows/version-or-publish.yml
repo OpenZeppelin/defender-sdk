@@ -75,14 +75,14 @@ jobs:
       #   uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
 
       - name: Upload attestations SLSA
-        if: steps.changesets.outputs.id != ''
+        # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
           subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
 
       - name: Upload attestations SBOM
-        if: steps.changesets.outputs.id != ''
+        # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
           subject-path: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
