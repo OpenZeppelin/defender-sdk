@@ -31,7 +31,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "install-deps": "pnpm i --ignore-scripts --prefer-offline",
+    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
