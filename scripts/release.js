@@ -24,7 +24,7 @@ process.chdir(path.join(__dirname, ".."));
     throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
   }
 
-  await exec("changeset", ["publish"]);
+  // await exec("changeset", ["publish"]);
   
-  await exec("changeset", ["tag"]);
+  // await exec("changeset", ["tag"]);
 })();

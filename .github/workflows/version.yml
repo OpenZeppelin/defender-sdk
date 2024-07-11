@@ -3,7 +3,7 @@ name: Version Package
 on:
   push:
     branches:
-      - main
+      - mainx
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

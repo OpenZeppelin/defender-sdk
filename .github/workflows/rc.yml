@@ -2,7 +2,7 @@ name: tag-rc
 on:
   push:
     branches:
-      - main
+      - mainx
 
 # Declare default permissions as read only.
 permissions: read-all
