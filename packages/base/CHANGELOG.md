@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.14.0
+
+### Minor Changes
+
+- 164af52: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+
 ## 1.13.4
 
 ### Patch Changes
