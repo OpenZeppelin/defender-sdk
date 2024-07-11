@@ -3,7 +3,6 @@ const { exec, getExecOutput } = require("@actions/exec");
 
 const { version } = require("../package.json");
 const tag = `${version}`;
-const releaseLine = `${version.split(".")[0]}`;
 
 process.chdir(path.join(__dirname, ".."));
 
@@ -25,9 +24,7 @@ process.chdir(path.join(__dirname, ".."));
     throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
   }
 
-  // await exec("npm publish --dry-run");
-  // await exec("changeset", ["publish"]);
+  await exec("changeset", ["publish"]);
   
-  // await exec("changeset", ["tag"]);
-
+  await exec("changeset", ["tag"]);
 })();
