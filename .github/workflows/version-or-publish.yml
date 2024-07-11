@@ -14,7 +14,8 @@ permissions:
   id-token: write
   contents: write
   attestations: write
-  actions: read
+  actions: write
+  pull-requests: write
 
 jobs:
   provenance:
