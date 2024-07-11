@@ -1,4 +1,4 @@
-name: Version or Publish Package
+name: Test Version or Publish Package
 
 on:
   workflow_dispatch:
