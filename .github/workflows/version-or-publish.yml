@@ -7,6 +7,9 @@ on:
         required: true
         description: The release version
         type: string
+  push:
+    branches:
+      - SRE-221-automation
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
