@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 1.13.9
+
+### Patch Changes
+
+- 07edb7d: Testing
+- Updated dependencies [07edb7d]
+  - @openzeppelin/defender-sdk@1.13.9
+  - @openzeppelin/defender-sdk-action-client@1.13.9
+
 ## 1.13.8
 
 ### Patch Changes

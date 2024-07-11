@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-list-contracts
 
+## 1.13.9
+
+### Patch Changes
+
+- 07edb7d: Testing
+- Updated dependencies [07edb7d]
+  - @openzeppelin/defender-sdk@1.13.9
+
 ## 1.13.8
 
 ### Patch Changes

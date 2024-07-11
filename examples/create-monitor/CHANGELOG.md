@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-create-monitor
 
+## 1.0.1
+
+### Patch Changes
+
+- 07edb7d: Testing
+- Updated dependencies [07edb7d]
+  - @openzeppelin/defender-sdk@1.13.9
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-account-client
 
+## 1.13.9
+
+### Patch Changes
+
+- 07edb7d: Testing
+- Updated dependencies [07edb7d]
+  - @openzeppelin/defender-sdk-base-client@1.13.9
+
 ## 1.13.8
 
 ### Patch Changes
