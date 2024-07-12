@@ -33,11 +33,6 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
-      - name: Create Release Pull Request
-        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   # # Deterministic Build & tests
   # provenance:
   #   permissions:
