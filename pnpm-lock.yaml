@@ -423,8 +423,8 @@ importers:
         specifier: ^3.563.0
         version: 3.563.0
       '@types/async-retry':
-        specifier: ^1.4.4
-        version: 1.4.4
+        specifier: ^1.4.8
+        version: 1.4.8
       aws-sdk:
         specifier: ^2.1589.0
         version: 2.1589.0
@@ -3205,8 +3205,8 @@ packages:
       defer-to-connect: 2.0.1
     dev: false
 
-  /@types/async-retry@1.4.4:
-    resolution: {integrity: sha512-IGT+yESLPYje0MV8MfOpT5V5oH9lAKLwlosQRyq75tYJmntkkWcfEThHLxsgYjGmYXJEY7ZZkYPb4xuW+NA6GA==}
+  /@types/async-retry@1.4.8:
+    resolution: {integrity: sha512-Qup/B5PWLe86yI5I3av6ePGaeQrIHNKCwbsQotD6aHQ6YkHsMUxVZkZsmx/Ry3VZQ6uysHwTjQ7666+k6UjVJA==}
     dependencies:
       '@types/retry': 0.12.2
     dev: true
