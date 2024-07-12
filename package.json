@@ -1,10 +1,11 @@
 {
   "name": "@openzeppelin/defender-sdk",
-  "version": "1.13.4",
+  "version": "1.14.1",
   "private": true,
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "1.13.4",
+    "@openzeppelin/defender-sdk-base-client": "1.14.1",
+    "@actions/exec": "^1.1.1",
     "axios": "^1.7.2",
     "lodash": "^4.17.21"
   },
@@ -34,6 +35,7 @@
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
     "ci:version": "pnpm changeset version",
+    "sort:networks": "node hack/sortNetworks.js && prettier -w packages/base/src/utils/network*.ts",
     "build": "nx run-many -t build --parallel=1",
     "build-test": "nx run-many -t style,build,test --projects=@openzeppelin/defender-base-client,*  --parallel=false",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
@@ -44,7 +46,9 @@
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
-    "skip-lib-ignore": "./hack/skip-lib-ignore.sh"
+    "skip-lib-ignore": "./hack/skip-lib-ignore.sh",
+    "release": "node ./scripts/release.js",
+    "install-pnpm": "npm install -g pnpm"
   },
   "repository": {
     "type": "git",
@@ -67,7 +71,7 @@
     "ws": "^8.17.0",
     "braces": "^3.0.3",
     "es5-ext": "^0.10.63",
-    "semver": "^6.3.1",
+    "semver": "^7.6.2",
     "tough-cookie": "^4.0.0",
     "tar": "^6.2.1"
   }

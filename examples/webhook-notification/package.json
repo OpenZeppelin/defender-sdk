@@ -1,9 +1,9 @@
 {
-  "name": "@openzeppelin/defender-sdk-example-create-private-network",
+  "name": "@openzeppelin/defender-sdk-example-webhook",
   "version": "1.14.1",
   "private": true,
   "main": "index.js",
-  "author": "Nami Shah <nami@openzeppelin.com>",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"
