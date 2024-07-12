@@ -14,7 +14,8 @@ permissions:
   id-token: write
   contents: write
   attestations: write
-  actions: read
+  actions: write
+  pull-requests: write
 
 jobs:
   provenance:
@@ -51,7 +52,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
+        uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293 # v1
         with:
           setupGitUser: false
           version: pnpm ci:version
