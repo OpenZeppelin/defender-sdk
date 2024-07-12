@@ -48,7 +48,7 @@ export abstract class BaseApiClient {
     this.apiSecret = params.apiSecret;
     this.httpsAgent = params.httpsAgent;
     this.retryConfig = { retries: 3, retryDelay: exponentialDelay, ...params.retryConfig };
-    this.authConfig = params.authConfig ?? { useCredentialsCaching: false, type: 'admin' };
+    this.authConfig = params.authConfig ?? { useCredentialsCaching: true, type: 'admin' };
   }
 
   private async getAccessToken(): Promise<string> {

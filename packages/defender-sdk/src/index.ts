@@ -59,7 +59,7 @@ export class Defender {
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
     this.authConfig = {
-      useCredentialsCaching: options.useCredentialsCaching ?? false,
+      useCredentialsCaching: options.useCredentialsCaching ?? true,
       type: isRelaySignerOptions(options) ? 'relay' : 'admin',
     };
   }
