@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-notification-channel-client
 
+## 1.14.1
+
+### Patch Changes
+
+- 845d942: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+- Updated dependencies [845d942]
+  - @openzeppelin/defender-sdk-base-client@1.14.1
+
 ## 1.14.0
 
 ### Minor Changes
