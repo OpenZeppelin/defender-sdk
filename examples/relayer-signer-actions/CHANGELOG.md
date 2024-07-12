@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-example-relay-signer-action
 
+## 1.14.1
+
+### Patch Changes
+
+- 845d942: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+- Updated dependencies [845d942]
+  - @openzeppelin/defender-sdk@1.14.1
+
 ## 1.14.0
 
 ### Minor Changes
