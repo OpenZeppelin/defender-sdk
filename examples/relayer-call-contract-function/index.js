@@ -4,6 +4,12 @@ const { ethers, version } = require('ethers');
 const BoxAbi = require('./box.json');
 const { Defender } = require('@openzeppelin/defender-sdk');
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 async function main() {
   const creds = {
     relayerApiKey: process.env.RELAYER_API_KEY,
@@ -30,6 +36,8 @@ async function main() {
   let recipt = null;
   while (recipt == null) {
     recipt = await provider.getTransactionReceipt(result.hash);
+    console.log('sleep 1s before requesting again');
+    await sleep(1000);
   }
   console.log(recipt);
 }
