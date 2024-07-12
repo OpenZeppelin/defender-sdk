@@ -21,7 +21,7 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       '@openzeppelin/defender-sdk-base-client':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:packages/base
       axios:
         specifier: ^1.7.2
@@ -88,7 +88,7 @@ importers:
   examples/create-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -97,7 +97,7 @@ importers:
   examples/create-batch-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -106,7 +106,7 @@ importers:
   examples/create-forked-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -115,7 +115,7 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -124,7 +124,7 @@ importers:
   examples/create-private-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -133,7 +133,7 @@ importers:
   examples/create-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -142,7 +142,7 @@ importers:
   examples/create-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -151,7 +151,7 @@ importers:
   examples/create-relayer-key:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -160,10 +160,10 @@ importers:
   examples/custom-ethers-pkg:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       '@openzeppelin/defender-sdk-action-client':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/action
       dotenv:
         specifier: ^16.4.5
@@ -203,7 +203,7 @@ importers:
   examples/deploy-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -215,7 +215,7 @@ importers:
   examples/ethers-signer-v5:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -227,7 +227,7 @@ importers:
   examples/ethers-signer-v6:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -239,7 +239,7 @@ importers:
   examples/get-usage:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -248,7 +248,7 @@ importers:
   examples/list-contracts:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -257,7 +257,7 @@ importers:
   examples/list-networks:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -266,7 +266,7 @@ importers:
   examples/list-proposals:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -275,7 +275,7 @@ importers:
   examples/relayer-load-balance:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -284,7 +284,7 @@ importers:
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -293,7 +293,7 @@ importers:
   examples/relayer-signer-auth-v2:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -302,7 +302,7 @@ importers:
   examples/relayer-web3-provider:
     dependencies:
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/relay-signer
       dotenv:
         specifier: ^16.3.1
@@ -314,7 +314,7 @@ importers:
   examples/simulate-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -326,7 +326,7 @@ importers:
   examples/update-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -335,7 +335,7 @@ importers:
   examples/update-action-env-variables:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -344,7 +344,7 @@ importers:
   examples/update-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -353,7 +353,7 @@ importers:
   examples/update-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -362,7 +362,7 @@ importers:
   examples/upgrade-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -371,7 +371,7 @@ importers:
   examples/webhook-notification:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.0
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -380,7 +380,7 @@ importers:
   packages/account:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -392,7 +392,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -432,40 +432,40 @@ importers:
   packages/defender-sdk:
     dependencies:
       '@openzeppelin/defender-sdk-account-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../account
       '@openzeppelin/defender-sdk-action-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../action
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       '@openzeppelin/defender-sdk-deploy-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../deploy
       '@openzeppelin/defender-sdk-monitor-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../monitor
       '@openzeppelin/defender-sdk-network-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../network
       '@openzeppelin/defender-sdk-notification-channel-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../notification-channel
       '@openzeppelin/defender-sdk-proposal-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../proposal
       '@openzeppelin/defender-sdk-relay-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../relay
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../relay-signer
 
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -477,7 +477,7 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -492,7 +492,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -504,7 +504,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -516,7 +516,7 @@ importers:
   packages/proposal:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -531,7 +531,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -561,7 +561,7 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.3.6
