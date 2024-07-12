@@ -14,8 +14,8 @@ async function main() {
   const client = new Defender(creds);
   console.log('using ethers version ', version);
 
-  const provider = client.relaySigner.getProvider();
-  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
+  const provider = client.relaySigner.getProvider({ ethersVersion: 'v6' });
+  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil, ethersVersion: 'v6' });
 
   const contractAddress = '0x1B9ec5Cc45977927fe6707f2A02F51e1415f2052';
   const contract = new ethers.Contract(contractAddress, BoxAbi, signer);

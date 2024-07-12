@@ -281,8 +281,8 @@ importers:
         specifier: ^16.3.1
         version: 16.4.5
       ethers:
-        specifier: ^5.6.1
-        version: 5.7.2
+        specifier: ^6.9.0
+        version: 6.9.0
 
   examples/relayer-load-balance:
     dependencies:
