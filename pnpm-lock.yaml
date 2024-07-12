@@ -275,7 +275,7 @@ importers:
   examples/relayer-call-contract-function:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.13.4
+        specifier: 1.14.1
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
