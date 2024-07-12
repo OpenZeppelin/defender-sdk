@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import glob from 'glob';
+import { glob } from 'glob';
 import { promisify } from 'util';
 import { readFile } from 'fs';
 import { existsSync } from 'fs';
@@ -18,7 +18,7 @@ export async function zipSources(sources: { [name: string]: string }): Promise<s
 
 export async function zipFolder(folderPath: string): Promise<string> {
   if (!existsSync(join(folderPath, 'index.js'))) throw new Error(`Expected index.js entrypoint in folder`);
-  const files = await promisify(glob)('**', { cwd: folderPath, nodir: true });
+  const files = await glob('**', { cwd: folderPath, nodir: true });
   const zip = new JSZip();
   for (const path of files) {
     const content = await promisify(readFile)(join(folderPath, path));

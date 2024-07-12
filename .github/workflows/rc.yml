@@ -25,18 +25,13 @@ jobs:
           egress-policy: audit
 
       - name: Checkout Repo
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.5.4
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-
-      - name: Create Release Pull Request
-        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # # Deterministic Build & tests
   # provenance:
@@ -72,7 +67,7 @@ jobs:
   #         egress-policy: audit
 
   #     - name: Checkout
-  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+  #       uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.5.4
   #       with:
   #         token: ${{ secrets.SAI_PAT }}
 
