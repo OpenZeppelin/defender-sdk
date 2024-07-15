@@ -38,8 +38,8 @@ jobs:
         with:
           token: ${{ secrets.SAI_PAT }}
 
-      # - name: Prepare pre-requisites
-      #   uses: ./.github/actions/prepare
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
 
       # - name: Download Artifacts 
       #   uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741  # v3.0.0
