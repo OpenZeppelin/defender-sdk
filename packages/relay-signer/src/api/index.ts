@@ -7,9 +7,9 @@ import {
   RelayerTransactionPayload,
 } from '../models/transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
+import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
 
-export const getRelaySignerApiUrl = () =>
-  process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+export const getAdminApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
 
 export class RelaySignerClient extends BaseApiClient implements IRelayer {
   private jsonRpcRequestNextId: number;
@@ -27,8 +27,8 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     return process.env.DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID || '1bpd19lcr33qvg5cr3oi79rdap';
   }
 
-  protected getApiUrl(): string {
-    return getRelaySignerApiUrl();
+  protected getApiUrl(type?: AuthType): string {
+    return getAdminApiUrl();
   }
 
   public async getRelayer(): Promise<RelayerGetResponse> {
@@ -82,17 +82,9 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     });
   }
 
-  public async listTransactions(
-    criteria?: ListTransactionsRequest,
-  ): Promise<RelayerTransaction[] | PaginatedTransactionResponse> {
+  public async listTransactions(criteria?: ListTransactionsRequest): Promise<PaginatedTransactionResponse> {
     return this.apiCall(async (api) => {
-      const result = (await api.get(`/relayers/self/txs`, { params: criteria ?? {} })) as
-        | PaginatedTransactionResponse
-        | RelayerTransaction[];
-      if (criteria?.usePagination) {
-        return result as PaginatedTransactionResponse;
-      }
-      return result as RelayerTransaction[];
+      return (await api.get(`txs`, { params: { ...criteria, usePagination: true } })) as PaginatedTransactionResponse;
     });
   }
 

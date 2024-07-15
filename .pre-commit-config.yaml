@@ -27,8 +27,26 @@ repos:
         exclude: fixtures/.*
   - repo: local
     hooks:
+      - id: sort networks
+        name: Sort networks
+        entry: pnpm sort:networks
+        language: system
+  - repo: local
+    hooks:
       - id: style-fixes
         name: Run lint & format with fixes
         exclude: (\.md|\.sh)$
         entry: pnpm lint:fix
         language: system
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.3
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.38.0
+    hooks:
+      - id: eslint

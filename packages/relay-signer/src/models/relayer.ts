@@ -1,8 +1,9 @@
 import https from 'https';
-import { Network } from '@openzeppelin/defender-sdk-base-client';
+import { Network, AuthConfig } from '@openzeppelin/defender-sdk-base-client';
 import {
   ListTransactionsRequest,
   PaginatedTransactionResponse,
+  PrivateTransactionMode,
   RelayerTransaction,
   RelayerTransactionPayload,
 } from './transactions';
@@ -14,8 +15,13 @@ export type Address = string;
 export type BigUInt = string | number;
 
 export type RelayerParams = ApiRelayerParams | ActionRelayerParams;
-export type ApiRelayerParams = { apiKey: string; apiSecret: string; httpsAgent?: https.Agent };
-export type ActionRelayerParams = { credentials: string; relayerARN: string; httpsAgent?: https.Agent };
+export type ApiRelayerParams = { apiKey: string; apiSecret: string; httpsAgent?: https.Agent; authConfig: AuthConfig };
+export type ActionRelayerParams = {
+  credentials: string;
+  relayerARN: string;
+  httpsAgent?: https.Agent;
+  authConfig: AuthConfig;
+};
 
 export interface RelayerGetResponse {
   relayerId: string;
@@ -53,8 +59,14 @@ export interface UpdateRelayerPoliciesRequest {
   gasPriceCap?: BigUInt;
   whitelistReceivers?: Address[];
   EIP1559Pricing?: boolean;
-  privateTransactions?: boolean;
+  /**
+   * Allowing boolean for backwards compatibility.
+   * New relayers should use PrivateTransactionMode.
+   */
+  privateTransactions?: boolean | PrivateTransactionMode;
 }
+
+export type EthersVersion = 'v5' | 'v6';
 
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse>;

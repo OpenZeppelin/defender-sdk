@@ -17,8 +17,8 @@ async function main() {
   const validUntil = new Date(Date.now() + 120 * 1000).toISOString();
 
   const client = new Defender(creds);
-  const provider = client.relaySigner.getProvider();
-  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil });
+  const provider = client.relaySigner.getProvider({ ethersVersion: 'v6' });
+  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', validUntil, ethersVersion: 'v6' });
   const signerAddress = await signer.getAddress();
 
   const factory = new ethers.ContractFactory(ERC20Abi, ERC20Bytecode, signer);
@@ -38,7 +38,7 @@ async function main() {
   console.log(`Relayer address is ${addr}`);
 
   console.log(`Sending approve transaction for ${beneficiary} to token ${contractAddress}...`);
-  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e8, gasLimit: 8000000 });
+  const tx = await erc20.approve(beneficiary, (1e17).toString(), { gasPrice: 1e10, gasLimit: 8000000 });
   console.log(`Transaction sent:`, tx);
 
   const mined = await tx.wait();

@@ -1,0 +1,91 @@
+name: Version or Publish Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_tag:
+        required: true
+        description: The release version
+        type: string
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  id-token: write
+  contents: write
+  attestations: write
+  actions: write
+  pull-requests: write
+
+jobs:
+  provenance:
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+    with:
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      node-version: "20.11.1"
+
+  release:
+    needs: [provenance]
+    name: Version or Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
+
+      - name: Download Artifacts 
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
+
+      - name: Checkout Repo
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
+        with:
+          token: ${{ secrets.SAI_PAT }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+        with:
+          gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
+          passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
+          git_config_global: true
+          git_tag_gpgsign: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293 # v1
+        with:
+          setupGitUser: false
+          version: pnpm ci:version
+          title: "Update the version packages"
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751
+        with:
+          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          output-file: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          upload-artifact-retention: 1
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
+
+      - name: Upload attestations SLSA
+        if: steps.changesets.outputs.id != ''
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
+
+      - name: Upload attestations SBOM
+        if: steps.changesets.outputs.id != ''
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json

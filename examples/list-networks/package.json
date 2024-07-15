@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-list-networks",
-  "version": "1.12.0",
+  "version": "1.14.1",
   "private": true,
   "main": "index.js",
   "author": "Nami Shah <nami@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.12.0",
+    "@openzeppelin/defender-sdk": "1.14.1",
     "dotenv": "^16.3.1"
   }
 }

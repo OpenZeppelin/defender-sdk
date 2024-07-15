@@ -1,5 +1,48 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.14.1
+
+### Patch Changes
+
+- 845d942: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+
+## 1.14.0
+
+### Minor Changes
+
+- 164af52: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+
+## 1.13.4
+
+### Patch Changes
+
+- 985443f: feat: add backwards compatibility to ethersv5
+
+## 1.13.3
+
+### Patch Changes
+
+- 2d1655d: feat: Add stackId in update relayer request
+  feat: Add Auth v2 support with `useCredentialsCaching` to cache access token
+
+## 1.13.3
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+
+## 1.13.0
+
+### Minor Changes
+
+- ff4a967: - feat: add exponential backoff logic for retry
+  - fix: add conditional imports for v2 and v3 for actions
+  - chore: add loadbalance example for rate limit number of transactions
+
 ## 1.12.0
 
 ### Minor Changes

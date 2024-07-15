@@ -1,4 +1,4 @@
-import { IRelayer, RelayerGetResponse, RelayerParams, RelayerStatus } from './models/relayer';
+import { EthersVersion, IRelayer, RelayerGetResponse, RelayerParams, RelayerStatus } from './models/relayer';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './models/rpc';
 import {
   ListTransactionsRequest,
@@ -8,12 +8,37 @@ import {
 } from './models/transactions';
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
-import { DefenderRelayProvider, DefenderRelaySigner, DefenderRelaySignerOptions } from './ethers';
+import {
+  DefenderRelayProvider,
+  DefenderRelayProviderOptions,
+  DefenderRelaySigner,
+  DefenderRelaySignerOptions,
+} from './ethers';
 import { JsonRpcProvider } from 'ethers';
+import { DefenderRelayProviderV5 } from './ethers/provider-v5';
+import { DefenderRelaySignerOptionsV5, DefenderRelaySignerV5 } from './ethers/signer-v5';
+import { Provider } from '@ethersproject/abstract-provider';
 
 export class Relayer implements IRelayer {
   private relayer: IRelayer;
   private credentials: RelayerParams;
+
+  private isEthersV5Provider(
+    _provider: JsonRpcProvider | Provider,
+    ethersVersion?: EthersVersion,
+  ): _provider is Provider {
+    // default to ethers v5
+    if (!ethersVersion || ethersVersion === 'v5') return true;
+    return false;
+  }
+
+  private isEthersV5ProviderOptions(
+    options?: DefenderRelaySignerOptionsV5 | DefenderRelaySignerOptions,
+  ): options is DefenderRelaySignerOptionsV5 {
+    // default to ethers v5
+    if (!options?.ethersVersion || options.ethersVersion === 'v5') return true;
+    return false;
+  }
 
   public constructor(credentials: RelayerParams) {
     this.credentials = credentials;
@@ -38,18 +63,29 @@ export class Relayer implements IRelayer {
     return this.relayer.getRelayerStatus();
   }
 
-  public getProvider(): DefenderRelayProvider {
+  public getProvider(
+    options: DefenderRelayProviderOptions = { ethersVersion: 'v5' },
+  ): DefenderRelayProvider | DefenderRelayProviderV5 {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelayProvider instance.`);
+    if (options.ethersVersion === 'v5') return new DefenderRelayProviderV5(this.credentials);
     return new DefenderRelayProvider(this.credentials);
   }
 
   public async getSigner(
-    provider: JsonRpcProvider,
-    options: DefenderRelaySignerOptions = {},
-  ): Promise<DefenderRelaySigner> {
+    provider: Provider | JsonRpcProvider,
+    options: DefenderRelaySignerOptionsV5 | DefenderRelaySignerOptions,
+  ): Promise<DefenderRelaySigner | DefenderRelaySignerV5> {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
-    const relayer = await this.relayer.getRelayer();
-    return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
+
+    if (this.isEthersV5Provider(provider, options?.ethersVersion) && this.isEthersV5ProviderOptions(options)) {
+      return new DefenderRelaySignerV5(this.credentials, provider, options);
+    }
+
+    if (!this.isEthersV5Provider(provider, options?.ethersVersion) && !this.isEthersV5ProviderOptions(options)) {
+      const relayer = await this.relayer.getRelayer();
+      return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
+    }
+    throw new Error(`Invalid state, provider and options must be for the same ethers version.`);
   }
 
   public sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
