@@ -15,7 +15,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   id-token: write
-  contents: write
+  # contents: write
   attestations: write
   actions: write
   pull-requests: write
@@ -64,8 +64,16 @@ jobs:
           path: "${{ steps.temp-dir.outputs.path }}"
           sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Unpack the zipped artifact
+        run: |
+          set -euo pipefail
+          cd "${{ steps.temp-dir.outputs.path }}"
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}"
+          cd package/
+          cd ../../
+
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
       # - name: Import GPG key
       #   uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
       #   with:
@@ -76,17 +84,18 @@ jobs:
       #     git_user_signingkey: true
       #     git_commit_gpgsign: true
 
-      # - name: Create Release Pull Request or Publish to npm
-      #   id: changesets
-      #   uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293 # v1
-      #   with:
-      #     setupGitUser: false
-      #     version: pnpm ci:version
-      #     title: "Update the version packages"
-      #     publish: pnpm release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NOT_EXIST_TOKEN }}
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293 # v1
+        with:
+          setupGitUser: false
+          version: pnpm ci:version
+          title: "Update the version packages"
+          publish: pnpm release
+          cwd: "${{ steps.temp-dir.outputs.path }}/package"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NOT_EXIST_TOKEN }}
 
       # - name: Generate SBOM
       #   uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751
