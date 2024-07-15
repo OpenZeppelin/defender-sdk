@@ -49,8 +49,8 @@ jobs:
       - name: Build artifacts
         run: pnpm run build --skip-nx-cache
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Dry run publish
+        run: lhotari/action-upterm@v1
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
