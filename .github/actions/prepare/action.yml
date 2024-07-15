@@ -17,8 +17,12 @@ runs:
       with:
         node-version: 20.11.1
         cache: 'pnpm'
-
+    - name: Install pnpm
+      run: npm install -g pnpm
+      shell: bash
     - name: Install dependencies
-      run: |
-        pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
+      run: pnpm run install-deps
+      shell: bash
+    - name: Build artifacts
+      run: pnpm run build --skip-nx-cache
       shell: bash

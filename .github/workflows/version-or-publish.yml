@@ -40,21 +40,20 @@ jobs:
         with:
           token: ${{ secrets.SAI_PAT }}
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # - name: Install pnpm
+      #   run: npm install -g pnpm
 
-      - name: Install deps
-        run: pnpm run install-deps
+      # - name: Install deps
+      #   run: pnpm run install-deps
 
-      - name: Build artifacts
-        run: pnpm run build --skip-nx-cache
-
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # - name: Build artifacts
+      #   run: pnpm run build --skip-nx-cache
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
       # - name: Import GPG key
       #   uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
       #   with:
