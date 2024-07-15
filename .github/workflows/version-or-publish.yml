@@ -80,6 +80,7 @@ jobs:
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
+          cd "$GITHUB_WORKSPACE/package"; pnpm run install-deps
 
       # - name: Setup upterm session
       #   uses: lhotari/action-upterm@v1
