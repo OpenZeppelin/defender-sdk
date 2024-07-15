@@ -229,3 +229,8 @@ updates:
     directory: /packages/account
     schedule:
       interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/relayer-call-contract-function
+    schedule:
+      interval: daily
