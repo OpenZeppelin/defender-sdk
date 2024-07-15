@@ -71,6 +71,8 @@ jobs:
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}"
           cd package; git init
+          git add .
+          git commit -m "Add the untracked files"
 
       # - name: Setup upterm session
       #   uses: lhotari/action-upterm@v1
