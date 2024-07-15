@@ -46,7 +46,7 @@ jobs:
         uses: ./.github/actions/prepare
 
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef
         with:
           gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
           passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
@@ -54,15 +54,48 @@ jobs:
           git_tag_gpgsign: true
           git_user_signingkey: true
           git_commit_gpgsign: true
+          
+      - name: Create temp dir
+        id: temp-dir
+        run: |
+          set -euo pipefail
+
+          temp_dir=$(mktemp -d)
+          echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
+
+      - name: Download tarball
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@934435652996c02a6317092984312602dfaf2a21 # main
+        with:
+          name: ${{ needs.provenance.outputs.package-download-name }}
+          path: "${{ steps.temp-dir.outputs.path }}/${{ needs.provenance.outputs.package-name }}"
+          sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
+
+      - name: Download provenance
+        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@0779f7bec68e2bf54a7b0a32bf4763f25ab29702 # v1.6.0
+        with:
+          name: ${{ needs.provenance.outputs.provenance-download-name }}
+          path: "${{ steps.temp-dir.outputs.path }}"
+          sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
+
+      - name: Unpack the zipped artifact
+        run: |
+          set -euo pipefail
+          cd "${{ steps.temp-dir.outputs.path }}"
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
+          cd "$GITHUB_WORKSPACE/package"
+          pnpm install --no-frozen-lockfile
+          pnpm nx-test-skip-cache
+          cd ..
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1
+        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9
         with:
           setupGitUser: false
           version: pnpm ci:version
           title: "Update the version packages"
           publish: pnpm release
+          cwd: "package"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
