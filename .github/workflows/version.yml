@@ -40,6 +40,6 @@ jobs:
         with:
           setupGitUser: false
           version: pnpm ci:version
-          title: "Update the version packages"
+          title: "ci: update the version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
