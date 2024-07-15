@@ -79,7 +79,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
-          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C ./
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
