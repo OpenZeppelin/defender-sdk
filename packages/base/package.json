@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@aws-sdk/client-lambda": "^3.563.0",
-    "@types/async-retry": "^1.4.4",
+    "@types/async-retry": "^1.4.8",
     "aws-sdk": "^2.1589.0"
   },
   "dependencies": {
