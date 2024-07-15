@@ -79,10 +79,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
-          tar -xzvf "${{ needs.provenance.outputs.package-name }}"
-          cd package; git init
-          git add .
-          git commit -m "Add the untracked files"
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C ./
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
@@ -95,7 +92,7 @@ jobs:
           version: pnpm ci:version
           title: "Update the version packages"
           publish: pnpm release
-          cwd: "${{ steps.temp-dir.outputs.path }}/package"
+          cwd: "package"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NOT_EXIST_TOKEN }}
