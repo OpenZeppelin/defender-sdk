@@ -44,7 +44,7 @@ jobs:
       # - name: Download Artifacts 
       #   uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741  # v3.0.0
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef
         with:
           gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
           passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
@@ -84,8 +84,8 @@ jobs:
           git add .
           git commit -m "Add the untracked files"
 
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
