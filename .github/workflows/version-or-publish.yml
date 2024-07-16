@@ -82,10 +82,6 @@ jobs:
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
-          cd "$GITHUB_WORKSPACE/package"
-          pnpm install --no-frozen-lockfile
-          pnpm nx-test-skip-cache
-          cd ..
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
