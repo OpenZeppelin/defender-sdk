@@ -105,7 +105,8 @@ jobs:
         with:
           artifact-name: sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
           output-file: sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
-          upload-artifact-retention: 1
+          upload-artifact: false
+          upload-release-assets: false
 
       - name: Download Artifacts
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741  # v3
