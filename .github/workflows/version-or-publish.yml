@@ -116,7 +116,7 @@ jobs:
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
-          # subject-name: ${{ github.event.repository.name }}-v1.0.0
+          subject-name: "openzeppelin-defender-sdk-1.13.4.build.slsa"
 
       - name: Upload attestations SBOM
         # if: steps.changesets.outputs.id != ''
