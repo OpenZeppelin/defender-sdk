@@ -104,7 +104,7 @@ jobs:
         uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751
         with:
           artifact-name: sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
-          output-file: /tmp
+          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
           upload-artifact: false
           upload-release-assets: false
 
@@ -122,4 +122,4 @@ jobs:
         # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
-          subject-path: /tmp/sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
+          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
