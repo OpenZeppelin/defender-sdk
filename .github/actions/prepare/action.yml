@@ -17,3 +17,7 @@ runs:
       with:
         node-version: 20.11.1
         cache: 'pnpm'
+    - name: Install dependencies
+      run: |
+        pnpm install-deps
+      shell: bash
