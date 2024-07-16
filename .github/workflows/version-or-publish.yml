@@ -107,6 +107,7 @@ jobs:
           output-file: sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
           upload-artifact: false
           upload-release-assets: false
+          output-file: /tmp
 
       # - name: Download Artifacts
       #   uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741  # v3
@@ -122,4 +123,4 @@ jobs:
         # if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
-          subject-path: sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
+          subject-path: /tmp/sbom-${{ github.event.repository.name }}-v1.0.0.spdx.json
