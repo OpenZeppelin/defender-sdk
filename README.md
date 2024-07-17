@@ -1,12 +1,11 @@
-# Defender V2 SDK Packages
+# <img src="logo.svg" alt="OpenZeppelin Defender V2 SDK Packages" height="40px">
 
 <!-- TODO: Confirm these are all populating with data -->
 
+[![NPM Package](https://img.shields.io/npm/v/@openzeppelin/defender-sdk.svg)](https://www.npmjs.org/package/@openzeppelin/defender-sdk)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/7782/badge)](https://www.bestpractices.dev/projects/7782)
 [![Scorecard supply-chain security](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml)
-[![Stable Git Release](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/stable.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/stable.yml)
-[![RC Git Release](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/rc.yml)
 [![CI](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml)
 
 This monorepo contains individual OpenZeppelin Defender TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`

@@ -17,7 +17,7 @@ updates:
         update-types: [version-update:semver-major]
     commit-message:
       # Prefix all commit messages
-      prefix: plaform-sdk-deps
+      prefix: 'chore: '
     labels:
       - dependabot
       - dependencies
@@ -227,5 +227,10 @@ updates:
 
   - package-ecosystem: npm
     directory: /packages/account
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/relayer-call-contract-function
     schedule:
       interval: daily
