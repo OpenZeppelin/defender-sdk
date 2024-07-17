@@ -134,7 +134,7 @@ export abstract class BaseApiClient {
       return await apiFunction(axiosInstance);
     } catch (error: any) {
       if (isForbiddenError(error)) {
-        throw new Error('API Key is either expired or invalid');  
+        throw new Error('API Key is either expired or invalid');
       }
 
       // this means ID token has expired so we'll recreate session and try again
