@@ -84,8 +84,8 @@ jobs:
           cd "$GITHUB_WORKSPACE/package";
           cd ..
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -94,7 +94,7 @@ jobs:
           setupGitUser: false
           version: pnpm ci:version
           title: "Update the version packages"
-          publish: pnpm release
+          publish: pnpm publish --dry-run --no-git-checks
           cwd: "package"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
