@@ -133,6 +133,10 @@ export abstract class BaseApiClient {
       await sleep(retryDelay);
       return await apiFunction(axiosInstance);
     } catch (error: any) {
+      if (isForbiddenError(error)) {
+        throw new Error('API Key is either expired or invalid');  
+      }
+
       // this means ID token has expired so we'll recreate session and try again
       if (isAuthenticationError(error)) {
         this.api = undefined;
@@ -188,3 +192,6 @@ export const exponentialDelay = (
   const randomSum = delay * 0.2 * Math.random(); // 0-20% of the delay
   return delay + randomSum;
 };
+
+const isForbiddenError = (axiosError: AxiosError): boolean =>
+  axiosError.response?.status === 403 && axiosError.response?.statusText === 'Forbidden';
