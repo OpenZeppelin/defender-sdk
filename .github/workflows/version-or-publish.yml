@@ -85,7 +85,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 #v1.4.7
+        uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         with:
           setupGitUser: false
           version: pnpm ci:version
@@ -100,11 +100,12 @@ jobs:
         uses: anchore/sbom-action@95b086ac308035dc0850b3853be5b7ab108236a8
         with:
           artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          output-file: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          upload-artifact-retention: 1
+          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
 
       - name: Download Artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
 
       - name: Upload attestations SLSA
         if: steps.changesets.outputs.id != ''
@@ -117,4 +118,4 @@ jobs:
         if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
-          subject-path: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
