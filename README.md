@@ -4,6 +4,7 @@
 
 [![NPM Package](https://img.shields.io/npm/v/@openzeppelin/defender-sdk.svg)](https://www.npmjs.org/package/@openzeppelin/defender-sdk)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/defender-sdk)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/7782/badge)](https://www.bestpractices.dev/projects/7782)
 [![Scorecard supply-chain security](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml)
 [![CI](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml)
 
