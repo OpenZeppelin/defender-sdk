@@ -9,9 +9,7 @@ runs:
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.5.4
       with:
         persist-credentials: false
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 8
+    - uses: pnpm/action-setup@v4
     - name: Use node@20
       uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with:
