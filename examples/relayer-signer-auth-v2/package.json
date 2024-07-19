@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-relayer-signer-auth-v2",
-  "version": "1.13.8",
+  "version": "0.0.0-rc-20240719123126",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.13.8",
+    "@openzeppelin/defender-sdk": "0.0.0-rc-20240719123126",
     "dotenv": "^16.3.1"
   }
 }

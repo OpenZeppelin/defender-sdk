@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk",
-  "version": "1.13.8",
+  "version": "0.0.0-rc-20240719123126",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -20,16 +20,16 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-monitor-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-action-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-relay-client": "^1.13.9",
-    "@openzeppelin/defender-sdk-proposal-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-deploy-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-notification-channel-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-relay-signer-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-network-client": "^1.13.8",
-    "@openzeppelin/defender-sdk-account-client": "^1.13.8"
+    "@openzeppelin/defender-sdk-base-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-monitor-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-action-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-relay-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-proposal-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-deploy-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-notification-channel-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-relay-signer-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-network-client": "0.0.0-rc-20240719123126",
+    "@openzeppelin/defender-sdk-account-client": "0.0.0-rc-20240719123126"
   },
   "publishConfig": {
     "access": "public"
