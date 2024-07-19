@@ -1,0 +1,37 @@
+{
+  "name": "@openzeppelin/defender-sdk",
+  "version": "0.0.0-rc-20240719100232",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose --passWithNoTests --forceExit",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/defender-sdk-base-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-monitor-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-action-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-relay-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-proposal-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-deploy-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-notification-channel-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-relay-signer-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-network-client": "0.0.0-rc-20240719100232",
+    "@openzeppelin/defender-sdk-account-client": "0.0.0-rc-20240719100232"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

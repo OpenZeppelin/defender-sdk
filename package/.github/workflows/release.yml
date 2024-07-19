@@ -1,0 +1,61 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: Tag to trigger release
+        type: string
+      prerelease:
+        required: true
+        description: Whether to release as a prerelease
+        type: boolean
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: true
+      prerelease:
+        type: boolean
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout Repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.5.4
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+
+      - name: Create release
+        uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1.14.0
+        with:
+          tag: ${{ inputs.tag }}
+          skipIfReleaseExists: true
+          generateReleaseNotes: true
+          draft: ${{ inputs.prerelease }}
+          prerelease: ${{ inputs.prerelease }}
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
+        with:
+          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
+          output-file: sbom-${{ github.event.repository.name }}-${{ inputs.tag }}.spdx.json
+          upload-artifact-retention: 1
+
+      - name: Publish SBOM
+        uses: anchore/sbom-action/publish-sbom@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0.16.0
+        with:
+          sbom-artifact-match: ".*${{ inputs.tag }}.spdx\\.json"
