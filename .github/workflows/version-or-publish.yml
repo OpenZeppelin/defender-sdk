@@ -15,7 +15,7 @@ on:
       default: true
   push:
     branches:
-      - SRE-221-automationx
+      - SRE-221-automation
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
