@@ -15,7 +15,7 @@ on:
       default: true
   push:
     branches:
-      - SRE-221-automationx
+      - SRE-221-automation
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -107,7 +107,7 @@ jobs:
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1
         with:
           setupGitUser: false
-          version: ${{ env.version }}
+          version: pnpm ci:prerelease
           title: "Update the version packages"
           publish: pnpm publish --dry-run --no-git-checks
           cwd: "package"
