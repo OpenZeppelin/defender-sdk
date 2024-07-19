@@ -1,9 +1,9 @@
-name: Version Package
+name: Version Snapshot Package
 
 on:
   push:
     branches:
-      - main
+      - 'snapshot*'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -39,7 +39,7 @@ jobs:
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         with:
           setupGitUser: false
-          version: pnpm ci:version
+          version: pnpm ci:prerelease
           title: "ci: update the version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
