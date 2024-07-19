@@ -88,18 +88,18 @@ jobs:
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
           cd "$GITHUB_WORKSPACE"; pnpm run install-deps
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
 
-      - name: Set version command
-        id: set-version
-        run: |
-          if [ "${{ inputs.prerelease }}" = "true" ]; then
-            echo "version=pnpm ci:prerelease" >> $GITHUB_ENV
-          else
-            echo "version=pnpm ci:version" >> $GITHUB_ENV
-          fi
+      # - name: Set version command
+      #   id: set-version
+      #   run: |
+      #     if [ "${{ inputs.prerelease }}" = "true" ]; then
+      #       echo "version=pnpm ci:prerelease" >> $GITHUB_ENV
+      #     else
+      #       echo "version=pnpm ci:version" >> $GITHUB_ENV
+      #     fi
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -107,9 +107,8 @@ jobs:
         with:
           setupGitUser: false
           version: pnpm ci:prerelease
-          title: "Update the version packages"
+          title: "chore: Update the version packages"
           publish: pnpm publish --dry-run --no-git-checks
-          cwd: "package"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NOT_EXIST_TOKEN }}
