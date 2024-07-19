@@ -85,7 +85,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
-          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
           cd "$GITHUB_WORKSPACE/package"; pnpm install --no-frozen-lockfile
 
       - name: Setup upterm session
