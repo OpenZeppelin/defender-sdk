@@ -87,10 +87,9 @@ jobs:
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
           cd "$GITHUB_WORKSPACE/package"; pnpm install --no-frozen-lockfile
-          cd ..
 
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
 
       - name: Set version command
