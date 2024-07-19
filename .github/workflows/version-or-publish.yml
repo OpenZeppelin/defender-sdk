@@ -8,6 +8,11 @@ on:
         description: The release version
         type: string
         default: v1.0.0
+    prerelease:
+      required: true
+      description: Whether it's a prerelease
+      type: boolean
+      default: true
   push:
     branches:
       - SRE-221-automation
@@ -87,12 +92,22 @@ jobs:
       # - name: Setup upterm session
       #   uses: lhotari/action-upterm@v1
 
+
+      - name: Set version command
+        id: set-version
+        run: |
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            echo "version=pnpm ci:prerelease" >> $GITHUB_ENV
+          else
+            echo "version=pnpm ci:version" >> $GITHUB_ENV
+          fi
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1
         with:
           setupGitUser: false
-          version: pnpm ci:version
+          version: pnpm ci:prerelease
           title: "Update the version packages"
           publish: pnpm publish --dry-run --no-git-checks
           cwd: "package"
