@@ -86,7 +86,7 @@ jobs:
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
-          cd "$GITHUB_WORKSPACE"; pnpm install --no-frozen-lockfile
+          cd "$GITHUB_WORKSPACE"; pnpm run install-deps
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
