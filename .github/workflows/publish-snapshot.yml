@@ -77,7 +77,9 @@ jobs:
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
           tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
-          cd "$GITHUB_WORKSPACE"; pnpm run install-deps
+          cd "$GITHUB_WORKSPACE"
+          pnpm run install-deps
+          pnpm nx-test-skip-cache
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
