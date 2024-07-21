@@ -61,13 +61,20 @@ DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID=
 
 ### CI/CD
 
-- For time being the manual process is as follows until CI/CD is fixed.
-  - Run `npx changeset` to select specific packages to bump ( use up & down arrows to navigate, space to select specific packages). This will create a new changeset file in `./changesets` folder. Update changelog in changeset file if needed using `feat:`, `fix:`, `docs:`, `chore:` or `refactor:` prefixes.
-  - Create a PR with changeset file.
-  - After the PR is approved & merged. Changeset bot will automatically create a PR deleting the changeset file and bumping the package version & updates changelog. This PR will not automatically update the package version/dependencies in `package.json` file. You will have to manually push the change to this PR updating package version/version of `@openzeppelin/defender-sdk-base-client` in `package.json` file and run `pnpm i --ignore-scripts --prefer-offline` to make sure pnpm lock file is updated.
-  - After the PR is approved & merged make sure to run build & tests uisng `pnpm build-skip-nx-cache` && `pnpm test-skip-nx-cache`.
-  - After the tests passes run `npx changeset publish` this publishes the packages to npm.
-  - Finally push tags ( make sure you are signing tags before pushing ) to git `git push --follow-tags`.
+- Run `npx changeset` to select specific packages to bump ( use up & down arrows to navigate, space to select specific packages). This will create a new changeset file in `./changesets` folder. Update changelog in changeset file if needed using `feat:`, `fix:`, `docs:`, `chore:` or `refactor:` prefixes.
+- Create a PR with changeset file.
+- After the PR is approved & merged. Changeset bot will automatically create a PR deleting the changeset file and bumping the package version & updates changelog. This PR will not automatically update the package version/dependencies in `package.json` file. You will have to manually push the change to this PR updating package version/version of `@openzeppelin/defender-sdk-base-client` in `package.json` file and run `pnpm i --ignore-scripts --prefer-offline` to make sure pnpm lock file is updated.
+- After the PR is approved & merged make sure to run build & tests using `pnpm nx-build-skip-cache` && `pnpm nx-test-skip-cache`.
+- After the tests passes run `npx changeset publish` this publishes the packages to npm. Or use the workflow dispatch(publish.yml) to trigger the publish using the CI.
+- Finally push tags ( make sure you are signing tags before pushing ) to git `git push --follow-tags`. (This step is not needed if publishing using the CI as the the tags will be pushed automatically).
+
+## Snapshot Release
+
+- Checkout from the main branch(with changeset file) to a branch prefixed by `snapshot`.
+- Raise a PR to target the snapshot branch.
+- Merge the PR to the snapshot branch.
+- After the PR is merged, another PR will be created that removes the changeset file and bumps the packages versions. Manually push a change to this PR updating package version of `@openzeppelin/defender-sdk-base-client` in `package.json` file and run `pnpm i --ignore-scripts --prefer-offline` to make sure pnpm lock file is updated.
+- After the above PR has been merged, manually trigger the snapshot workflow, `publish-snapshot.yml`, to release the snapshot.
 
 <!-- TODO: once we have CI/CD steps fully defined we should validate this is accurate -->
 
