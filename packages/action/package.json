@@ -29,7 +29,7 @@
     "axios": "^1.7.2",
     "lodash": "^4.17.21",
     "glob": "^11.0.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.4.5"
   },
   "publishConfig": {
     "access": "public"
