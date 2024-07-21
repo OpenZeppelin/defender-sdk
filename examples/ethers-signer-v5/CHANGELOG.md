@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-ethers-signer-v5
 
+## 1.14.2
+
+### Patch Changes
+
+- 19cd7a9: feat: Add relayers usage limiting
+  feat: Add an example contract call
+- Updated dependencies [19cd7a9]
+  - @openzeppelin/defender-sdk@1.14.2
+
 ## 1.14.1
 
 ### Patch Changes
