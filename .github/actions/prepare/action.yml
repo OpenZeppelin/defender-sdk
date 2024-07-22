@@ -28,19 +28,19 @@ runs:
       run: echo ${{ env.CURRENT_BRANCH }}
       shell: bash
 
-    # - name: Update the lock file
-    #   if: contains(env.CURRENT_BRANCH, 'changeset-release')
-    #   run: pnpm install --lockfile-only
-    #   shell: bash
+    - name: Update the lock file
+      if: contains(env.CURRENT_BRANCH, 'changeset-release')
+      run: pnpm install --lockfile-only
+      shell: bash
 
-    # - name: Commit lock file
-    #   if: contains(env.CURRENT_BRANCH , 'changeset-release')
-    #   uses: stefanzweifel/git-auto-commit-action@v5
-    #   with:
-    #     commit_message: "chore: update lock file"
-    #     branch: ${{ env.CURRENT_BRANCH }}
+    - name: Commit lock file
+      if: contains(env.CURRENT_BRANCH , 'changeset-release')
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: update lock file"
+        branch: ${{ env.CURRENT_BRANCH }}
 
-    # - name: Install dependencies
-    #   run: |
-    #     pnpm install-deps
-    #   shell: bash
+    - name: Install dependencies
+      run: |
+        pnpm install-deps
+      shell: bash
