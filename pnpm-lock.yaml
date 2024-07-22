@@ -21,7 +21,7 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       '@openzeppelin/defender-sdk-base-client':
-        specifier: 1.14.1
+        specifier: 1.14.2
         version: link:packages/base
       axios:
         specifier: ^1.7.2
@@ -50,7 +50,7 @@ importers:
         version: 20.12.13
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.62.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5.62.0
         version: 5.62.0(eslint@8.57.0)(typescript@4.9.5)
@@ -65,7 +65,7 @@ importers:
         version: 8.8.0(eslint@8.57.0)
       eslint-plugin-prettier:
         specifier: ^4.2.1
-        version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.57.0)(prettier@2.8.8)
+        version: 4.2.1(eslint-config-prettier@8.8.0(eslint@8.57.0))(eslint@8.57.0)(prettier@2.8.8)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.13)
@@ -80,319 +80,15 @@ importers:
         version: 2.8.8
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.22.8)(jest@29.7.0)(typescript@4.9.5)
+        version: 29.1.2(@babel/core@7.22.8)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.22.8))(jest@29.7.0(@types/node@20.12.13))(typescript@4.9.5)
       typescript:
         specifier: ^4.9.3
         version: 4.9.5
 
-  examples/create-action:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-batch-proposal:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-forked-network:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-monitor:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-private-network:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-proposal:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-relayer:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/create-relayer-key:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/custom-ethers-pkg:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      '@openzeppelin/defender-sdk-action-client':
-        specifier: 1.14.1
-        version: link:../../packages/action
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
-      ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
-    devDependencies:
-      '@rollup/plugin-commonjs':
-        specifier: ^25.0.8
-        version: 25.0.8(rollup@4.18.0)
-      '@rollup/plugin-json':
-        specifier: ^6.1.0
-        version: 6.1.0(rollup@4.18.0)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.2.3
-        version: 15.2.3(rollup@4.18.0)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.6
-        version: 11.1.6(rollup@4.18.0)(tslib@2.6.3)(typescript@5.4.5)
-      '@types/node':
-        specifier: ^20.12.13
-        version: 20.12.13
-      builtin-modules:
-        specifier: ^4.0.0
-        version: 4.0.0
-      rollup:
-        specifier: ^4.18.0
-        version: 4.18.0
-      tslib:
-        specifier: ^2.6.3
-        version: 2.6.3
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
-  examples/deploy-contract:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
-
-  examples/ethers-signer-v5:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      ethers:
-        specifier: ^5.6.1
-        version: 5.7.2
-
-  examples/ethers-signer-v6:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.4.5
-      ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
-
-  examples/get-usage:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/list-contracts:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/list-networks:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/list-proposals:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/relayer-call-contract-function:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.4.5
-      ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
-
-  examples/relayer-load-balance:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/relayer-signer-actions:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/relayer-signer-auth-v2:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/relayer-web3-provider:
-    dependencies:
-      '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: 1.14.1
-        version: link:../../packages/relay-signer
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      web3:
-        specifier: ^1.10.0
-        version: 1.10.0
-
-  examples/simulate-proposal:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      ethers:
-        specifier: ^6.9.0
-        version: 6.9.0
-
-  examples/update-action:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/update-action-env-variables:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/update-monitor:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/update-relayer:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/upgrade-contract:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-
-  examples/webhook-notification:
-    dependencies:
-      '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
-        version: link:../../packages/defender-sdk
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.4.5
-
   packages/account:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -404,7 +100,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -444,40 +140,40 @@ importers:
   packages/defender-sdk:
     dependencies:
       '@openzeppelin/defender-sdk-account-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../account
       '@openzeppelin/defender-sdk-action-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../action
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       '@openzeppelin/defender-sdk-deploy-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../deploy
       '@openzeppelin/defender-sdk-monitor-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../monitor
       '@openzeppelin/defender-sdk-network-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../network
       '@openzeppelin/defender-sdk-notification-channel-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../notification-channel
       '@openzeppelin/defender-sdk-proposal-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../proposal
       '@openzeppelin/defender-sdk-relay-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../relay
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../relay-signer
 
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -489,14 +185,14 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -504,7 +200,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -516,7 +212,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -528,14 +224,14 @@ importers:
   packages/proposal:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -543,7 +239,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -573,7 +269,7 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: ^1.14.2
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.3.6
@@ -583,13 +279,13 @@ importers:
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
       web3:
         specifier: ^1.10.0
-        version: 1.10.0
+        version: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-utils:
         specifier: ^1.10.0
         version: 1.10.3
@@ -605,13 +301,13 @@ importers:
         version: 5.7.0
       '@ethersproject/providers':
         specifier: ^5.6.8
-        version: 5.7.2
+        version: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@ethersproject/transactions':
         specifier: ^5.6.2
         version: 5.7.0
       jest-mock-extended:
         specifier: ^3.0.5
-        version: 3.0.5(jest@29.7.0)(typescript@5.4.5)
+        version: 3.0.5(jest@29.7.0(@types/node@20.12.13))(typescript@5.4.5)
       web3-core:
         specifier: ^1.10.4
         version: 1.10.4
@@ -1055,17 +751,8 @@ packages:
   '@ethersproject/constants@5.7.0':
     resolution: {integrity: sha512-DHI+y5dBNvkpYUMiRQyxRBYBefZkJfo70VUkUAsRjcPs47muV9evftfZ0PJVCXYbAiCgght0DtcF9srFQmIgWA==}
 
-  '@ethersproject/contracts@5.7.0':
-    resolution: {integrity: sha512-5GJbzEU3X+d33CdfPhcyS+z8MzsTrBGk/sc+G+59+tPa9yFkl6HQ9D6L0QMgNTA9q8dT0XKxxkyp883XsQvbbg==}
-
   '@ethersproject/hash@5.7.0':
     resolution: {integrity: sha512-qX5WrQfnah1EFnO5zJv1v46a8HW0+E5xuBBDTwMFZLuVTx0tbU2kkx15NqdjxecrLGatQN9FGQKpb1FKdHCt+g==}
-
-  '@ethersproject/hdnode@5.7.0':
-    resolution: {integrity: sha512-OmyYo9EENBPPf4ERhR7oj6uAtUAhYGqOnIS+jE5pTXvdKBS99ikzq1E7Iv0ZQZ5V36Lqx1qZLeak0Ra16qpeOg==}
-
-  '@ethersproject/json-wallets@5.7.0':
-    resolution: {integrity: sha512-8oee5Xgu6+RKgJTkvEMl2wDgSPSAQ9MB/3JYjFV9jlKvcYHUXZC+cQp0njgmxdHkYWn8s6/IqIZYm0YWCjO/0g==}
 
   '@ethersproject/keccak256@5.7.0':
     resolution: {integrity: sha512-2UcPboeL/iW+pSg6vZ6ydF8tCnv3Iu/8tUmLLzWWGzxWKFFqOBQFLo6uLUv6BDrLgCDfN28RJ/wtByx+jZ4KBg==}
@@ -1075,9 +762,6 @@ packages:
 
   '@ethersproject/networks@5.7.1':
     resolution: {integrity: sha512-n/MufjFYv3yFcUyfhnXotyDlNdFb7onmkSy8aQERi2PjNcnWQ66xXxa3XlS8nCcA8aJKJjIIMNJTC7tu80GwpQ==}
-
-  '@ethersproject/pbkdf2@5.7.0':
-    resolution: {integrity: sha512-oR/dBRZR6GTyaofd86DehG72hY6NpAjhabkhxgr3X2FpJtJuodEl2auADWBZfhDHgVCbu3/H/Ocq2uC6dpNjjw==}
 
   '@ethersproject/properties@5.7.0':
     resolution: {integrity: sha512-J87jy8suntrAkIZtecpxEPxY//szqr1mlBaYlQ0r4RCaiD2hjheqF9s1LVE8vVuJCXisjIP+JgtK/Do54ej4Sw==}
@@ -1097,26 +781,14 @@ packages:
   '@ethersproject/signing-key@5.7.0':
     resolution: {integrity: sha512-MZdy2nL3wO0u7gkB4nA/pEf8lu1TlFswPNmy8AiYkfKTdO6eXBJyUdmHO/ehm/htHw9K/qF8ujnTyUAD+Ry54Q==}
 
-  '@ethersproject/solidity@5.7.0':
-    resolution: {integrity: sha512-HmabMd2Dt/raavyaGukF4XxizWKhKQ24DoLtdNbBmNKUOPqwjsKQSdV9GQtj9CBEea9DlzETlVER1gYeXXBGaA==}
-
   '@ethersproject/strings@5.7.0':
     resolution: {integrity: sha512-/9nu+lj0YswRNSH0NXYqrh8775XNyEdUQAuf3f+SmOrnVewcJ5SBNAjF7lpgehKi4abvNNXyf+HX86czCdJ8Mg==}
 
   '@ethersproject/transactions@5.7.0':
     resolution: {integrity: sha512-kmcNicCp1lp8qanMTC3RIikGgoJ80ztTyvtsFvCYpSCfkjhD0jZ2LOrnbcuxuToLIUYYf+4XwD1rP+B/erDIhQ==}
 
-  '@ethersproject/units@5.7.0':
-    resolution: {integrity: sha512-pD3xLMy3SJu9kG5xDGI7+xhTEmGXlEqXU4OfNapmfnxLVY4EMSSRp7j1k7eezutBPH7RBN/7QPnwR7hzNlEFeg==}
-
-  '@ethersproject/wallet@5.7.0':
-    resolution: {integrity: sha512-MhmXlJXEJFBFVKrDLB4ZdDzxcBxQ3rLyCkhNqVu3CDYvR97E+8r01UgrI+TI99Le+aYm/in/0vp86guJuM7FCA==}
-
   '@ethersproject/web@5.7.1':
     resolution: {integrity: sha512-Gueu8lSvyjBWL4cYsWsjh6MtMwM0+H4HvqFPZfB6dV8ctbP9zFAO73VG1cMWae0FLPCtz0peKPpZY8/ugJJX2w==}
-
-  '@ethersproject/wordlists@5.7.0':
-    resolution: {integrity: sha512-S2TFNJNfHWVHNE6cNDjbVlZ6MgE17MIxMbMg2zv3wn+3XSJGosL1m9ZVv3GXCf/2ymSsQ+hRI5IzoMJTG6aoVA==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -1342,135 +1014,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@rollup/plugin-commonjs@25.0.8':
-    resolution: {integrity: sha512-ZEZWTK5n6Qde0to4vS9Mr5x/0UZoqCxPVR9KRUjU4kA2sO7GEUn1fop0DAwpO6z0Nw/kJON9bDmSxdWxO/TT1A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.68.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-json@6.1.0':
-    resolution: {integrity: sha512-EGI2te5ENk1coGeADSIwZ7G2Q8CJS2sF120T7jLw4xFw9n7wIOXHo+kIYRAoVpJAN+kmqZSoO3Fp4JtoNF4ReA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-node-resolve@15.2.3':
-    resolution: {integrity: sha512-j/lym8nf5E21LwBT4Df1VD6hRO2L2iwUeUmP7litikRsVp1H6NWx20NEp0Y7su+7XGc476GnXXc4kFeZNGmaSQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.78.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-typescript@11.1.6':
-    resolution: {integrity: sha512-R92yOmIACgYdJ7dJ97p4K69I8gg6IEHt8M7dUBxN3W6nrO8uUxX5ixl0yU/N3aZTi8WhPuICvOHXQvF6FaykAA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.14.0||^3.0.0||^4.0.0
-      tslib: '*'
-      typescript: '>=3.7.0'
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-      tslib:
-        optional: true
-
-  '@rollup/pluginutils@5.1.0':
-    resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/rollup-android-arm-eabi@4.18.0':
-    resolution: {integrity: sha512-Tya6xypR10giZV1XzxmH5wr25VcZSncG0pZIjfePT0OVBvqNEurzValetGNarVrGiq66EBVAFn15iYX4w6FKgQ==}
-    cpu: [arm]
-    os: [android]
-
-  '@rollup/rollup-android-arm64@4.18.0':
-    resolution: {integrity: sha512-avCea0RAP03lTsDhEyfy+hpfr85KfyTctMADqHVhLAF3MlIkq83CP8UfAHUssgXTYd+6er6PaAhx/QGv4L1EiA==}
-    cpu: [arm64]
-    os: [android]
-
-  '@rollup/rollup-darwin-arm64@4.18.0':
-    resolution: {integrity: sha512-IWfdwU7KDSm07Ty0PuA/W2JYoZ4iTj3TUQjkVsO/6U+4I1jN5lcR71ZEvRh52sDOERdnNhhHU57UITXz5jC1/w==}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@rollup/rollup-darwin-x64@4.18.0':
-    resolution: {integrity: sha512-n2LMsUz7Ynu7DoQrSQkBf8iNrjOGyPLrdSg802vk6XT3FtsgX6JbE8IHRvposskFm9SNxzkLYGSq9QdpLYpRNA==}
-    cpu: [x64]
-    os: [darwin]
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.18.0':
-    resolution: {integrity: sha512-C/zbRYRXFjWvz9Z4haRxcTdnkPt1BtCkz+7RtBSuNmKzMzp3ZxdM28Mpccn6pt28/UWUCTXa+b0Mx1k3g6NOMA==}
-    cpu: [arm]
-    os: [linux]
-
-  '@rollup/rollup-linux-arm-musleabihf@4.18.0':
-    resolution: {integrity: sha512-l3m9ewPgjQSXrUMHg93vt0hYCGnrMOcUpTz6FLtbwljo2HluS4zTXFy2571YQbisTnfTKPZ01u/ukJdQTLGh9A==}
-    cpu: [arm]
-    os: [linux]
-
-  '@rollup/rollup-linux-arm64-gnu@4.18.0':
-    resolution: {integrity: sha512-rJ5D47d8WD7J+7STKdCUAgmQk49xuFrRi9pZkWoRD1UeSMakbcepWXPF8ycChBoAqs1pb2wzvbY6Q33WmN2ftw==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@rollup/rollup-linux-arm64-musl@4.18.0':
-    resolution: {integrity: sha512-be6Yx37b24ZwxQ+wOQXXLZqpq4jTckJhtGlWGZs68TgdKXJgw54lUUoFYrg6Zs/kjzAQwEwYbp8JxZVzZLRepQ==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@rollup/rollup-linux-powerpc64le-gnu@4.18.0':
-    resolution: {integrity: sha512-hNVMQK+qrA9Todu9+wqrXOHxFiD5YmdEi3paj6vP02Kx1hjd2LLYR2eaN7DsEshg09+9uzWi2W18MJDlG0cxJA==}
-    cpu: [ppc64]
-    os: [linux]
-
-  '@rollup/rollup-linux-riscv64-gnu@4.18.0':
-    resolution: {integrity: sha512-ROCM7i+m1NfdrsmvwSzoxp9HFtmKGHEqu5NNDiZWQtXLA8S5HBCkVvKAxJ8U+CVctHwV2Gb5VUaK7UAkzhDjlg==}
-    cpu: [riscv64]
-    os: [linux]
-
-  '@rollup/rollup-linux-s390x-gnu@4.18.0':
-    resolution: {integrity: sha512-0UyyRHyDN42QL+NbqevXIIUnKA47A+45WyasO+y2bGJ1mhQrfrtXUpTxCOrfxCR4esV3/RLYyucGVPiUsO8xjg==}
-    cpu: [s390x]
-    os: [linux]
-
-  '@rollup/rollup-linux-x64-gnu@4.18.0':
-    resolution: {integrity: sha512-xuglR2rBVHA5UsI8h8UbX4VJ470PtGCf5Vpswh7p2ukaqBGFTnsfzxUBetoWBWymHMxbIG0Cmx7Y9qDZzr648w==}
-    cpu: [x64]
-    os: [linux]
-
-  '@rollup/rollup-linux-x64-musl@4.18.0':
-    resolution: {integrity: sha512-LKaqQL9osY/ir2geuLVvRRs+utWUNilzdE90TpyoX0eNqPzWjRm14oMEE+YLve4k/NAqCdPkGYDaDF5Sw+xBfg==}
-    cpu: [x64]
-    os: [linux]
-
-  '@rollup/rollup-win32-arm64-msvc@4.18.0':
-    resolution: {integrity: sha512-7J6TkZQFGo9qBKH0pk2cEVSRhJbL6MtfWxth7Y5YmZs57Pi+4x6c2dStAUvaQkHQLnEQv1jzBUW43GvZW8OFqA==}
-    cpu: [arm64]
-    os: [win32]
-
-  '@rollup/rollup-win32-ia32-msvc@4.18.0':
-    resolution: {integrity: sha512-Txjh+IxBPbkUB9+SXZMpv+b/vnTEtFyfWZgJ6iyCmt2tdx0OF5WhFowLmnh8ENGNpfUlUZkdI//4IEmhwPieNg==}
-    cpu: [ia32]
-    os: [win32]
-
-  '@rollup/rollup-win32-x64-msvc@4.18.0':
-    resolution: {integrity: sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==}
-    cpu: [x64]
-    os: [win32]
 
   '@scure/base@1.1.3':
     resolution: {integrity: sha512-/+SgoRjLq7Xlf0CWuLHq2LUZeL/w65kfzAPG5NH9pcmBhs+nunQTn4gvdwgMTIXnt9b2C/1SeL2XiysZEyIC9Q==}
@@ -1698,9 +1241,6 @@ packages:
   '@types/cacheable-request@6.0.3':
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}
 
-  '@types/estree@1.0.5':
-    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
-
   '@types/glob@8.1.0':
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
 
@@ -1745,9 +1285,6 @@ packages:
 
   '@types/pbkdf2@3.1.2':
     resolution: {integrity: sha512-uRwJqmiXmh9++aSu1VNEn3iIxWOhd8AHXNSdlaLfdAAdSTY9jYVeGWnzejM3dvrkbqE3/hyQkQQ29IFATEGlew==}
-
-  '@types/resolve@1.20.2':
-    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
@@ -1858,9 +1395,6 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  aes-js@3.0.0:
-    resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
 
   aes-js@4.0.0-beta.5:
     resolution: {integrity: sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q==}
@@ -2075,14 +1609,6 @@ packages:
     resolution: {integrity: sha512-4T53u4PdgsXqKaIctwF8ifXlRTTmEPJ8iEPWFdGZvcf7sbwYo6FKFEX9eNNAnzFZ7EzJAQ3CJeOtCRA4rDp7Pw==}
     engines: {node: '>=6.14.2'}
 
-  builtin-modules@3.3.0:
-    resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
-    engines: {node: '>=6'}
-
-  builtin-modules@4.0.0:
-    resolution: {integrity: sha512-p1n8zyCkt1BVrKNFymOHjcDSAl7oq/gUvfgULv2EblgpPVQlQr9yHnWjg9IJ2MhfwPqiYqMMrr01OY7yQoK2yA==}
-    engines: {node: '>=18.20'}
-
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
@@ -2183,7 +1709,6 @@ packages:
 
   code-style@https://codeload.github.com/OpenZeppelin/configs/tar.gz/a6cd128e6f5225b15d76704708c5def97caa8176:
     resolution: {tarball: https://codeload.github.com/OpenZeppelin/configs/tar.gz/a6cd128e6f5225b15d76704708c5def97caa8176}
-    name: code-style
     version: 0.1.0
 
   collect-v8-coverage@1.0.2:
@@ -2205,9 +1730,6 @@ packages:
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
-
-  commondir@1.0.1:
-    resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -2543,9 +2065,6 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
-  estree-walker@2.0.2:
-    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
-
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
@@ -2575,9 +2094,6 @@ packages:
   ethereumjs-util@7.1.5:
     resolution: {integrity: sha512-SDl5kKrQAudFBUe5OJM9Ac6WmMyYmXX/6sTmLZ3ffG2eY6ZIGBes3pEDxNN6V72WyOw4CPD5RomKdsa8DAAwLg==}
     engines: {node: '>=10.0.0'}
-
-  ethers@5.7.2:
-    resolution: {integrity: sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==}
 
   ethers@6.9.0:
     resolution: {integrity: sha512-pmfNyQzc2mseLe91FnT2vmNaTt8dDzhxZ/xItAV7uGsF4dI4ek2ufMu3rAkgQETL/TIs0GS5A+U05g9QyWnv3Q==}
@@ -2822,11 +2338,6 @@ packages:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
 
-  glob@8.1.0:
-    resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
-    engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
-
   global@4.4.0:
     resolution: {integrity: sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==}
 
@@ -2993,10 +2504,6 @@ packages:
   is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
 
-  is-builtin-module@3.2.1:
-    resolution: {integrity: sha512-BSLE3HnV2syZ0FK0iMA/yUGplUeMmNz4AW5fnTunbCIqZi4vG3WjJT9FHMy5D69xmAYBHXQhJdALdpwVxV501A==}
-    engines: {node: '>=6'}
-
   is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -3040,9 +2547,6 @@ packages:
     resolution: {integrity: sha512-2HvIEKRoqS62guEC+qBjpvRubdX910WCMuJTZ+I9yvqKU2/12eSL549HMwtabb4oupdj2sMP50k+XJfB/8JE6w==}
     engines: {node: '>=8'}
 
-  is-module@1.0.0:
-    resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
-
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
@@ -3050,9 +2554,6 @@ packages:
   is-path-inside@3.0.3:
     resolution: {integrity: sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==}
     engines: {node: '>=8'}
-
-  is-reference@1.2.1:
-    resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
 
   is-stream@2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
@@ -3418,9 +2919,6 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  magic-string@0.30.10:
-    resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
-
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -3499,10 +2997,6 @@ packages:
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
-
-  minimatch@5.1.6:
-    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
-    engines: {node: '>=10'}
 
   minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
@@ -3978,11 +3472,6 @@ packages:
 
   rlp@2.2.7:
     resolution: {integrity: sha512-d5gdPmgQ0Z+AklL2NVXr/IoSjNZFfTVvQWzL/AM2AOcSzYP2xjlb0AC8YyCLc41MSNf6P6QVtjgPdmVtzb+4lQ==}
-    hasBin: true
-
-  rollup@4.18.0:
-    resolution: {integrity: sha512-QmJz14PX3rzbJCN1SG4Xe/bAAX2a6NpCP8ab2vfu2GiUr8AQcr2nCV/oEO3yneFarB67zk8ShlIyWb2LGTb3Sg==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
   run-parallel@1.2.0:
@@ -5556,19 +5045,6 @@ snapshots:
     dependencies:
       '@ethersproject/bignumber': 5.7.0
 
-  '@ethersproject/contracts@5.7.0':
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@ethersproject/abstract-provider': 5.7.0
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/constants': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-
   '@ethersproject/hash@5.7.0':
     dependencies:
       '@ethersproject/abstract-signer': 5.7.0
@@ -5581,37 +5057,6 @@ snapshots:
       '@ethersproject/properties': 5.7.0
       '@ethersproject/strings': 5.7.0
 
-  '@ethersproject/hdnode@5.7.0':
-    dependencies:
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/basex': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/pbkdf2': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/sha2': 5.7.0
-      '@ethersproject/signing-key': 5.7.0
-      '@ethersproject/strings': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-      '@ethersproject/wordlists': 5.7.0
-
-  '@ethersproject/json-wallets@5.7.0':
-    dependencies:
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/hdnode': 5.7.0
-      '@ethersproject/keccak256': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/pbkdf2': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/random': 5.7.0
-      '@ethersproject/strings': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-      aes-js: 3.0.0
-      scrypt-js: 3.0.1
-
   '@ethersproject/keccak256@5.7.0':
     dependencies:
       '@ethersproject/bytes': 5.7.0
@@ -5623,16 +5068,11 @@ snapshots:
     dependencies:
       '@ethersproject/logger': 5.7.0
 
-  '@ethersproject/pbkdf2@5.7.0':
-    dependencies:
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/sha2': 5.7.0
-
   '@ethersproject/properties@5.7.0':
     dependencies:
       '@ethersproject/logger': 5.7.0
 
-  '@ethersproject/providers@5.7.2':
+  '@ethersproject/providers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0
@@ -5653,7 +5093,7 @@ snapshots:
       '@ethersproject/transactions': 5.7.0
       '@ethersproject/web': 5.7.1
       bech32: 1.1.4
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -5683,15 +5123,6 @@ snapshots:
       elliptic: 6.5.4
       hash.js: 1.1.7
 
-  '@ethersproject/solidity@5.7.0':
-    dependencies:
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/keccak256': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/sha2': 5.7.0
-      '@ethersproject/strings': 5.7.0
-
   '@ethersproject/strings@5.7.0':
     dependencies:
       '@ethersproject/bytes': 5.7.0
@@ -5710,42 +5141,10 @@ snapshots:
       '@ethersproject/rlp': 5.7.0
       '@ethersproject/signing-key': 5.7.0
 
-  '@ethersproject/units@5.7.0':
-    dependencies:
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/constants': 5.7.0
-      '@ethersproject/logger': 5.7.0
-
-  '@ethersproject/wallet@5.7.0':
-    dependencies:
-      '@ethersproject/abstract-provider': 5.7.0
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/hash': 5.7.0
-      '@ethersproject/hdnode': 5.7.0
-      '@ethersproject/json-wallets': 5.7.0
-      '@ethersproject/keccak256': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/random': 5.7.0
-      '@ethersproject/signing-key': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-      '@ethersproject/wordlists': 5.7.0
-
   '@ethersproject/web@5.7.1':
     dependencies:
       '@ethersproject/base64': 5.7.0
       '@ethersproject/bytes': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/strings': 5.7.0
-
-  '@ethersproject/wordlists@5.7.0':
-    dependencies:
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/hash': 5.7.0
       '@ethersproject/logger': 5.7.0
       '@ethersproject/properties': 5.7.0
       '@ethersproject/strings': 5.7.0
@@ -6058,94 +5457,6 @@ snapshots:
     optional: true
 
   '@pkgjs/parseargs@0.11.0':
-    optional: true
-
-  '@rollup/plugin-commonjs@25.0.8(rollup@4.18.0)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      commondir: 1.0.1
-      estree-walker: 2.0.2
-      glob: 8.1.0
-      is-reference: 1.2.1
-      magic-string: 0.30.10
-      rollup: 4.18.0
-
-  '@rollup/plugin-json@6.1.0(rollup@4.18.0)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      rollup: 4.18.0
-
-  '@rollup/plugin-node-resolve@15.2.3(rollup@4.18.0)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      '@types/resolve': 1.20.2
-      deepmerge: 4.3.1
-      is-builtin-module: 3.2.1
-      is-module: 1.0.0
-      resolve: 1.22.2
-      rollup: 4.18.0
-
-  '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(tslib@2.6.3)(typescript@5.4.5)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      resolve: 1.22.2
-      rollup: 4.18.0
-      tslib: 2.6.3
-      typescript: 5.4.5
-
-  '@rollup/pluginutils@5.1.0(rollup@4.18.0)':
-    dependencies:
-      '@types/estree': 1.0.5
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-      rollup: 4.18.0
-
-  '@rollup/rollup-android-arm-eabi@4.18.0':
-    optional: true
-
-  '@rollup/rollup-android-arm64@4.18.0':
-    optional: true
-
-  '@rollup/rollup-darwin-arm64@4.18.0':
-    optional: true
-
-  '@rollup/rollup-darwin-x64@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm-musleabihf@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm64-gnu@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm64-musl@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-powerpc64le-gnu@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-riscv64-gnu@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-s390x-gnu@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-gnu@4.18.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-musl@4.18.0':
-    optional: true
-
-  '@rollup/rollup-win32-arm64-msvc@4.18.0':
-    optional: true
-
-  '@rollup/rollup-win32-ia32-msvc@4.18.0':
-    optional: true
-
-  '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
   '@scure/base@1.1.3': {}
@@ -6503,8 +5814,6 @@ snapshots:
       '@types/node': 20.12.13
       '@types/responselike': 1.0.3
 
-  '@types/estree@1.0.5': {}
-
   '@types/glob@8.1.0':
     dependencies:
       '@types/minimatch': 5.1.2
@@ -6553,8 +5862,6 @@ snapshots:
     dependencies:
       '@types/node': 20.12.13
 
-  '@types/resolve@1.20.2': {}
-
   '@types/responselike@1.0.3':
     dependencies:
       '@types/node': 20.12.13
@@ -6575,7 +5882,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.0
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)':
     dependencies:
       '@eslint-community/regexpp': 4.5.1
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.0)(typescript@4.9.5)
@@ -6589,6 +5896,7 @@ snapshots:
       natural-compare-lite: 1.4.0
       semver: 7.6.2
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6600,6 +5908,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
       debug: 4.3.4
       eslint: 8.57.0
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6616,6 +5925,7 @@ snapshots:
       debug: 4.3.4
       eslint: 8.57.0
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6631,6 +5941,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.6.2
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6680,8 +5991,6 @@ snapshots:
       acorn: 8.10.0
 
   acorn@8.10.0: {}
-
-  aes-js@3.0.0: {}
 
   aes-js@4.0.0-beta.5: {}
 
@@ -6955,10 +6264,6 @@ snapshots:
     dependencies:
       node-gyp-build: 4.8.1
 
-  builtin-modules@3.3.0: {}
-
-  builtin-modules@4.0.0: {}
-
   bytes@3.1.2: {}
 
   cacheable-lookup@5.0.4: {}
@@ -7068,8 +6373,6 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
-
-  commondir@1.0.1: {}
 
   concat-map@0.0.1: {}
 
@@ -7322,12 +6625,13 @@ snapshots:
     dependencies:
       eslint: 8.57.0
 
-  eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0)(eslint@8.57.0)(prettier@2.8.8):
+  eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0(eslint@8.57.0))(eslint@8.57.0)(prettier@2.8.8):
     dependencies:
       eslint: 8.57.0
-      eslint-config-prettier: 8.8.0(eslint@8.57.0)
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
+    optionalDependencies:
+      eslint-config-prettier: 8.8.0(eslint@8.57.0)
 
   eslint-scope@5.1.1:
     dependencies:
@@ -7413,8 +6717,6 @@ snapshots:
 
   estraverse@5.3.0: {}
 
-  estree-walker@2.0.2: {}
-
   esutils@2.0.3: {}
 
   etag@1.8.1: {}
@@ -7424,13 +6726,13 @@ snapshots:
       idna-uts46-hx: 2.3.1
       js-sha3: 0.5.7
 
-  eth-lib@0.1.29:
+  eth-lib@0.1.29(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       bn.js: 4.12.0
       elliptic: 6.5.4
       nano-json-stream-parser: 0.1.2
       servify: 0.1.12
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       xhr-request-promise: 0.1.3
     transitivePeerDependencies:
       - bufferutil
@@ -7480,43 +6782,7 @@ snapshots:
       ethereum-cryptography: 0.1.3
       rlp: 2.2.7
 
-  ethers@5.7.2:
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@ethersproject/abstract-provider': 5.7.0
-      '@ethersproject/abstract-signer': 5.7.0
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/base64': 5.7.0
-      '@ethersproject/basex': 5.7.0
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/constants': 5.7.0
-      '@ethersproject/contracts': 5.7.0
-      '@ethersproject/hash': 5.7.0
-      '@ethersproject/hdnode': 5.7.0
-      '@ethersproject/json-wallets': 5.7.0
-      '@ethersproject/keccak256': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/networks': 5.7.1
-      '@ethersproject/pbkdf2': 5.7.0
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
-      '@ethersproject/random': 5.7.0
-      '@ethersproject/rlp': 5.7.0
-      '@ethersproject/sha2': 5.7.0
-      '@ethersproject/signing-key': 5.7.0
-      '@ethersproject/solidity': 5.7.0
-      '@ethersproject/strings': 5.7.0
-      '@ethersproject/transactions': 5.7.0
-      '@ethersproject/units': 5.7.0
-      '@ethersproject/wallet': 5.7.0
-      '@ethersproject/web': 5.7.1
-      '@ethersproject/wordlists': 5.7.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  ethers@6.9.0:
+  ethers@6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
       '@noble/curves': 1.2.0
@@ -7524,7 +6790,7 @@ snapshots:
       '@types/node': 18.15.13
       aes-js: 4.0.0-beta.5
       tslib: 2.4.0
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -7830,14 +7096,6 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  glob@8.1.0:
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 5.1.6
-      once: 1.4.0
-
   global@4.4.0:
     dependencies:
       min-document: 2.19.0
@@ -8022,10 +7280,6 @@ snapshots:
 
   is-arrayish@0.2.1: {}
 
-  is-builtin-module@3.2.1:
-    dependencies:
-      builtin-modules: 3.3.0
-
   is-callable@1.2.7: {}
 
   is-core-module@2.12.1:
@@ -8054,15 +7308,9 @@ snapshots:
 
   is-interactive@1.0.0: {}
 
-  is-module@1.0.0: {}
-
   is-number@7.0.0: {}
 
   is-path-inside@3.0.3: {}
-
-  is-reference@1.2.1:
-    dependencies:
-      '@types/estree': 1.0.5
 
   is-stream@2.0.1: {}
 
@@ -8204,7 +7452,6 @@ snapshots:
       '@babel/core': 7.22.8
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.13
       babel-jest: 29.7.0(@babel/core@7.22.8)
       chalk: 4.1.2
       ci-info: 3.8.0
@@ -8224,6 +7471,8 @@ snapshots:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 20.12.13
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8324,7 +7573,7 @@ snapshots:
       slash: 3.0.0
       stack-utils: 2.0.6
 
-  jest-mock-extended@3.0.5(jest@29.7.0)(typescript@5.4.5):
+  jest-mock-extended@3.0.5(jest@29.7.0(@types/node@20.12.13))(typescript@5.4.5):
     dependencies:
       jest: 29.7.0(@types/node@20.12.13)
       ts-essentials: 7.0.3(typescript@5.4.5)
@@ -8337,7 +7586,7 @@ snapshots:
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
-    dependencies:
+    optionalDependencies:
       jest-resolve: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -8629,10 +7878,6 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  magic-string@0.30.10:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-
   make-dir@3.1.0:
     dependencies:
       semver: 7.6.2
@@ -8695,10 +7940,6 @@ snapshots:
   minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.11
-
-  minimatch@5.1.6:
-    dependencies:
-      brace-expansion: 2.0.1
 
   minimatch@9.0.3:
     dependencies:
@@ -9191,28 +8432,6 @@ snapshots:
     dependencies:
       bn.js: 5.2.1
 
-  rollup@4.18.0:
-    dependencies:
-      '@types/estree': 1.0.5
-    optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.18.0
-      '@rollup/rollup-android-arm64': 4.18.0
-      '@rollup/rollup-darwin-arm64': 4.18.0
-      '@rollup/rollup-darwin-x64': 4.18.0
-      '@rollup/rollup-linux-arm-gnueabihf': 4.18.0
-      '@rollup/rollup-linux-arm-musleabihf': 4.18.0
-      '@rollup/rollup-linux-arm64-gnu': 4.18.0
-      '@rollup/rollup-linux-arm64-musl': 4.18.0
-      '@rollup/rollup-linux-powerpc64le-gnu': 4.18.0
-      '@rollup/rollup-linux-riscv64-gnu': 4.18.0
-      '@rollup/rollup-linux-s390x-gnu': 4.18.0
-      '@rollup/rollup-linux-x64-gnu': 4.18.0
-      '@rollup/rollup-linux-x64-musl': 4.18.0
-      '@rollup/rollup-win32-arm64-msvc': 4.18.0
-      '@rollup/rollup-win32-ia32-msvc': 4.18.0
-      '@rollup/rollup-win32-x64-msvc': 4.18.0
-      fsevents: 2.3.2
-
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
@@ -9426,11 +8645,11 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swarm-js@0.1.42:
+  swarm-js@0.1.42(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       bluebird: 3.7.2
       buffer: 5.7.1
-      eth-lib: 0.1.29
+      eth-lib: 0.1.29(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       fs-extra: 4.0.3
       got: 11.8.6
       mime-types: 2.1.35
@@ -9506,9 +8725,8 @@ snapshots:
     dependencies:
       typescript: 5.4.5
 
-  ts-jest@29.1.2(@babel/core@7.22.8)(jest@29.7.0)(typescript@4.9.5):
+  ts-jest@29.1.2(@babel/core@7.22.8)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.22.8))(jest@29.7.0(@types/node@20.12.13))(typescript@4.9.5):
     dependencies:
-      '@babel/core': 7.22.8
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 29.7.0(@types/node@20.12.13)
@@ -9519,6 +8737,10 @@ snapshots:
       semver: 7.6.2
       typescript: 4.9.5
       yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.22.8
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.22.8)
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -9652,11 +8874,11 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  web3-bzz@1.10.0:
+  web3-bzz@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@types/node': 12.20.55
       got: 12.1.0
-      swarm-js: 0.1.42
+      swarm-js: 0.1.42(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -9948,9 +9170,9 @@ snapshots:
       randombytes: 2.1.0
       utf8: 3.0.0
 
-  web3@1.10.0:
+  web3@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
-      web3-bzz: 1.10.0
+      web3-bzz: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-core: 1.10.0
       web3-eth: 1.10.0
       web3-eth-personal: 1.10.0
@@ -10022,7 +9244,10 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
 
-  ws@8.18.0: {}
+  ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.8
+      utf-8-validate: 5.0.10
 
   xhr-request-promise@0.1.3:
     dependencies:
