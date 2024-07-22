@@ -1,5 +1,23 @@
 # @openzeppelin/defender-sdk
 
+## 0.0.0-rc-snapshot-20240722055934
+
+### Patch Changes
+
+- 19cd7a9: feat: Add relayers usage limiting
+  feat: Add an example contract call
+- Updated dependencies [19cd7a9]
+  - @openzeppelin/defender-sdk-account-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-action-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-base-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-deploy-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-monitor-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-network-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-notification-channel-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-proposal-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-relay-client@0.0.0-rc-snapshot-20240722055934
+  - @openzeppelin/defender-sdk-relay-signer-client@0.0.0-rc-snapshot-20240722055934
+
 ## 1.14.1
 
 ### Patch Changes

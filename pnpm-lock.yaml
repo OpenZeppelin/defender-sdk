@@ -20,9 +20,6 @@ importers:
       '@actions/exec':
         specifier: ^1.1.1
         version: 1.1.1
-      '@openzeppelin/defender-sdk-base-client':
-        specifier: 1.14.1
-        version: link:packages/base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -50,7 +47,7 @@ importers:
         version: 20.12.13
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.62.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5.62.0
         version: 5.62.0(eslint@8.57.0)(typescript@4.9.5)
@@ -65,7 +62,7 @@ importers:
         version: 8.8.0(eslint@8.57.0)
       eslint-plugin-prettier:
         specifier: ^4.2.1
-        version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.57.0)(prettier@2.8.8)
+        version: 4.2.1(eslint-config-prettier@8.8.0(eslint@8.57.0))(eslint@8.57.0)(prettier@2.8.8)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.13)
@@ -80,7 +77,7 @@ importers:
         version: 2.8.8
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.22.8)(jest@29.7.0)(typescript@4.9.5)
+        version: 29.1.2(@babel/core@7.22.8)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.22.8))(jest@29.7.0(@types/node@20.12.13))(typescript@4.9.5)
       typescript:
         specifier: ^4.9.3
         version: 4.9.5
@@ -88,7 +85,7 @@ importers:
   examples/create-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -97,7 +94,7 @@ importers:
   examples/create-batch-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -106,7 +103,7 @@ importers:
   examples/create-forked-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -115,7 +112,7 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -124,7 +121,7 @@ importers:
   examples/create-private-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -133,7 +130,7 @@ importers:
   examples/create-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -142,7 +139,7 @@ importers:
   examples/create-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -151,7 +148,7 @@ importers:
   examples/create-relayer-key:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -160,17 +157,17 @@ importers:
   examples/custom-ethers-pkg:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       '@openzeppelin/defender-sdk-action-client':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/action
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^25.0.8
@@ -203,19 +200,19 @@ importers:
   examples/deploy-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   examples/ethers-signer-v5:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -227,19 +224,19 @@ importers:
   examples/ethers-signer-v6:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.4.5
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   examples/get-usage:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -248,7 +245,7 @@ importers:
   examples/list-contracts:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -257,7 +254,7 @@ importers:
   examples/list-networks:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -266,7 +263,7 @@ importers:
   examples/list-proposals:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -275,19 +272,19 @@ importers:
   examples/relayer-call-contract-function:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.4.5
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   examples/relayer-load-balance:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -296,7 +293,7 @@ importers:
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -305,7 +302,7 @@ importers:
   examples/relayer-signer-auth-v2:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -314,31 +311,31 @@ importers:
   examples/relayer-web3-provider:
     dependencies:
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/relay-signer
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
       web3:
         specifier: ^1.10.0
-        version: 1.10.0
+        version: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   examples/simulate-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   examples/update-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -347,7 +344,7 @@ importers:
   examples/update-action-env-variables:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -356,7 +353,7 @@ importers:
   examples/update-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -365,7 +362,7 @@ importers:
   examples/update-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -374,7 +371,7 @@ importers:
   examples/upgrade-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -383,7 +380,7 @@ importers:
   examples/webhook-notification:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -392,7 +389,7 @@ importers:
   packages/account:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -404,7 +401,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -444,40 +441,40 @@ importers:
   packages/defender-sdk:
     dependencies:
       '@openzeppelin/defender-sdk-account-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../account
       '@openzeppelin/defender-sdk-action-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../action
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       '@openzeppelin/defender-sdk-deploy-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../deploy
       '@openzeppelin/defender-sdk-monitor-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../monitor
       '@openzeppelin/defender-sdk-network-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../network
       '@openzeppelin/defender-sdk-notification-channel-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../notification-channel
       '@openzeppelin/defender-sdk-proposal-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../proposal
       '@openzeppelin/defender-sdk-relay-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../relay
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../relay-signer
 
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -489,14 +486,14 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -504,7 +501,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -516,7 +513,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -528,14 +525,14 @@ importers:
   packages/proposal:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -543,7 +540,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -573,7 +570,7 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.1
+        specifier: 0.0.0-rc-snapshot-20240722055934
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.3.6
@@ -583,13 +580,13 @@ importers:
         version: 1.7.2
       ethers:
         specifier: ^6.9.0
-        version: 6.9.0
+        version: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
       web3:
         specifier: ^1.10.0
-        version: 1.10.0
+        version: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-utils:
         specifier: ^1.10.0
         version: 1.10.3
@@ -605,13 +602,13 @@ importers:
         version: 5.7.0
       '@ethersproject/providers':
         specifier: ^5.6.8
-        version: 5.7.2
+        version: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@ethersproject/transactions':
         specifier: ^5.6.2
         version: 5.7.0
       jest-mock-extended:
         specifier: ^3.0.5
-        version: 3.0.5(jest@29.7.0)(typescript@5.4.5)
+        version: 3.0.5(jest@29.7.0(@types/node@20.12.13))(typescript@5.4.5)
       web3-core:
         specifier: ^1.10.4
         version: 1.10.4
@@ -2183,7 +2180,6 @@ packages:
 
   code-style@https://codeload.github.com/OpenZeppelin/configs/tar.gz/a6cd128e6f5225b15d76704708c5def97caa8176:
     resolution: {tarball: https://codeload.github.com/OpenZeppelin/configs/tar.gz/a6cd128e6f5225b15d76704708c5def97caa8176}
-    name: code-style
     version: 0.1.0
 
   collect-v8-coverage@1.0.2:
@@ -5632,7 +5628,7 @@ snapshots:
     dependencies:
       '@ethersproject/logger': 5.7.0
 
-  '@ethersproject/providers@5.7.2':
+  '@ethersproject/providers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0
@@ -5653,7 +5649,7 @@ snapshots:
       '@ethersproject/transactions': 5.7.0
       '@ethersproject/web': 5.7.1
       bech32: 1.1.4
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -6068,11 +6064,13 @@ snapshots:
       glob: 8.1.0
       is-reference: 1.2.1
       magic-string: 0.30.10
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/plugin-json@6.1.0(rollup@4.18.0)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/plugin-node-resolve@15.2.3(rollup@4.18.0)':
@@ -6083,21 +6081,24 @@ snapshots:
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.2
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(tslib@2.6.3)(typescript@5.4.5)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       resolve: 1.22.2
+      typescript: 5.4.5
+    optionalDependencies:
       rollup: 4.18.0
       tslib: 2.6.3
-      typescript: 5.4.5
 
   '@rollup/pluginutils@5.1.0(rollup@4.18.0)':
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/rollup-android-arm-eabi@4.18.0':
@@ -6575,7 +6576,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.0
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)':
     dependencies:
       '@eslint-community/regexpp': 4.5.1
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.0)(typescript@4.9.5)
@@ -6589,6 +6590,7 @@ snapshots:
       natural-compare-lite: 1.4.0
       semver: 7.6.2
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6600,6 +6602,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
       debug: 4.3.4
       eslint: 8.57.0
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6616,6 +6619,7 @@ snapshots:
       debug: 4.3.4
       eslint: 8.57.0
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -6631,6 +6635,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.6.2
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -7322,12 +7327,13 @@ snapshots:
     dependencies:
       eslint: 8.57.0
 
-  eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0)(eslint@8.57.0)(prettier@2.8.8):
+  eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0(eslint@8.57.0))(eslint@8.57.0)(prettier@2.8.8):
     dependencies:
       eslint: 8.57.0
-      eslint-config-prettier: 8.8.0(eslint@8.57.0)
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
+    optionalDependencies:
+      eslint-config-prettier: 8.8.0(eslint@8.57.0)
 
   eslint-scope@5.1.1:
     dependencies:
@@ -7424,13 +7430,13 @@ snapshots:
       idna-uts46-hx: 2.3.1
       js-sha3: 0.5.7
 
-  eth-lib@0.1.29:
+  eth-lib@0.1.29(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       bn.js: 4.12.0
       elliptic: 6.5.4
       nano-json-stream-parser: 0.1.2
       servify: 0.1.12
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       xhr-request-promise: 0.1.3
     transitivePeerDependencies:
       - bufferutil
@@ -7500,7 +7506,7 @@ snapshots:
       '@ethersproject/networks': 5.7.1
       '@ethersproject/pbkdf2': 5.7.0
       '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@ethersproject/random': 5.7.0
       '@ethersproject/rlp': 5.7.0
       '@ethersproject/sha2': 5.7.0
@@ -7516,7 +7522,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  ethers@6.9.0:
+  ethers@6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
       '@noble/curves': 1.2.0
@@ -7524,7 +7530,7 @@ snapshots:
       '@types/node': 18.15.13
       aes-js: 4.0.0-beta.5
       tslib: 2.4.0
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -8204,7 +8210,6 @@ snapshots:
       '@babel/core': 7.22.8
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.13
       babel-jest: 29.7.0(@babel/core@7.22.8)
       chalk: 4.1.2
       ci-info: 3.8.0
@@ -8224,6 +8229,8 @@ snapshots:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 20.12.13
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8324,7 +8331,7 @@ snapshots:
       slash: 3.0.0
       stack-utils: 2.0.6
 
-  jest-mock-extended@3.0.5(jest@29.7.0)(typescript@5.4.5):
+  jest-mock-extended@3.0.5(jest@29.7.0(@types/node@20.12.13))(typescript@5.4.5):
     dependencies:
       jest: 29.7.0(@types/node@20.12.13)
       ts-essentials: 7.0.3(typescript@5.4.5)
@@ -8337,7 +8344,7 @@ snapshots:
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
-    dependencies:
+    optionalDependencies:
       jest-resolve: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -9426,11 +9433,11 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swarm-js@0.1.42:
+  swarm-js@0.1.42(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       bluebird: 3.7.2
       buffer: 5.7.1
-      eth-lib: 0.1.29
+      eth-lib: 0.1.29(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       fs-extra: 4.0.3
       got: 11.8.6
       mime-types: 2.1.35
@@ -9506,9 +9513,8 @@ snapshots:
     dependencies:
       typescript: 5.4.5
 
-  ts-jest@29.1.2(@babel/core@7.22.8)(jest@29.7.0)(typescript@4.9.5):
+  ts-jest@29.1.2(@babel/core@7.22.8)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.22.8))(jest@29.7.0(@types/node@20.12.13))(typescript@4.9.5):
     dependencies:
-      '@babel/core': 7.22.8
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 29.7.0(@types/node@20.12.13)
@@ -9519,6 +9525,10 @@ snapshots:
       semver: 7.6.2
       typescript: 4.9.5
       yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.22.8
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.22.8)
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -9652,11 +9662,11 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  web3-bzz@1.10.0:
+  web3-bzz@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@types/node': 12.20.55
       got: 12.1.0
-      swarm-js: 0.1.42
+      swarm-js: 0.1.42(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -9948,9 +9958,9 @@ snapshots:
       randombytes: 2.1.0
       utf8: 3.0.0
 
-  web3@1.10.0:
+  web3@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
-      web3-bzz: 1.10.0
+      web3-bzz: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-core: 1.10.0
       web3-eth: 1.10.0
       web3-eth-personal: 1.10.0
@@ -10022,7 +10032,10 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
 
-  ws@8.18.0: {}
+  ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.8
+      utf-8-validate: 5.0.10
 
   xhr-request-promise@0.1.3:
     dependencies:
