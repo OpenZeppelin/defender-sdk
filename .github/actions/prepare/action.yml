@@ -24,8 +24,8 @@ runs:
       run: echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       shell: bash
 
-    - name: Get the current branch
-      run: echo ${{ env.CURRENT_BRANCH }}
+    - name: Git ref
+      run: echo ${{ github.ref }}
       shell: bash
 
     - name: Update the lock file
