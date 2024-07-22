@@ -22,6 +22,7 @@ runs:
 
     - name: Get the current branch
       run: export CURRENT_BRANCH=`git branch --show-current`
+      shell: bash
 
     - name: Check if branch starts with changeset-release
       id: check-branch
