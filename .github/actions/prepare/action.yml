@@ -21,13 +21,12 @@ runs:
         cache: 'pnpm'
 
     - name: Get the current branch
-      run: echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
-      shell: bash
+      run: export CURRENT_BRANCH=`git branch --show-current`
 
     - name: Check if branch starts with changeset-release
       id: check-branch
       run: |
-        if [[ "${{ env.CURRENT_BRANCH }}" == changeset-release* ]]; then
+        if [[ "${CURRENT_BRANCH}" == changeset-release* ]]; then
           echo "BRANCH_MATCHES=true" >> $GITHUB_ENV
         else
           echo "BRANCH_MATCHES=false" >> $GITHUB_ENV
