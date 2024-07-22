@@ -20,15 +20,6 @@ runs:
         node-version: 20.11.1
         cache: 'pnpm'
 
-    - name: Update the lock file
-      run: pnpm install --lockfile-only
-      shell: bash
-
-    - name: Commit lock file
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: "chore: update lock file"
-
     - name: Install dependencies
       run: |
         pnpm install-deps
