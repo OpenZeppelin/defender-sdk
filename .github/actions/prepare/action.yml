@@ -22,6 +22,7 @@ runs:
 
     - name: Get the current branch
       run: echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
+      shell: bash
 
     - name: Check if branch starts with changeset-release
       id: check-branch
@@ -31,10 +32,12 @@ runs:
         else
           echo "BRANCH_MATCHES=false" >> $GITHUB_ENV
         fi
+      shell: bash
 
     - name: Update the lock file
       if: env.BRANCH_MATCHES == 'true'
       run: pnpm install --lockfile-only
+      shell: bash
 
     - name: Commit lock file
       if: env.BRANCH_MATCHES == 'true'
