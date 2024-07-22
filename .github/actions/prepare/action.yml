@@ -13,11 +13,36 @@ runs:
       with:
         version: 9
         run_install: false
+
     - name: Use node@20
       uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with:
         node-version: 20.11.1
         cache: 'pnpm'
+
+    - name: Get the current branch
+      run: echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
+
+    - name: Check if branch starts with changeset-release
+      id: check-branch
+      run: |
+        if [[ "${{ env.CURRENT_BRANCH }}" == changeset-release* ]]; then
+          echo "BRANCH_MATCHES=true" >> $GITHUB_ENV
+        else
+          echo "BRANCH_MATCHES=false" >> $GITHUB_ENV
+        fi
+
+    - name: Update the lock file
+      if: env.BRANCH_MATCHES == 'true'
+      run: pnpm install --lockfile-only
+
+    - name: Commit lock file
+      if: env.BRANCH_MATCHES == 'true'
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: update lock file"
+        branch: ${{ env.CURRENT_BRANCH }}
+
     - name: Install dependencies
       run: |
         pnpm install-deps
