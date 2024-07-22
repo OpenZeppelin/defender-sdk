@@ -21,26 +21,16 @@ runs:
         cache: 'pnpm'
 
     - name: Get the current branch
-      run: export CURRENT_BRANCH=`git branch --show-current`
-      shell: bash
-
-    - name: Check if branch starts with changeset-release
-      id: check-branch
-      run: |
-        if [[ "${CURRENT_BRANCH}" == changeset-release* ]]; then
-          echo "BRANCH_MATCHES=true" >> $GITHUB_ENV
-        else
-          echo "BRANCH_MATCHES=false" >> $GITHUB_ENV
-        fi
+      run: echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       shell: bash
 
     - name: Update the lock file
-      if: env.BRANCH_MATCHES == 'true'
+      if: contains({{ env.CURRENT_BRANCH }}, 'changeset-release')
       run: pnpm install --lockfile-only
       shell: bash
 
     - name: Commit lock file
-      if: env.BRANCH_MATCHES == 'true'
+      if: contains({{ env.CURRENT_BRANCH }}, 'changeset-release')
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "chore: update lock file"
