@@ -20,9 +20,6 @@ importers:
       '@actions/exec':
         specifier: ^1.1.1
         version: 1.1.1
-      '@openzeppelin/defender-sdk-base-client':
-        specifier: 1.14.2
-        version: link:packages/base
       axios:
         specifier: ^1.7.2
         version: 1.7.2
