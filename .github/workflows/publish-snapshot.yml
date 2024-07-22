@@ -1,12 +1,7 @@
-name: Version or Publish Package
+name: Version or Publish Snapshot
 
 on:
   workflow_dispatch:
-    inputs:
-      version_tag:
-        required: true
-        description: The release version
-        type: string
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -81,41 +76,19 @@ jobs:
         run: |
           set -euo pipefail
           cd "${{ steps.temp-dir.outputs.path }}"
-          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
+          cd "$GITHUB_WORKSPACE"
+          pnpm run install-deps
+          pnpm nx-test-skip-cache
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         with:
           setupGitUser: false
-          version: pnpm ci:version
+          version: pnpm ci:prerelease
           title: "ci: Update the version packages"
-          publish: pnpm release
-          cwd: "package"
+          publish: pnpm prerelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Generate SBOM
-        uses: anchore/sbom-action@95b086ac308035dc0850b3853be5b7ab108236a8
-        with:
-          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          upload-artifact: false
-          upload-release-assets: false
-
-      - name: Download Artifacts
-        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
-
-      - name: Upload attestations SLSA
-        if: steps.changesets.outputs.id != ''
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-        with:
-          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
-          subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
-
-      - name: Upload attestations SBOM
-        if: steps.changesets.outputs.id != ''
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-        with:
-          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json

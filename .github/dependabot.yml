@@ -28,209 +28,209 @@ updates:
   - package-ecosystem: npm
     directory: /examples/create-action
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-batch-proposal
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-monitor
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-proposal
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-relayer-key
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-relayer
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/deploy-contract
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/list-networks
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/relayer-signer-actions
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/simulate-proposal
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/update-action
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/update-monitor
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/update-relayer
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/upgrade-contract
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/action
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/base
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/defender-sdk
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/deploy
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/monitor
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/network
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/notification-channel
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/proposal
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/relay-signer
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/relay
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-forked-network
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/create-private-network
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/custom-ethers-pkg
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer-v5
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer-v6
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/get-usage
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/list-contracts
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/list-proposals
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/relayer-load-balance
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/relayer-signer-auth-v2
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/relayer-web3-provider
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/send-4337-userop/account-kit
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/send-4337-userop/permissionless
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/update-action-env-variables
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/webhook-notification
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /packages/account
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: /examples/relayer-call-contract-function
     schedule:
-      interval: daily
+      interval: weekly
