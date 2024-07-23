@@ -165,4 +165,8 @@ export class Defender {
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
     });
   }
+
+  get keyValueStore() {
+    throw new Error('KeyValueStore is not available in this version of the SDK');
+  }
 }

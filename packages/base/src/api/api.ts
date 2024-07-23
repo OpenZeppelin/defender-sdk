@@ -1,4 +1,3 @@
-import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import https from 'https';
 

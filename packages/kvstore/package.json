@@ -1,0 +1,34 @@
+{
+  "name": "@openzeppelin/defender-sdk-key-value-store",
+  "version": "1.14.1",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --verbose --passWithNoTests --forceExit",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.js.map",
+    "!*.test.d.ts",
+    "!*__mocks__"
+  ],
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/defender-sdk-base-client": "^1.14.1",
+    "axios": "^1.7.2",
+    "lodash": "^4.17.21",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
