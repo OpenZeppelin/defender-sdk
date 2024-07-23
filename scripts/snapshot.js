@@ -22,5 +22,5 @@ process.chdir(path.join(__dirname, '..'));
     throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
   }
 
-  await exec('changeset', ['publish --tag rc-snapshot']);
+  await exec('changeset', ['publish', '--no-git-tag', '--tag', 'rc-snapshot']);
 })();

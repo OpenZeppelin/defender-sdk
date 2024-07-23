@@ -1,5 +1,12 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.14.2
+
+### Patch Changes
+
+- 19cd7a9: feat: Add relayers usage limiting
+  feat: Add an example contract call
+
 ## 1.14.1
 
 ### Patch Changes

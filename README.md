@@ -59,30 +59,6 @@ DEFENDER_RELAY_SIGNER_POOL_CLIENT_ID=
 
 ---
 
-### CI/CD
-
-- Run `npx changeset` to select specific packages to bump ( use up & down arrows to navigate, space to select specific packages). This will create a new changeset file in `./changesets` folder. Update changelog in changeset file if needed using `feat:`, `fix:`, `docs:`, `chore:` or `refactor:` prefixes.
-- Create a PR with changeset file.
-- After the PR is approved & merged. Changeset bot will automatically create a PR deleting the changeset file and bumping the package version & updates changelog. This PR will not automatically update the package version/dependencies in `package.json` file. You will have to manually push the change to this PR updating package version/version of `@openzeppelin/defender-sdk-base-client` in `package.json` file and run `pnpm i --ignore-scripts --prefer-offline` to make sure pnpm lock file is updated.
-- After the PR is approved & merged make sure to run build & tests using `pnpm nx-build-skip-cache` && `pnpm nx-test-skip-cache`.
-- After the tests passes run `npx changeset publish` this publishes the packages to npm. Or use the workflow dispatch(publish.yml) to trigger the publish using the CI.
-- Finally push tags ( make sure you are signing tags before pushing ) to git `git push --follow-tags`. (This step is not needed if publishing using the CI as the the tags will be pushed automatically).
-
-## Snapshot Release
-
-- Checkout from the main branch(with changeset file) to a branch prefixed by `snapshot`.
-- Raise a PR to target the snapshot branch.
-- Merge the PR to the snapshot branch.
-- After the PR is merged, another PR will be created that removes the changeset file and bumps the packages versions. Manually push a change to this PR updating package version of `@openzeppelin/defender-sdk-base-client` in `package.json` file and run `pnpm i --ignore-scripts --prefer-offline` to make sure pnpm lock file is updated.
-- After the above PR has been merged, manually trigger the snapshot workflow, `publish-snapshot.yml`, to release the snapshot.
-
-<!-- TODO: once we have CI/CD steps fully defined we should validate this is accurate -->
-
-- We use github actions for CI/CD. See [workflows](.github/workflows) for more info.
-  - `ci.yml` - runs on every push to any branch --> runs tests.
-
----
-
 ### Determinstic Builds & Secure Publishes
 
 - We use [slsa framework](https://slsa.dev/) _pronounced "salsa"_ for reproducible builds & secure pushes. Verification is done using [provenance](https://slsa.dev/provenance/v1)
