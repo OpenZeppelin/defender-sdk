@@ -86,9 +86,9 @@ jobs:
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         with:
           setupGitUser: false
-          version: pnpm ci:prerelease
+          version: pnpm ci:snapshot
           title: "ci: Update the version packages"
-          publish: pnpm prerelease
+          publish: pnpm snapshot
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
