@@ -43,3 +43,12 @@ jobs:
           title: "ci: update the version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update the lock file
+        run: pnpm install --lockfile-only
+        shell: bash
+
+      - name: Commit lock file
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update lock file"
