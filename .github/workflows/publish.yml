@@ -86,6 +86,9 @@ jobs:
           pnpm run install-deps
           pnpm nx-test-skip-cache
 
+      - name: Enable NPM PROVENANCE
+        run: echo "NPM_CONFIG_PROVENANCE=true" >> $GITHUB_ENV
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
