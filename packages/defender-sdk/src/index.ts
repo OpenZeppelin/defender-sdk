@@ -6,13 +6,19 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
+import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppelin/defender-sdk-key-value-store-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
 import { AuthConfig, Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
 import https from 'https';
-import { isRelaySignerOptions } from './utils';
+import {
+  isActionKVStoreCredentials,
+  isActionRelayerCredentials,
+  isApiCredentials,
+  isRelaySignerOptions,
+} from './utils';
 
 export interface DefenderOptions {
   apiKey?: string;
@@ -24,12 +30,14 @@ export interface DefenderOptions {
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
   useCredentialsCaching?: boolean;
+  kvstoreARN?: string;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
   if (
-    !('credentials' in credentials && 'relayerARN' in credentials) &&
-    !('apiKey' in credentials && 'apiSecret' in credentials)
+    !isActionRelayerCredentials(credentials) &&
+    !isApiCredentials(credentials) &&
+    !isActionKVStoreCredentials(credentials)
   ) {
     throw new Error(`API key and secret are required`);
   }
@@ -167,6 +175,19 @@ export class Defender {
   }
 
   get keyValueStore() {
-    throw new Error('KeyValueStore is not available in this version of the SDK');
+    return getClient(KeyValueStoreClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+    });
+  }
+
+  static localKVStoreClient(params: LocalKeyValueStoreCreateParams) {
+    if (!params.path) {
+      throw new Error(`Must provide a path for local key-value store`);
+    }
+    return new KeyValueStoreClient(params);
   }
 }

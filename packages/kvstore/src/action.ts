@@ -1,5 +1,5 @@
 import { IKeyValueStoreClient, KeyValueStoreCreateParams, KeyValueStoreRequest } from './types';
-import { BaseActionClient } from '@openzeppelin/defender-sdk-base-client/lib/action';
+import { BaseActionClient } from '@openzeppelin/defender-sdk-base-client';
 
 export class KeyValueStoreActionClient extends BaseActionClient implements IKeyValueStoreClient {
   public constructor(params: KeyValueStoreCreateParams) {

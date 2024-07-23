@@ -148,6 +148,9 @@ importers:
       '@openzeppelin/defender-sdk-deploy-client':
         specifier: ^1.14.2
         version: link:../deploy
+      '@openzeppelin/defender-sdk-key-value-store-client':
+        specifier: ^1.14.2
+        version: link:../kvstore
       '@openzeppelin/defender-sdk-monitor-client':
         specifier: ^1.14.2
         version: link:../monitor
@@ -178,6 +181,25 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+
+  packages/kvstore:
+    dependencies:
+      '@openzeppelin/defender-sdk-base-client':
+        specifier: ^1.14.2
+        version: link:../base
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
 
   packages/monitor:
     dependencies:
@@ -1253,6 +1275,9 @@ packages:
   '@types/cacheable-request@6.0.3':
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}
 
+  '@types/fs-extra@11.0.4':
+    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+
   '@types/glob@8.1.0':
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
 
@@ -1276,6 +1301,9 @@ packages:
 
   '@types/json-schema@7.0.12':
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
+
+  '@types/jsonfile@6.1.4':
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
@@ -2276,8 +2304,8 @@ packages:
   fs-constants@1.0.0:
     resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
 
-  fs-extra@11.1.1:
-    resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
+  fs-extra@11.2.0:
+    resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
     engines: {node: '>=14.14'}
 
   fs-extra@4.0.3:
@@ -5846,6 +5874,11 @@ snapshots:
       '@types/node': 20.12.13
       '@types/responselike': 1.0.3
 
+  '@types/fs-extra@11.0.4':
+    dependencies:
+      '@types/jsonfile': 6.1.4
+      '@types/node': 20.12.13
+
   '@types/glob@8.1.0':
     dependencies:
       '@types/minimatch': 5.1.2
@@ -5873,6 +5906,10 @@ snapshots:
       pretty-format: 29.6.3
 
   '@types/json-schema@7.0.12': {}
+
+  '@types/jsonfile@6.1.4':
+    dependencies:
+      '@types/node': 20.12.13
 
   '@types/keyv@3.1.4':
     dependencies:
@@ -7043,7 +7080,7 @@ snapshots:
 
   fs-constants@1.0.0: {}
 
-  fs-extra@11.1.1:
+  fs-extra@11.2.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.1.0
@@ -8076,7 +8113,7 @@ snapshots:
       axios: 1.7.2
       chalk: 4.1.2
       dotenv: 10.0.0
-      fs-extra: 11.1.1
+      fs-extra: 11.2.0
       node-machine-id: 1.1.12
       open: 8.4.2
       strip-json-comments: 3.1.1
@@ -8103,7 +8140,7 @@ snapshots:
       figures: 3.2.0
       flat: 5.0.2
       front-matter: 4.0.2
-      fs-extra: 11.1.1
+      fs-extra: 11.2.0
       ignore: 5.2.4
       jest-diff: 29.7.0
       jsonc-parser: 3.2.0
