@@ -86,7 +86,9 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
 
   public async listTransactions(criteria?: ListTransactionsRequest): Promise<PaginatedTransactionResponse> {
     return this.apiCall(async (api) => {
-      return (await api.get(`txs`, { params: { ...criteria, usePagination: true } })) as PaginatedTransactionResponse;
+      return (await api.get(`/relayers/self/txs`, {
+        params: { ...criteria, usePagination: true },
+      })) as PaginatedTransactionResponse;
     });
   }
 
