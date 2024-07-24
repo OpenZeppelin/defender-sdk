@@ -52,6 +52,7 @@ export class Defender {
   private relayerApiSecret: string | undefined;
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
+  private actionKVStoreArn: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig?: RetryConfig;
   private authConfig?: AuthConfig;
@@ -64,6 +65,7 @@ export class Defender {
     // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
+    this.actionKVStoreArn = options.kvstoreARN;
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
     this.authConfig = {
@@ -181,6 +183,8 @@ export class Defender {
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
       authConfig: this.authConfig,
+      ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
+      ...(this.actionKVStoreArn ? { kvstoreARN: this.actionKVStoreArn } : undefined),
     });
   }
 
