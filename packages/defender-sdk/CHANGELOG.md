@@ -7,17 +7,6 @@
 - fix: push upgraded package version
 - fix: skips bug in 1.14.2
 
-  - @openzeppelin/defender-sdk-account-client@1.14.2
-  - @openzeppelin/defender-sdk-action-client@1.14.2
-  - @openzeppelin/defender-sdk-base-client@1.14.2
-  - @openzeppelin/defender-sdk-deploy-client@1.14.2
-  - @openzeppelin/defender-sdk-monitor-client@1.14.2
-  - @openzeppelin/defender-sdk-network-client@1.14.2
-  - @openzeppelin/defender-sdk-notification-channel-client@1.14.2
-  - @openzeppelin/defender-sdk-proposal-client@1.14.2
-  - @openzeppelin/defender-sdk-relay-client@1.14.2
-  - @openzeppelin/defender-sdk-relay-signer-client@1.14.2
-
 ## 1.14.1
 
 ### Patch Changes

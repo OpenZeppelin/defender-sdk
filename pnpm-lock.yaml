@@ -377,7 +377,7 @@ importers:
   packages/account:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -389,7 +389,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -429,40 +429,40 @@ importers:
   packages/defender-sdk:
     dependencies:
       '@openzeppelin/defender-sdk-account-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../account
       '@openzeppelin/defender-sdk-action-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../action
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       '@openzeppelin/defender-sdk-deploy-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../deploy
       '@openzeppelin/defender-sdk-monitor-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../monitor
       '@openzeppelin/defender-sdk-network-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../network
       '@openzeppelin/defender-sdk-notification-channel-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../notification-channel
       '@openzeppelin/defender-sdk-proposal-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../proposal
       '@openzeppelin/defender-sdk-relay-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../relay
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../relay-signer
 
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -474,7 +474,7 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -489,7 +489,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -501,7 +501,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -513,7 +513,7 @@ importers:
   packages/proposal:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -528,7 +528,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.2
+        specifier: 1.14.3
         version: link:../base
       axios:
         specifier: ^1.7.2
