@@ -30,26 +30,26 @@ exports.handler = async function (event) {
   const client = new Defender(event);
 
   // Associates myValue to myKey
-  await client.kvstore.put('myKey', 'myValue');
+  await client.keyValueStore.put('myKey', 'myValue');
 
   // Returns myValue associated to myKey
-  const value = await client.kvstore.get('myKey');
+  const value = await client.keyValueStore.get('myKey');
 
   // Deletes the entry for myKey
-  await client.kvstore.del('myKey');
+  await client.keyValueStore.del('myKey');
 };
 ```
 
 ## Local development
 
-The Defender key-value store is only accessible from within an Action. To simplify local development, you can create an instance using `Defender.initKVStore` providing an object with a `path` property. The client will use a local json file at that path for all operations.
+The Defender key-value store is only accessible from within an Action. To simplify local development, you can create an instance using `Defender.localKVStoreClient` providing an object with a `path` property. The client will use a local json file at that path for all operations.
 
 ```js
 const { Defender } = require('@openzeppelin/defender-sdk');
 
 async function local() {
   // Creates an instance of the client that will write to a local file
-  const store = Defender.initKVStore({ path: '/tmp/foo/store.json' });
+  const store = Defender.localKVStoreClient({ path: '/tmp/foo/store.json' });
 
   // The store.json file will contain { myKey: myValue }
   await store.put('myKey', 'myValue');
