@@ -9,4 +9,5 @@ export type ClientParams = {
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
   authConfig: AuthConfig;
+  path?: string;
 };
