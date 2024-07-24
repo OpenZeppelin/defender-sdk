@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-action-client",
-  "version": "1.14.1",
+  "version": "1.14.3",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "jszip": "^3.10.1",
-    "@openzeppelin/defender-sdk-base-client": "^1.14.1",
+    "@openzeppelin/defender-sdk-base-client": "^1.14.2",
     "axios": "^1.7.2",
     "lodash": "^4.17.21",
     "glob": "^7.1.6",

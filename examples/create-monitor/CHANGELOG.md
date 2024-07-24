@@ -1,5 +1,12 @@
 # @openzeppelin/defender-sdk-example-create-monitor
 
+## 1.1.2
+
+### Patch Changes
+
+- fix: push upgraded package version
+- fix: skips bug in 1.14.2
+
 ## 1.1.1
 
 ### Patch Changes

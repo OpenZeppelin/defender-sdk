@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-relay-signer-client
 
+## 1.14.3
+
+### Patch Changes
+
+- fix: push upgraded package version
+- fix: skips bug in 1.14.2
+
+  - @openzeppelin/defender-sdk-base-client@1.14.2
+
 ## 1.14.1
 
 ### Patch Changes

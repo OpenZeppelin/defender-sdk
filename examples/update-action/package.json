@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-example-update-action",
-  "version": "1.14.1",
+  "version": "1.14.3",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
@@ -10,7 +10,7 @@
     "start:code": "node update-code.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.14.1",
+    "@openzeppelin/defender-sdk": "1.14.3",
     "dotenv": "^16.3.1"
   }
 }
