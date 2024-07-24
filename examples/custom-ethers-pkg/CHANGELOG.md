@@ -7,8 +7,6 @@
 - fix: push upgraded package version
 - fix: skips bug in 1.14.2
 
-  - @openzeppelin/defender-sdk-action-client@1.14.2
-
 ## 1.14.1
 
 ### Patch Changes
