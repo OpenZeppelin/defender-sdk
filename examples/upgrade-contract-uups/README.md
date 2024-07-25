@@ -1,6 +1,6 @@
 ## Defender SDK upgrade
 
-This example showcases a simple contract upgrade using UUPS + ownable. For simplicity, we just upgrade the original contract to the same implementation address.
+This example showcases a simple contract upgrade using UUPS + ownable.
 
 ### Steps to run this example
 
