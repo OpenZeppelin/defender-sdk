@@ -10,10 +10,6 @@ async function main() {
     apiSecret: process.env.API_SECRET,
   });
 
-  // Get approval process for deployment on Sepolia
-  const config = await client.deploy.getUpgradeApprovalProcess('sepolia');
-  console.log(config);
-
   const upgrade = await client.deploy.upgradeContract({
     proxyAddress: '0x3a...d7',
     newImplementationAddress: '0x48...99',

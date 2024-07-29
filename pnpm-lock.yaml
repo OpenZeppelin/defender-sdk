@@ -383,6 +383,15 @@ importers:
         specifier: ^16.3.1
         version: 16.4.5
 
+  examples/upgrade-contract-uups:
+    dependencies:
+      '@openzeppelin/defender-sdk':
+        specifier: 1.14.2
+        version: link:../../packages/defender-sdk
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.4.5
+
   examples/webhook-notification:
     dependencies:
       '@openzeppelin/defender-sdk':
