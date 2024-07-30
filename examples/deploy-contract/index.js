@@ -35,6 +35,7 @@ async function main() {
     licenseType: 'MIT',
     verifySourceCode: true,
     constructorBytecode: AbiCoder.defaultAbiCoder().encode(['uint'], ['5']), // or constructorInputs: [5],
+    note: 'Example note.',
   });
 
   const deploymentStatus = await client.deploy.getDeployedContract(deployment.deploymentId);

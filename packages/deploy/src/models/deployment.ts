@@ -50,6 +50,10 @@ export interface DeployContractRequest {
    * @default undefined
    */
   txOverrides?: TxOverrides;
+  /*
+   * A note to be included in the deployment.
+   */
+  note?: string;
 }
 export interface DeployRequestLibraries {
   [k: `${string}:${string}`]: string;
