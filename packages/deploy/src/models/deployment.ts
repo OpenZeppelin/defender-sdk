@@ -53,10 +53,16 @@ export interface DeployContractRequest {
   /*
    * A note to be included in the deployment.
    */
-  note?: string;
+  metadata?: DeployMetadata;
 }
 export interface DeployRequestLibraries {
   [k: `${string}:${string}`]: string;
+}
+
+export interface DeployMetadata {
+  commitHash?: string;
+  tag?: string;
+  [k: string]: any;
 }
 
 export interface DeploymentResponse {
