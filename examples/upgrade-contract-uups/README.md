@@ -19,4 +19,4 @@ const upgrade = await client.deploy.upgradeContract({
 });
 ```
 
-6. Go to your defender dashboard to see the status of your upgrade.
+6. Go to your Defender dashboard to see the status of your upgrade.
