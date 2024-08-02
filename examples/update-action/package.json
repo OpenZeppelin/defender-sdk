@@ -10,7 +10,7 @@
     "start:code": "node update-code.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.14.2",
+    "@openzeppelin/defender-sdk": "1.14.3",
     "dotenv": "^16.3.1"
   }
 }
