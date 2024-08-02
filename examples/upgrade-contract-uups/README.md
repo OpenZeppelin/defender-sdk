@@ -4,7 +4,7 @@ This example showcases a simple contract upgrade using UUPS + ownable.
 
 ### Steps to run this example
 
-1. Create a deployment environment in sepolia network, (https://docs.openzeppelin.com/defender/v2/tutorial/deploy#environment_setup)[see how]
+1. Create a deployment environment for the sepolia network, (https://docs.openzeppelin.com/defender/v2/tutorial/deploy#environment_setup)[see how]
 2. Go to https://wizard.openzeppelin.com/#custom
 3. Select Ownable + UUPS upgradeablity.
 4. Deploy the contract AND the proxy.
