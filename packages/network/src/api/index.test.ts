@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { NetworkClient } from '.';
-import { TenantNetworkCreateRequest } from '../models/networks';
+import { PrivateNetworkCreateRequest, TenantNetworkCreateRequest } from '../models/networks';
 
 jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
@@ -24,7 +24,7 @@ const createForkPayload: TenantNetworkCreateRequest = {
   networkType: 'fork',
 };
 
-const createPrivatePayload: TenantNetworkCreateRequest = {
+const createPrivatePayload: PrivateNetworkCreateRequest = {
   name: 'mock-fork',
   rpcUrl: 'https://localhost:8585',
   blockExplorerUrl: 'https://localhost:8585/explorer',
@@ -32,6 +32,7 @@ const createPrivatePayload: TenantNetworkCreateRequest = {
     symbol: 'ETH',
   },
   networkType: 'private',
+  isProduction: true,
 };
 
 describe('NetworkClient', () => {
