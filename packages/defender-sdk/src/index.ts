@@ -6,6 +6,7 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
+import { CodeInspectorClient } from '@openzeppelin/defender-sdk-code-inspector';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
@@ -163,6 +164,16 @@ export class Defender {
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
+    });
+  }
+
+  get codeInspector() {
+    return getClient(CodeInspectorClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 }

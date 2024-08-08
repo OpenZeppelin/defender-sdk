@@ -29,7 +29,8 @@
     "@openzeppelin/defender-sdk-notification-channel-client": "^1.13.4",
     "@openzeppelin/defender-sdk-relay-signer-client": "^1.13.4",
     "@openzeppelin/defender-sdk-network-client": "^1.13.4",
-    "@openzeppelin/defender-sdk-account-client": "^1.13.4"
+    "@openzeppelin/defender-sdk-account-client": "^1.13.4",
+    "@openzeppelin/defender-sdk-code-inspector": "file:/Users/CoveMB/Code/CoveMB/OpenZeppelin/platform-sdk/packages/code-inspector"
   },
   "publishConfig": {
     "access": "public"
