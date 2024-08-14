@@ -89,3 +89,7 @@ export type PaginatedTransactionResponse = {
   items: RelayerTransaction[];
   next?: string;
 };
+
+export type TransactionIntentDeleteResponse = {
+  message: string;
+};
