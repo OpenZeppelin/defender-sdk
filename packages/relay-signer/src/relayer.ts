@@ -5,6 +5,7 @@ import {
   PaginatedTransactionResponse,
   RelayerTransaction,
   RelayerTransactionPayload,
+  TransactionIntentDeleteResponse,
 } from './models/transactions';
 import { isApiCredentials, isActionCredentials, validatePayload } from './ethers/utils';
 import { RelaySignerClient } from './api';
@@ -109,6 +110,10 @@ export class Relayer implements IRelayer {
   public replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     validatePayload(payload);
     return this.relayer.replaceTransactionByNonce(nonce, payload);
+  }
+
+  public cancelTransactionIntentById(id: string): Promise<TransactionIntentDeleteResponse> {
+    return this.relayer.cancelTransactionIntentById(id);
   }
 
   public getTransaction(id: string): Promise<RelayerTransaction> {

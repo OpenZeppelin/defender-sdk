@@ -6,6 +6,7 @@ import {
   PrivateTransactionMode,
   RelayerTransaction,
   RelayerTransactionPayload,
+  TransactionIntentDeleteResponse,
 } from './transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './rpc';
 
@@ -74,6 +75,7 @@ export interface IRelayer {
   sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
+  cancelTransactionIntentById(id: string): Promise<TransactionIntentDeleteResponse>;
   getTransaction(id: string): Promise<RelayerTransaction>;
   listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[] | PaginatedTransactionResponse>;
   sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;

@@ -1,5 +1,10 @@
 import { ActionRelayerParams, IRelayer, RelayerGetResponse, RelayerStatus } from '../models/relayer';
-import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
+import {
+  ListTransactionsRequest,
+  RelayerTransaction,
+  RelayerTransactionPayload,
+  TransactionIntentDeleteResponse,
+} from '../models/transactions';
 import {
   JsonRpcRequest,
   JsonRpcResponse,
@@ -58,6 +63,10 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
   ): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { nonce: number } = { ...payload, nonce };
     return this.execute({ action: 'replace-tx', payload });
+  }
+
+  public async cancelTransactionIntentById(id: string): Promise<TransactionIntentDeleteResponse> {
+    return this.execute({ action: 'cancel-tx-intent', id });
   }
 
   public async getRelayer(): Promise<RelayerGetResponse> {
