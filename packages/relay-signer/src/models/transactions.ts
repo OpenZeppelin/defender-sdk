@@ -90,6 +90,6 @@ export type PaginatedTransactionResponse = {
   next?: string;
 };
 
-export type TransactionIntentDeleteResponse = {
+export type TransactionDeleteResponse = {
   message: string;
 };

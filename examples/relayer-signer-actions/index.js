@@ -39,7 +39,7 @@ async function replace(id) {
 }
 
 async function cancel(id) {
-  const txResponse = await client.relaySigner.cancelTransactionIntentById(id);
+  const txResponse = await client.relaySigner.cancelTransactionById(id);
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
 

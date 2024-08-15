@@ -3,7 +3,7 @@ import {
   ListTransactionsRequest,
   RelayerTransaction,
   RelayerTransactionPayload,
-  TransactionIntentDeleteResponse,
+  TransactionDeleteResponse,
 } from '../models/transactions';
 import {
   JsonRpcRequest,
@@ -65,8 +65,8 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     return this.execute({ action: 'replace-tx', payload });
   }
 
-  public async cancelTransactionIntentById(id: string): Promise<TransactionIntentDeleteResponse> {
-    return this.execute({ action: 'cancel-tx-intent', id });
+  public async cancelTransactionById(id: string): Promise<TransactionDeleteResponse> {
+    return this.execute({ action: 'cancel-tx', id });
   }
 
   public async getRelayer(): Promise<RelayerGetResponse> {

@@ -102,13 +102,13 @@ describe('ActionRelayer', () => {
     });
   });
 
-  describe('cancelTransactionIntent', () => {
+  describe('cancelTransactionById', () => {
     test('passes txId to the API', async () => {
-      await relayer.cancelTransactionIntentById('123-456-abc');
+      await relayer.cancelTransactionById('123-456-abc');
       expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"cancel-tx-intent","id":"123-456-abc"}',
+        Payload: '{"action":"cancel-tx","id":"123-456-abc"}',
       });
     });
   });
