@@ -14,16 +14,15 @@ async function main() {
 
   const createParams = {
     name: 'MyNewGroupRelayer',
-    networks: ['sepolia'],
+    network: 'sepolia',
     relayers: 2,
     minBalance: BigInt(1e17).toString(),
     policies: {
-      whitelistReceivers: ['0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B'],
       EIP1559Pricing: true,
     },
   };
 
-  const relayerGroup = await client.relayGroup.create(createParams);
+  const relayerGroup = await client.relayGroup.createKey('c66b2ca3-5334-40fa-845a-74af36790773');
 
   console.log(relayerGroup);
 }
