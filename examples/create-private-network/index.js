@@ -18,6 +18,7 @@ async function main() {
     configuration: {
       symbol: 'ETH',
     },
+    isProduction: false, // (optional) indicates if it's a testnet
   });
 
   console.log(network);
