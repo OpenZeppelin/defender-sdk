@@ -92,6 +92,9 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
     // cache value because it does not change
     if (!this.address) {
       const r = await this.relayer.getRelayer();
+      if ('relayerGroupId' in r) {
+        throw new Error('Relayer group is not supported for ethers v6.');
+      }
       this.address = r.address;
     }
     return this.address;

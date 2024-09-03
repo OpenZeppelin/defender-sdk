@@ -1,4 +1,4 @@
-import { EthersVersion, IRelayer, RelayerGetResponse, RelayerParams, RelayerStatus } from './models/relayer';
+import { EthersVersion, IRelayer, RelayerGetResponse, RelayerGroupResponse, RelayerParams, RelayerStatus } from './models/relayer';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './models/rpc';
 import {
   ListTransactionsRequest,
@@ -55,11 +55,11 @@ export class Relayer implements IRelayer {
     }
   }
 
-  public getRelayer(): Promise<RelayerGetResponse> {
+  public getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse> {
     return this.relayer.getRelayer();
   }
 
-  public getRelayerStatus(): Promise<RelayerStatus> {
+  public getRelayerStatus(): Promise<RelayerStatus | RelayerStatus[]> {
     return this.relayer.getRelayerStatus();
   }
 
@@ -76,6 +76,7 @@ export class Relayer implements IRelayer {
     options: DefenderRelaySignerOptionsV5 | DefenderRelaySignerOptions,
   ): Promise<DefenderRelaySigner | DefenderRelaySignerV5> {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
+    
 
     if (this.isEthersV5Provider(provider, options?.ethersVersion) && this.isEthersV5ProviderOptions(options)) {
       return new DefenderRelaySignerV5(this.credentials, provider, options);
@@ -83,6 +84,9 @@ export class Relayer implements IRelayer {
 
     if (!this.isEthersV5Provider(provider, options?.ethersVersion) && !this.isEthersV5ProviderOptions(options)) {
       const relayer = await this.relayer.getRelayer();
+      if ('relayerGroupId' in relayer) {
+        throw new Error('Relayer group is not supported for ethers v6.');
+      }
       return new DefenderRelaySigner(this.credentials, provider, relayer.address, options);
     }
     throw new Error(`Invalid state, provider and options must be for the same ethers version.`);
