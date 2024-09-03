@@ -28,6 +28,7 @@ export type PublicNetwork =
   | 'japan-testnet'
   | 'japan'
   | 'linea-goerli'
+  | 'linea-sepolia'
   | 'linea'
   | 'mainnet'
   | 'mantle-sepolia'
@@ -79,6 +80,7 @@ export const Networks: Network[] = [
   'japan-testnet',
   'japan',
   'linea-goerli',
+  'linea-sepolia',
   'linea',
   'mainnet',
   'mantle-sepolia',
@@ -145,6 +147,7 @@ export const chainIds: { [key in Network]: number } = {
   'japan-testnet': 10081,
   'linea': 59144,
   'linea-goerli': 59140,
+  'linea-sepolia': 59141,
   'mainnet': 1,
   'mantle': 5000,
   'mantle-sepolia': 5003,
