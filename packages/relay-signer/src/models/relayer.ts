@@ -66,11 +66,54 @@ export interface UpdateRelayerPoliciesRequest {
   privateTransactions?: boolean | PrivateTransactionMode;
 }
 
+export interface RelayerGroupPolicies {
+  gasPriceCap?: BigUInt;
+  whitelistReceivers?: Address[];
+  EIP1559Pricing?: boolean;
+  privateTransactions?: boolean | PrivateTransactionMode;
+}
+
+export type RelayerGroupRelayer = {
+  relayerId: string;
+  address: string;
+  keyId: string;
+  relayerShortId: string;
+  network: Network;
+};
+
+export enum TxStatus {
+  Pending = 'pending', // temporary status, pre-sent
+  Sent = 'sent', // sent to SQS from API
+  Submitted = 'submitted', // sent to ethereum (infura/alchemy)
+  InMemPool = 'inmempool', // no blocknumber assigned yet
+  Mined = 'mined', // blocknumber assigned
+  Confirmed = 'confirmed', // mined AND older than 12 blocks
+  Failed = 'failed', // terminal failure for any reason (bad nonce, too many retries)
+}
+
+export interface RelayerGroupResponse {
+  relayerGroupId: string;
+  name: string;
+  network: Network;
+  policies: RelayerGroupPolicies;
+  minBalance: BigUInt;
+  relayers: RelayerGroupRelayer[];
+  paused: boolean;
+  systemPaused: boolean;
+  createdAt: string;
+  stackResourceId?: string;
+  notificationChannels?: {
+    events: TxStatus[];
+    notificationIds: string[];
+  };
+}
+
+
 export type EthersVersion = 'v5' | 'v6';
 
 export interface IRelayer {
-  getRelayer(): Promise<RelayerGetResponse>;
-  getRelayerStatus(): Promise<RelayerStatus>;
+  getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse>;
+  getRelayerStatus(): Promise<RelayerStatus | RelayerStatus[]>;
   sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
