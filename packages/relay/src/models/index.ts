@@ -192,7 +192,7 @@ export interface IRelayer {
 }
 
 export type ListTransactionsRequest = {
-  status?: 'pending' | 'mined' | 'failed';
+  status?: 'pending' | 'mined' | 'failed' | 'expired';
   since?: Date;
   limit?: number;
 };
