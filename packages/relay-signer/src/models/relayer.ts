@@ -89,6 +89,7 @@ export enum TxStatus {
   Mined = 'mined', // blocknumber assigned
   Confirmed = 'confirmed', // mined AND older than 12 blocks
   Failed = 'failed', // terminal failure for any reason (bad nonce, too many retries)
+  Expired = 'expired', // transaction was not sent before validUntil expired (currently only used for intents)
 }
 
 export interface RelayerGroupResponse {
