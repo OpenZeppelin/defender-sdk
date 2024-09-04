@@ -8,5 +8,4 @@ module.exports = {
       diagnostics: true,
     },
   },
-  testPathIgnorePatterns: ['<rootDir>/e2e/'],
 };
