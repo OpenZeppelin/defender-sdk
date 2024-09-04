@@ -43,6 +43,7 @@
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "test": "nx run-many -t test --parallel=1",
+    "test:e2e": "nx run e2e:test",
     "build:changed": "nx affected:build --base=origin/main --skip-nx-cache --parallel=1",
     "test:changed": "nx affected:test --base=origin/main --skip-nx-cache --parallel=1",
     "style": "pnpm lint:fix",
