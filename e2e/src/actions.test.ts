@@ -1,8 +1,8 @@
 require('dotenv').config();
 import { Defender } from '@openzeppelin/defender-sdk';
 
-// Default timeout is not enough, using 10s timeout instead.
-jest.setTimeout(10 * 1000);
+// Default timeout is not enough, using 15s timeout instead.
+jest.setTimeout(15 * 1000);
 
 describe('actions', () => {
   const actionClient = new Defender({
