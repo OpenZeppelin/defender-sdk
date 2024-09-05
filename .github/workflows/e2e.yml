@@ -12,11 +12,11 @@ concurrency:
 permissions: read-all
 
 env:
-  API_KEY: ${{ secrets.API_KEY }}
-  API_SECRET: ${{ secrets.API_SECRET }}
-  DEFENDER_API_URL: ${{ secrets.DEFENDER_API_URL }}
-  DEFENDER_POOL_ID: ${{ secrets.DEFENDER_POOL_ID }}
-  DEFENDER_POOL_CLIENT_ID: ${{ secrets.DEFENDER_POOL_CLIENT_ID }}
+  API_KEY: ${{ secrets.E2E_API_KEY }}
+  API_SECRET: ${{ secrets.E2E_API_SECRET }}
+  DEFENDER_API_URL: $E2E_DEFENDER_API_URL
+  DEFENDER_POOL_ID: $E2E_DEFENDER_POOL_ID
+  DEFENDER_POOL_CLIENT_ID: $E2E_DEFENDER_POOL_CLIENT_ID
 
 jobs:
   build-test:
