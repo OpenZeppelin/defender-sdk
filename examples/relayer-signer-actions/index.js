@@ -38,6 +38,11 @@ async function replace(id) {
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
 
+async function cancel(id) {
+  const txResponse = await client.relaySigner.cancelTransactionById(id);
+  console.log('txResponse', JSON.stringify(txResponse, null, 2));
+}
+
 async function sign(msg) {
   if (!msg) throw new Error(`Missing msg to sign`);
   const signResponse = await client.relaySigner.sign({ message: msg });
@@ -91,6 +96,8 @@ async function main() {
         return await send();
       case 'replace':
         return await replace(process.argv[3]);
+      case 'cancel':
+        return await cancel(process.argv[3]);
       case 'sign':
         return await sign(process.argv[3]);
       case 'balance':
