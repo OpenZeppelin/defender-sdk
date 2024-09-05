@@ -8,7 +8,7 @@ overrides:
   '@ethersproject/abstract-provider': ^5.6.1
   ws: ^8.17.0
   braces: ^3.0.3
-  es5-ext: ^0.10.63
+  es5-ext: ^0.10.64
   semver: ^7.6.2
   tough-cookie: ^4.0.0
   tar: ^6.2.1
@@ -450,8 +450,8 @@ importers:
         specifier: ^1.4.8
         version: 1.4.8
       aws-sdk:
-        specifier: ^2.1589.0
-        version: 2.1589.0
+        specifier: ^2.1662.0
+        version: 2.1662.0
 
   packages/defender-sdk:
     dependencies:
@@ -1992,8 +1992,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  aws-sdk@2.1589.0:
-    resolution: {integrity: sha512-Tt3UHH6hoUEAjbCscqvfEAoq9VSTN5iSQO9XSisiiH/QJo8sf+iLCYmfJHM4tVkd92bQH61/xxj9t2Mazwc/WQ==}
+  aws-sdk@2.1662.0:
+    resolution: {integrity: sha512-ISKN3yxjQtjIMOBU2b3zO8Qrxd9UqdYlJlxSQUn5/4jfqCSad/s1mF66Cwzl5UByJtvFn0xoJORIZ7K6BTLuuw==}
     engines: {node: '>= 10.0.0'}
 
   aws-sign2@0.7.0:
@@ -6845,7 +6845,7 @@ snapshots:
 
   available-typed-arrays@1.0.5: {}
 
-  aws-sdk@2.1589.0:
+  aws-sdk@2.1662.0:
     dependencies:
       buffer: 4.9.2
       events: 1.1.1
