@@ -29,7 +29,8 @@
     "@openzeppelin/defender-sdk-notification-channel-client": "^1.14.2",
     "@openzeppelin/defender-sdk-relay-signer-client": "^1.14.2",
     "@openzeppelin/defender-sdk-network-client": "^1.14.2",
-    "@openzeppelin/defender-sdk-account-client": "^1.14.2"
+    "@openzeppelin/defender-sdk-account-client": "^1.14.2",
+    "@openzeppelin/defender-sdk-key-value-store-client": "^1.14.2"
   },
   "publishConfig": {
     "access": "public"
