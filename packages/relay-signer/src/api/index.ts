@@ -5,6 +5,7 @@ import {
   PaginatedTransactionResponse,
   RelayerTransaction,
   RelayerTransactionPayload,
+  TransactionDeleteResponse,
 } from '../models/transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
 import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
@@ -66,6 +67,12 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     });
   }
 
+  public async cancelTransactionById(id: string): Promise<TransactionDeleteResponse> {
+    return this.apiCall(async (api) => {
+      return (await api.delete(`/relayers/self/txs/${id}`)) as TransactionDeleteResponse;
+    });
+  }
+
   public async signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload> {
     return this.apiCall(async (api) => {
       return (await api.post('/relayers/self/sign-typed-data', payload)) as SignedMessagePayload;
@@ -86,7 +93,9 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
 
   public async listTransactions(criteria?: ListTransactionsRequest): Promise<PaginatedTransactionResponse> {
     return this.apiCall(async (api) => {
-      return (await api.get(`txs`, { params: { ...criteria, usePagination: true } })) as PaginatedTransactionResponse;
+      return (await api.get(`/relayers/self/txs`, {
+        params: { ...criteria, usePagination: true },
+      })) as PaginatedTransactionResponse;
     });
   }
 
