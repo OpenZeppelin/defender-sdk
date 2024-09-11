@@ -1,6 +1,6 @@
 # @openzeppelin/defender-sdk-base-client
 
-## 1.14.2
+## 1.14.3
 
 ### Patch Changes
 
