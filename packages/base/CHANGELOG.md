@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.14.4
+
+### Patch Changes
+
+- 3a1d0f3: feat: Add missing dependencies that caused relay signer to fail.
+  feat: Add support to isProduction flag for private networks.
+  chore: Update transaction proposal route.
+  feat: add support to deployment metadata.
+  feat: add support for cancelling intents.
+
 ## 1.14.3
 
 ### Patch Changes

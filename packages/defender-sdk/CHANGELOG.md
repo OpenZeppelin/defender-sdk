@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.14.4
+
+### Patch Changes
+
+- 3a1d0f3: feat: Add missing dependencies that caused relay signer to fail.
+  feat: Add support to isProduction flag for private networks.
+  chore: Update transaction proposal route.
+  feat: add support to deployment metadata.
+  feat: add support for cancelling intents.
+- Updated dependencies [3a1d0f3]
+  - @openzeppelin/defender-sdk-notification-channel-client@1.14.4
+  - @openzeppelin/defender-sdk-relay-signer-client@1.14.4
+  - @openzeppelin/defender-sdk-proposal-client@1.14.4
+  - @openzeppelin/defender-sdk-account-client@1.14.4
+  - @openzeppelin/defender-sdk-key-value-store-client@1.14.4
+  - @openzeppelin/defender-sdk-monitor-client@1.14.4
+  - @openzeppelin/defender-sdk-network-client@1.14.4
+  - @openzeppelin/defender-sdk-action-client@1.14.4
+  - @openzeppelin/defender-sdk-deploy-client@1.14.4
+  - @openzeppelin/defender-sdk-relay-client@1.14.4
+  - @openzeppelin/defender-sdk-base-client@1.14.4
+
 ## 1.14.3
 
 ### Patch Changes
