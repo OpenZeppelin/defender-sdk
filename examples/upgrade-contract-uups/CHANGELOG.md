@@ -1,4 +1,4 @@
-# @openzeppelin/defender-sdk-example-relayer-contract-function
+# @openzeppelin/defender-sdk-example-upgrade-contract-uups
 
 ## 1.14.4
 
@@ -11,12 +11,3 @@
   feat: add support for cancelling intents.
 - Updated dependencies [3a1d0f3]
   - @openzeppelin/defender-sdk@1.14.4
-
-## 1.14.3
-
-### Patch Changes
-
-- 19cd7a9: feat: Add relayers usage limiting
-  feat: Add an example contract call
-- Updated dependencies [19cd7a9]
-  - @openzeppelin/defender-sdk@1.14.3
