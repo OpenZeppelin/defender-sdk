@@ -13,7 +13,7 @@ async function main() {
   const client = new Defender(creds);
 
   const createParams = {
-    name: 'MyNewGroupRelayer',
+    name: 'MyNewRelayerGroup',
     network: 'sepolia',
     relayers: 2,
     minBalance: BigInt(1e17).toString(),
@@ -22,9 +22,13 @@ async function main() {
     },
   };
 
-  const relayerGroup = await client.relayGroup.createKey('c66b2ca3-5334-40fa-845a-74af36790773');
+  const relayerGroup = await client.relayGroup.create(createParams);
 
   console.log(relayerGroup);
+
+  const relayerGroupApiKey = await client.relayGroup.createKey(relayerGroup.id);
+
+  console.log(relayerGroupApiKey);
 }
 
 if (require.main === module) {
