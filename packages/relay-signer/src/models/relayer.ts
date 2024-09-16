@@ -55,6 +55,37 @@ export interface RelayerStatus {
   };
 }
 
+export interface RelayerGroupStatus {
+  relayerGroupId: string;
+  name: string;
+  numberOfPendingTransactions: number;
+  paused: boolean;
+  txsQuotaUsage: number;
+  rpcQuotaUsage: number;
+  healthStatus?: {
+    updatedAt?: string;
+    weightByRelayer?: {
+      [k: string]: number;
+    };
+  };
+  relayers: {
+    relayerId: string;
+    name: string;
+    nonce: number;
+    address: string;
+    numberOfPendingTransactions: number;
+    paused: boolean;
+    pendingTxCost?: string;
+    lastConfirmedTransaction?: {
+      hash: string;
+      status: string;
+      minedAt: string;
+      sentAt: string;
+      nonce: number;
+    };
+  }[];
+}
+
 export interface UpdateRelayerPoliciesRequest {
   gasPriceCap?: BigUInt;
   whitelistReceivers?: Address[];
@@ -109,12 +140,11 @@ export interface RelayerGroupResponse {
   };
 }
 
-
 export type EthersVersion = 'v5' | 'v6';
 
 export interface IRelayer {
   getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse>;
-  getRelayerStatus(): Promise<RelayerStatus | RelayerStatus[]>;
+  getRelayerStatus(): Promise<RelayerStatus | RelayerGroupStatus>;
   sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;

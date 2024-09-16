@@ -1,4 +1,12 @@
-import { EthersVersion, IRelayer, RelayerGetResponse, RelayerGroupResponse, RelayerParams, RelayerStatus } from './models/relayer';
+import {
+  EthersVersion,
+  IRelayer,
+  RelayerGetResponse,
+  RelayerGroupResponse,
+  RelayerGroupStatus,
+  RelayerParams,
+  RelayerStatus,
+} from './models/relayer';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from './models/rpc';
 import {
   ListTransactionsRequest,
@@ -59,7 +67,7 @@ export class Relayer implements IRelayer {
     return this.relayer.getRelayer();
   }
 
-  public getRelayerStatus(): Promise<RelayerStatus | RelayerStatus[]> {
+  public getRelayerStatus(): Promise<RelayerStatus | RelayerGroupStatus> {
     return this.relayer.getRelayerStatus();
   }
 
@@ -76,7 +84,6 @@ export class Relayer implements IRelayer {
     options: DefenderRelaySignerOptionsV5 | DefenderRelaySignerOptions,
   ): Promise<DefenderRelaySigner | DefenderRelaySignerV5> {
     if (!this.credentials) throw new Error(`Missing credentials for creating a DefenderRelaySigner instance.`);
-    
 
     if (this.isEthersV5Provider(provider, options?.ethersVersion) && this.isEthersV5ProviderOptions(options)) {
       return new DefenderRelaySignerV5(this.credentials, provider, options);
