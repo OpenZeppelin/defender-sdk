@@ -33,12 +33,6 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: fixtures/.*
-  - repo: local
-    hooks:
-      - id: sort networks
-        name: Sort networks
-        entry: pnpm sort:networks
-        language: system
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.4.0
     hooks:
@@ -46,6 +40,12 @@ repos:
         stages: [commit-msg]
         args: [--strict, build, chore, ci, docs, feat, fix, perf, refactor,
           revert, style, test, custom]
+  - repo: local
+    hooks:
+      - id: sort networks
+        name: Sort networks
+        entry: pnpm sort:networks
+        language: system
   - repo: local
     hooks:
       - id: style-fixes
