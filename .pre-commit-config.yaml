@@ -4,6 +4,14 @@ default_stages:
   - commit
   - push
 
+ci:
+  autofix_commit_msg: 'chore(pre-commit): autofix run'
+  autoupdate_commit_msg: 'chore(pre-commit): autoupdate hooks'
+
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+
 repos:
   - repo: local
     hooks:
@@ -25,6 +33,13 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: fixtures/.*
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.4.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: [--strict, build, chore, ci, docs, feat, fix, perf, refactor,
+          revert, style, test, custom]
   - repo: local
     hooks:
       - id: sort networks
