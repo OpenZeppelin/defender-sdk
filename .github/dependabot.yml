@@ -5,13 +5,16 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      # Prefix all commit messages with "chore(deps): "
+      prefix: 'chore(deps): '
 
   # Maintain dependencies for npm
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     ignore:
       - dependency-name: '*'
         update-types: [version-update:semver-major]
@@ -28,209 +31,294 @@ updates:
   - package-ecosystem: npm
     directory: /examples/create-action
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-batch-proposal
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-monitor
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-proposal
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-relayer-key
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-relayer
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/deploy-contract
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
+
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/list-networks
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/relayer-signer-actions
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/simulate-proposal
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/update-action
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/update-monitor
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/update-relayer
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/upgrade-contract
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/action
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/base
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/defender-sdk
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/deploy
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/monitor
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/network
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/notification-channel
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/proposal
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/relay-signer
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/relay
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-forked-network
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/create-private-network
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/custom-ethers-pkg
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer-v5
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/ethers-signer-v6
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/get-usage
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/list-contracts
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/list-proposals
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/relayer-load-balance
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/relayer-signer-auth-v2
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/relayer-web3-provider
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/send-4337-userop/account-kit
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/send-4337-userop/permissionless
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/update-action-env-variables
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/webhook-notification
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /packages/account
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
 
   - package-ecosystem: npm
     directory: /examples/relayer-call-contract-function
     schedule:
-      interval: weekly
+      interval: monthly
+    commit-message:
+      prefix: 'chore: '
