@@ -15,7 +15,7 @@ async function main() {
   const createParams = {
     name: 'MyNewRelayerGroup',
     network: 'sepolia',
-    relayers: 2,
+    relayers: 4,
     minBalance: BigInt(1e17).toString(),
     policies: {
       EIP1559Pricing: true,

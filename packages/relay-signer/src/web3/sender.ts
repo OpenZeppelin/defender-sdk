@@ -5,7 +5,7 @@ import { JsonRpcPayload, JsonRpcResponse } from 'web3-core-helpers';
 import { Relayer } from '../relayer';
 import { BigUInt, RelayerParams } from '../models/relayer';
 import { PrivateTransactionMode, Speed } from '../models/transactions';
-import { isRelayer } from '../ethers/utils';
+import { isRelayer, isRelayerGroup } from '../ethers/utils';
 
 type Web3Callback = (error: Error | null, result?: JsonRpcResponse) => void;
 
@@ -75,9 +75,13 @@ export class DefenderRelaySenderProvider {
 
   protected async getAddress(): Promise<string> {
     if (!this.address) {
-      const address = await this.relayer.getRelayer().then((r) => r.address);
-      this.address = address;
+      const relayer = await this.relayer.getRelayer();
+      if (isRelayerGroup(relayer)) {
+        throw new Error('Relayer Group is not supported.');
+      }
+      this.address = relayer.address;
     }
+
     return this.address;
   }
 

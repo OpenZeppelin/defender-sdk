@@ -1,4 +1,4 @@
-# @openzeppelin/defender-sdk-relay-client
+# @openzeppelin/defender-sdk-relay-group-client
 
 ## 1.13.4
 
