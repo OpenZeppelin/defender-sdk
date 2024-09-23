@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
-    "install-deps": "pnpm install --frozen-lockfile --prefer-offline"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
