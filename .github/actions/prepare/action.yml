@@ -24,3 +24,8 @@ runs:
       run: |
         pnpm install-deps
       shell: bash
+
+    - name: Install e2e dependencies
+      run: |
+        cd e2e && pnpm install
+      shell: bash
