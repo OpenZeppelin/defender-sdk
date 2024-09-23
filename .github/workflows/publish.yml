@@ -89,7 +89,7 @@ jobs:
       - name: Enable NPM PROVENANCE
         run: echo "NPM_CONFIG_PROVENANCE=true" >> $GITHUB_ENV
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Publish to NPM
         id: changesets
         uses: changesets/action@aba318e9165b45b7948c60273e0b72fce0a64eb9 # v1.4.7
         with:
@@ -113,14 +113,12 @@ jobs:
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
 
       - name: Upload attestations SLSA
-        if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
           subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
 
       - name: Upload attestations SBOM
-        if: steps.changesets.outputs.id != ''
         uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
         with:
           subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
