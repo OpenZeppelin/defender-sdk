@@ -35,9 +35,7 @@ jobs:
 
     - name: Logs env vars
       run: |
-        echo "E2E_DEFENDER_API_URL: $E2E_DEFENDER_API_URL" \
-        echo "E2E_DEFENDER_POOL_ID: $E2E_DEFENDER_POOL_ID" \
-        echo "E2E_DEFENDER_POOL_CLIENT_ID: $E2E_DEFENDER_POOL_CLIENT_ID"
+        echo $E2E_DEFENDER_API_URL & &echo $E2E_DEFENDER_POOL_ID && echo $E2E_DEFENDER_POOL_CLIENT_ID
 
     - name: Test end-to-end
       run: |
