@@ -12,13 +12,14 @@ import {
   PaginatedTransactionResponse,
   RelayerTransaction,
   RelayerTransactionPayload,
+  TransactionDeleteResponse,
 } from '../models/transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
 import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
 
-export const getRelaySignerApiUrl = () =>
-  process.env.DEFENDER_RELAY_SIGNER_API_URL || 'https://api.defender.openzeppelin.com/';
 export const getAdminApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+
+export const getRelaySignerApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
 
 export class RelaySignerClient extends BaseApiClient implements IRelayer {
   private jsonRpcRequestNextId: number;
@@ -37,31 +38,30 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   }
 
   protected getApiUrl(type?: AuthType): string {
-    if (type === 'admin') return getAdminApiUrl();
-    return getRelaySignerApiUrl();
+    return getAdminApiUrl();
   }
 
   public async getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse> {
     return this.apiCall(async (api) => {
-      return (await api.get('/relayer')) as RelayerGetResponse | RelayerGroupResponse;
+      return (await api.get('/relayers/self')) as RelayerGetResponse | RelayerGroupResponse;
     });
   }
 
   public async getRelayerStatus(): Promise<RelayerStatus | RelayerGroupStatus> {
     return this.apiCall(async (api) => {
-      return (await api.get('/relayer/status')) as RelayerStatus | RelayerGroupStatus;
+      return (await api.get('/relayers/self/status')) as RelayerStatus | RelayerGroupStatus;
     });
   }
 
   public async sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
-      return (await api.post('/txs', payload)) as RelayerTransaction;
+      return (await api.post('/relayers/self/txs', payload)) as RelayerTransaction;
     });
   }
 
   public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
-      return (await api.put(`/txs/${id}`, payload)) as RelayerTransaction;
+      return (await api.put(`/relayers/self/txs/${id}`, payload)) as RelayerTransaction;
     });
   }
 
@@ -70,45 +70,45 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     payload: RelayerTransactionPayload,
   ): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
-      return (await api.put(`/txs/${nonce}`, payload)) as RelayerTransaction;
+      return (await api.put(`/relayers/self/txs/${nonce}`, payload)) as RelayerTransaction;
+    });
+  }
+
+  public async cancelTransactionById(id: string): Promise<TransactionDeleteResponse> {
+    return this.apiCall(async (api) => {
+      return (await api.delete(`/relayers/self/txs/${id}`)) as TransactionDeleteResponse;
     });
   }
 
   public async signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload> {
     return this.apiCall(async (api) => {
-      return (await api.post('/sign-typed-data', payload)) as SignedMessagePayload;
+      return (await api.post('/relayers/self/sign-typed-data', payload)) as SignedMessagePayload;
     });
   }
 
   public async sign(payload: SignMessagePayload): Promise<SignedMessagePayload> {
     return this.apiCall(async (api) => {
-      return (await api.post('/sign', payload)) as SignedMessagePayload;
+      return (await api.post('/relayers/self/sign', payload)) as SignedMessagePayload;
     });
   }
 
   public async getTransaction(id: string): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
-      return (await api.get(`txs/${id}`)) as RelayerTransaction;
+      return (await api.get(`/relayers/self/txs/${id}`)) as RelayerTransaction;
     });
   }
 
-  public async listTransactions(
-    criteria?: ListTransactionsRequest,
-  ): Promise<RelayerTransaction[] | PaginatedTransactionResponse> {
+  public async listTransactions(criteria?: ListTransactionsRequest): Promise<PaginatedTransactionResponse> {
     return this.apiCall(async (api) => {
-      const result = (await api.get(`txs`, { params: criteria ?? {} })) as
-        | PaginatedTransactionResponse
-        | RelayerTransaction[];
-      if (criteria?.usePagination) {
-        return result as PaginatedTransactionResponse;
-      }
-      return result as RelayerTransaction[];
+      return (await api.get(`/relayers/self/txs`, {
+        params: { ...criteria, usePagination: true },
+      })) as PaginatedTransactionResponse;
     });
   }
 
   public async call({ method, params }: { method: string; params: string[] }): Promise<JsonRpcResponse> {
     return this.apiCall(async (api) => {
-      return (await api.post(`/relayer/jsonrpc`, {
+      return (await api.post(`/relayers/self/jsonrpc`, {
         method,
         params,
         jsonrpc: '2.0',

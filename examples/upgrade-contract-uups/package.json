@@ -1,0 +1,15 @@
+{
+  "name": "@openzeppelin/defender-sdk-example-upgrade-contract-uups",
+  "version": "1.14.4",
+  "private": true,
+  "main": "index.js",
+  "author": "Openzeppelin Defender <defender@openzeppelin.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@openzeppelin/defender-sdk": "1.14.4",
+    "dotenv": "^16.3.1"
+  }
+}

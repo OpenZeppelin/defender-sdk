@@ -1,0 +1,14 @@
+{
+  "name": "@openzeppelin/defender-sdk-example-key-value-store-local",
+  "version": "1.14.4",
+  "private": true,
+  "main": "index.js",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@openzeppelin/defender-sdk": "1.14.4"
+  }
+}

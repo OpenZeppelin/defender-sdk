@@ -7,13 +7,19 @@ import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notificati
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
 import { RelayGroupClient } from '@openzeppelin/defender-sdk-relay-group-client';
+import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppelin/defender-sdk-key-value-store-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
 import { AuthConfig, Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
 import https from 'https';
-import { isRelaySignerOptions } from './utils';
+import {
+  isActionKVStoreCredentials,
+  isActionRelayerCredentials,
+  isApiCredentials,
+  isRelaySignerOptions,
+} from './utils';
 
 export interface DefenderOptions {
   apiKey?: string;
@@ -25,12 +31,14 @@ export interface DefenderOptions {
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
   useCredentialsCaching?: boolean;
+  kvstoreARN?: string;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
   if (
-    !('credentials' in credentials && 'relayerARN' in credentials) &&
-    !('apiKey' in credentials && 'apiSecret' in credentials)
+    !isActionRelayerCredentials(credentials) &&
+    !isApiCredentials(credentials) &&
+    !isActionKVStoreCredentials(credentials)
   ) {
     throw new Error(`API key and secret are required`);
   }
@@ -45,6 +53,7 @@ export class Defender {
   private relayerApiSecret: string | undefined;
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
+  private actionKVStoreArn: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig?: RetryConfig;
   private authConfig?: AuthConfig;
@@ -57,10 +66,11 @@ export class Defender {
     // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
+    this.actionKVStoreArn = options.kvstoreARN;
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
     this.authConfig = {
-      useCredentialsCaching: options.useCredentialsCaching ?? false,
+      useCredentialsCaching: options.useCredentialsCaching ?? true,
       type: isRelaySignerOptions(options) ? 'relay' : 'admin',
     };
   }
@@ -175,5 +185,24 @@ export class Defender {
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
     });
+  }
+
+  get keyValueStore() {
+    return getClient(KeyValueStoreClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+      ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
+      ...(this.actionKVStoreArn ? { kvstoreARN: this.actionKVStoreArn } : undefined),
+    });
+  }
+
+  static localKVStoreClient(params: LocalKeyValueStoreCreateParams) {
+    if (!params.path) {
+      throw new Error(`Must provide a path for local key-value store`);
+    }
+    return new KeyValueStoreClient(params);
   }
 }

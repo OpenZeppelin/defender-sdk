@@ -83,10 +83,13 @@ export type ListTransactionsRequest = {
   limit?: number;
   next?: string;
   sort?: 'asc' | 'desc';
-  usePagination?: boolean;
 };
 
 export type PaginatedTransactionResponse = {
   items: RelayerTransaction[];
   next?: string;
+};
+
+export type TransactionDeleteResponse = {
+  message: string;
 };
