@@ -36,7 +36,7 @@
     "ci:version": "pnpm changeset version",
     "ci:snapshot": "pnpm changeset version --snapshot rc-snapshot",
     "sort:networks": "node hack/sortNetworks.js && prettier -u -w packages/base/src/utils/network*.ts",
-    "build": "nx run-many -t build --parallel=1 --output-style",
+    "build": "nx run-many -t build --parallel=1 --output-style=static",
     "build-test": "nx run-many -t style,build,test --projects=@openzeppelin/defender-base-client,*  --parallel=false --output-style=static",
     "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
