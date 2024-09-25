@@ -109,6 +109,10 @@ export type ContractArtifact = {
       object: string;
       linkReferences: any;
     };
+    deployedBytecode: {
+      object: string;
+      linkReferences: any;
+    };
   };
   metadata: string;
 };
