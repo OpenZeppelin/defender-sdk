@@ -4,14 +4,14 @@ import { DefenderRelaySignerV5 } from './signer-v5';
 import { defineReadOnly, getStatic } from '@ethersproject/properties';
 import { Networkish } from '@ethersproject/networks';
 import { BigNumber } from '@ethersproject/bignumber';
-import { getRelaySignerApiUrl } from '../api';
 import { Relayer } from '../relayer';
+import { getApiUrl } from '../api';
 
 export class DefenderRelayProviderV5 extends StaticJsonRpcProvider {
   private relayer: Relayer;
 
   constructor(readonly credentials: RelayerParams) {
-    super(getRelaySignerApiUrl());
+    super(getApiUrl());
     this.relayer = new Relayer(credentials);
   }
 
