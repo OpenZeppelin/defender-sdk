@@ -13,7 +13,7 @@ import { Transaction } from '@ethersproject/transactions';
 import { omit } from 'lodash';
 import { Speed } from '../models/transactions';
 import { EthersVersion, RelayerParams } from '../models/relayer';
-import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
+import { isEIP1559Tx, isLegacyTx, isRelayer, isRelayerGroup } from './utils';
 
 const logger = new Logger(`@openzeppelin/defender-sdk-relay-client`);
 
@@ -92,6 +92,9 @@ export class DefenderRelaySignerV5 extends Signer implements TypedDataSigner {
     // cache value because it does not change
     if (!this.address) {
       const r = await this.relayer.getRelayer();
+      if (isRelayerGroup(r)) {
+        throw new Error('Relayer Group is not supported.');
+      }
       this.address = r.address;
     }
     return this.address;

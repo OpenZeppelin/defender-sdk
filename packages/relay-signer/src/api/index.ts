@@ -1,5 +1,12 @@
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
-import { ApiRelayerParams, IRelayer, RelayerGetResponse, RelayerStatus } from '../models/relayer';
+import {
+  ApiRelayerParams,
+  IRelayer,
+  RelayerGetResponse,
+  RelayerGroupResponse,
+  RelayerGroupStatus,
+  RelayerStatus,
+} from '../models/relayer';
 import {
   ListTransactionsRequest,
   PaginatedTransactionResponse,
@@ -34,15 +41,15 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     return getAdminApiUrl();
   }
 
-  public async getRelayer(): Promise<RelayerGetResponse> {
+  public async getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse> {
     return this.apiCall(async (api) => {
-      return (await api.get('/relayers/self')) as RelayerGetResponse;
+      return (await api.get('/relayers/self')) as RelayerGetResponse | RelayerGroupResponse;
     });
   }
 
-  public async getRelayerStatus(): Promise<RelayerStatus> {
+  public async getRelayerStatus(): Promise<RelayerStatus | RelayerGroupStatus> {
     return this.apiCall(async (api) => {
-      return (await api.get('/relayers/self/status')) as RelayerStatus;
+      return (await api.get('/relayers/self/status')) as RelayerStatus | RelayerGroupStatus;
     });
   }
 

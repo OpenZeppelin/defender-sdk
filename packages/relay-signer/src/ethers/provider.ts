@@ -11,6 +11,7 @@ import {
   JsonRpcSigner,
   JsonRpcPayload,
 } from 'ethers';
+import { isRelayerGroup } from './utils';
 
 export type DefenderRelayProviderOptions = {
   ethersVersion: EthersVersion;
@@ -94,6 +95,9 @@ export class DefenderRelayProvider extends JsonRpcProvider {
       return new DefenderRelaySigner(this.relayer, this, address, {}) as any as JsonRpcSigner;
     }
     const relayer = await this.relayer.getRelayer();
+    if (isRelayerGroup(relayer)) {
+      throw new Error('Relayer Group is not supported.');
+    }
     return new DefenderRelaySigner(this.relayer, this, relayer.address, {}) as any as JsonRpcSigner;
   }
 }

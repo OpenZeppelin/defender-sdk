@@ -21,7 +21,7 @@ import { Relayer } from '../relayer';
 import { omit } from 'lodash';
 import { PrivateTransactionMode, Speed } from '../models/transactions';
 import { EthersVersion, RelayerParams } from '../models/relayer';
-import { isEIP1559Tx, isLegacyTx, isRelayer } from './utils';
+import { isEIP1559Tx, isLegacyTx, isRelayer, isRelayerGroup } from './utils';
 
 export type Deferrable<T> = {
   [K in keyof T]: T[K] | Promise<T[K]>;
@@ -103,6 +103,9 @@ export class DefenderRelaySigner extends JsonRpcSigner {
     // cache value because it does not change
     if (!this.address) {
       const r = await this.relayer.getRelayer();
+      if (isRelayerGroup(r)) {
+        throw new Error('Relayer Group is not supported.');
+      }
       this.address = r.address;
     }
     return this.address;
