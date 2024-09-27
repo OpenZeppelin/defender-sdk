@@ -17,9 +17,7 @@ import {
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
 import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
 
-export const getAdminApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
-
-export const getRelaySignerApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+export const getApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
 
 export class RelaySignerClient extends BaseApiClient implements IRelayer {
   private jsonRpcRequestNextId: number;
@@ -38,7 +36,7 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   }
 
   protected getApiUrl(type?: AuthType): string {
-    return getAdminApiUrl();
+    return getApiUrl();
   }
 
   public async getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse> {

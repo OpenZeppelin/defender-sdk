@@ -1,6 +1,6 @@
 import { EthersVersion, RelayerParams } from '../models/relayer';
 import { DefenderRelaySigner } from './signer';
-import { getRelaySignerApiUrl } from '../api';
+import { getApiUrl } from '../api';
 import { Relayer } from '../relayer';
 import {
   JsonRpcError,
@@ -22,7 +22,7 @@ export class DefenderRelayProvider extends JsonRpcProvider {
   private pendingNetwork: Promise<Network> | null = null;
 
   constructor(readonly credentials: RelayerParams) {
-    super(getRelaySignerApiUrl());
+    super(getApiUrl());
     this.relayer = new Relayer(credentials);
   }
 

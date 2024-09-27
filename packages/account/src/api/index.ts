@@ -13,7 +13,7 @@ export class AccountClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    return process.env.DEFENDER_API_URL ?? 'https://defender-api.openzeppelin.com/v2/';
+    return process.env.DEFENDER_API_URL ?? 'https://defender-api.openzeppelin.com/';
   }
 
   public async getUsage(params?: { date?: string | Date; quotas: string[] }): Promise<AccountUsageResponse> {

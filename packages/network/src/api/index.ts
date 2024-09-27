@@ -22,8 +22,7 @@ export class NetworkClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    // TODO: update to /monitor when available
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
   public async listSupportedNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
