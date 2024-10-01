@@ -48,6 +48,7 @@ export type PublicNetwork =
   | 'scroll'
   | 'sepolia'
   | 'sokol'
+  | 'unichain-sepolia'
   | 'xdai'
   | 'zksync-sepolia'
   | 'zksync';
@@ -100,6 +101,7 @@ export const Networks: Network[] = [
   'scroll',
   'sepolia',
   'sokol',
+  'unichain-sepolia',
   'x-dfk-avax-chain-test',
   'x-dfk-avax-chain',
   'x-security-alliance',
@@ -166,6 +168,7 @@ export const chainIds: { [key in Network]: number } = {
   'scroll-sepolia': 534351,
   'sepolia': 11155111,
   'sokol': 77,
+  'unichain-sepolia': 1301,
   'x-dfk-avax-chain': 53935,
   'x-dfk-avax-chain-test': 335,
   'x-security-alliance': 888,
