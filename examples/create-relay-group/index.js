@@ -26,7 +26,7 @@ async function main() {
 
   console.log(relayerGroup);
 
-  const relayerGroupApiKey = await client.relayGroup.createKey(relayerGroup.id);
+  const relayerGroupApiKey = await client.relayGroup.createKey(relayerGroup.relayerGroupId);
 
   console.log(relayerGroupApiKey);
 }
