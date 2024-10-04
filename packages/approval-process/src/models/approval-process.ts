@@ -52,6 +52,7 @@ export interface CreateApprovalProcessResponse {
     | 'Safe'
     | 'Gnosis Multisig'
     | 'Relayer'
+    | 'Relayer Group'
     | 'Unknown'
     | 'Timelock Controller'
     | 'ERC20'
@@ -61,5 +62,6 @@ export interface CreateApprovalProcessResponse {
   multisigSender?: string;
   fireblocks?: FireblocksProposalParams;
   relayerId?: string;
+  relayerGroupId?: string;
   stackResourceId?: string;
 }
