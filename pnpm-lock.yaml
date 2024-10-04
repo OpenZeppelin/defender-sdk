@@ -116,8 +116,8 @@ importers:
   examples/create-approval-process:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.10.0
-        version: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))
+        specifier: 1.14.4
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.4.5
@@ -1488,9 +1488,6 @@ packages:
       web3-core: ^1.10.4
       web3-core-helpers: ^1.10.0
       web3-utils: ^1.10.0
-
-  '@openzeppelin/defender-sdk@1.10.0':
-    resolution: {integrity: sha512-pHkHedLb5bAIRSrEpNvJ+lnb4bRwzVi/psU8Q+wQW/K4Er4hYc5Ei/utuz1gATr5v9aMoR1etUqZXVDZT0Obcw==}
 
   '@openzeppelin/defender-sdk@1.13.4':
     resolution: {integrity: sha512-HkJEL1xrcle/lmDgpdhp1zhjTTWxpEPHTCNfYOnSHyBc4gr/KrE6pOikFffwNzfe0FL5Rxt8vCDhOGxQJ7CtQw==}
@@ -6425,28 +6422,6 @@ snapshots:
       - debug
       - encoding
       - utf-8-validate
-
-  '@openzeppelin/defender-sdk@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))':
-    dependencies:
-      '@openzeppelin/defender-sdk-account-client': 1.14.4
-      '@openzeppelin/defender-sdk-action-client': 1.14.4
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      '@openzeppelin/defender-sdk-deploy-client': 1.14.4
-      '@openzeppelin/defender-sdk-monitor-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@openzeppelin/defender-sdk-network-client': 1.14.4
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.14.4
-      '@openzeppelin/defender-sdk-proposal-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@openzeppelin/defender-sdk-relay-client': 1.14.4
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-      - web3
-      - web3-core
-      - web3-core-helpers
-      - web3-utils
 
   '@openzeppelin/defender-sdk@1.13.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))':
     dependencies:

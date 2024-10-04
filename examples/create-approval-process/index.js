@@ -14,8 +14,10 @@ async function main() {
   }
 
   const approvalProcess = await client.approvalProcess.create({
-    name: 'My Approval Process',
+    name: 'My Approval Process 2',
     network: 'sepolia',
+    via: relayer.address,
+    viaType: 'Relayer',
     relayerId: relayer.relayerId,
   });
 
