@@ -19,12 +19,20 @@ export interface TenantNetworkCreateRequest {
   stackResourceId?: string;
 }
 
+export interface PrivateNetworkCreateRequest extends TenantNetworkCreateRequest {
+  isProduction?: boolean;
+}
+
 export interface TenantNetworkUpdateRequest {
   tenantNetworkId: string;
   apiKey?: string;
   blockExplorerUrl?: string;
   configuration?: TenantNetworkConfiguration;
   stackResourceId?: string;
+}
+
+export interface PrivateNetworkUpdateRequest extends TenantNetworkUpdateRequest {
+  isProduction?: boolean;
 }
 
 export interface TenantNetworkResponse {
@@ -42,11 +50,16 @@ export interface TenantNetworkResponse {
   createdBy: string;
 }
 
+export interface PrivateNetworkResponse extends TenantNetworkResponse {
+  isProduction?: boolean;
+}
+
 export interface TenantNetworkConfiguration {
   symbol: string;
   eips?: TenantNetworkEIPConfiguration;
   safeContracts?: SafeContracts;
   subgraphURL?: string;
+  safeTxServiceURL?: string;
 }
 export interface TenantNetworkEIPConfiguration {
   isEIP1559?: boolean;

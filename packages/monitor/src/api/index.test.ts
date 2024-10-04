@@ -68,7 +68,7 @@ describe('MonitorClient', () => {
     name: 'Test BLOCK monitor',
     addresses: ['0xdead'],
     notificationChannels: [],
-    network: 'goerli',
+    network: 'sepolia',
     confirmLevel: 1,
     paused: false,
     abi: ABI,
@@ -89,7 +89,7 @@ describe('MonitorClient', () => {
   const createFortaPayload: ExternalCreateFortaMonitorRequest = {
     type: 'FORTA',
     name: 'Test FORTA monitor',
-    network: 'goerli',
+    network: 'sepolia',
     addresses: ['0xdead'],
     notificationChannels: [],
     paused: false,
@@ -102,7 +102,7 @@ describe('MonitorClient', () => {
     name: 'Previous monitor',
     paused: false,
     blockWatcherId: 'i-am-the-watcher',
-    network: 'goerli',
+    network: 'sepolia',
     addressRules: [
       {
         abi: '[{ method: "type" }]',
@@ -146,7 +146,7 @@ describe('MonitorClient', () => {
       await monitor.list();
       await monitor.list();
 
-      expect(createAuthenticatedApi).toBeCalledTimes(1);
+      expect(createAuthenticatedApi).toHaveBeenCalledTimes(1);
     });
 
     it('throws an init exception at the correct context', async () => {
@@ -170,16 +170,16 @@ describe('MonitorClient', () => {
       });
 
       await monitor.list();
-      expect(monitor.api.get).toBeCalledWith('/monitors');
-      expect(createAuthenticatedApi).toBeCalledTimes(2); // First time and renewal
+      expect(monitor.api.get).toHaveBeenCalledWith('/monitors');
+      expect(createAuthenticatedApi).toHaveBeenCalledTimes(2); // First time and renewal
     });
   });
 
   describe('list', () => {
     it('calls API correctly', async () => {
       await monitor.list();
-      expect(monitor.api.get).toBeCalledWith('/monitors');
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.get).toHaveBeenCalledWith('/monitors');
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
@@ -222,8 +222,8 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create(createBlockPayload);
-      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
 
     it('passes correct FORTA type arguments to the API', async () => {
@@ -249,8 +249,8 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create(createFortaPayload);
-      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
     it('passes correct Private FORTA type arguments to the API', async () => {
       const { name, paused, type, addresses, fortaConditions, network } = createFortaPayload;
@@ -276,8 +276,8 @@ describe('MonitorClient', () => {
       };
 
       await monitor.create({ ...createFortaPayload, privateFortaNodeId: '0x123' });
-      expect(monitor.api.post).toBeCalledWith('/monitors', expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
@@ -285,176 +285,49 @@ describe('MonitorClient', () => {
     it('passes correct arguments to the API', async () => {
       await monitor.get('i-am-the-watcher');
       expect(monitor.api.get).toBeCalledWith('/monitors/i-am-the-watcher');
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
   describe('update', () => {
     it('passes correct BLOCK type arguments to the API', async () => {
-      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
-
-      const { name, network, paused, type, addresses, abi, txCondition, eventConditions, functionConditions } =
-        createBlockPayload;
-
-      const expectedApiRequest = {
-        paused,
-        type,
-        name,
-        network,
-        addressRules: [
-          {
-            abi,
-            addresses: addresses,
-            actionCondition: undefined,
-            conditions: [
-              {
-                eventConditions,
-                txConditions: [{ expression: txCondition, status: 'any' }],
-                functionConditions: [],
-              },
-              {
-                eventConditions: [],
-                txConditions: [{ expression: txCondition, status: 'any' }],
-                functionConditions,
-              },
-            ],
-          },
-        ],
-        alertThreshold: undefined,
-        blockWatcherId: 'i-am-the-watcher',
-        notifyConfig: {
-          actionId: undefined,
-          notifications: [],
-          timeoutMs: 0,
-        },
-      };
-
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.update(monitorId, { monitorId, ...createBlockPayload });
-      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { monitorId, ...createBlockPayload });
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
 
     it('passes correct FORTA type arguments to the API', async () => {
-      const oldMonitor: CreateMonitorResponse = {
-        type: 'FORTA',
-        monitorId: 'old-subscriber-id',
-        name: 'Previous monitor',
-        paused: false,
-        network: 'goerli',
-        fortaRule: {
-          addresses: ['0xdead'],
-          conditions: {
-            minimumScannerCount: 100,
-          },
-        },
-      };
-      jest.spyOn(monitor, 'get').mockImplementation(async () => oldMonitor);
-
-      const { name, paused, type, addresses, fortaConditions, network } = createFortaPayload;
-
-      const expectedApiRequest = {
-        paused,
-        type,
-        name,
-        network,
-        alertThreshold: undefined,
-        notifyConfig: {
-          actionId: undefined,
-          notifications: [],
-          timeoutMs: 0,
-        },
-        fortaRule: {
-          addresses: addresses,
-          agentIDs: undefined,
-          actionCondition: undefined,
-          conditions: fortaConditions,
-        },
-      };
-
       const monitorId = 'i-am-the-FORTA-watcher';
       await monitor.update(monitorId, { monitorId, ...createFortaPayload });
-      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
-    });
-
-    it('does not override with nulls or undefined when only passing one argument', async () => {
-      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
-
-      const name = 'some random new name';
-
-      if (!oldBlockMonitor?.addressRules[0]) throw new Error('oldBlockMonitor.addressRules is empty');
-
-      const expectedApiRequest = {
-        type: oldBlockMonitor.type,
-        name,
-        addressRules: [
-          {
-            abi: oldBlockMonitor.addressRules[0].abi,
-            addresses: oldBlockMonitor.addressRules[0].addresses,
-            actionCondition: undefined,
-            conditions: [],
-          },
-        ],
-        blockWatcherId: oldBlockMonitor.blockWatcherId,
-        network: oldBlockMonitor.network,
-        notifyConfig: {
-          actionId: undefined,
-          notifications: [],
-          timeoutMs: 0,
-        },
-        alertThreshold: undefined,
-        paused: oldBlockMonitor.paused,
-      };
-
-      const monitorId = 'i-am-the-BLOCK-watcher';
-      await monitor.update(monitorId, {
-        monitorId,
-        type: 'BLOCK',
-        name,
-      });
-      expect(monitor.api.put).toBeCalledWith(`/monitors/${monitorId}`, expectedApiRequest);
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { monitorId, ...createFortaPayload });
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
   describe('pause', () => {
     it('passes correct arguments to the API', async () => {
-      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
-
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.pause(monitorId);
-      expect(monitor.api.put).toBeCalledWith(
-        `/monitors/${monitorId}`,
-        expect.objectContaining({
-          paused: true,
-        }),
-      );
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { paused: true });
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
   describe('unpause', () => {
     it('passes correct arguments to the API', async () => {
-      jest.spyOn(monitor, 'get').mockImplementation(async () => oldBlockMonitor);
-
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.unpause(monitorId);
-      expect(monitor.api.put).toBeCalledWith(
-        `/monitors/${monitorId}`,
-        expect.objectContaining({
-          paused: false,
-        }),
-      );
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { paused: false });
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
   describe('delete', () => {
     it('passes correct arguments to the API', async () => {
       await monitor.delete('i-am-the-watcher');
-      expect(monitor.api.delete).toBeCalledWith('/monitors/i-am-the-watcher');
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.delete).toHaveBeenCalledWith('/monitors/i-am-the-watcher');
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
@@ -537,8 +410,8 @@ describe('MonitorClient', () => {
     it('calls API correctly', async () => {
       listBlockwatchersSpy.mockRestore();
       await monitor.listBlockwatchers();
-      expect(monitor.api.get).toBeCalledWith('/blockwatchers');
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.get).toHaveBeenCalledWith('/blockwatchers');
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
@@ -546,15 +419,15 @@ describe('MonitorClient', () => {
     it('calls API correctly', async () => {
       listBlockwatchersSpy.mockRestore();
       await monitor.listTenantBlockwatchers();
-      expect(monitor.api.get).toBeCalledWith('/blockwatchers/tenant');
-      expect(createAuthenticatedApi).toBeCalled();
+      expect(monitor.api.get).toHaveBeenCalledWith('/blockwatchers/tenant');
+      expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });
 
   describe('getBlockwatcherIdByNetwork', () => {
     it('finds blockwatchers for network when there are available', async () => {
       // Make sure the network provided is the network mocked above
-      const results = await monitor.getBlockwatcherIdByNetwork('goerli');
+      const results = await monitor.getBlockwatcherIdByNetwork('sepolia');
       if (!results[0]) throw new Error('results is empty');
       expect(results[0].blockWatcherId).toEqual('i-am-the-watcher');
     });

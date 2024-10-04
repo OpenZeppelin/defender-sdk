@@ -38,6 +38,11 @@ async function replace(id) {
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
 
+async function cancel(id) {
+  const txResponse = await client.relaySigner.cancelTransactionById(id);
+  console.log('txResponse', JSON.stringify(txResponse, null, 2));
+}
+
 async function sign(msg) {
   if (!msg) throw new Error(`Missing msg to sign`);
   const signResponse = await client.relaySigner.sign({ message: msg });
@@ -52,9 +57,8 @@ async function query(id) {
 
 async function list() {
   const transactions = await client.relaySigner.listTransactions({
-    limit: 50,
+    limit: 20,
     status: 'mined',
-    usePagination: true, // optional, defaults to false
     sort: 'desc', // optional, only available in combination with usePagination
     next: '', // optional: include when the response has this value to fetch the next set of results
   });
@@ -92,6 +96,8 @@ async function main() {
         return await send();
       case 'replace':
         return await replace(process.argv[3]);
+      case 'cancel':
+        return await cancel(process.argv[3]);
       case 'sign':
         return await sign(process.argv[3]);
       case 'balance':

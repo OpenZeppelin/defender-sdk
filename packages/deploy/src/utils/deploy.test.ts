@@ -30,6 +30,11 @@ describe('Deploy utilities', () => {
                   object: artifact.output.contracts['contracts/Box.sol'].Box.evm.bytecode.object,
                   linkReferences: artifact.output.contracts['contracts/Box.sol'].Box.evm.bytecode.linkReferences,
                 },
+                deployedBytecode: {
+                  object: artifact.output.contracts['contracts/Box.sol'].Box.evm.deployedBytecode.object,
+                  linkReferences:
+                    artifact.output.contracts['contracts/Box.sol'].Box.evm.deployedBytecode.linkReferences,
+                },
               },
               metadata: artifact.output.contracts['contracts/Box.sol'].Box.metadata,
             },

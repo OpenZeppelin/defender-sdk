@@ -50,9 +50,19 @@ export interface DeployContractRequest {
    * @default undefined
    */
   txOverrides?: TxOverrides;
+  /*
+   * A note to be included in the deployment.
+   */
+  metadata?: DeployMetadata;
 }
 export interface DeployRequestLibraries {
   [k: `${string}:${string}`]: string;
+}
+
+export interface DeployMetadata {
+  commitHash?: string;
+  tag?: string;
+  [k: string]: any;
 }
 
 export interface DeploymentResponse {
@@ -96,6 +106,10 @@ export type ContractArtifact = {
   abi: any;
   evm: {
     bytecode: {
+      object: string;
+      linkReferences: any;
+    };
+    deployedBytecode: {
       object: string;
       linkReferences: any;
     };

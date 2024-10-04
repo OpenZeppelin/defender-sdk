@@ -1,58 +1,68 @@
-import { JsonRpcSigner, Network, StaticJsonRpcProvider } from '@ethersproject/providers';
-import { RelayerParams } from '../models/relayer';
+import { EthersVersion, RelayerParams } from '../models/relayer';
 import { DefenderRelaySigner } from './signer';
-import { defineReadOnly, getStatic } from '@ethersproject/properties';
-import { Networkish } from '@ethersproject/networks';
-import { BigNumber } from '@ethersproject/bignumber';
-import { getRelaySignerApiUrl } from '../api';
+import { getApiUrl } from '../api';
 import { Relayer } from '../relayer';
+import {
+  JsonRpcError,
+  JsonRpcProvider,
+  JsonRpcResult,
+  Network,
+  getBigInt,
+  JsonRpcSigner,
+  JsonRpcPayload,
+} from 'ethers';
+import { isRelayerGroup } from './utils';
 
-export class DefenderRelayProvider extends StaticJsonRpcProvider {
+export type DefenderRelayProviderOptions = {
+  ethersVersion: EthersVersion;
+};
+
+export class DefenderRelayProvider extends JsonRpcProvider {
   private relayer: Relayer;
+  private pendingNetwork: Promise<Network> | null = null;
 
   constructor(readonly credentials: RelayerParams) {
-    super(getRelaySignerApiUrl());
+    super(getApiUrl());
     this.relayer = new Relayer(credentials);
   }
 
-  async detectNetwork(): Promise<Network> {
-    if (this.network != null) {
-      return this.network;
-    }
-
-    // Logic from JsonRpcProvider.detectNetwork
-    let chainId = null;
-    try {
-      chainId = await this.send('eth_chainId', []);
-    } catch (error) {
+  async _detectNetwork(): Promise<Network> {
+    this.pendingNetwork = (async () => {
+      let result: JsonRpcResult | JsonRpcError;
       try {
-        chainId = await this.send('net_version', []);
+        result = await this.send('eth_chainId', []);
+        this.pendingNetwork = null;
       } catch (error) {
-        // Key difference from JsonRpcProvider.detectNetwork logic
-        // This surfaces error to caller (like QuotaExceeded) instead of squashing it
+        this.pendingNetwork = null;
         throw error;
       }
+
+      this.emit('debug', { action: 'receiveRpcResult', result });
+
+      if ((result && typeof result === 'string') || typeof result === 'number') {
+        return Network.from(getBigInt(result));
+      }
+
+      if (result && 'result' in result) {
+        return Network.from(getBigInt(result.result));
+      }
+
+      throw this.getRpcError({ id: 1, jsonrpc: '2.0', method: 'eth_chainId', params: [] }, result);
+    })();
+
+    return await this.pendingNetwork;
+  }
+
+  // Logic from JsonRpcProvider.detectNetwork
+  async detectNetwork(): Promise<Network> {
+    return this._detectNetwork();
+  }
+
+  async _send(payload: JsonRpcPayload | JsonRpcPayload[]): Promise<JsonRpcResult[]> {
+    if (Array.isArray(payload)) {
+      return Promise.all(payload.map((p) => this.send(p.method, p.params as Array<any>)));
     }
-
-    if (chainId === null) {
-      throw new Error('could not detect chainId');
-    }
-
-    // Logic from JsonRpcProvider.detectNetwork
-    const getNetwork = getStatic<(network: Networkish) => Network>(this.constructor, 'getNetwork');
-    const network = getNetwork(BigNumber.from(chainId).toNumber());
-
-    if (!network) {
-      throw new Error('could not detect network');
-    }
-
-    // Logic from StaticJsonRpcProvider.detectNetwork
-    if (this._network == null) {
-      defineReadOnly(this, '_network', network);
-      this.emit('network', network, null);
-    }
-
-    return network;
+    return [await this.send(payload.method, payload.params as Array<any>)];
   }
 
   async send(method: string, params: Array<any>): Promise<any> {
@@ -74,7 +84,20 @@ export class DefenderRelayProvider extends StaticJsonRpcProvider {
     }
   }
 
-  getSigner(): JsonRpcSigner {
-    return new DefenderRelaySigner(this.relayer, this, {}) as any as JsonRpcSigner;
+  // Logic from JsonRpcProvider.getSigner
+  async getSigner(address?: number | string): Promise<JsonRpcSigner> {
+    if (typeof address === 'number') {
+      throw new Error(
+        'Invalid address: cannot provide an index number as address, only one relayer address is supported.',
+      );
+    }
+    if (address) {
+      return new DefenderRelaySigner(this.relayer, this, address, {}) as any as JsonRpcSigner;
+    }
+    const relayer = await this.relayer.getRelayer();
+    if (isRelayerGroup(relayer)) {
+      throw new Error('Relayer Group is not supported.');
+    }
+    return new DefenderRelaySigner(this.relayer, this, relayer.address, {}) as any as JsonRpcSigner;
   }
 }

@@ -1,4 +1,3 @@
-import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import https from 'https';
 
@@ -8,13 +7,27 @@ export function rejectWithDefenderApiError(axiosError: AxiosError): Promise<neve
   return Promise.reject(new DefenderApiResponseError(axiosError));
 }
 
-export function createApi(key: string, token: string, apiUrl: string, httpsAgent?: https.Agent): AxiosInstance {
+export function createApi(
+  apiUrl: string,
+  key?: string,
+  token?: string,
+  httpsAgent?: https.Agent,
+  headers?: Record<string, string>,
+): AxiosInstance {
+  const authHeaders =
+    key && token
+      ? {
+          'X-Api-Key': key,
+          'Authorization': `Bearer ${token}`,
+        }
+      : {};
+
   const instance = axios.create({
     baseURL: apiUrl,
     headers: {
-      'X-Api-Key': key,
-      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
+      ...authHeaders,
+      ...headers,
     },
     httpsAgent,
   });
@@ -25,11 +38,18 @@ export function createApi(key: string, token: string, apiUrl: string, httpsAgent
 
 export function createAuthenticatedApi(
   username: string,
-  session: CognitoUserSession,
+  accessToken: string,
   apiUrl: string,
   httpsAgent?: https.Agent,
+  headers?: Record<string, string>,
 ): AxiosInstance {
-  const accessToken = session.getAccessToken().getJwtToken();
+  return createApi(apiUrl, username, accessToken, httpsAgent, headers);
+}
 
-  return createApi(username, accessToken, apiUrl, httpsAgent);
+export function createUnauthorizedApi(
+  apiUrl: string,
+  httpsAgent?: https.Agent,
+  headers?: Record<string, string>,
+): AxiosInstance {
+  return createApi(apiUrl, undefined, undefined, httpsAgent, headers);
 }

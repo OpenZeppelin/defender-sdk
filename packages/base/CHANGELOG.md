@@ -1,5 +1,83 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.14.4
+
+### Patch Changes
+
+- 3a1d0f3: feat: Add missing dependencies that caused relay signer to fail.
+  feat: Add support to isProduction flag for private networks.
+  chore: Update transaction proposal route.
+  feat: add support to deployment metadata.
+  feat: add support for cancelling intents.
+
+## 1.14.3
+
+### Patch Changes
+
+- 19cd7a9: feat: Add relayers usage limiting
+  feat: Add an example contract call
+
+## 1.14.1
+
+### Patch Changes
+
+- 845d942: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+
+## 1.14.0
+
+### Minor Changes
+
+- 164af52: chore: fix vulnerabilities
+  chore: Add utility for verifying webhooks signatures
+  chore: Optimise api access by default
+
+## 1.13.4
+
+### Patch Changes
+
+- 985443f: feat: add backwards compatibility to ethersv5
+
+## 1.13.3
+
+### Patch Changes
+
+- 2d1655d: feat: Add stackId in update relayer request
+  feat: Add Auth v2 support with `useCredentialsCaching` to cache access token
+
+## 1.13.3
+
+### Patch Changes
+
+- e55d50a: Patch: Fix aws-sdk v3 action error payload
+
+## 1.13.0
+
+### Minor Changes
+
+- ff4a967: - feat: add exponential backoff logic for retry
+  - fix: add conditional imports for v2 and v3 for actions
+  - chore: add loadbalance example for rate limit number of transactions
+
+## 1.12.0
+
+### Minor Changes
+
+- 6b45bce: - feat: Support Holesky & Amoy networks.
+  - chore: Add retries to 520 errors.
+  - feat: Allow optional httpsAgent options.
+  - fix: Avoid relaySigner ENS resolution by default.
+  - chore: Upgrade dependencies.
+
+## 1.11.0
+
+### Minor Changes
+
+- 49c1994: refactor: Deprecate optimism-goerli network
+  chore: Enable zkEVM networks
+  chore: Upgrade npm packages
+
 ## 1.10.0
 
 ### Minor Changes
