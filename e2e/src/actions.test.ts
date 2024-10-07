@@ -5,6 +5,11 @@ import { Defender } from '@openzeppelin/defender-sdk';
 jest.setTimeout(15 * 1000);
 
 describe('actions', () => {
+  console.log(process.env.API_KEY);
+  console.log(process.env.DEFENDER_API_URL);
+  console.log(process.env.DEFENDER_POOL_ID);
+  console.log(process.env.DEFENDER_POOL_CLIENT_ID);
+
   const actionClient = new Defender({
     apiKey: process.env.API_KEY,
     apiSecret: process.env.API_SECRET,
