@@ -1,6 +1,6 @@
 {
   "name": "example-create-relayer",
-  "version": "1.14.4",
+  "version": "1.15.0",
   "private": true,
   "main": "index.js",
   "author": "Dan McKeon <dan@openzeppelin.com>",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "1.14.4",
+    "@openzeppelin/defender-sdk": "1.15.0",
     "dotenv": "^16.3.1"
   }
 }
