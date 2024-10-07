@@ -2,7 +2,7 @@ name: Test end-to-end
 
 on:
   push:
-    branches: [ "main", "test-sdk" ]
+    branches: [ "main" ]
 
 concurrency:
   group: ${{ github.workflow }}
