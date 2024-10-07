@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [ "main", "test-sdk" ]
+    branches: [ "main" ]
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled]
 
