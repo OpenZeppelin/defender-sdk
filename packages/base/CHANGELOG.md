@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.15.0
+
+### Minor Changes
+
+- 302ea41: feat: Relayer groups support.
+  fix(deploy): Include deployed bytecode to artifact.
+  fix: Remove /v2 from basepath in most packages.
+
 ## 1.14.4
 
 ### Patch Changes
