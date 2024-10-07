@@ -2,13 +2,14 @@
   "name": "e2e",
   "version": "1.1.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.12",
