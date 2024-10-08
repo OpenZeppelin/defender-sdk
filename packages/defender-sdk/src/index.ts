@@ -8,6 +8,7 @@ import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
 import { RelayGroupClient } from '@openzeppelin/defender-sdk-relay-group-client';
 import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppelin/defender-sdk-key-value-store-client';
+import { AddressBookClient } from '@openzeppelin/defender-sdk-address-book-client';
 
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
@@ -184,6 +185,16 @@ export class Defender {
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
+    });
+  }
+
+  get addressBook() {
+    return getClient(AddressBookClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
