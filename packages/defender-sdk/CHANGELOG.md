@@ -1,5 +1,24 @@
 # @openzeppelin/defender-sdk
 
+## 1.15.1
+
+### Patch Changes
+
+- 9d82378: This is a temporary test
+- Updated dependencies [9d82378]
+  - @openzeppelin/defender-sdk-account-client@1.15.1
+  - @openzeppelin/defender-sdk-action-client@1.15.1
+  - @openzeppelin/defender-sdk-base-client@1.15.1
+  - @openzeppelin/defender-sdk-deploy-client@1.15.1
+  - @openzeppelin/defender-sdk-key-value-store-client@1.15.1
+  - @openzeppelin/defender-sdk-monitor-client@1.15.1
+  - @openzeppelin/defender-sdk-network-client@1.15.1
+  - @openzeppelin/defender-sdk-notification-channel-client@1.15.1
+  - @openzeppelin/defender-sdk-proposal-client@1.15.1
+  - @openzeppelin/defender-sdk-relay-client@1.15.1
+  - @openzeppelin/defender-sdk-relay-group-client@1.15.1
+  - @openzeppelin/defender-sdk-relay-signer-client@1.15.1
+
 ## 1.15.0
 
 ### Minor Changes
