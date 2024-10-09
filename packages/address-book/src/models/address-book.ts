@@ -1,11 +1,3 @@
-export type AddressBookResponse = {
-  addressBookId: string;
-  address: string;
-  network: string;
-  type: string;
-  alias: string;
-};
-
 export type AddressType =
   | 'EOA'
   | 'Contract'
@@ -19,6 +11,14 @@ export type AddressType =
   | 'ERC20'
   | 'Governor'
   | 'Fireblocks';
+
+export type AddressBookResponse = {
+  addressBookId: string;
+  address: string;
+  network: string;
+  type: AddressType;
+  alias: string;
+};
 
 export type CreateAddressBookRequest = {
   address: string;
