@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-relay-signer-client
 
+## 1.15.1
+
+### Patch Changes
+
+- 9d82378: This is a temporary test
+- Updated dependencies [9d82378]
+  - @openzeppelin/defender-sdk-base-client@1.15.1
+
 ## 1.15.0
 
 ### Minor Changes
