@@ -17,6 +17,7 @@ export interface ApprovalProcessResponse {
     | 'Gnosis Multisig'
     | 'Relayer'
     | 'Unknown'
+    | 'Relayer Group'
     | 'Timelock Controller'
     | 'ERC20'
     | 'Governor'
