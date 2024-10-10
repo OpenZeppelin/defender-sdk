@@ -107,7 +107,7 @@ importers:
   examples/create-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -125,7 +125,7 @@ importers:
   examples/create-batch-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -134,7 +134,7 @@ importers:
   examples/create-forked-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -143,7 +143,7 @@ importers:
   examples/create-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -152,7 +152,7 @@ importers:
   examples/create-private-network:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -161,7 +161,7 @@ importers:
   examples/create-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -170,8 +170,8 @@ importers:
   examples/create-relay-group:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.13.4
-        version: 1.13.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))
+        specifier: 1.15.0
+        version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -179,7 +179,7 @@ importers:
   examples/create-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -188,7 +188,7 @@ importers:
   examples/create-relayer-key:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -197,10 +197,10 @@ importers:
   examples/custom-ethers-pkg:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       '@openzeppelin/defender-sdk-action-client':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/action
       dotenv:
         specifier: ^16.4.5
@@ -240,7 +240,7 @@ importers:
   examples/deploy-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -252,7 +252,7 @@ importers:
   examples/ethers-signer-v5:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -264,7 +264,7 @@ importers:
   examples/ethers-signer-v6:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -276,7 +276,7 @@ importers:
   examples/get-usage:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -285,13 +285,13 @@ importers:
   examples/key-value-store-local:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
 
   examples/list-contracts:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -300,7 +300,7 @@ importers:
   examples/list-networks:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -309,7 +309,7 @@ importers:
   examples/list-proposals:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -318,7 +318,7 @@ importers:
   examples/relayer-call-contract-function:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -330,7 +330,7 @@ importers:
   examples/relayer-load-balance:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -339,7 +339,7 @@ importers:
   examples/relayer-signer-actions:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -348,7 +348,7 @@ importers:
   examples/relayer-signer-auth-v2:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -357,7 +357,7 @@ importers:
   examples/relayer-web3-provider:
     dependencies:
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/relay-signer
       dotenv:
         specifier: ^16.3.1
@@ -369,7 +369,7 @@ importers:
   examples/simulate-proposal:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -381,7 +381,7 @@ importers:
   examples/update-action:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -390,7 +390,7 @@ importers:
   examples/update-action-env-variables:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -399,7 +399,7 @@ importers:
   examples/update-monitor:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -408,7 +408,7 @@ importers:
   examples/update-relayer:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -417,7 +417,7 @@ importers:
   examples/upgrade-contract:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -426,7 +426,7 @@ importers:
   examples/upgrade-contract-uups:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -435,7 +435,7 @@ importers:
   examples/webhook-notification:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -444,7 +444,7 @@ importers:
   packages/account:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -456,7 +456,7 @@ importers:
   packages/action:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -508,49 +508,49 @@ importers:
   packages/defender-sdk:
     dependencies:
       '@openzeppelin/defender-sdk-account-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../account
       '@openzeppelin/defender-sdk-action-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../action
       '@openzeppelin/defender-sdk-approval-process-client':
         specifier: ^1.14.4
         version: link:../approval-process
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       '@openzeppelin/defender-sdk-deploy-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../deploy
       '@openzeppelin/defender-sdk-key-value-store-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../kvstore
       '@openzeppelin/defender-sdk-monitor-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../monitor
       '@openzeppelin/defender-sdk-network-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../network
       '@openzeppelin/defender-sdk-notification-channel-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../notification-channel
       '@openzeppelin/defender-sdk-proposal-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../proposal
       '@openzeppelin/defender-sdk-relay-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../relay
       '@openzeppelin/defender-sdk-relay-group-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../relay-group
       '@openzeppelin/defender-sdk-relay-signer-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../relay-signer
 
   packages/deploy:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -562,7 +562,7 @@ importers:
   packages/kvstore:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -581,7 +581,7 @@ importers:
   packages/monitor:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -596,7 +596,7 @@ importers:
   packages/network:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -608,7 +608,7 @@ importers:
   packages/notification-channel:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -620,7 +620,7 @@ importers:
   packages/proposal:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -635,7 +635,7 @@ importers:
   packages/relay:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -647,7 +647,7 @@ importers:
   packages/relay-group:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.7.2
@@ -680,7 +680,7 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       amazon-cognito-identity-js:
         specifier: ^6.3.6
@@ -1453,45 +1453,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@openzeppelin/defender-sdk-account-client@1.14.4':
-    resolution: {integrity: sha512-SxV4oTofO/xf1IcNJ5Dcc6XdXrxmu2jNPIeOx6GhdwVmO2LDVgi/9pAwXNlW1ihZ4wkJf/BSz3JsRJCgrwkadQ==}
-
-  '@openzeppelin/defender-sdk-action-client@1.14.4':
-    resolution: {integrity: sha512-YoRW3ZST1YCGkBIPtzJNPR0ajK9H0cxhT+evbRX9hgiUNJTgTDJeKGX+qOKOMjKOPXikiYUc2TpmKwP1I2tP5A==}
-    hasBin: true
-
-  '@openzeppelin/defender-sdk-base-client@1.14.4':
-    resolution: {integrity: sha512-tOePVQLKpqfGQ1GMzHvSBNd2psPYd86LDNpvdl5gjD0Y2kW/zNh5qBXy29RraGtk/qc8zs9hzS5pAOh0vhGkGQ==}
-
-  '@openzeppelin/defender-sdk-deploy-client@1.14.4':
-    resolution: {integrity: sha512-+diSoz1zid37LMsY2RDxI+uAsYx9Eryg8Vz+yfvuyd56fXrzjQEln7BBtYQw+2zp9yvyAByOL5XSQdrQga9OBQ==}
-
-  '@openzeppelin/defender-sdk-monitor-client@1.14.4':
-    resolution: {integrity: sha512-PSesKNicY37LiHD2EVsyZXQrHRZsPYaVhUuMdqfNoJZexPZfnhv7c2A481tt+hTwAccJguQF69NLqylpdgtpFQ==}
-
-  '@openzeppelin/defender-sdk-network-client@1.14.4':
-    resolution: {integrity: sha512-OS0H5b0vgYacJcwkvUFJUaRuyUaXhIRl916W5xLvGia5H6i/qn3dP8MZ7oLcPwKc8jB+ucRytO4H/AHsea0aVA==}
-
-  '@openzeppelin/defender-sdk-notification-channel-client@1.14.4':
-    resolution: {integrity: sha512-xCMUe4pseRA+tQMrd6PDoZ4aToDi0LPrVAlBXFDFxCZ6/TzcsVA/PgfM4Hy6R+9vF+S5gMFGuJkCpDtlcYfo5A==}
-
-  '@openzeppelin/defender-sdk-proposal-client@1.14.4':
-    resolution: {integrity: sha512-xVI5A6wJb/XfqVAEkSsINrgGkNznw0eZL7CnzX1OUnZ4irrlaD4HpG/CkFgVWLx8tRIMFlUtb3as3KMc/sO8eg==}
-
-  '@openzeppelin/defender-sdk-relay-client@1.14.4':
-    resolution: {integrity: sha512-L+vPUeeg36muOy1Oh8wqNEJ8qXXQrFytYZerPS9N/Vf7TQBZoKUkuVq69dw7+XYq/ouqbppvAvUtV9SnyDkYpQ==}
-
-  '@openzeppelin/defender-sdk-relay-signer-client@1.14.4':
-    resolution: {integrity: sha512-zjVhor/LEHYG6Gf+GEFTrwsuGZjVbzqTqQew4X622FY38P13PpcEIdXDgbokqdlX8zpECcggD2kmTTDgVWRqjA==}
-    peerDependencies:
-      web3: ^1.10.0
-      web3-core: ^1.10.4
-      web3-core-helpers: ^1.10.0
-      web3-utils: ^1.10.0
-
-  '@openzeppelin/defender-sdk@1.13.4':
-    resolution: {integrity: sha512-HkJEL1xrcle/lmDgpdhp1zhjTTWxpEPHTCNfYOnSHyBc4gr/KrE6pOikFffwNzfe0FL5Rxt8vCDhOGxQJ7CtQw==}
-
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
@@ -1926,9 +1887,6 @@ packages:
   '@types/stack-utils@2.0.1':
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
 
-  '@types/ws@8.5.3':
-    resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
-
   '@types/yargs-parser@21.0.0':
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
 
@@ -2006,15 +1964,6 @@ packages:
   '@zkochan/js-yaml@0.0.7':
     resolution: {integrity: sha512-nrUSn7hzt7J6JWgWGz78ZYI8wj+gdIJdk0Ynjpp8l+trkn58Uqsf6RYrYkEK+3X18EX+TNdtJI0WxAtc+L84SQ==}
     hasBin: true
-
-  abitype@0.7.1:
-    resolution: {integrity: sha512-VBkRHTDZf9Myaek/dO3yMmOzB/y2s3Zo6nVU7yaw1G+TvCHAjwaJzNGN9yo4K5D8bU/VZXKP1EJpRhFr862PlQ==}
-    peerDependencies:
-      typescript: '>=4.9.4'
-      zod: ^3 >=3.19.1
-    peerDependenciesMeta:
-      zod:
-        optional: true
 
   abortcontroller-polyfill@1.7.5:
     resolution: {integrity: sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ==}
@@ -2766,9 +2715,6 @@ packages:
   eventemitter3@4.0.4:
     resolution: {integrity: sha512-rlaVLnVxtxvoyLsQQFBx53YmXHDxRIzzTLbdfxqi4yocpSjAxXwkU0cScM5JgSKMqEhrZpnvQ2D9gjylR0AimQ==}
 
-  eventemitter3@5.0.1:
-    resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
-
   events@1.1.1:
     resolution: {integrity: sha512-kEcvvCBByWXGnZy6JUlgAp2gBIUjfCAV6P6TgT1/aaQKcmuAEC4OZTV1I4EWQLz2gxZw76atuVyvHhTxvi0Flw==}
     engines: {node: '>=0.4.x'}
@@ -3261,11 +3207,6 @@ packages:
 
   isomorphic-unfetch@3.1.0:
     resolution: {integrity: sha512-geDJjpoZ8N0kWexiwkX8F9NkTsXhetLPVbZFQ+JTW239QNOwvB0gniuR1Wc6f0AMTn7/mFGyXvHTifrCp/GH8Q==}
-
-  isomorphic-ws@5.0.0:
-    resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
-    peerDependencies:
-      ws: ^8.17.0
 
   isstream@0.1.2:
     resolution: {integrity: sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==}
@@ -4638,45 +4579,21 @@ packages:
     resolution: {integrity: sha512-B6elffYm81MYZDTrat7aEhnhdtVE3lDBUZft16Z8awYMZYJDbnykEbJVS+l3mnA7AQTnSDr/1MjWofGDLBJPww==}
     engines: {node: '>=8.0.0'}
 
-  web3-core@4.3.2:
-    resolution: {integrity: sha512-uIMVd/j4BgOnwfpY8ZT+QKubOyM4xohEhFZXz9xB8wimXWMMlYVlIK/TbfHqFolS9uOerdSGhsMbcK9lETae8g==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
-  web3-errors@1.1.4:
-    resolution: {integrity: sha512-WahtszSqILez+83AxGecVroyZsMuuRT+KmQp4Si5P4Rnqbczno1k748PCrZTS1J4UCPmXMG2/Vt+0Bz2zwXkwQ==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-eth-abi@1.10.0:
     resolution: {integrity: sha512-cwS+qRBWpJ43aI9L3JS88QYPfFcSJJ3XapxOQ4j40v6mk7ATpA8CVK1vGTzpihNlOfMVRBkR95oAj7oL6aiDOg==}
     engines: {node: '>=8.0.0'}
-
-  web3-eth-abi@4.2.0:
-    resolution: {integrity: sha512-x7dUCmk6th+5N63s5kUusoNtsDJKUUQgl9+jECvGTBOTiyHe/V6aOY0120FUjaAGaapOnR7BImQdhqHv6yT2YQ==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-eth-accounts@1.10.0:
     resolution: {integrity: sha512-wiq39Uc3mOI8rw24wE2n15hboLE0E9BsQLdlmsL4Zua9diDS6B5abXG0XhFcoNsXIGMWXVZz4TOq3u4EdpXF/Q==}
     engines: {node: '>=8.0.0'}
 
-  web3-eth-accounts@4.1.1:
-    resolution: {integrity: sha512-9JqhRi1YhO1hQOEmmBHgEGsME/B1FHMxpA/AK3vhpvQ8QeP6KbJW+cForTLfPpUbkmPxnRunG4PNNaETNlZfrA==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-eth-contract@1.10.0:
     resolution: {integrity: sha512-MIC5FOzP/+2evDksQQ/dpcXhSqa/2hFNytdl/x61IeWxhh6vlFeSjq0YVTAyIzdjwnL7nEmZpjfI6y6/Ufhy7w==}
     engines: {node: '>=8.0.0'}
 
-  web3-eth-contract@4.3.0:
-    resolution: {integrity: sha512-4fzSklA65zUn6SthU3T3tbVJacfP8/wkJmCuvmPaf2ZTFdnhsF96G5IQtCRf0+wASb4yk0A6IBvXZfk1B4R4HA==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-eth-ens@1.10.0:
     resolution: {integrity: sha512-3hpGgzX3qjgxNAmqdrC2YUQMTfnZbs4GeLEmy8aCWziVwogbuqQZ+Gzdfrym45eOZodk+lmXyLuAdqkNlvkc1g==}
     engines: {node: '>=8.0.0'}
-
-  web3-eth-ens@4.2.0:
-    resolution: {integrity: sha512-qYj34te2UctoObt8rlEIY/t2MuTMiMiiHhO2JAHRGqSLCQ7b8DM3RpvkiiSB0N0ZyEn+CetZqJCTYb8DNKBS/g==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-eth-iban@1.10.0:
     resolution: {integrity: sha512-0l+SP3IGhInw7Q20LY3IVafYEuufo4Dn75jAHT7c2aDJsIolvf2Lc6ugHkBajlwUneGfbRQs/ccYPQ9JeMUbrg==}
@@ -4690,33 +4607,17 @@ packages:
     resolution: {integrity: sha512-0gE5iNmOkmtBmbKH2aTodeompnNE8jEyvwFJ6s/AF6jkw9ky9Op9cqfzS56AYAbrqEFuClsqB/AoRves7LDELw==}
     engines: {node: '>=8.0.0'}
 
-  web3-eth-iban@4.0.7:
-    resolution: {integrity: sha512-8weKLa9KuKRzibC87vNLdkinpUE30gn0IGY027F8doeJdcPUfsa4IlBgNC4k4HLBembBB2CTU0Kr/HAOqMeYVQ==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-eth-personal@1.10.0:
     resolution: {integrity: sha512-anseKn98w/d703eWq52uNuZi7GhQeVjTC5/svrBWEKob0WZ5kPdo+EZoFN0sp5a5ubbrk/E0xSl1/M5yORMtpg==}
     engines: {node: '>=8.0.0'}
-
-  web3-eth-personal@4.0.8:
-    resolution: {integrity: sha512-sXeyLKJ7ddQdMxz1BZkAwImjqh7OmKxhXoBNF3isDmD4QDpMIwv/t237S3q4Z0sZQamPa/pHebJRWVuvP8jZdw==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-eth@1.10.0:
     resolution: {integrity: sha512-Z5vT6slNMLPKuwRyKGbqeGYC87OAy8bOblaqRTgg94CXcn/mmqU7iPIlG4506YdcdK3x6cfEDG7B6w+jRxypKA==}
     engines: {node: '>=8.0.0'}
 
-  web3-eth@4.5.0:
-    resolution: {integrity: sha512-crisE46o/SHMVm+XHAXEaR8k76NCImq+hi0QQEJ+VaLZbDobI/Gvog1HwTukDUDRgnYSAFGqD0cTRyAwDurwpA==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-net@1.10.0:
     resolution: {integrity: sha512-NLH/N3IshYWASpxk4/18Ge6n60GEvWBVeM8inx2dmZJVmRI6SJIlUxbL8jySgiTn3MMZlhbdvrGo8fpUW7a1GA==}
     engines: {node: '>=8.0.0'}
-
-  web3-net@4.0.7:
-    resolution: {integrity: sha512-SzEaXFrBjY25iQGk5myaOfO9ZyfTwQEa4l4Ps4HDNVMibgZji3WPzpjq8zomVHMwi8bRp6VV7YS71eEsX7zLow==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-providers-http@1.10.0:
     resolution: {integrity: sha512-eNr965YB8a9mLiNrkjAWNAPXgmQWfpBfkkn7tpEFlghfww0u3I0tktMZiaToJVcL2+Xq+81cxbkpeWJ5XQDwOA==}
@@ -4726,10 +4627,6 @@ packages:
     resolution: {integrity: sha512-m2P5Idc8hdiO0l60O6DSCPw0kw64Zgi0pMjbEFRmxKIck2Py57RQMu4bxvkxJwkF06SlGaEQF8rFZBmuX7aagQ==}
     engines: {node: '>=8.0.0'}
 
-  web3-providers-http@4.1.0:
-    resolution: {integrity: sha512-6qRUGAhJfVQM41E5t+re5IHYmb5hSaLc02BE2MaRQsz2xKA6RjmHpOA5h/+ojJxEpI9NI2CrfDKOAgtJfoUJQg==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-providers-ipc@1.10.0:
     resolution: {integrity: sha512-OfXG1aWN8L1OUqppshzq8YISkWrYHaATW9H8eh0p89TlWMc1KZOL9vttBuaBEi96D/n0eYDn2trzt22bqHWfXA==}
     engines: {node: '>=8.0.0'}
@@ -4737,10 +4634,6 @@ packages:
   web3-providers-ipc@1.10.4:
     resolution: {integrity: sha512-YRF/bpQk9z3WwjT+A6FI/GmWRCASgd+gC0si7f9zbBWLXjwzYAKG73bQBaFRAHex1hl4CVcM5WUMaQXf3Opeuw==}
     engines: {node: '>=8.0.0'}
-
-  web3-providers-ipc@4.0.7:
-    resolution: {integrity: sha512-YbNqY4zUvIaK2MHr1lQFE53/8t/ejHtJchrWn9zVbFMGXlTsOAbNoIoZWROrg1v+hCBvT2c9z8xt7e/+uz5p1g==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-providers-ws@1.10.0:
     resolution: {integrity: sha512-sK0fNcglW36yD5xjnjtSGBnEtf59cbw4vZzJ+CmOWIKGIR96mP5l684g0WD0Eo+f4NQc2anWWXG74lRc9OVMCQ==}
@@ -4750,21 +4643,9 @@ packages:
     resolution: {integrity: sha512-j3FBMifyuFFmUIPVQR4pj+t5ILhAexAui0opgcpu9R5LxQrLRUZxHSnU+YO25UycSOa/NAX8A+qkqZNpcFAlxA==}
     engines: {node: '>=8.0.0'}
 
-  web3-providers-ws@4.0.7:
-    resolution: {integrity: sha512-n4Dal9/rQWjS7d6LjyEPM2R458V8blRm0eLJupDEJOOIBhGYlxw5/4FthZZ/cqB7y/sLVi7K09DdYx2MeRtU5w==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
-  web3-rpc-methods@1.2.0:
-    resolution: {integrity: sha512-CWJ/g4I4WyYvLkf21wCZAehdhU/VjX/OAPHnqF5/FPDJlogOsOnGXHqi1Z5AP+ocdt395PNubd8jyMMJoYGSBA==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3-shh@1.10.0:
     resolution: {integrity: sha512-uNUUuNsO2AjX41GJARV9zJibs11eq6HtOe6Wr0FtRUcj8SN6nHeYIzwstAvJ4fXA53gRqFMTxdntHEt9aXVjpg==}
     engines: {node: '>=8.0.0'}
-
-  web3-types@1.5.0:
-    resolution: {integrity: sha512-geWuMIeegQ8AedKAO6wO4G4j1gyQ1F/AyKLMw2vud4bsfZayyzWJgCMDZtjYMm5uo2a7i8j1W3/4QFmzlSy5cw==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-utils@1.10.0:
     resolution: {integrity: sha512-kSaCM0uMcZTNUSmn5vMEhlo02RObGNRRCkdX0V9UTAU0+lrvn0HSaudyCo6CQzuXUsnuY2ERJGCGPfeWmv19Rg==}
@@ -4778,21 +4659,9 @@ packages:
     resolution: {integrity: sha512-tsu8FiKJLk2PzhDl9fXbGUWTkkVXYhtTA+SmEFkKft+9BgwLxfCRpU96sWv7ICC8zixBNd3JURVoiR3dUXgP8A==}
     engines: {node: '>=8.0.0'}
 
-  web3-utils@4.2.2:
-    resolution: {integrity: sha512-z+4owWcnoB4EH8yWIL1FBeyqe+sXwaGxUDtVTNPTMf2oB5C+paCToZUdCV5Bi+M543zZEzlzNTabOD+OWNc7NA==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
-  web3-validator@2.0.5:
-    resolution: {integrity: sha512-2gLOSW8XqEN5pw5jVUm20EB7A8SbQiekpAtiI0JBmCIV0a2rp97v8FgWY5E3UEqnw5WFfEqvcDVW92EyynDTyQ==}
-    engines: {node: '>=14', npm: '>=6.12.0'}
-
   web3@1.10.0:
     resolution: {integrity: sha512-YfKY9wSkGcM8seO+daR89oVTcbu18NsVfvOngzqMYGUU0pPSQmE57qQDvQzUeoIOHAnXEBNzrhjQJmm8ER0rng==}
     engines: {node: '>=8.0.0'}
-
-  web3@4.7.0:
-    resolution: {integrity: sha512-3g+1e7B/IW0Nw9WP1dotrZKWD9o5IBfl27dxEnE1LxBZBax6ZkviiAwf18utIhlNBD07RgI+PPfKDXxfDBlHWA==}
-    engines: {node: '>=14.0.0', npm: '>=6.12.0'}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -4897,9 +4766,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
 snapshots:
 
@@ -6311,140 +6177,6 @@ snapshots:
   '@nx/nx-win32-x64-msvc@19.5.1':
     optional: true
 
-  '@openzeppelin/defender-sdk-account-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-action-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      dotenv: 16.4.5
-      glob: 11.0.0
-      jszip: 3.10.1
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-base-client@1.14.4':
-    dependencies:
-      amazon-cognito-identity-js: 6.3.6
-      async-retry: 1.3.3
-    transitivePeerDependencies:
-      - encoding
-
-  '@openzeppelin/defender-sdk-deploy-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-monitor-client@1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      ethers: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-
-  '@openzeppelin/defender-sdk-network-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-notification-channel-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-proposal-client@1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      ethers: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-
-  '@openzeppelin/defender-sdk-relay-client@1.14.4':
-    dependencies:
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      axios: 1.7.2
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
-  '@openzeppelin/defender-sdk-relay-signer-client@1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))':
-    dependencies:
-      '@ethersproject/bignumber': 5.7.0
-      '@ethersproject/bytes': 5.7.0
-      '@ethersproject/logger': 5.7.0
-      '@ethersproject/networks': 5.7.1
-      '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@ethersproject/strings': 5.7.0
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      amazon-cognito-identity-js: 6.3.6
-      axios: 1.7.2
-      ethers: 6.9.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      lodash: 4.17.21
-      web3: 4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-core-helpers: 1.10.4
-      web3-utils: 4.2.2
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-
-  '@openzeppelin/defender-sdk@1.13.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))':
-    dependencies:
-      '@openzeppelin/defender-sdk-account-client': 1.14.4
-      '@openzeppelin/defender-sdk-action-client': 1.14.4
-      '@openzeppelin/defender-sdk-base-client': 1.14.4
-      '@openzeppelin/defender-sdk-deploy-client': 1.14.4
-      '@openzeppelin/defender-sdk-monitor-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@openzeppelin/defender-sdk-network-client': 1.14.4
-      '@openzeppelin/defender-sdk-notification-channel-client': 1.14.4
-      '@openzeppelin/defender-sdk-proposal-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@openzeppelin/defender-sdk-relay-client': 1.14.4
-      '@openzeppelin/defender-sdk-relay-signer-client': 1.14.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)(web3-core-helpers@1.10.4)(web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(web3-utils@4.2.2)(web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4))
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - encoding
-      - utf-8-validate
-      - web3
-      - web3-core
-      - web3-core-helpers
-      - web3-utils
-
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
@@ -6975,10 +6707,6 @@ snapshots:
 
   '@types/stack-utils@2.0.1': {}
 
-  '@types/ws@8.5.3':
-    dependencies:
-      '@types/node': 20.12.13
-
   '@types/yargs-parser@21.0.0': {}
 
   '@types/yargs@17.0.24':
@@ -7081,12 +6809,6 @@ snapshots:
   '@zkochan/js-yaml@0.0.7':
     dependencies:
       argparse: 2.0.1
-
-  abitype@0.7.1(typescript@5.4.5)(zod@3.22.4):
-    dependencies:
-      typescript: 5.4.5
-    optionalDependencies:
-      zod: 3.22.4
 
   abortcontroller-polyfill@1.7.5: {}
 
@@ -7962,8 +7684,6 @@ snapshots:
 
   eventemitter3@4.0.4: {}
 
-  eventemitter3@5.0.1: {}
-
   events@1.1.1: {}
 
   evp_bytestokey@1.0.3:
@@ -8513,10 +8233,6 @@ snapshots:
       unfetch: 4.2.0
     transitivePeerDependencies:
       - encoding
-
-  isomorphic-ws@5.0.0(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)):
-    dependencies:
-      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   isstream@0.1.2: {}
 
@@ -10168,42 +9884,10 @@ snapshots:
       - encoding
       - supports-color
 
-  web3-core@4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10):
-    dependencies:
-      web3-errors: 1.1.4
-      web3-eth-accounts: 4.1.1
-      web3-eth-iban: 4.0.7
-      web3-providers-http: 4.1.0
-      web3-providers-ws: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    optionalDependencies:
-      web3-providers-ipc: 4.0.7
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - utf-8-validate
-
-  web3-errors@1.1.4:
-    dependencies:
-      web3-types: 1.5.0
-
   web3-eth-abi@1.10.0:
     dependencies:
       '@ethersproject/abi': 5.7.0
       web3-utils: 1.10.0
-
-  web3-eth-abi@4.2.0(typescript@5.4.5)(zod@3.22.4):
-    dependencies:
-      abitype: 0.7.1(typescript@5.4.5)(zod@3.22.4)
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - typescript
-      - zod
 
   web3-eth-accounts@1.10.0:
     dependencies:
@@ -10221,16 +9905,6 @@ snapshots:
       - encoding
       - supports-color
 
-  web3-eth-accounts@4.1.1:
-    dependencies:
-      '@ethereumjs/rlp': 4.0.1
-      crc-32: 1.2.2
-      ethereum-cryptography: 2.1.2
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-
   web3-eth-contract@1.10.0:
     dependencies:
       '@types/bn.js': 5.1.5
@@ -10245,22 +9919,6 @@ snapshots:
       - encoding
       - supports-color
 
-  web3-eth-contract@4.3.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4):
-    dependencies:
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-errors: 1.1.4
-      web3-eth: 4.5.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-eth-abi: 4.2.0(typescript@5.4.5)(zod@3.22.4)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-      - zod
-
   web3-eth-ens@1.10.0:
     dependencies:
       content-hash: 2.5.2
@@ -10274,24 +9932,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  web3-eth-ens@4.2.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4):
-    dependencies:
-      '@adraffy/ens-normalize': 1.10.0
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-errors: 1.1.4
-      web3-eth: 4.5.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-eth-contract: 4.3.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-net: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-      - zod
 
   web3-eth-iban@1.10.0:
     dependencies:
@@ -10308,13 +9948,6 @@ snapshots:
       bn.js: 5.2.1
       web3-utils: 1.10.4
 
-  web3-eth-iban@4.0.7:
-    dependencies:
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-
   web3-eth-personal@1.10.0:
     dependencies:
       '@types/node': 12.20.55
@@ -10326,21 +9959,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  web3-eth-personal@4.0.8(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4):
-    dependencies:
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-eth: 4.5.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-rpc-methods: 1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-      - zod
 
   web3-eth@1.10.0:
     dependencies:
@@ -10360,26 +9978,6 @@ snapshots:
       - encoding
       - supports-color
 
-  web3-eth@4.5.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4):
-    dependencies:
-      setimmediate: 1.0.5
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-errors: 1.1.4
-      web3-eth-abi: 4.2.0(typescript@5.4.5)(zod@3.22.4)
-      web3-eth-accounts: 4.1.1
-      web3-net: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-providers-ws: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-rpc-methods: 1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-      - zod
-
   web3-net@1.10.0:
     dependencies:
       web3-core: 1.10.0
@@ -10388,17 +9986,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  web3-net@4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10):
-    dependencies:
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-rpc-methods: 1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - utf-8-validate
 
   web3-providers-http@1.10.0:
     dependencies:
@@ -10418,15 +10005,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  web3-providers-http@4.1.0:
-    dependencies:
-      cross-fetch: 4.0.0
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-    transitivePeerDependencies:
-      - encoding
-
   web3-providers-ipc@1.10.0:
     dependencies:
       oboe: 2.1.5
@@ -10436,13 +10014,6 @@ snapshots:
     dependencies:
       oboe: 2.1.5
       web3-core-helpers: 1.10.4
-
-  web3-providers-ipc@4.0.7:
-    dependencies:
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-    optional: true
 
   web3-providers-ws@1.10.0:
     dependencies:
@@ -10460,28 +10031,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  web3-providers-ws@4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10):
-    dependencies:
-      '@types/ws': 8.5.3
-      isomorphic-ws: 5.0.0(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  web3-rpc-methods@1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
-    dependencies:
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - utf-8-validate
-
   web3-shh@1.10.0:
     dependencies:
       web3-core: 1.10.0
@@ -10491,8 +10040,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  web3-types@1.5.0: {}
 
   web3-utils@1.10.0:
     dependencies:
@@ -10526,22 +10073,6 @@ snapshots:
       randombytes: 2.1.0
       utf8: 3.0.0
 
-  web3-utils@4.2.2:
-    dependencies:
-      ethereum-cryptography: 2.1.2
-      eventemitter3: 5.0.1
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      web3-validator: 2.0.5
-
-  web3-validator@2.0.5:
-    dependencies:
-      ethereum-cryptography: 2.1.2
-      util: 0.12.5
-      web3-errors: 1.1.4
-      web3-types: 1.5.0
-      zod: 3.22.4
-
   web3@1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       web3-bzz: 1.10.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -10556,31 +10087,6 @@ snapshots:
       - encoding
       - supports-color
       - utf-8-validate
-
-  web3@4.7.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4):
-    dependencies:
-      web3-core: 4.3.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-errors: 1.1.4
-      web3-eth: 4.5.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-eth-abi: 4.2.0(typescript@5.4.5)(zod@3.22.4)
-      web3-eth-accounts: 4.1.1
-      web3-eth-contract: 4.3.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-eth-ens: 4.2.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-eth-iban: 4.0.7
-      web3-eth-personal: 4.0.8(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.22.4)
-      web3-net: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-providers-http: 4.1.0
-      web3-providers-ws: 4.0.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-rpc-methods: 1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-types: 1.5.0
-      web3-utils: 4.2.2
-      web3-validator: 2.0.5
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-      - zod
 
   webidl-conversions@3.0.1: {}
 
@@ -10699,5 +10205,3 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
-
-  zod@3.22.4: {}
