@@ -116,7 +116,7 @@ importers:
   examples/create-approval-process:
     dependencies:
       '@openzeppelin/defender-sdk':
-        specifier: 1.14.4
+        specifier: 1.15.0
         version: link:../../packages/defender-sdk
       dotenv:
         specifier: ^16.3.1
@@ -477,7 +477,7 @@ importers:
   packages/approval-process:
     dependencies:
       '@openzeppelin/defender-sdk-base-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../base
       axios:
         specifier: ^1.6.7
@@ -514,7 +514,7 @@ importers:
         specifier: ^1.15.0
         version: link:../action
       '@openzeppelin/defender-sdk-approval-process-client':
-        specifier: ^1.14.4
+        specifier: ^1.15.0
         version: link:../approval-process
       '@openzeppelin/defender-sdk-base-client':
         specifier: ^1.15.0
