@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   provenance:
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.10.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
     with:
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
       node-version: "20.11.1"
@@ -33,7 +33,7 @@ jobs:
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
 
       - name: Checkout Repo
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.5.4
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
           token: ${{ secrets.SAI_PAT }}
 
@@ -59,14 +59,14 @@ jobs:
           echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
 
       - name: Download tarball
-        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@934435652996c02a6317092984312602dfaf2a21 # main
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@3bcecb4ade4f265cff30488059a9dca39e26b360 # main
         with:
           name: ${{ needs.provenance.outputs.package-download-name }}
           path: "${{ steps.temp-dir.outputs.path }}/${{ needs.provenance.outputs.package-name }}"
           sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
 
       - name: Download provenance
-        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@0779f7bec68e2bf54a7b0a32bf4763f25ab29702 # v1.6.0
+        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@3bcecb4ade4f265cff30488059a9dca39e26b360 # v1.6.0
         with:
           name: ${{ needs.provenance.outputs.provenance-download-name }}
           path: "${{ steps.temp-dir.outputs.path }}"
