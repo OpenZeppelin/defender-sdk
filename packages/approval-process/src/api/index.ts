@@ -21,4 +21,10 @@ export class ApprovalProcessClient extends BaseApiClient {
       return await api.post(PATH, approvalProcess);
     });
   }
+
+  public async list(): Promise<CreateApprovalProcessResponse[]> {
+    return this.apiCall(async (api) => {
+      return await api.get(PATH);
+    });
+  }
 }
