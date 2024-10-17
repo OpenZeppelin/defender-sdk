@@ -1,7 +1,8 @@
 import { BaseApiClient } from '@openzeppelin/defender-sdk-base-client';
-import { AccountUsageResponse } from '../models/account';
+import { AccountUsageResponse, ApiKeyCapability, ApiKeyCapabilityV2, toApiKeysCapabilityV2 } from '../models/account';
 
 const PATH = '/account';
+const API_KEY_PATH = '/api-keys';
 
 export class AccountClient extends BaseApiClient {
   protected getPoolId(): string {
@@ -23,5 +24,12 @@ export class AccountClient extends BaseApiClient {
     });
 
     return this.apiCall(async (api) => api.get(`${PATH}/usage?${searchParams.toString()}`));
+  }
+
+  public async listApiKeyCapabilities(): Promise<ApiKeyCapabilityV2[]> {
+    const res = await this.apiCall<ApiKeyCapability[]>(async (api) =>
+      api.get(`${API_KEY_PATH}/capabilities/${this.apiKey}`),
+    );
+    return res.map(toApiKeysCapabilityV2);
   }
 }

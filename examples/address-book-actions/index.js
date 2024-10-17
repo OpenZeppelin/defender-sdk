@@ -8,20 +8,20 @@ async function main() {
     apiSecret: process.env.API_SECRET,
   });
 
-  const addresses = await client.addressBook.list();
-  console.log('addresses:', addresses);
+  const capabilities = await client.account.listApiKeyCapabilities();
+  // console.log('addresses:', addresses);
 
-  const created = await client.addressBook.create({
-    address: '0x1A8943463a20f55B8BC7a318dB77C4AEDBC3fae6',
-    name: 'My EOA Address',
-    network: 'sepolia',
-    type: 'EOA',
-    alias: 'Deployer EOA address',
-  });
-  console.log('created address:', created);
+  // const created = await client.addressBook.create({
+  //   address: '0x1A8943463a20f55B8BC7a318dB77C4AEDBC3fae6',
+  //   name: 'My EOA Address',
+  //   network: 'sepolia',
+  //   type: 'EOA',
+  //   alias: 'Deployer EOA address',
+  // });
+  // console.log('created address:', created);
 
-  const deleteRes = await client.addressBook.delete(created.addressBookId);
-  console.log(deleteRes);
+  // const deleteRes = await client.addressBook.delete(created.addressBookId);
+  console.log(capabilities);
 }
 
 if (require.main === module) {
