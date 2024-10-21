@@ -82,7 +82,7 @@ export class DeployClient extends BaseApiClient {
     return this.apiCall(async (api) => {
       return api.put(`${DEPLOYMENTS_PATH}/${deploymentId}`, {
         deploymentId,
-        status: 'submitted',
+        status: 'completed',
         ...params,
       });
     });
