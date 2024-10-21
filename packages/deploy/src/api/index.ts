@@ -6,6 +6,7 @@ import {
   CreateBlockExplorerApiKeyRequest,
   DeployContractRequest,
   DeploymentResponse,
+  DeploymentUpdateRequest,
   RemoveBlockExplorerApiKeyResponse,
   UpdateBlockExplorerApiKeyRequest,
   UpgradeContractRequest,
@@ -67,6 +68,23 @@ export class DeployClient extends BaseApiClient {
   public async upgradeContract(params: UpgradeContractRequest): Promise<UpgradeContractResponse> {
     return this.apiCall(async (api) => {
       return api.post(`${UPGRADES_PATH}`, params);
+    });
+  }
+
+  /**
+   * @dev If the deployment was created in Defender but deployed using an external service,
+   * use this method to update its status in Defender.
+   *
+   * @param address Address of the deployed contract
+   * @param txHash Transaction hash of the deployment
+   */
+  public async updateDeployment(deploymentId: string, params: DeploymentUpdateRequest): Promise<DeploymentResponse> {
+    return this.apiCall(async (api) => {
+      return api.put(`${DEPLOYMENTS_PATH}`, {
+        deploymentId,
+        status: 'submitted',
+        ...params,
+      });
     });
   }
 
