@@ -80,7 +80,7 @@ export class DeployClient extends BaseApiClient {
    */
   public async updateDeployment(deploymentId: string, params: DeploymentUpdateRequest): Promise<DeploymentResponse> {
     return this.apiCall(async (api) => {
-      return api.put(`${DEPLOYMENTS_PATH}`, {
+      return api.put(`${DEPLOYMENTS_PATH}/${deploymentId}`, {
         deploymentId,
         status: 'submitted',
         ...params,
