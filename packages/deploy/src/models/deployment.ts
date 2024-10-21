@@ -65,6 +65,11 @@ export interface DeployMetadata {
   [k: string]: any;
 }
 
+export interface DeploymentUpdateRequest {
+  txHash?: string;
+  address?: Address;
+}
+
 export interface DeploymentResponse {
   deploymentId: string;
   createdAt: string;
