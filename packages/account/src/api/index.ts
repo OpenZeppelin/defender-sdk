@@ -28,7 +28,7 @@ export class AccountClient extends BaseApiClient {
 
   public async listApiKeyCapabilities(): Promise<ApiKeyCapabilityV2[]> {
     const res = await this.apiCall<ApiKeyCapability[]>(async (api) =>
-      api.get(`${API_KEY_PATH}/capabilities/${this.apiKey}`),
+      api.get(`${API_KEY_PATH}/${this.apiKey}/capabilities`),
     );
     return res.map(toApiKeysCapabilityV2);
   }
