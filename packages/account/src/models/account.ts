@@ -34,8 +34,15 @@ export type ApiKeyCapabilityV2 =
   | 'manage-tenant-networks'
   | 'manage-address-book';
 
-export const toApiKeysCapabilityV2 = (capability: ApiKeyCapability): ApiKeyCapabilityV2 => {
-  if (capability === 'manage-autotasks') return 'manage-actions';
-  if (capability === 'manage-subscribers') return 'manage-monitors';
-  return capability as ApiKeyCapabilityV2;
+const ApiKeyCapabilityMap: Record<ApiKeyCapability, ApiKeyCapabilityV2> = {
+  'manage-autotasks': 'manage-actions',
+  'manage-subscribers': 'manage-monitors',
+  'manage-address-book': 'manage-address-book',
+  'create-admin-proposals': 'create-admin-proposals',
+  'manage-deployments': 'manage-deployments',
+  'manage-relayers': 'manage-relayers',
+  'manage-tenant-networks': 'manage-tenant-networks',
+  'manage-forked-networks': 'manage-tenant-networks',
 };
+
+export const toApiKeysCapabilityV2 = (capability: ApiKeyCapability) => ApiKeyCapabilityMap[capability] ?? capability;
