@@ -1,20 +1,16 @@
 import { omit } from 'lodash';
-import { callbackify, promisify } from 'util';
-import { AbstractProvider } from 'web3-core';
-import { JsonRpcPayload, JsonRpcResponse } from 'web3-core-helpers';
 import { Relayer } from '../relayer';
 import { BigUInt, RelayerParams } from '../models/relayer';
 import { PrivateTransactionMode, Speed } from '../models/transactions';
 import { isRelayer, isRelayerGroup } from '../ethers/utils';
+import { EthExecutionAPI, JsonRpcRequest, JsonRpcResponseWithResult, SimpleProvider } from 'web3';
+import { AuthConfig } from '@openzeppelin/defender-sdk-base-client';
 
-type Web3Callback = (error: Error | null, result?: JsonRpcResponse) => void;
-
-// See packages/web3-core-helpers/src/formatters.js#_txInputFormatter
 type Web3TxPayload = {
   gasPrice: string | undefined;
-  maxFeePerGas: string | undefined;
-  maxPriorityFeePerGas: string | undefined;
-  gas: string | undefined;
+  maxFeePerGas: BigUInt;
+  maxPriorityFeePerGas: BigUInt;
+  gas: BigUInt;
   value: string | undefined;
   data: string | undefined;
   to: string | undefined;
@@ -30,6 +26,7 @@ export type DefenderRelaySenderOptions = Partial<{
   maxPriorityFeePerGas: BigUInt;
   speed: Speed;
   validForSeconds: number;
+  authConfig: AuthConfig;
 }>;
 
 export class DefenderRelaySenderProvider {
@@ -40,7 +37,7 @@ export class DefenderRelaySenderProvider {
   private address: string | undefined;
 
   constructor(
-    protected base: AbstractProvider,
+    protected base: SimpleProvider<EthExecutionAPI>,
     relayerCredentials: RelayerParams | Relayer,
     protected options: DefenderRelaySenderOptions = {},
   ) {
@@ -66,7 +63,7 @@ export class DefenderRelaySenderProvider {
   }
 
   public get connected(): boolean | undefined {
-    return this.base.connected;
+    return true;
   }
 
   public getTransactionId(hash: string): string | undefined {
@@ -85,37 +82,30 @@ export class DefenderRelaySenderProvider {
     return this.address;
   }
 
-  public sendAsync(payload: JsonRpcPayload, callback: Web3Callback): void {
-    return this.send(payload, callback);
-  }
-
-  public send(payload: JsonRpcPayload, callback: Web3Callback): void {
+  public async request(payload: JsonRpcRequest): Promise<JsonRpcResponseWithResult<any> | unknown> {
     const id = typeof payload.id === 'string' ? parseInt(payload.id) : payload.id ?? this.id++;
-    const handleWith = (fn: (params: any[]) => Promise<any>) =>
-      callbackify((payload: JsonRpcPayload) =>
-        fn.call(this, payload.params ?? []).then((result) => ({
-          jsonrpc: '2.0',
-          id,
-          result,
-        })),
-      )(payload, callback);
+
+    const toJsonRpcResponse = <T>(result: T): JsonRpcResponseWithResult<T> => ({
+      jsonrpc: '2.0',
+      id,
+      result,
+    });
 
     switch (payload.method) {
       case 'eth_sendTransaction':
-        return handleWith(this._sendTransaction);
+        return this._sendTransaction(payload.params ?? []).then(toJsonRpcResponse);
 
       case 'eth_accounts':
-        return handleWith(this._getAccounts);
+        return this._getAccounts(payload.params ?? []).then(toJsonRpcResponse);
 
       case 'eth_sign':
-        return handleWith(this._signMessage);
+        return this._signMessage(payload.params ?? []).then(toJsonRpcResponse);
 
       case 'eth_signTransaction':
-        return callback(new Error(`Method not supported: eth_signTransaction`));
+        throw new Error(`Method not supported: eth_signTransaction`);
     }
 
-    // Default by sending to base provider
-    return (this.base.sendAsync ?? this.base.send).call(this.base, payload, callback);
+    return this.base.request(payload);
   }
 
   protected async _getAccounts(params: any[]): Promise<string[]> {
@@ -131,17 +121,19 @@ export class DefenderRelaySenderProvider {
 
     const gasLimit =
       tx.gas ??
-      (await promisify(this.send.bind(this))({
-        method: 'eth_estimateGas',
-        params: [{ gasLimit: 1e6, ...tx }],
-        jsonrpc: '2.0',
-        id: 1,
-      }).then((response) => {
-        if (response?.error) {
-          throw new Error(`Error estimating gas for transaction: ${JSON.stringify(response.error)}`);
-        }
-        return response?.result?.toString();
-      }));
+      (await this.request
+        .bind(this)({
+          method: 'eth_estimateGas',
+          params: [{ gasLimit: 1e6, ...tx }],
+          jsonrpc: '2.0',
+          id: 1,
+        })
+        .then((response: any) => {
+          if (response?.error) {
+            throw new Error(`Error estimating gas for transaction: ${JSON.stringify(response.error)}`);
+          }
+          return response?.result?.toString();
+        }));
 
     const txWithSpeed = this.options.speed
       ? { ...omit(tx, 'gasPrice', 'maxFeePerGas', 'maxPriorityFeePerGas'), speed: this.options.speed }
