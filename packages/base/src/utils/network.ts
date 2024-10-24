@@ -20,8 +20,6 @@ export type PublicNetwork =
   | 'fantomtest'
   | 'fuji'
   | 'fuse'
-  | 'harmony-s0'
-  | 'harmony-test-s0'
   | 'hedera'
   | 'hederatest'
   | 'holesky'
@@ -73,8 +71,6 @@ export const Networks: Network[] = [
   'fantomtest',
   'fuji',
   'fuse',
-  'harmony-s0',
-  'harmony-test-s0',
   'hedera',
   'hederatest',
   'holesky',
@@ -140,8 +136,6 @@ export const chainIds: { [key in Network]: number } = {
   'fantomtest': 4002,
   'fuji': 43113,
   'fuse': 122,
-  'harmony-s0': 1666600000,
-  'harmony-test-s0': 1666700000,
   'hedera': 295,
   'hederatest': 296,
   'holesky': 17000,
