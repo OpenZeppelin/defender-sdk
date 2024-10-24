@@ -3,7 +3,16 @@ import { Relayer } from '../relayer';
 import { BigUInt, RelayerParams } from '../models/relayer';
 import { PrivateTransactionMode, Speed } from '../models/transactions';
 import { isRelayer, isRelayerGroup } from '../ethers/utils';
-import { EthExecutionAPI, JsonRpcRequest, JsonRpcResponseWithResult, SimpleProvider } from 'web3';
+import {
+  EthExecutionAPI,
+  JsonRpcPayload,
+  JsonRpcRequest,
+  JsonRpcResponse,
+  JsonRpcResponseWithResult,
+  JsonRpcResult,
+  LegacySendAsyncProvider,
+  SimpleProvider,
+} from 'web3';
 import { AuthConfig } from '@openzeppelin/defender-sdk-base-client';
 
 type Web3TxPayload = {
@@ -29,7 +38,7 @@ export type DefenderRelaySenderOptions = Partial<{
   authConfig: AuthConfig;
 }>;
 
-export class DefenderRelaySenderProvider {
+export class DefenderRelaySenderProvider implements LegacySendAsyncProvider {
   protected relayer: Relayer;
   protected id = 1;
   protected txHashToId: Map<string, string> = new Map();
@@ -155,6 +164,10 @@ export class DefenderRelaySenderProvider {
     }
 
     return this.relayer.sign({ message }).then((r) => r.sig);
+  }
+
+  sendAsync<R = JsonRpcResult, P = unknown>(payload: JsonRpcPayload<P>): Promise<JsonRpcResponse<R>> {
+    throw new Error('Method not implemented.');
   }
 
   protected _delegateToProvider(provider: any) {

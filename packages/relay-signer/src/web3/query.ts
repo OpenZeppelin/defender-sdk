@@ -1,9 +1,9 @@
-import { EthExecutionAPI, JsonRpcRequest, JsonRpcResponseWithResult, SimpleProvider } from 'web3';
+import { JsonRpcRequest, JsonRpcResponseWithResult } from 'web3';
 import { Relayer } from '../relayer';
 import { RelayerParams } from '../models/relayer';
 import { isRelayer } from '../ethers/utils';
 
-export class DefenderRelayQueryProvider implements SimpleProvider<EthExecutionAPI> {
+export class DefenderRelayQueryProvider {
   protected relayer: Relayer;
   protected id = 1;
 
