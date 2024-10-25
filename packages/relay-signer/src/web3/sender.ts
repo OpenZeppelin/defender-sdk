@@ -35,7 +35,6 @@ export type DefenderRelaySenderOptions = Partial<{
   maxPriorityFeePerGas: BigUInt;
   speed: Speed;
   validForSeconds: number;
-  authConfig: AuthConfig;
 }>;
 
 export class DefenderRelaySenderProvider implements LegacySendAsyncProvider {

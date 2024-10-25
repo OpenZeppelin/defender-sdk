@@ -11,12 +11,13 @@ export class DefenderRelayQueryProvider {
     this.relayer = isRelayer(relayerCredentials) ? relayerCredentials : new Relayer(relayerCredentials);
   }
 
+  private toJsonRpcResponse = <T>(payload: any): JsonRpcResponseWithResult<T> => ({
+    jsonrpc: '2.0',
+    id: payload.id ?? this.id++,
+    result: payload.result,
+  });
+
   public async request<T>(payload: JsonRpcRequest<string[]>): Promise<JsonRpcResponseWithResult<T>> {
-    const toJsonRpcResponse = (result: any): JsonRpcResponseWithResult<T> => ({
-      jsonrpc: '2.0',
-      id: result.id ?? this.id++,
-      result: result.result,
-    });
-    return this.relayer.call({ method: payload.method, params: payload.params ?? [] }).then(toJsonRpcResponse);
+    return this.relayer.call({ method: payload.method, params: payload.params ?? [] }).then(this.toJsonRpcResponse<T>);
   }
 }
