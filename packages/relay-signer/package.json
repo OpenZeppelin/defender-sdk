@@ -24,9 +24,7 @@
     "@ethersproject/abstract-signer": "^5.7.0",
     "@ethersproject/hash": "^5.7.0",
     "@ethersproject/transactions": "^5.7.0",
-    "jest-mock-extended": "^3.0.5",
-    "web3-core": "^1.10.4",
-    "web3-core-helpers": "^1.10.0"
+    "jest-mock-extended": "^3.0.5"
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.2",
@@ -43,10 +41,9 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "web3": "^1.10.0",
-    "web3-core": "^1.10.4",
-    "web3-core-helpers": "^1.10.0",
-    "web3-utils": "^1.10.0"
+    "web3": "^4.14.0",
+    "web3-core": "^4.7.0",
+    "web3-utils": "^4.3.2"
   },
   "publishConfig": {
     "access": "public"
