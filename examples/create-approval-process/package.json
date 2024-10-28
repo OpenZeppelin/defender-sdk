@@ -1,5 +1,5 @@
 {
-  "name": "@openzeppelin/defender-sdk-example-web3-provider",
+  "name": "@openzeppelin/defender-sdk-example-create-approval-process",
   "version": "1.15.0",
   "private": true,
   "main": "index.js",
@@ -9,8 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk-relay-signer-client": "1.15.0",
-    "dotenv": "^16.3.1",
-    "web3": "^4.14.0"
+    "@openzeppelin/defender-sdk": "1.15.0",
+    "dotenv": "^16.3.1"
   }
 }

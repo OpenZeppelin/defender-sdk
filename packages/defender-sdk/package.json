@@ -31,7 +31,9 @@
     "@openzeppelin/defender-sdk-network-client": "^1.15.0",
     "@openzeppelin/defender-sdk-account-client": "^1.15.0",
     "@openzeppelin/defender-sdk-key-value-store-client": "^1.15.0",
-    "@openzeppelin/defender-sdk-relay-group-client": "^1.15.0"
+    "@openzeppelin/defender-sdk-relay-group-client": "^1.15.0",
+    "@openzeppelin/defender-sdk-address-book-client": "^1.15.0",
+    "@openzeppelin/defender-sdk-approval-process-client": "^1.15.0"
   },
   "publishConfig": {
     "access": "public"

@@ -6,9 +6,10 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
+import { ApprovalProcessClient } from '@openzeppelin/defender-sdk-approval-process-client';
 import { RelayGroupClient } from '@openzeppelin/defender-sdk-relay-group-client';
 import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppelin/defender-sdk-key-value-store-client';
-
+import { AddressBookClient } from '@openzeppelin/defender-sdk-address-book-client';
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
@@ -105,6 +106,10 @@ export class Defender {
     });
   }
 
+  get approvalProcess() {
+    return getClient(ApprovalProcessClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
+  }
+
   get monitor() {
     return getClient(MonitorClient, {
       apiKey: this.apiKey,
@@ -184,6 +189,16 @@ export class Defender {
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
+    });
+  }
+
+  get addressBook() {
+    return getClient(AddressBookClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
