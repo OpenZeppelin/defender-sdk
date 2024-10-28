@@ -11,8 +11,8 @@ export async function handler(event: ActionEvent | DefenderOptions) {
   console.log(ethers.version);
 
   const client = new Defender(event as DefenderOptions);
-  const provider = client.relaySigner.getProvider();
-  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast' });
+  const provider = client.relaySigner.getProvider({ ethersVersion: 'v6' });
+  const signer = await client.relaySigner.getSigner(provider, { speed: 'fast', ethersVersion: 'v6' });
 
   const erc20BytesLike = ERC20Bytecode[0].data.bytecode.object;
   const factory = new ContractFactory(ERC20Abi, erc20BytesLike, signer);
