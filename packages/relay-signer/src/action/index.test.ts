@@ -88,7 +88,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000}}',
+        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"nonce":10}}',
       });
     });
 
@@ -97,7 +97,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"replace-tx","txPayload":{"to":"0x0","gasLimit":21000,"id":"123-456-abc"}}',
+        Payload: '{"action":"replace-tx","payload":{"to":"0x0","gasLimit":21000,"id":"123-456-abc"}}',
       });
     });
   });
@@ -108,7 +108,7 @@ describe('ActionRelayer', () => {
       expect(relayer.lambda.invoke).toHaveBeenCalledWith({
         FunctionName: 'arn',
         InvocationType: 'RequestResponse',
-        Payload: '{"action":"cancel-tx","id":"123-456-abc"}',
+        Payload: '{"action":"cancel-tx","payload":"123-456-abc"}',
       });
     });
   });
