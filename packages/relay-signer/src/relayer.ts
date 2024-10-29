@@ -134,6 +134,10 @@ export class Relayer implements IRelayer {
     return this.relayer.getTransaction(id);
   }
 
+  public getTransactionByNonce(nonce: number): Promise<RelayerTransaction> {
+    return this.relayer.getTransactionByNonce(nonce);
+  }
+
   public listTransactions(
     criteria?: ListTransactionsRequest,
   ): Promise<RelayerTransaction[] | PaginatedTransactionResponse> {

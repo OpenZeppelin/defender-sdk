@@ -105,6 +105,12 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     });
   }
 
+  public async getTransactionByNonce(nonce: number): Promise<RelayerTransaction> {
+    return this.apiCall(async (api) => {
+      return (await api.get(`/relayers/self/txs/${nonce}?nonce=true`)) as RelayerTransaction;
+    });
+  }
+
   public async listTransactions(criteria?: ListTransactionsRequest): Promise<PaginatedTransactionResponse> {
     return this.apiCall(async (api) => {
       return (await api.get(`/relayers/self/txs`, {

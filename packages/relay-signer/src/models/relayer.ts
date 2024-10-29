@@ -151,6 +151,7 @@ export interface IRelayer {
   replaceTransactionByNonce(nonce: number, payload: RelayerTransactionPayload): Promise<RelayerTransaction>;
   cancelTransactionById(id: string): Promise<TransactionDeleteResponse>;
   getTransaction(id: string): Promise<RelayerTransaction>;
+  getTransactionByNonce(nonce: number): Promise<RelayerTransaction>;
   listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[] | PaginatedTransactionResponse>;
   sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
   signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;

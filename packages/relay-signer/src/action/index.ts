@@ -88,6 +88,13 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     });
   }
 
+  public async getTransactionByNonce(nonce: number): Promise<RelayerTransaction> {
+    return this.execute({
+      action: 'get-tx' as const,
+      payload: String(nonce),
+    });
+  }
+
   public async listTransactions(criteria?: ListTransactionsRequest): Promise<RelayerTransaction[]> {
     return this.execute({
       action: 'list-txs' as const,
