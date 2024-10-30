@@ -1,6 +1,6 @@
-# e2e
+# @openzeppelin/defender-sdk-address-book-client
 
-## 1.1.1
+## 1.15.1
 
 ### Patch Changes
 
@@ -13,17 +13,4 @@
   fix: Type inference in relay signer
   fix: Fix payload format for relay-signer
 - Updated dependencies [c68c41a]
-  - @openzeppelin/defender-sdk@1.15.1
-
-## 1.1.0
-
-### Minor Changes
-
-- 302ea41: feat: Relayer groups support.
-  fix(deploy): Include deployed bytecode to artifact.
-  fix: Remove /v2 from basepath in most packages.
-
-### Patch Changes
-
-- Updated dependencies [302ea41]
-  - @openzeppelin/defender-sdk@1.15.0
+  - @openzeppelin/defender-sdk-base-client@1.15.1
