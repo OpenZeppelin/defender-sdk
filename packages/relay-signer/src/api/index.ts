@@ -16,6 +16,7 @@ import {
 } from '../models/transactions';
 import { JsonRpcResponse, SignMessagePayload, SignTypedDataPayload, SignedMessagePayload } from '../models/rpc';
 import { AuthType } from '@openzeppelin/defender-sdk-base-client/lib/api/auth-v2';
+import { isUndefined } from 'lodash';
 
 export const getApiUrl = () => process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
 
@@ -23,7 +24,15 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   private jsonRpcRequestNextId: number;
 
   public constructor(params: ApiRelayerParams) {
-    super(params);
+    super({
+      ...params,
+      authConfig: {
+        type: 'relay',
+        useCredentialsCaching: isUndefined(params?.authConfig?.useCredentialsCaching)
+          ? true
+          : params.authConfig.useCredentialsCaching,
+      },
+    });
     this.jsonRpcRequestNextId = 1;
   }
 
@@ -93,6 +102,12 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   public async getTransaction(id: string): Promise<RelayerTransaction> {
     return this.apiCall(async (api) => {
       return (await api.get(`/relayers/self/txs/${id}`)) as RelayerTransaction;
+    });
+  }
+
+  public async getTransactionByNonce(nonce: number): Promise<RelayerTransaction> {
+    return this.apiCall(async (api) => {
+      return (await api.get(`/relayers/self/txs/${nonce}?nonce=true`)) as RelayerTransaction;
     });
   }
 

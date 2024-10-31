@@ -55,6 +55,12 @@ async function query(id) {
   console.log('txUpdate', txUpdate);
 }
 
+async function queryByNonce(nonce) {
+  if (!nonce) throw new Error(`Missing nonce`);
+  const txUpdate = await client.relaySigner.getTransactionByNonce(nonce);
+  console.log('txUpdate', txUpdate);
+}
+
 async function list() {
   const transactions = await client.relaySigner.listTransactions({
     limit: 20,
@@ -88,6 +94,8 @@ async function main() {
     switch (action) {
       case 'query':
         return await query(process.argv[3]);
+      case 'queryByNonce':
+        return await queryByNonce(process.argv[3]);
       case 'get':
         return await get();
       case 'status':
@@ -107,7 +115,9 @@ async function main() {
       case 'jsonrpc':
         return await jsonrpc(process.argv[3], process.argv[4]);
       default:
-        console.error(`Unknown action ${process.argv[2]}, valid actions: query|get|list|send|sign|balance`);
+        console.error(
+          `Unknown action ${process.argv[2]}, valid actions: query|queryByNonce|get|list|send|sign|balance`,
+        );
         process.exit(1);
     }
   } catch (e) {
