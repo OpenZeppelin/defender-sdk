@@ -1,6 +1,7 @@
 # Defender SDK Relay Signer Client
 
 Defender Relay Signer Client lets you send transactions to any supported network using private relayers. Each relayer has its own secure private key, and a set of API keys. You can send transactions via your relayers by POSTing to the Defender HTTP API, or using this library.
+
 ## Install
 
 ```bash
@@ -9,7 +10,6 @@ npm install @openzeppelin/defender-sdk-relay-signer-client
 yarn add @openzeppelin/defender-sdk-relay-signer-client
 
 ```
-
 
 This library also includes an [ethers.js](https://docs.ethers.io/v5/) signer and a [web3.js](https://web3js.readthedocs.io/) provider, that uses the Relay to sign and broadcast its transactions.
 
@@ -78,7 +78,6 @@ Transaction can be queried by nonce as well:
 ```js
 const latestTx = await relayer.getTransactionByNonce(tx.nonce);
 ```
-
 
 Alternatively, the `relayer` can also be used to `list` the latest transactions sent, optionally filtering by status and creation time.
 
@@ -281,7 +280,7 @@ Note that these web3.js providers currently have the same limitations as the eth
 ```js
 const { Defender } = require('@openzeppelin/defender-sdk');
 
-exports.handler = async function(credentials) {
+exports.handler = async function (credentials) {
   const client = new Defender(credentials);
 
   const txRes = await client.relaySigner.sendTransaction({
@@ -293,7 +292,7 @@ exports.handler = async function(credentials) {
 
   console.log(txRes);
   return txRes.hash;
-}
+};
 ```
 
 ## FAQ
