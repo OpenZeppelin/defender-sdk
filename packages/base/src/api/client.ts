@@ -22,7 +22,6 @@ export type AuthConfig = {
 type ApiFunction<TResponse> = (api: AxiosInstance) => Promise<TResponse>;
 export abstract class BaseApiClient {
   private api: AxiosInstance | undefined;
-  private apiKey: string;
   private session: CognitoUserSession | undefined;
   private sessionV2: { accessToken: string; refreshToken: string } | undefined;
   private apiSecret: string;
@@ -30,6 +29,7 @@ export abstract class BaseApiClient {
   private retryConfig: RetryConfig;
   private authConfig: AuthConfig;
 
+  protected apiKey: string;
   protected abstract getPoolId(): string;
   protected abstract getPoolClientId(): string;
   protected abstract getApiUrl(type?: AuthType): string;
