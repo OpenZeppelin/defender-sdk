@@ -48,9 +48,9 @@ jobs:
         run: pnpm install --lockfile-only
         shell: bash
 
-     - name: Set up Git
-        run: |
-          git push --set-upstream origin changeset-release/main
+      - name: Set up Git
+          run: |
+            git push --set-upstream origin changeset-release/main
 
       - name: Commit lock file
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
