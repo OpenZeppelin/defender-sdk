@@ -1,5 +1,27 @@
 # @openzeppelin/defender-sdk
 
+## 1.15.2
+
+### Patch Changes
+
+- f65079b: feat: Create SDK API for listing permissions of current api key.
+  feat: Support update deployments.
+- Updated dependencies [f65079b]
+  - @openzeppelin/defender-sdk-account-client@1.15.2
+  - @openzeppelin/defender-sdk-action-client@1.15.2
+  - @openzeppelin/defender-sdk-address-book-client@1.15.2
+  - @openzeppelin/defender-sdk-approval-process-client@1.15.2
+  - @openzeppelin/defender-sdk-base-client@1.15.2
+  - @openzeppelin/defender-sdk-deploy-client@1.15.2
+  - @openzeppelin/defender-sdk-key-value-store-client@1.15.2
+  - @openzeppelin/defender-sdk-monitor-client@1.15.2
+  - @openzeppelin/defender-sdk-network-client@1.15.2
+  - @openzeppelin/defender-sdk-notification-channel-client@1.15.2
+  - @openzeppelin/defender-sdk-proposal-client@1.15.2
+  - @openzeppelin/defender-sdk-relay-client@1.15.2
+  - @openzeppelin/defender-sdk-relay-group-client@1.15.2
+  - @openzeppelin/defender-sdk-relay-signer-client@1.15.2
+
 ## 1.15.1
 
 ### Patch Changes

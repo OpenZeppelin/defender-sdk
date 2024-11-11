@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-relayer-contract-function
 
+## 1.15.2
+
+### Patch Changes
+
+- f65079b: feat: Create SDK API for listing permissions of current api key.
+  feat: Support update deployments.
+- Updated dependencies [f65079b]
+  - @openzeppelin/defender-sdk-relay-signer-client@1.15.2
+
 ## 1.15.1
 
 ### Patch Changes
