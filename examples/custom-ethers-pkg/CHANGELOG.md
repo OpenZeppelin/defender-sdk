@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 1.15.2
+
+### Patch Changes
+
+- f65079b: feat: Create SDK API for listing permissions of current api key.
+  feat: Support update deployments.
+- Updated dependencies [f65079b]
+  - @openzeppelin/defender-sdk-action-client@1.15.2
+  - @openzeppelin/defender-sdk@1.15.2
+
 ## 1.15.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 1.15.2
+
+### Patch Changes
+
+- f65079b: feat: Create SDK API for listing permissions of current api key.
+  feat: Support update deployments.
+
 ## 1.15.1
 
 ### Patch Changes
