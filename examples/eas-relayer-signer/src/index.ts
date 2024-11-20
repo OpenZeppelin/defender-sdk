@@ -3,7 +3,7 @@ import { EAS, NO_EXPIRATION, SchemaEncoder, TransactionSigner } from '@ethereum-
 import dotenv from 'dotenv';
 dotenv.config();
 import { Agent } from 'node:https';
-import { env } from 'node:process';
+import process from 'node:process';
 
 import { Defender, DefenderOptions } from '@openzeppelin/defender-sdk';
 import { TypeDataSigner } from '@ethereum-attestation-service/eas-sdk/dist/offchain/typed-data-handler.js';
@@ -11,8 +11,8 @@ import { TypeDataSigner } from '@ethereum-attestation-service/eas-sdk/dist/offch
 export const EASContractAddress = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e'; // Sepolia v0.26
 
 const creds = {
-  relayerApiKey: env.RELAYER_API_KEY,
-  relayerApiSecret: env.RELAYER_API_SECRET,
+  relayerApiKey: process.env.RELAYER_API_KEY,
+  relayerApiSecret: process.env.RELAYER_API_SECRET,
   //optional https config to keep connection alive. You can pass any configs that are accepted by https.Agent
   httpsAgent: new Agent({ keepAlive: true }),
 };
