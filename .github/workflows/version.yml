@@ -54,7 +54,7 @@ jobs:
         shell: bash
 
       - name: Set up Git
-        run: git config --global url.https://${{ secrets.SAI_PAT }}@github.com/.insteadOf https://github.com/
+        run: git config --global url."git@github.com:".insteadOf "https://github.com/"
         shell: bash
     
 
