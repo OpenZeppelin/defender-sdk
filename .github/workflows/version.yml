@@ -53,9 +53,10 @@ jobs:
         run: pnpm install --lockfile-only
         shell: bash
 
-      # - name: Set up Git
-      #   run: git push --set-upstream origin sign-lockfile-commit
-      #   shell: bash
+      - name: Set up Git
+        run: git config --global url.https://${{ secrets.SAI_PAT }}@github.com/.insteadOf https://github.com/
+        shell: bash
+    
 
       - name: Commit lock file
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
@@ -64,5 +65,5 @@ jobs:
           commit_author: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
           commit_user_name: ${{ steps.import-gpg.outputs.name }}
           commit_user_email: ${{ steps.import-gpg.outputs.email }}
-          # branch: "test-sign-lockfile-commit"
-          # create_branch: true
+          branch: "test-sign-lockfile-commit"
+          create_branch: true
