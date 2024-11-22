@@ -61,6 +61,5 @@ jobs:
         with:
           commit_message: "chore: update lock file"
           commit_user_name: "svc-gh-is-01"
-          commit_author: "svc-gh-is-01"
           branch: "test-sign-lockfile-commit"
           create_branch: true
