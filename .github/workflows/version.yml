@@ -64,5 +64,5 @@ jobs:
           commit_author: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
           commit_user_name: ${{ steps.import-gpg.outputs.name }}
           commit_user_email: ${{ steps.import-gpg.outputs.email }}
-          branch: "test-sign-lockfile-commit"
-          create_branch: true
+          # branch: "test-sign-lockfile-commit"
+          # create_branch: true
