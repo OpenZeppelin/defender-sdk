@@ -53,9 +53,6 @@ jobs:
         run: pnpm install --lockfile-only
         shell: bash
 
-      - name: Set up Git
-        run: git config --global url."git@github.com:".insteadOf "https://github.com/"
-        shell: bash
     
 
       - name: Commit lock file
@@ -67,3 +64,5 @@ jobs:
           commit_user_email: ${{ steps.import-gpg.outputs.email }}
           branch: "test-sign-lockfile-commit"
           create_branch: true
+          commit_options: '-S --amend --no-edit'
+          skip_fetch: true
