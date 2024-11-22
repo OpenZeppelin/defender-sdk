@@ -37,6 +37,7 @@ export function extractArtifact({
               deployedBytecode: {
                 object: contract.evm.deployedBytecode.object,
                 linkReferences: contract.evm.deployedBytecode.linkReferences,
+                immutableReferences: contract.evm.deployedBytecode.immutableReferences,
               },
             },
             metadata: contract.metadata,

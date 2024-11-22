@@ -107,6 +107,10 @@ export interface BlockExplorerVerification {
 
 export type RequestArtifact = Pick<DeployContractRequest, 'artifactPayload' | 'contractName' | 'contractPath'>;
 
+export type ImmutableReferences = {
+  [key: string]: Array<{ length: number; start: number }>;
+};
+
 export type ContractArtifact = {
   abi: any;
   evm: {
@@ -117,6 +121,7 @@ export type ContractArtifact = {
     deployedBytecode: {
       object: string;
       linkReferences: any;
+      immutableReferences: ImmutableReferences;
     };
   };
   metadata: string;

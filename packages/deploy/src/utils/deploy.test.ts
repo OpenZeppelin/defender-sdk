@@ -34,6 +34,8 @@ describe('Deploy utilities', () => {
                   object: artifact.output.contracts['contracts/Box.sol'].Box.evm.deployedBytecode.object,
                   linkReferences:
                     artifact.output.contracts['contracts/Box.sol'].Box.evm.deployedBytecode.linkReferences,
+                  immutableReferences:
+                    artifact.output.contracts['contracts/Box.sol'].Box.evm.deployedBytecode.immutableReferences,
                 },
               },
               metadata: artifact.output.contracts['contracts/Box.sol'].Box.metadata,
