@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - sign-lockfile-commit
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -22,8 +23,8 @@ jobs:
         with:
           token: ${{ secrets.SAI_PAT }}
 
-      - name: Prepare pre-requisites
-        uses: ./.github/actions/prepare
+      # - name: Prepare pre-requisites
+      #   uses: ./.github/actions/prepare
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
@@ -35,24 +36,26 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      - name: Create Release Pull Request
-        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
-        with:
-          setupGitUser: false
-          version: pnpm ci:version
-          title: "ci: update the version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create Release Pull Request
+      #   uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
+      #   with:
+      #     setupGitUser: false
+      #     version: pnpm ci:version
+      #     title: "ci: update the version packages"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update the lock file
-        run: pnpm install --lockfile-only
-        shell: bash
+      # - name: Update the lock file
+      #   run: pnpm install --lockfile-only
+      #   shell: bash
 
-      - name: Set up Git
-        run: git push --set-upstream origin changeset-release/main
-        shell: bash
+      # - name: Set up Git
+      #   run: git push --set-upstream origin changeset-release/main
+      #   shell: bash
 
       - name: Commit lock file
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
         with:
           commit_message: "chore: update lock file"
+          commit_user_name: "svc-gh-is-01"
+          commit_author: "svc-gh-is-01"
