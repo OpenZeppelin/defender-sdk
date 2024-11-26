@@ -65,6 +65,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SAI_PAT }}
         run: |
           git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+          # git config user.name "svc-gh-is-01"
+          # git config credential.username "svc-gh-is-01"
       #     git add .
       #     git commit -S -m "commit msg"
       #     git push origin sign-lockfile-commit
@@ -83,9 +85,9 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update lock file"
-          commit_author: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
-          commit_user_name: ${{ steps.import-gpg.outputs.name }}
-          commit_user_email: ${{ steps.import-gpg.outputs.email }}
+          commit_author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          commit_user_name: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          # commit_user_email: ${{ steps.import-gpg.outputs.email }}
           branch: "sign-lockfile-commit"
           commit_options: '-S --amend --no-edit'
           push_options: '--force'
