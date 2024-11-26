@@ -64,7 +64,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SAI_PAT }}
         run: |
-          it remote set-url origin git://github.com/openzeppelin/defender-sdk.git
+          git remote set-url origin git://github.com/openzeppelin/defender-sdk.git
           git config user.name "svc-gh-is-01"
           git config credential.username "svc-gh-is-01"
       #     git add .
