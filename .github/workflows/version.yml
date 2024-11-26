@@ -74,6 +74,7 @@ jobs:
         uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
         with:
           commit-message: "🤖 Update lockfile"
+          branch: "sign-lockfile-commit"
           title: "🤖 [Automated Pr] Update lockfile"
           committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
