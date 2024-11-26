@@ -52,7 +52,12 @@ jobs:
         run: git push --set-upstream origin changeset-release/main
         shell: bash
 
-      - name: Commit lock file
-        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
+      - name: Commit pnpm-lock.yaml file changes
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
         with:
-          commit_message: "chore: update lock file"
+          commit-message: "🤖 chore: Update the pnpm-lock.yaml file"
+          title: "chore: 🤖 [Automated PR] Update the pnpm-lock.yaml file"
+          committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          body: |
+            This PR updates the pnpm-lock.yaml file
