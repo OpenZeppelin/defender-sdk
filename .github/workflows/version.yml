@@ -59,16 +59,26 @@ jobs:
         shell: bash
 
 
-      - name: Commit change
-        env:
-          GITHUB_TOKEN: ${{ secrets.SAI_PAT }}
-        run: |
-          git config --global user.name "${{ steps.import-gpg.outputs.name }}"
-          git config --global user.email "${{ steps.import-gpg.outputs.email }}"
-          git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
-          git add .
-          git commit -S -m "commit msg"
-          git push origin sign-lockfile-commit
+      # - name: Commit change
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.SAI_PAT }}
+      #   run: |
+      #     git config --global user.name "${{ steps.import-gpg.outputs.name }}"
+      #     git config --global user.email "${{ steps.import-gpg.outputs.email }}"
+      #     git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+      #     git add .
+      #     git commit -S -m "commit msg"
+      #     git push origin sign-lockfile-commit
+
+      - name: Raise PR to the branch
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+        with:
+          commit-message: "🤖 Update lockfile"
+          title: "🤖 [Automated Pr] Update lockfile"
+          committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          body: |
+            This PR updates the lockfile..
 
       # - name: Commit lock file
       #   uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
