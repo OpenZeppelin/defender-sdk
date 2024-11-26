@@ -65,8 +65,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SAI_PAT }}
         run: |
           git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
-          # git config user.name "svc-gh-is-01"
-          # git config credential.username "svc-gh-is-01"
+          git config user.name "svc-gh-is-01"
+          git config credential.username "svc-gh-is-01"
       #     git add .
       #     git commit -S -m "commit msg"
       #     git push origin sign-lockfile-commit
