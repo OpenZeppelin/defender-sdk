@@ -49,7 +49,7 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   }
 
   public getApiKey(): string {
-    return this.apiKey;
+    return this.getKey();
   }
 
   public getToken(): Promise<string> {
