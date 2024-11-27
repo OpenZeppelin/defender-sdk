@@ -1,7 +1,7 @@
 import { Address, BigUInt } from './relayer';
 
 export type Speed = 'safeLow' | 'average' | 'fast' | 'fastest';
-export type Status = 'pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed';
+export type Status = 'pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed' | 'expired';
 export type Hex = string;
 
 export interface SendBaseTransactionRequest {
@@ -78,15 +78,18 @@ interface RelayerEIP1559Transaction extends RelayerTransactionBase {
 export type RelayerTransaction = RelayerLegacyTransaction | RelayerEIP1559Transaction;
 
 export type ListTransactionsRequest = {
-  status?: 'pending' | 'mined' | 'failed';
+  status?: 'pending' | 'mined' | 'failed' | 'expired';
   since?: Date;
   limit?: number;
   next?: string;
   sort?: 'asc' | 'desc';
-  usePagination?: boolean;
 };
 
 export type PaginatedTransactionResponse = {
   items: RelayerTransaction[];
   next?: string;
+};
+
+export type TransactionDeleteResponse = {
+  message: string;
 };

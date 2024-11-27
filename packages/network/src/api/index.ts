@@ -5,6 +5,9 @@ import {
   TenantNetworkResponse,
   TenantNetworkUpdateRequest,
   ListNetworkRequestOptions,
+  PrivateNetworkCreateRequest,
+  PrivateNetworkResponse,
+  PrivateNetworkUpdateRequest,
 } from '../models/networks';
 
 const PATH = '/networks';
@@ -19,8 +22,7 @@ export class NetworkClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    // TODO: update to /monitor when available
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
   public getApiKey(): string {
@@ -72,15 +74,15 @@ export class NetworkClient extends BaseApiClient {
     });
   }
 
-  public async listPrivateNetworks(): Promise<TenantNetworkResponse[]> {
+  public async listPrivateNetworks(): Promise<PrivateNetworkResponse[]> {
     return this.apiCall(async (api) => {
       return await api.get(`${PATH}/private`);
     });
   }
 
   public async createPrivateNetwork(
-    network: Omit<TenantNetworkCreateRequest, 'networkType'>,
-  ): Promise<TenantNetworkResponse> {
+    network: Omit<PrivateNetworkCreateRequest, 'networkType'>,
+  ): Promise<PrivateNetworkResponse> {
     return this.apiCall(async (api) => {
       return await api.post(`${PATH}/private`, { ...network, networkType: 'private' });
     });
@@ -92,7 +94,7 @@ export class NetworkClient extends BaseApiClient {
     });
   }
 
-  public async getPrivateNetwork(id: string): Promise<TenantNetworkResponse> {
+  public async getPrivateNetwork(id: string): Promise<PrivateNetworkResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`${PATH}/private/${id}`);
     });
@@ -100,8 +102,8 @@ export class NetworkClient extends BaseApiClient {
 
   public async updatePrivateNetwork(
     id: string,
-    network: Omit<TenantNetworkUpdateRequest, 'tenantNetworkId'>,
-  ): Promise<TenantNetworkResponse> {
+    network: Omit<PrivateNetworkUpdateRequest, 'tenantNetworkId'>,
+  ): Promise<PrivateNetworkResponse> {
     return this.apiCall(async (api) => {
       return await api.put(`${PATH}/private/${id}`, { ...network, tenantNetworkId: id });
     });

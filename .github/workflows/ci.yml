@@ -1,6 +1,8 @@
 name: ci
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled]
 
@@ -17,12 +19,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+      uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
       with:
         egress-policy: audit
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v3.6.0
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
 
     - name: Prepare pre-requisites
       uses: ./.github/actions/prepare

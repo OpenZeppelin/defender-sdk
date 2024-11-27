@@ -1,4 +1,10 @@
-import { ApiRelayerParams, ActionRelayerParams, BigUInt } from '../models/relayer';
+import {
+  ApiRelayerParams,
+  ActionRelayerParams,
+  BigUInt,
+  RelayerGetResponse,
+  RelayerGroupResponse,
+} from '../models/relayer';
 import { RelayerTransactionPayload } from '../models/transactions';
 import { Relayer } from '../relayer';
 
@@ -52,4 +58,13 @@ export function isLegacyTx<TransactionLikeType extends object>(
 
 export function isRelayer(params: any): params is Relayer {
   return typeof params === 'object' && !!params.getRelayer;
+}
+
+export function isRelayerGroup(
+  relayerOrRelayerGroup: RelayerGetResponse | RelayerGroupResponse,
+): relayerOrRelayerGroup is RelayerGroupResponse {
+  if ('relayerGroupId' in relayerOrRelayerGroup) {
+    return true;
+  }
+  return false;
 }

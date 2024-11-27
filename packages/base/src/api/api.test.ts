@@ -9,7 +9,7 @@ const token = 'token';
 
 describe('createApi', () => {
   test('passes correct arguments to axios', () => {
-    createApi(key, token, apiUrl);
+    createApi(apiUrl, key, token);
     expect(axios.create).toHaveBeenCalledWith({
       baseURL: apiUrl,
       headers: {
@@ -21,7 +21,7 @@ describe('createApi', () => {
   });
 
   test('include headers overrides', () => {
-    createApi(key, token, apiUrl, undefined, { 'X-Test': 'test' });
+    createApi(apiUrl, key, token, undefined, { 'X-Test': 'test' });
     expect(axios.create).toHaveBeenCalledWith({
       baseURL: apiUrl,
       headers: {

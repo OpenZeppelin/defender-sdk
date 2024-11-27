@@ -1,6 +1,6 @@
-import { RelayerParams } from '../models/relayer';
+import { EthersVersion, RelayerParams } from '../models/relayer';
 import { DefenderRelaySigner } from './signer';
-import { getRelaySignerApiUrl } from '../api';
+import { getApiUrl } from '../api';
 import { Relayer } from '../relayer';
 import {
   JsonRpcError,
@@ -11,13 +11,18 @@ import {
   JsonRpcSigner,
   JsonRpcPayload,
 } from 'ethers';
+import { isRelayerGroup } from './utils';
+
+export type DefenderRelayProviderOptions = {
+  ethersVersion: EthersVersion;
+};
 
 export class DefenderRelayProvider extends JsonRpcProvider {
   private relayer: Relayer;
   private pendingNetwork: Promise<Network> | null = null;
 
   constructor(readonly credentials: RelayerParams) {
-    super(getRelaySignerApiUrl());
+    super(getApiUrl());
     this.relayer = new Relayer(credentials);
   }
 
@@ -90,6 +95,9 @@ export class DefenderRelayProvider extends JsonRpcProvider {
       return new DefenderRelaySigner(this.relayer, this, address, {}) as any as JsonRpcSigner;
     }
     const relayer = await this.relayer.getRelayer();
+    if (isRelayerGroup(relayer)) {
+      throw new Error('Relayer Group is not supported.');
+    }
     return new DefenderRelaySigner(this.relayer, this, relayer.address, {}) as any as JsonRpcSigner;
   }
 }

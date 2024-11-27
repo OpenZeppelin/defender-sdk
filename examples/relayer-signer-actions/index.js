@@ -38,6 +38,11 @@ async function replace(id) {
   console.log('txResponse', JSON.stringify(txResponse, null, 2));
 }
 
+async function cancel(id) {
+  const txResponse = await client.relaySigner.cancelTransactionById(id);
+  console.log('txResponse', JSON.stringify(txResponse, null, 2));
+}
+
 async function sign(msg) {
   if (!msg) throw new Error(`Missing msg to sign`);
   const signResponse = await client.relaySigner.sign({ message: msg });
@@ -50,11 +55,16 @@ async function query(id) {
   console.log('txUpdate', txUpdate);
 }
 
+async function queryByNonce(nonce) {
+  if (!nonce) throw new Error(`Missing nonce`);
+  const txUpdate = await client.relaySigner.getTransactionByNonce(nonce);
+  console.log('txUpdate', txUpdate);
+}
+
 async function list() {
   const transactions = await client.relaySigner.listTransactions({
-    limit: 50,
+    limit: 20,
     status: 'mined',
-    usePagination: true, // optional, defaults to false
     sort: 'desc', // optional, only available in combination with usePagination
     next: '', // optional: include when the response has this value to fetch the next set of results
   });
@@ -84,6 +94,8 @@ async function main() {
     switch (action) {
       case 'query':
         return await query(process.argv[3]);
+      case 'queryByNonce':
+        return await queryByNonce(process.argv[3]);
       case 'get':
         return await get();
       case 'status':
@@ -92,6 +104,8 @@ async function main() {
         return await send();
       case 'replace':
         return await replace(process.argv[3]);
+      case 'cancel':
+        return await cancel(process.argv[3]);
       case 'sign':
         return await sign(process.argv[3]);
       case 'balance':
@@ -101,7 +115,9 @@ async function main() {
       case 'jsonrpc':
         return await jsonrpc(process.argv[3], process.argv[4]);
       default:
-        console.error(`Unknown action ${process.argv[2]}, valid actions: query|get|list|send|sign|balance`);
+        console.error(
+          `Unknown action ${process.argv[2]}, valid actions: query|queryByNonce|get|list|send|sign|balance`,
+        );
         process.exit(1);
     }
   } catch (e) {

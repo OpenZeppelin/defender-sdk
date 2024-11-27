@@ -1,5 +1,10 @@
 import { ActionRelayerParams, IRelayer, RelayerGetResponse, RelayerStatus } from '../models/relayer';
-import { ListTransactionsRequest, RelayerTransaction, RelayerTransactionPayload } from '../models/transactions';
+import {
+  ListTransactionsRequest,
+  RelayerTransaction,
+  RelayerTransactionPayload,
+  TransactionDeleteResponse,
+} from '../models/transactions';
 import {
   JsonRpcRequest,
   JsonRpcResponse,
@@ -57,7 +62,7 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
 
   public async replaceTransactionById(id: string, payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { id: string } = { ...payload, id };
-    return this.execute({ action: 'replace-tx', txPayload });
+    return this.execute({ action: 'replace-tx', payload: txPayload });
   }
 
   public async replaceTransactionByNonce(
@@ -65,7 +70,12 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     payload: RelayerTransactionPayload,
   ): Promise<RelayerTransaction> {
     const txPayload: RelayerTransactionPayload & { nonce: number } = { ...payload, nonce };
-    return this.execute({ action: 'replace-tx', payload });
+    return this.execute({ action: 'replace-tx', payload: txPayload });
+  }
+
+  public async cancelTransactionById(id: string): Promise<TransactionDeleteResponse> {
+    const payload = id;
+    return this.execute({ action: 'cancel-tx', payload });
   }
 
   public async getRelayer(): Promise<RelayerGetResponse> {
@@ -84,6 +94,13 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     return this.execute({
       action: 'get-tx' as const,
       payload: id,
+    });
+  }
+
+  public async getTransactionByNonce(nonce: number): Promise<RelayerTransaction> {
+    return this.execute({
+      action: 'get-tx' as const,
+      payload: String(nonce),
     });
   }
 

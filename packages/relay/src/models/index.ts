@@ -109,6 +109,10 @@ export interface UpdateRelayerRequest {
   policies?: UpdateRelayerPoliciesRequest;
   minBalance?: BigUInt;
   stackResourceId?: string;
+  notificationChannels?: {
+    events: ('pending' | 'sent' | 'submitted' | 'inmempool' | 'mined' | 'confirmed' | 'failed')[];
+    notificationIds: string[];
+  };
 }
 
 export interface RelayerApiKey {
@@ -192,7 +196,7 @@ export interface IRelayer {
 }
 
 export type ListTransactionsRequest = {
-  status?: 'pending' | 'mined' | 'failed';
+  status?: 'pending' | 'mined' | 'failed' | 'expired';
   since?: Date;
   limit?: number;
 };

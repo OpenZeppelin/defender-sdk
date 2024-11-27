@@ -14,3 +14,4 @@ dist
 tmp
 .pnpm-store
 session.json
+.nx

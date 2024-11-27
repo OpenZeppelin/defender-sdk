@@ -27,7 +27,7 @@ export class ProposalClient extends BaseApiClient {
   }
 
   protected getApiUrl(): string {
-    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/v2/';
+    return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
   public getApiKey(): string {

@@ -6,14 +6,23 @@ import { DeployClient } from '@openzeppelin/defender-sdk-deploy-client';
 import { NotificationChannelClient } from '@openzeppelin/defender-sdk-notification-channel-client';
 import { NetworkClient } from '@openzeppelin/defender-sdk-network-client';
 import { AccountClient } from '@openzeppelin/defender-sdk-account-client';
-
+import { ApprovalProcessClient } from '@openzeppelin/defender-sdk-approval-process-client';
+import { RelayGroupClient } from '@openzeppelin/defender-sdk-relay-group-client';
+import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppelin/defender-sdk-key-value-store-client';
+import { AddressBookClient } from '@openzeppelin/defender-sdk-address-book-client';
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
 import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
-import { Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
+import { AuthConfig, Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
 import https from 'https';
+import {
+  isActionKVStoreCredentials,
+  isActionRelayerCredentials,
+  isApiCredentials,
+  isRelaySignerOptions,
+} from './utils';
 
-interface DefenderOptions {
+export interface DefenderOptions {
   apiKey?: string;
   apiSecret?: string;
   relayerApiKey?: string;
@@ -23,13 +32,15 @@ interface DefenderOptions {
   relayerARN?: string;
   httpsAgent?: https.Agent;
   retryConfig?: RetryConfig;
+  useCredentialsCaching?: boolean;
+  kvstoreARN?: string;
 }
 
 function getClient<T>(Client: Newable<T>, credentials: Partial<ClientParams> | ActionRelayerParams): T {
   if (
-    !('credentials' in credentials && 'relayerARN' in credentials) &&
-    !('apiKey' in credentials) &&
-    !('accessToken' in credentials || 'apiSecret' in credentials)
+    !isActionRelayerCredentials(credentials) &&
+    !isApiCredentials(credentials) &&
+    !isActionKVStoreCredentials(credentials)
   ) {
     throw new Error(`API authentication credentials required`);
   }
@@ -45,8 +56,10 @@ export class Defender {
   private accessToken: string | undefined;
   private actionCredentials: ActionRelayerParams | undefined;
   private actionRelayerArn: string | undefined;
+  private actionKVStoreArn: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig?: RetryConfig;
+  private authConfig?: AuthConfig;
 
   constructor(options: DefenderOptions) {
     this.apiKey = options.apiKey;
@@ -57,8 +70,13 @@ export class Defender {
     // support for using relaySigner from Defender Actions
     this.actionCredentials = options.credentials;
     this.actionRelayerArn = options.relayerARN;
+    this.actionKVStoreArn = options.kvstoreARN;
     this.httpsAgent = options.httpsAgent;
     this.retryConfig = options.retryConfig;
+    this.authConfig = {
+      useCredentialsCaching: options.useCredentialsCaching ?? true,
+      type: isRelaySignerOptions(options) ? 'relay' : 'admin',
+    };
   }
 
   public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
@@ -67,6 +85,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     }).listSupportedNetworks(opts);
   }
 
@@ -76,6 +95,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -85,7 +105,12 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
+  }
+
+  get approvalProcess() {
+    return getClient(ApprovalProcessClient, { apiKey: this.apiKey, apiSecret: this.apiSecret });
   }
 
   get monitor() {
@@ -94,6 +119,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -103,6 +129,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -112,6 +139,17 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+    });
+  }
+
+  get relayGroup() {
+    return getClient(RelayGroupClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -121,6 +159,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -130,6 +169,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -139,6 +179,7 @@ export class Defender {
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
     });
   }
 
@@ -146,11 +187,41 @@ export class Defender {
     return getClient(RelaySignerClient, {
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
       ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
       ...(this.actionRelayerArn ? { relayerARN: this.actionRelayerArn } : undefined),
       ...(this.relayerApiKey ? { apiKey: this.relayerApiKey } : undefined),
       ...(this.relayerApiSecret ? { apiSecret: this.relayerApiSecret } : undefined),
       ...(this.accessToken ? { accessToken: this.accessToken } : undefined),
     });
+  }
+
+  get addressBook() {
+    return getClient(AddressBookClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+    });
+  }
+
+  get keyValueStore() {
+    return getClient(KeyValueStoreClient, {
+      apiKey: this.apiKey,
+      apiSecret: this.apiSecret,
+      httpsAgent: this.httpsAgent,
+      retryConfig: this.retryConfig,
+      authConfig: this.authConfig,
+      ...(this.actionCredentials ? { credentials: this.actionCredentials } : undefined),
+      ...(this.actionKVStoreArn ? { kvstoreARN: this.actionKVStoreArn } : undefined),
+    });
+  }
+
+  static localKVStoreClient(params: LocalKeyValueStoreCreateParams) {
+    if (!params.path) {
+      throw new Error(`Must provide a path for local key-value store`);
+    }
+    return new KeyValueStoreClient(params);
   }
 }

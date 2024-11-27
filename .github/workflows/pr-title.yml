@@ -1,0 +1,23 @@
+name: PR Title
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, edited, reopened, synchronize]
+
+permissions: read-all
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - uses: thehanimo/pr-title-checker@1d8cd483a2b73118406a187f54dca8a9415f1375  # v1.4.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          configuration_path: ".github/pr-title-checker-config.json"

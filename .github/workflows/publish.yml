@@ -1,59 +1,122 @@
-name: publish
+name: Version or Publish Package
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      version_tag:
+        required: true
+        description: The release version
+        type: string
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-# Declare default permissions as read only.
-permissions: read-all
+permissions:
+  id-token: write
+  contents: write
+  attestations: write
+  actions: write
+  pull-requests: write
 
 jobs:
   provenance:
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
-    if: |
-      (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/v')) ||
-      (startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-rc.'))
-    # Deterministic Build & tests
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v1.9.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
     with:
-      run-scripts: "install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
-      node-version: "16.20.0"
-      ## Remove after making repo public
-      rekor-log-public: true
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      node-version: "20.11.1"
 
-  publish:
-    needs: provenance
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-      checks: write
-      id-token: write # For signing
+  release:
+    needs: [provenance]
+    name: Version or Publish
+    runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
         with:
           egress-policy: audit
 
-      - name: Use node@16
-        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
+      - name: Download Artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
+
+      - name: Checkout Repo
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          node-version: 16.20.0
+          token: ${{ secrets.SAI_PAT }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+        with:
+          gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
+          passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
+          git_config_global: true
+          git_tag_gpgsign: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Create temp dir
+        id: temp-dir
+        run: |
+          set -euo pipefail
+
+          temp_dir=$(mktemp -d)
+          echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
+
+      - name: Download tarball
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@3bcecb4ade4f265cff30488059a9dca39e26b360 # main
+        with:
+          name: ${{ needs.provenance.outputs.package-download-name }}
+          path: "${{ steps.temp-dir.outputs.path }}/${{ needs.provenance.outputs.package-name }}"
+          sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
+
+      - name: Download provenance
+        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@3bcecb4ade4f265cff30488059a9dca39e26b360 # v1.6.0
+        with:
+          name: ${{ needs.provenance.outputs.provenance-download-name }}
+          path: "${{ steps.temp-dir.outputs.path }}"
+          sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
+
+      - name: Unpack the zipped artifact
+        run: |
+          set -euo pipefail
+          cd "${{ steps.temp-dir.outputs.path }}"
+          tar -xzvf "${{ needs.provenance.outputs.package-name }}" -C $GITHUB_WORKSPACE --strip-components=1
+          cd "$GITHUB_WORKSPACE"
+          pnpm run install-deps
+          pnpm nx-test-skip-cache
 
       - name: Publish to NPM
-        id: publish
-        uses: slsa-framework/slsa-github-generator/actions/nodejs/publish@07e64b653f10a80b6510f4568f685f8b7b9ea830 # v1.9.0
+        id: changesets
+        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
         with:
-          access: public
-          node-auth-token: ${{ secrets.NPM_TOKEN }}
-          package-name: ${{ needs.provenance.outputs.package-name }}
-          package-download-name: ${{ needs.provenance.outputs.package-download-name }}
-          package-download-sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
-          provenance-name: ${{ needs.provenance.outputs.provenance-name }}
-          provenance-download-name: ${{ needs.provenance.outputs.provenance-download-name }}
-          provenance-download-sha256: ${{ needs.provenance.outputs.provenance-download-sha256 }}
+          setupGitUser: false
+          version: pnpm ci:version
+          title: "ci: Update the version packages"
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5
+        with:
+          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+
+      - name: Upload attestations SLSA
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
+
+      - name: Upload attestations SBOM
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json

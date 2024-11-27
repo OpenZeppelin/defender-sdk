@@ -1,0 +1,38 @@
+name: Test end-to-end
+
+on:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+# Declare default permissions as read only.
+permissions: read-all
+
+env:
+  API_KEY: ${{ secrets.E2E_API_KEY }}
+  API_SECRET: ${{ secrets.E2E_API_SECRET }}
+  DEFENDER_API_URL: ${{ vars.E2E_DEFENDER_API_URL }}
+  DEFENDER_POOL_ID: ${{ vars.E2E_DEFENDER_POOL_ID }}
+  DEFENDER_POOL_CLIENT_ID: ${{ vars.E2E_DEFENDER_POOL_CLIENT_ID }}
+
+jobs:
+  build-test:
+    name: Run build & e2e test
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+
+    - name: Prepare pre-requisites
+      uses: ./.github/actions/prepare
+
+    - name: Build
+      run: |
+        pnpm nx-build-skip-cache
+
+    - name: Test end-to-end
+      run: |
+        pnpm test:e2e

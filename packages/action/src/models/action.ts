@@ -5,6 +5,7 @@ export interface CreateActionRequest {
   trigger: {
     type: 'schedule' | 'webhook' | 'sentinel' | 'monitor-filter';
     frequencyMinutes?: number;
+    frequencySeconds?: number;
     cron?: string;
   };
   paused: boolean;
@@ -21,6 +22,7 @@ export interface UpdateActionRequest extends Omit<CreateActionRequest, 'encodedZ
 export interface ScheduleTrigger {
   type: 'schedule';
   frequencyMinutes?: number;
+  frequencySeconds?: number;
   cron?: string;
 }
 
