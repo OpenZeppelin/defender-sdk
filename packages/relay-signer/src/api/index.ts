@@ -49,10 +49,10 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
   }
 
   public getApiKey(): string {
-    return this.getApiKey();
+    return this.apiKey;
   }
 
-  public getAccessToken(): Promise<string> {
+  public getToken(): Promise<string> {
     return this.getAccessToken();
   }
 
