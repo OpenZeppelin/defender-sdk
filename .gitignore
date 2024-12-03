@@ -13,4 +13,5 @@ dist
 .DS_Store
 tmp
 .pnpm-store
+session.json
 .nx

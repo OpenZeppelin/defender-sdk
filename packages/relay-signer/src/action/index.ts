@@ -48,6 +48,14 @@ export class ActionRelayer extends BaseActionClient implements IRelayer {
     this.jsonRpcRequestNextId = 0;
   }
 
+  public getApiKey(): string {
+    throw new Error('Method not available for action relayers.');
+  }
+
+  public getAccessToken(): Promise<string> {
+    throw new Error('Method not available for action relayers.');
+  }
+
   public async sendTransaction(payload: RelayerTransactionPayload): Promise<RelayerTransaction> {
     return this.execute({ action: 'send-tx', payload });
   }

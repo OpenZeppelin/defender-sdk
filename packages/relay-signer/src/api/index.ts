@@ -48,6 +48,14 @@ export class RelaySignerClient extends BaseApiClient implements IRelayer {
     return getApiUrl();
   }
 
+  public getApiKey(): string {
+    return this.getKey();
+  }
+
+  public getToken(): Promise<string> {
+    return this.getAccessToken();
+  }
+
   public async getRelayer(): Promise<RelayerGetResponse | RelayerGroupResponse> {
     return this.apiCall(async (api) => {
       return (await api.get('/relayers/self')) as RelayerGetResponse | RelayerGroupResponse;

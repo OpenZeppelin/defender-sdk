@@ -16,7 +16,7 @@ export function isActionRelayerCredentials(credentials: Partial<ClientParams> | 
 }
 
 export function isApiCredentials(credentials: Partial<ClientParams> | ActionRelayerParams): boolean {
-  return 'apiKey' in credentials && 'apiSecret' in credentials;
+  return 'apiKey' in credentials && ('accessToken' in credentials || 'apiSecret' in credentials);
 }
 
 export function isActionKVStoreCredentials(credentials: Partial<ClientParams> | ActionRelayerParams): boolean {

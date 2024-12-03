@@ -23,6 +23,14 @@ export class RelayClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
+  public getApiKey(): string {
+    return this.getKey();
+  }
+
+  public getAccessToken(): Promise<string> {
+    return this.getToken();
+  }
+
   public async get(id: string): Promise<RelayerGetResponse> {
     return this.apiCall(async (api) => {
       return await api.get(`/relayers/${id}`);

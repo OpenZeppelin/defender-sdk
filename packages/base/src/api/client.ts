@@ -23,10 +23,12 @@ type ApiFunction<TResponse> = (api: AxiosInstance) => Promise<TResponse>;
 export abstract class BaseApiClient {
   private api: AxiosInstance | undefined;
   private session: CognitoUserSession | undefined;
+
   private sessionV2: { accessToken: string; refreshToken: string } | undefined;
-  private apiSecret: string;
+  private apiSecret: string | undefined;
   private httpsAgent?: https.Agent;
   private retryConfig: RetryConfig;
+  private accessToken: string | undefined;
   private authConfig: AuthConfig;
 
   protected apiKey: string;
@@ -35,30 +37,38 @@ export abstract class BaseApiClient {
   protected abstract getApiUrl(type?: AuthType): string;
 
   public constructor(params: {
-    apiKey: string;
-    apiSecret: string;
+    apiKey?: string;
+    apiSecret?: string;
     httpsAgent?: https.Agent;
     retryConfig?: Partial<RetryConfig>;
+    accessToken?: string;
     authConfig?: AuthConfig;
   }) {
     if (!params.apiKey) throw new Error(`API key is required`);
-    if (!params.apiSecret) throw new Error(`API secret is required`);
+    if (!params.apiSecret && !params.accessToken) throw new Error(`API secret or access token is required`);
 
     this.apiKey = params.apiKey;
     this.apiSecret = params.apiSecret;
+    this.accessToken = params.accessToken;
     this.httpsAgent = params.httpsAgent;
     this.retryConfig = { retries: 3, retryDelay: exponentialDelay, ...params.retryConfig };
     this.authConfig = params.authConfig ?? { useCredentialsCaching: true, type: 'admin' };
   }
 
-  private async getAccessToken(): Promise<string> {
+  public async getAccessToken(): Promise<string> {
+    if (this.accessToken) return this.accessToken;
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
+
     const userPass = { Username: this.apiKey, Password: this.apiSecret };
     const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
     const auth = await authenticate(userPass, poolData);
     return auth.getAccessToken().getJwtToken();
   }
 
-  private async getAccessTokenV2(): Promise<string> {
+  public async getAccessTokenV2(): Promise<string> {
+    if (this.accessToken) return this.accessToken;
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
+
     if (!this.authConfig.type) throw new Error('Auth type is required to authenticate in auth v2');
     const credentials = {
       apiKey: this.apiKey,
@@ -71,6 +81,7 @@ export abstract class BaseApiClient {
 
   private async refreshSession(): Promise<string> {
     if (!this.session) return this.getAccessToken();
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
     const userPass = { Username: this.apiKey, Password: this.apiSecret };
     const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
     this.session = await refreshSession(userPass, poolData, this.session);
@@ -80,6 +91,7 @@ export abstract class BaseApiClient {
   private async refreshSessionV2(): Promise<string> {
     if (!this.authConfig.type) throw new Error('Auth type is required to refresh session in auth v2');
     if (!this.sessionV2) return this.getAccessTokenV2();
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
     const credentials = {
       apiKey: this.apiKey,
       secretKey: this.apiSecret,
@@ -88,6 +100,20 @@ export abstract class BaseApiClient {
     };
     const auth = await refreshSessionV2(credentials, this.getApiUrl('admin'));
     return auth.accessToken;
+  }
+
+  protected getKey(): string {
+    return this.apiKey;
+  }
+
+  protected async getToken(): Promise<string> {
+    if (this.accessToken) return this.accessToken;
+    if (!this.apiSecret) throw new Error('Cannot authenticate without API secret.');
+
+    const userPass = { Username: this.apiKey, Password: this.apiSecret };
+    const poolData = { UserPoolId: this.getPoolId(), ClientId: this.getPoolClientId() };
+    this.session = await authenticate(userPass, poolData);
+    return this.session.getAccessToken().getJwtToken();
   }
 
   protected async init(): Promise<AxiosInstance> {
@@ -104,6 +130,9 @@ export abstract class BaseApiClient {
   protected async refresh(overrides?: { headers?: Record<string, string> }): Promise<AxiosInstance> {
     if (!this.session && !this.sessionV2) {
       return this.init();
+    }
+    if (!this.apiSecret) {
+      throw new Error('Cannot refresh session without API secret.');
     }
     try {
       const accessToken = this.authConfig.useCredentialsCaching
@@ -139,6 +168,9 @@ export abstract class BaseApiClient {
 
       // this means ID token has expired so we'll recreate session and try again
       if (isAuthenticationError(error)) {
+        // if using custom access token, throw error.
+        if (this.accessToken) throw error;
+
         this.api = undefined;
 
         const api = await this.refresh();

@@ -16,7 +16,14 @@ export type Address = string;
 export type BigUInt = string | number;
 
 export type RelayerParams = ApiRelayerParams | ActionRelayerParams;
-export type ApiRelayerParams = { apiKey: string; apiSecret: string; httpsAgent?: https.Agent; authConfig: AuthConfig };
+
+export type ApiRelayerParams = {
+  apiKey: string;
+  apiSecret?: string;
+  accessToken?: string;
+  httpsAgent?: https.Agent;
+  authConfig: AuthConfig;
+};
 export type ActionRelayerParams = {
   credentials: string;
   relayerARN: string;
@@ -156,4 +163,6 @@ export interface IRelayer {
   sign(payload: SignMessagePayload): Promise<SignedMessagePayload>;
   signTypedData(payload: SignTypedDataPayload): Promise<SignedMessagePayload>;
   call(params: { method: string; params: string[] }): Promise<JsonRpcResponse>;
+  getApiKey(): string;
+  getAccessToken(): Promise<string>;
 }

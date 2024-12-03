@@ -17,7 +17,7 @@ export function isActionCredentials(
 
 export function isApiCredentials(credentials: ActionRelayerParams | ApiRelayerParams): credentials is ApiRelayerParams {
   const apiCredentials = credentials as ApiRelayerParams;
-  return !!apiCredentials.apiKey && !!apiCredentials.apiSecret;
+  return !!apiCredentials.apiKey && !!(apiCredentials.apiSecret || apiCredentials.accessToken);
 }
 
 export function validatePayload(payload: RelayerTransactionPayload) {
