@@ -66,10 +66,10 @@ async function main() {
       },
     });
 
-    // Check if simulation reverted under `simulation.meta.reverted`
-    // and the reason string `simulation.meta.returnString`
-    if (simulation.meta.reverted) {
-      console.log('Transaction reverted:', simulation.meta.returnString ?? simulation.meta.returnValue);
+    // Check if simulation reverted under `simulation.summary.reverted`
+    // and the reason string `simulation.summary.revertReason`
+    if (simulation.summary.reverted) {
+      console.log('Transaction reverted:', simulation.summary.result ?? simulation.summary.revertReason);
     } else {
       console.log(simulation);
     }
@@ -121,10 +121,10 @@ async function main() {
 
   console.log(`Created proposal (${proposalWithSimulation.proposalId})`);
 
-  if (proposalWithSimulation.simulation.meta.reverted) {
+  if (proposalWithSimulation.simulation.summary.reverted) {
     console.log(
       'Transaction reverted:',
-      proposalWithSimulation.simulation.meta.returnString ?? proposalWithSimulation.simulation.meta.returnValue,
+      proposalWithSimulation.simulation.summary.result ?? proposalWithSimulation.simulation.summary.revertReason,
     );
   } else {
     console.log(proposalWithSimulation.simulation);
