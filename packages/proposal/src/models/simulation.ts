@@ -58,7 +58,7 @@ export interface IEvent {
   args: EventArg[];
 }
 export interface EventArg {
-  value: string | number | boolean | {};
+  value: string | number | boolean | object;
   name: string;
   indexed: boolean;
   type: string;
