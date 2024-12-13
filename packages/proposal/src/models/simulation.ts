@@ -1,6 +1,5 @@
 // Copied from openzeppelin/defender/models/src/types/simulation.res.d.ts
 
-
 export type BigUInt = string | number;
 
 export interface SimulationRequest {
@@ -18,7 +17,6 @@ export interface Transaction {
   maxFeePerGas?: number;
   maxPriorityFeePerGas?: number;
 }
-
 
 export interface SimulationResponse {
   summary: {
