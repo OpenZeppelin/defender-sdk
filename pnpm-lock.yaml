@@ -12,6 +12,7 @@ overrides:
   semver: ^7.6.2
   tough-cookie: ^4.0.0
   tar: ^6.2.1
+  cookie: ^0.4.2
 
 importers:
 
