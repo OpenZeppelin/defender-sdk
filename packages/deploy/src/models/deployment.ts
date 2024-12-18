@@ -46,14 +46,20 @@ export interface DeployContractRequest {
   approvalProcessId?: string;
   createFactoryAddress?: string;
   /**
-   * Only applies to Relayers approval processes, for other default approval processes it has no effect
+   * @description Only applies to Relayers approval processes, for other default approval processes it has no effect
    * @default undefined
    */
   txOverrides?: TxOverrides;
-  /*
-   * A note to be included in the deployment.
+  /**
+   * @description A note to be included in the deployment.
    */
   metadata?: DeployMetadata;
+  /**
+   * @description The client that made the deployment. For internal use only.
+   * @warning this variable does not represent the `tx.origin` of the deployment.
+   * @default 'SDK'
+   */
+  origin?: DeploymentOrigin;
 }
 export interface DeployRequestLibraries {
   [k: `${string}:${string}`]: string;
@@ -69,6 +75,8 @@ export interface DeploymentUpdateRequest {
   txHash?: string;
   address?: Address;
 }
+
+export type DeploymentOrigin = 'SDK' | 'Foundry' | 'Hardhat' | 'Remix' | 'Wizard';
 
 export interface DeploymentResponse {
   deploymentId: string;
@@ -98,6 +106,7 @@ export interface DeploymentResponse {
     [k: string]: string;
   };
   constructorInputs?: (string | boolean | number)[];
+  origin?: DeploymentOrigin;
 }
 export interface BlockExplorerVerification {
   status: string;

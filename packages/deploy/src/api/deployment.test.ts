@@ -82,6 +82,26 @@ describe('Deploy Client', () => {
       expect(deployClient.api.post).toBeCalledWith('/deployments', deployCreatePayload);
       expect(createAuthenticatedApi).toBeCalled();
     });
+    it('adds origin to the payload if not provided', async () => {
+      await deployClient.deployContract(deployCreatePayload);
+      expect(deployClient.api.post).toHaveBeenCalledWith(
+        '/deployments',
+        expect.objectContaining({
+          origin: 'SDK',
+        }),
+      );
+      expect(createAuthenticatedApi).toHaveBeenCalled();
+    });
+    it('allows custom origin', async () => {
+      await deployClient.deployContract({ ...deployCreatePayload, origin: 'Foundry' });
+      expect(deployClient.api.post).toHaveBeenCalledWith(
+        '/deployments',
+        expect.objectContaining({
+          origin: 'Foundry',
+        }),
+      );
+      expect(createAuthenticatedApi).toHaveBeenCalled();
+    });
   });
   describe('get', () => {
     it('calls API correctly', async () => {

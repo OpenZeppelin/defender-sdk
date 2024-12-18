@@ -42,6 +42,10 @@ export class DeployClient extends BaseApiClient {
       params.artifactPayload = JSON.stringify(extractArtifact(params));
     }
 
+    // If the origin is not provided,
+    // we assume the deployment was made using the SDK
+    if (!params.origin) params.origin = 'SDK';
+
     return this.apiCall(async (api) => {
       return api.post(`${DEPLOYMENTS_PATH}`, params);
     });
