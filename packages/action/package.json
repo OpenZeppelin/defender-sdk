@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-action-client",
-  "version": "1.15.2",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenZeppelin/defender-sdk"
@@ -29,7 +29,7 @@
   "license": "MIT",
   "dependencies": {
     "jszip": "^3.10.1",
-    "@openzeppelin/defender-sdk-base-client": "^1.15.2",
+    "@openzeppelin/defender-sdk-base-client": "^2.0.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21",
     "glob": "^11.0.0",
