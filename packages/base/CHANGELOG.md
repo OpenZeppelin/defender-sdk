@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.0.0
+
+### Major Changes
+
+- c288762: feat(simulation): Update simulation models (breaking change).
+  feat(network): Add geist network support.
+  feat(deploy): Include immutable references in extracted artifact.
+  docs(examples): Add new example to repo.
+
 ## 1.15.2
 
 ### Patch Changes
