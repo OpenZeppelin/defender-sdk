@@ -51,7 +51,7 @@ export interface DeployContractRequest {
    */
   txOverrides?: TxOverrides;
   /**
-   * @description A key-value pair to be included in the deployment.
+   * @description Key-value pairs to be included in the deployment.
    */
   metadata?: DeployMetadata;
   /**
