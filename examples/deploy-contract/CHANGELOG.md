@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-example-deploy-contract
 
+## 2.1.0
+
+### Minor Changes
+
+- e22e31d: feat: add attribute to detect the deployment origin
+  fix: client lambda dependencies with actions example
+
+### Patch Changes
+
+- Updated dependencies [e22e31d]
+  - @openzeppelin/defender-sdk@2.1.0
+
 ## 2.0.0
 
 ### Major Changes
