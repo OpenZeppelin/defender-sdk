@@ -1,4 +1,3 @@
-import { beforeEach } from 'node:test';
 import { KeyValueStoreClient, KeyValueStoreCreateParams } from '.';
 import { KeyValueStoreActionClient } from './action';
 import { KeyValueStoreLocalClient } from './local';
