@@ -12,7 +12,11 @@ export class KeyValueStoreClient implements IKeyValueStoreClient {
   protected implementation: IKeyValueStoreClient;
 
   public constructor(params: KeyValueStoreCreateParams | LocalKeyValueStoreCreateParams) {
-    if (isActionCreateParams(params)) {
+    const defenderAction = process.env.DEFENDER_ENV;
+    if (defenderAction === 'action') {
+      if (!isActionCreateParams(params)) {
+        throw new Error('Invalid create params for KeyValueStoreClient');
+      }
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { KeyValueStoreActionClient } = require('./action');
       this.implementation = new KeyValueStoreActionClient(params);
