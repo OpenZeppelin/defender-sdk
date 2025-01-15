@@ -13,7 +13,7 @@ export class KeyValueStoreClient implements IKeyValueStoreClient {
 
   public constructor(params: KeyValueStoreCreateParams | LocalKeyValueStoreCreateParams) {
     const defenderEnv = process.env.DEFENDER_ENV;
-    if (defenderEnv === 'action') {
+    if (defenderEnv === 'DEFENDER_ACTION_ENVIRONMENT') {
       if (!isActionCreateParams(params)) {
         throw new Error('Invalid create params for KeyValueStoreClient');
       }
