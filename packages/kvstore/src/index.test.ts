@@ -26,7 +26,7 @@ describe('KeyValueStoreClient', () => {
     });
 
     test('creates an autotask client', async () => {
-      process.env.DEFENDER_ENV = 'action';
+      process.env.DEFENDER_ENV = 'DEFENDER_ACTION_ENVIRONMENT';
       const credentials = JSON.stringify({
         AccessKeyId: 'keyId',
         SecretAccessKey: 'accessKey',
