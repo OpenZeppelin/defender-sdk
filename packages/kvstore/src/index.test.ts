@@ -10,6 +10,15 @@ class TestClient extends KeyValueStoreClient {
 }
 
 describe('KeyValueStoreClient', () => {
+  const envs = process.env;
+  beforeEach(() => {
+    process.env = { ...envs };
+  });
+
+  afterEach(() => {
+    process.env = envs;
+  });
+
   describe('create', () => {
     test('creates a local client', async () => {
       const client = new TestClient({ path: '/tmp/foo' });
@@ -17,6 +26,7 @@ describe('KeyValueStoreClient', () => {
     });
 
     test('creates an autotask client', async () => {
+      process.env.DEFENDER_ENV = 'DEFENDER_ACTION_ENVIRONMENT';
       const credentials = JSON.stringify({
         AccessKeyId: 'keyId',
         SecretAccessKey: 'accessKey',
