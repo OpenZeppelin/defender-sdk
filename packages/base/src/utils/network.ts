@@ -3,6 +3,7 @@ import { findKey } from 'lodash';
 export type Network = SupportedNetwork | TenantNetwork;
 export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
+  | 'agung'
   | 'alfajores'
   | 'amoy'
   | 'arbitrum-nova'
@@ -44,6 +45,7 @@ export type PublicNetwork =
   | 'mumbai'
   | 'optimism-sepolia'
   | 'optimism'
+  | 'peaq'
   | 'scroll-sepolia'
   | 'scroll'
   | 'sepolia'
@@ -56,6 +58,7 @@ export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-se
 export type TenantNetwork = string;
 
 export const Networks: Network[] = [
+  'agung',
   'alfajores',
   'amoy',
   'arbitrum-nova',
@@ -97,6 +100,7 @@ export const Networks: Network[] = [
   'mumbai',
   'optimism-sepolia',
   'optimism',
+  'peaq',
   'scroll-sepolia',
   'scroll',
   'sepolia',
@@ -123,6 +127,7 @@ export function toChainId(network: Network): number | undefined {
 }
 
 export const chainIds: { [key in Network]: number } = {
+  'agung': 9990,
   'alfajores': 44787,
   'amoy': 80002,
   'arbitrum': 42161,
@@ -164,6 +169,7 @@ export const chainIds: { [key in Network]: number } = {
   'mumbai': 80001,
   'optimism': 10,
   'optimism-sepolia': 11155420,
+  'peaq': 3338,
   'scroll': 534352,
   'scroll-sepolia': 534351,
   'sepolia': 11155111,
