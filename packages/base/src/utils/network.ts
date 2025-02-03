@@ -44,6 +44,8 @@ export type PublicNetwork =
   | 'mumbai'
   | 'optimism-sepolia'
   | 'optimism'
+  | 'peaq'
+  | 'peaq-agung'
   | 'scroll-sepolia'
   | 'scroll'
   | 'sepolia'
@@ -97,6 +99,8 @@ export const Networks: Network[] = [
   'mumbai',
   'optimism-sepolia',
   'optimism',
+  'peaq',
+  'peaq-agung',
   'scroll-sepolia',
   'scroll',
   'sepolia',
@@ -164,6 +168,8 @@ export const chainIds: { [key in Network]: number } = {
   'mumbai': 80001,
   'optimism': 10,
   'optimism-sepolia': 11155420,
+  'peaq': 3338,
+  'peaq-agung': 9990,
   'scroll': 534352,
   'scroll-sepolia': 534351,
   'sepolia': 11155111,
