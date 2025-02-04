@@ -322,3 +322,63 @@ updates:
       interval: monthly
     commit-message:
       prefix: 'chore: '
+
+  - package-ecosystem: npm
+    directory: /e2e
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/address-book-actions
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-approval-process
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/create-relay-group
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/eas-relayer-signer
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/key-value-store-local
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/update-deployment
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /examples/upgrade-contract-uups
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/address-book
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/approval-process
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/kvstore
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/relay-group
+    schedule:
+      interval: daily
