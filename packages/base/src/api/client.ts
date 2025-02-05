@@ -137,6 +137,11 @@ export abstract class BaseApiClient {
         throw new Error('API Key is either expired or invalid');
       }
 
+       // by default no retries on 500 errors except for Cloudflare errors
+      if (isInternalServerError(error) && !isCloudFlareError(error)) {
+        throw error;
+      }
+
       // this means ID token has expired so we'll recreate session and try again
       if (isAuthenticationError(error)) {
         this.api = undefined;
@@ -182,6 +187,9 @@ const isAuthenticationError = (axiosError: AxiosError): boolean =>
 
 const isCloudFlareError = (axiosError: AxiosError): boolean =>
   axiosError.response?.status === 520 && (axiosError.response?.data as string).includes('Cloudflare');
+
+const isInternalServerError = (axiosError: AxiosError): boolean =>
+  axiosError.response?.status ? axiosError.response.status >= 500 : false;
 
 export const exponentialDelay = (
   retryNumber = 0,
