@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@openzeppelin/defender-sdk-relay-signer-client": "2.1.0",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.7",
     "web3": "^4.14.0"
   }
 }
