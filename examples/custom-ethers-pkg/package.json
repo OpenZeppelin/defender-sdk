@@ -1,7 +1,7 @@
 {
   "name": "@openzeppelin/defender-sdk-example-rollup",
   "type": "module",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "main": "index.js",
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
@@ -11,8 +11,8 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@openzeppelin/defender-sdk": "2.1.0",
-    "@openzeppelin/defender-sdk-action-client": "2.1.0",
+    "@openzeppelin/defender-sdk": "2.2.0",
+    "@openzeppelin/defender-sdk-action-client": "2.2.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.9.0"
   },

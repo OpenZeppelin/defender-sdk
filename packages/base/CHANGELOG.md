@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.2.0
+
+### Minor Changes
+
+- 625195d: feat: Add Unichain network.
+  feat: Prevent sdk retries on 500 error.
+  fix: Reading new env var for actions.
+
 ## 2.1.0
 
 ### Minor Changes
