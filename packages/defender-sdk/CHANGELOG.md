@@ -1,5 +1,31 @@
 # @openzeppelin/defender-sdk
 
+## 2.2.0
+
+### Minor Changes
+
+- 625195d: feat: Add Unichain network.
+  feat: Prevent sdk retries on 500 error.
+  fix: Reading new env var for actions.
+
+### Patch Changes
+
+- Updated dependencies [625195d]
+  - @openzeppelin/defender-sdk-account-client@2.2.0
+  - @openzeppelin/defender-sdk-action-client@2.2.0
+  - @openzeppelin/defender-sdk-address-book-client@2.2.0
+  - @openzeppelin/defender-sdk-approval-process-client@2.2.0
+  - @openzeppelin/defender-sdk-base-client@2.2.0
+  - @openzeppelin/defender-sdk-deploy-client@2.2.0
+  - @openzeppelin/defender-sdk-key-value-store-client@2.2.0
+  - @openzeppelin/defender-sdk-monitor-client@2.2.0
+  - @openzeppelin/defender-sdk-network-client@2.2.0
+  - @openzeppelin/defender-sdk-notification-channel-client@2.2.0
+  - @openzeppelin/defender-sdk-proposal-client@2.2.0
+  - @openzeppelin/defender-sdk-relay-client@2.2.0
+  - @openzeppelin/defender-sdk-relay-group-client@2.2.0
+  - @openzeppelin/defender-sdk-relay-signer-client@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

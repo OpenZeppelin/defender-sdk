@@ -1,5 +1,18 @@
 # @openzeppelin/defender-sdk-example-create-monitor
 
+## 2.2.0
+
+### Minor Changes
+
+- 625195d: feat: Add Unichain network.
+  feat: Prevent sdk retries on 500 error.
+  fix: Reading new env var for actions.
+
+### Patch Changes
+
+- Updated dependencies [625195d]
+  - @openzeppelin/defender-sdk@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes
