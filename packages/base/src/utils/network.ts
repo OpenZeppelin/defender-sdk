@@ -5,6 +5,8 @@ export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
   | 'alfajores'
   | 'amoy'
+  | 'abstract'
+  | 'abstract-sepolia'
   | 'arbitrum-nova'
   | 'arbitrum-sepolia'
   | 'arbitrum'
@@ -61,6 +63,8 @@ export type TenantNetwork = string;
 export const Networks: Network[] = [
   'alfajores',
   'amoy',
+  'abstract',
+  'abstract-sepolia',
   'arbitrum-nova',
   'arbitrum-sepolia',
   'arbitrum',
@@ -131,6 +135,8 @@ export function toChainId(network: Network): number | undefined {
 export const chainIds: { [key in Network]: number } = {
   'alfajores': 44787,
   'amoy': 80002,
+  'abstract': 2741,
+  'abstract-sepolia': 11124,
   'arbitrum': 42161,
   'arbitrum-nova': 42170,
   'arbitrum-sepolia': 421614,
