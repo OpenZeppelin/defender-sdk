@@ -1,5 +1,16 @@
 # @openzeppelin/defender-sdk-network-client
 
+## 2.3.0
+
+### Minor Changes
+
+- e74b4c6: feat: Add Abstract network support.
+
+### Patch Changes
+
+- Updated dependencies [e74b4c6]
+  - @openzeppelin/defender-sdk-base-client@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes
