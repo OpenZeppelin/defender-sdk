@@ -1,5 +1,29 @@
 # @openzeppelin/defender-sdk
 
+## 2.3.0
+
+### Minor Changes
+
+- e74b4c6: feat: Add Abstract network support.
+
+### Patch Changes
+
+- Updated dependencies [e74b4c6]
+  - @openzeppelin/defender-sdk-account-client@2.3.0
+  - @openzeppelin/defender-sdk-action-client@2.3.0
+  - @openzeppelin/defender-sdk-address-book-client@2.3.0
+  - @openzeppelin/defender-sdk-approval-process-client@2.3.0
+  - @openzeppelin/defender-sdk-base-client@2.3.0
+  - @openzeppelin/defender-sdk-deploy-client@2.3.0
+  - @openzeppelin/defender-sdk-key-value-store-client@2.3.0
+  - @openzeppelin/defender-sdk-monitor-client@2.3.0
+  - @openzeppelin/defender-sdk-network-client@2.3.0
+  - @openzeppelin/defender-sdk-notification-channel-client@2.3.0
+  - @openzeppelin/defender-sdk-proposal-client@2.3.0
+  - @openzeppelin/defender-sdk-relay-client@2.3.0
+  - @openzeppelin/defender-sdk-relay-group-client@2.3.0
+  - @openzeppelin/defender-sdk-relay-signer-client@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes
