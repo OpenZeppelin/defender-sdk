@@ -50,7 +50,7 @@ jobs:
         shell: bash
 
       - name: Set up Git
-        run: git push --set-upstream origin changeset-release/main
+        run: git push --set-upstream origin changeset-release/main || true
         shell: bash
 
       - name: Commit pnpm-lock.yaml file changes
