@@ -19,9 +19,7 @@ export function extractArtifact({
 
   return {
     input: {
-      sources: {
-        [path]: source,
-      },
+      sources: artifactObj.input.sources,
       settings,
     },
     output: {
