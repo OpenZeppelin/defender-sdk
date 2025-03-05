@@ -18,6 +18,7 @@ describe('Deploy utilities', () => {
             content: artifact.input.sources['contracts/Box.sol'].content,
           },
         },
+        language: 'Solidity',
         settings: artifact.input.settings,
       },
       output: {
