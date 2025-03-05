@@ -144,6 +144,7 @@ export type Artifact = {
       };
     };
     settings: any;
+    language: string;
   };
   output: {
     contracts: {
