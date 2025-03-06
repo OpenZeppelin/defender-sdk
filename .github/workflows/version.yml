@@ -49,7 +49,6 @@ jobs:
         shell: bash
 
       - name: Set up upstream branch
-        continue-on-error: true
         run: |
           if git show-ref --verify --quiet refs/remotes/origin/changeset-release/main; then
             git push --set-upstream origin changeset-release/main
