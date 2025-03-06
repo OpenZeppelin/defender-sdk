@@ -1,5 +1,29 @@
 # @openzeppelin/defender-sdk
 
+## 2.4.0
+
+### Minor Changes
+
+- b260a0c: feat: Add all input sources for dependency validation
+
+### Patch Changes
+
+- Updated dependencies [b260a0c]
+  - @openzeppelin/defender-sdk-account-client@2.4.0
+  - @openzeppelin/defender-sdk-action-client@2.4.0
+  - @openzeppelin/defender-sdk-address-book-client@2.4.0
+  - @openzeppelin/defender-sdk-approval-process-client@2.4.0
+  - @openzeppelin/defender-sdk-base-client@2.4.0
+  - @openzeppelin/defender-sdk-deploy-client@2.4.0
+  - @openzeppelin/defender-sdk-key-value-store-client@2.4.0
+  - @openzeppelin/defender-sdk-monitor-client@2.4.0
+  - @openzeppelin/defender-sdk-network-client@2.4.0
+  - @openzeppelin/defender-sdk-notification-channel-client@2.4.0
+  - @openzeppelin/defender-sdk-proposal-client@2.4.0
+  - @openzeppelin/defender-sdk-relay-client@2.4.0
+  - @openzeppelin/defender-sdk-relay-group-client@2.4.0
+  - @openzeppelin/defender-sdk-relay-signer-client@2.4.0
+
 ## 2.3.0
 
 ### Minor Changes
