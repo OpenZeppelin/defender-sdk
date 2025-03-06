@@ -48,8 +48,13 @@ jobs:
         run: pnpm install --lockfile-only
         shell: bash
 
-      - name: Set up Git
-        run: git push --set-upstream origin changeset-release/main
+      - name: Set up upstream branch
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/changeset-release/main; then
+            git push --set-upstream origin changeset-release/main
+          else
+            echo "Skipping because the branch changeset-release/main does not exist..."
+          fi
         shell: bash
 
       - name: Commit pnpm-lock.yaml file changes
