@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.4.0
+
+### Minor Changes
+
+- b260a0c: feat: Add all input sources for dependency validation
+
 ## 2.3.0
 
 ### Minor Changes

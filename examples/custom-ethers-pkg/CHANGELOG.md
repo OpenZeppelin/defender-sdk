@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 2.4.0
+
+### Minor Changes
+
+- b260a0c: feat: Add all input sources for dependency validation
+
+### Patch Changes
+
+- Updated dependencies [b260a0c]
+  - @openzeppelin/defender-sdk-action-client@2.4.0
+  - @openzeppelin/defender-sdk@2.4.0
+
 ## 2.3.0
 
 ### Minor Changes
