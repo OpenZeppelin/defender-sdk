@@ -14,14 +14,15 @@ export function extractArtifact({
 
   const source = artifactObj.input.sources[path];
   const settings = artifactObj.input.settings;
-  if (!source) throw new Error(`Contract ${name} source not found in artifact ${artifact}`);
-  if (!settings) throw new Error(`Contract ${name} settings not found in artifact ${artifact}`);
+  const language = artifactObj.input.language;
+  if (!source) throw new Error(`Contract ${name} source not found in artifact.input ${artifact}`);
+  if (!settings) throw new Error(`Contract ${name} settings not found in artifact.input ${artifact}`);
+  if (!language) throw new Error(`Contract ${name} language not found in artifact.input ${artifact}`);
 
   return {
     input: {
-      sources: {
-        [path]: source,
-      },
+      sources: artifactObj.input.sources,
+      language,
       settings,
     },
     output: {
