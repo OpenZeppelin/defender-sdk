@@ -1,6 +1,6 @@
 import { SupportedNetwork, TenantNetwork } from '@openzeppelin/defender-sdk-base-client';
 
-export type NetworkType = 'production' | 'test';
+export type NetworkType = 'production' | 'test' | 'deploy';
 export type TenantNetworkType = 'private' | 'fork';
 export type Address = string;
 
