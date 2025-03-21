@@ -122,9 +122,9 @@ describe('NetworkClient', () => {
       expect(createAuthenticatedApi).toBeCalled();
     });
 
-    it('calls API correctly with network type', async () => {
-      await networkClient.listSupportedNetworks({ networkType: 'deploy' });
-      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy');
+    it('calls API correctly with multiple network types', async () => {
+      await networkClient.listSupportedNetworks({ networkType: ['deploy', 'production'] });
+      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy,production');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });

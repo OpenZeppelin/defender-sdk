@@ -27,7 +27,11 @@ export class NetworkClient extends BaseApiClient {
 
   public async listSupportedNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
     return this.apiCall(async (api) => {
-      return await api.get(params && params.networkType ? `${PATH}?type=${params.networkType}` : `${PATH}`);
+      return await api.get(
+        params && params.networkType
+          ? `${PATH}?type=${(Array.isArray(params.networkType) ? params.networkType : [params.networkType]).toString()}`
+          : `${PATH}`,
+      );
     });
   }
 

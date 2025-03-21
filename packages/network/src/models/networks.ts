@@ -5,7 +5,7 @@ export type TenantNetworkType = 'private' | 'fork';
 export type Address = string;
 
 export interface ListNetworkRequestOptions {
-  networkType?: NetworkType;
+  networkType?: NetworkType | NetworkType[];
 }
 
 export interface TenantNetworkCreateRequest {
