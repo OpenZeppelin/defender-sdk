@@ -9,13 +9,13 @@ export interface ListNetworkRequestOptions {
   includeDefinition?: boolean;
 }
 
-export type NetworkDefinition = {
+export interface NetworkDefinition {
   name: string;
   displayName: string;
   chainId: number;
   symbol: string;
   isProduction: boolean;
-};
+}
 
 export interface TenantNetworkCreateRequest {
   name: string;
