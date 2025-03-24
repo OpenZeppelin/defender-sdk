@@ -25,12 +25,14 @@ export class NetworkClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
-  public async listSupportedNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
+  public async listSupportedNetworks(params: ListNetworkRequestOptions = {}): Promise<Network[]> {
     return this.apiCall(async (api) => {
       return await api.get(
-        params && params.networkType
-          ? `${PATH}?type=${(Array.isArray(params.networkType) ? params.networkType : [params.networkType]).toString()}`
-          : `${PATH}`,
+        `${PATH}${
+          params.networkType
+            ? `type=${(Array.isArray(params.networkType) ? params.networkType : [params.networkType]).toString()}`
+            : ''
+        }${params.includeDefinition ? '&includeDefinition=true' : ''}`,
       );
     });
   }

@@ -127,6 +127,18 @@ describe('NetworkClient', () => {
       expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy,production');
       expect(createAuthenticatedApi).toBeCalled();
     });
+
+    it('calls API correctly with includeDefinition flag', async () => {
+      await networkClient.listSupportedNetworks({ includeDefinition: true });
+      expect(networkClient.api.get).toBeCalledWith('/networks?includeDefinition=true');
+      expect(createAuthenticatedApi).toBeCalled();
+    });
+
+    it('calls API correctly with includeDefinition flag and includeDefinition flag', async () => {
+      await networkClient.listSupportedNetworks({ networkType: ['deploy', 'production'], includeDefinition: true });
+      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy,production&includeDefinition=true');
+      expect(createAuthenticatedApi).toBeCalled();
+    });
   });
 
   describe('list', () => {

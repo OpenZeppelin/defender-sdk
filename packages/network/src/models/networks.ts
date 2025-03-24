@@ -6,6 +6,7 @@ export type Address = string;
 
 export interface ListNetworkRequestOptions {
   networkType?: NetworkType | NetworkType[];
+  includeDefinition?: boolean;
 }
 
 export interface TenantNetworkCreateRequest {
