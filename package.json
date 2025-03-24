@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "The OpenZeppelin Defender Software Development Kit",
   "dependencies": {

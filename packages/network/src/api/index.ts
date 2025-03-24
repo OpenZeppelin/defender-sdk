@@ -26,14 +26,19 @@ export class NetworkClient extends BaseApiClient {
   }
 
   public async listSupportedNetworks(params: ListNetworkRequestOptions = {}): Promise<Network[]> {
+    const queryParams: string[] = [];
+
+    if (params.networkType) {
+      const networkTypes = Array.isArray(params.networkType) ? params.networkType : [params.networkType];
+      queryParams.push(`type=${encodeURIComponent(networkTypes.join(','))}`);
+    }
+
+    if (params.includeDefinition) {
+      queryParams.push('includeDefinition=true');
+    }
+
     return this.apiCall(async (api) => {
-      return await api.get(
-        `${PATH}${
-          params.networkType
-            ? `type=${(Array.isArray(params.networkType) ? params.networkType : [params.networkType]).toString()}`
-            : ''
-        }${params.includeDefinition ? '&includeDefinition=true' : ''}`,
-      );
+      return await api.get(`${PATH}${queryParams.length ? `?${queryParams.join('&')}` : ''}`);
     });
   }
 

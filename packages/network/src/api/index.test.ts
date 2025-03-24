@@ -124,7 +124,7 @@ describe('NetworkClient', () => {
 
     it('calls API correctly with multiple network types', async () => {
       await networkClient.listSupportedNetworks({ networkType: ['deploy', 'production'] });
-      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy,production');
+      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy%2Cproduction');
       expect(createAuthenticatedApi).toBeCalled();
     });
 
@@ -136,7 +136,7 @@ describe('NetworkClient', () => {
 
     it('calls API correctly with includeDefinition flag and includeDefinition flag', async () => {
       await networkClient.listSupportedNetworks({ networkType: ['deploy', 'production'], includeDefinition: true });
-      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy,production&includeDefinition=true');
+      expect(networkClient.api.get).toBeCalledWith('/networks?type=deploy%2Cproduction&includeDefinition=true');
       expect(createAuthenticatedApi).toBeCalled();
     });
   });
