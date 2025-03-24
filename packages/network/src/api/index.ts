@@ -8,6 +8,7 @@ import {
   PrivateNetworkCreateRequest,
   PrivateNetworkResponse,
   PrivateNetworkUpdateRequest,
+  NetworkDefinition,
 } from '../models/networks';
 
 const PATH = '/networks';
@@ -25,7 +26,14 @@ export class NetworkClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
-  public async listSupportedNetworks(params: ListNetworkRequestOptions = {}): Promise<Network[]> {
+  public async listSupportedNetworks(
+    params: ListNetworkRequestOptions & { includeDefinition: true },
+  ): Promise<NetworkDefinition[]>;
+  public async listSupportedNetworks(
+    params?: ListNetworkRequestOptions & { includeDefinition?: false | undefined },
+  ): Promise<Network[]>;
+
+  public async listSupportedNetworks(params: ListNetworkRequestOptions = {}): Promise<Network[] | NetworkDefinition[]> {
     const queryParams: string[] = [];
 
     if (params.networkType) {
