@@ -12,7 +12,10 @@ import { KeyValueStoreClient, LocalKeyValueStoreCreateParams } from '@openzeppel
 import { AddressBookClient } from '@openzeppelin/defender-sdk-address-book-client';
 import { Newable, ClientParams } from './types';
 import { ActionRelayerParams, Relayer as RelaySignerClient } from '@openzeppelin/defender-sdk-relay-signer-client';
-import { ListNetworkRequestOptions } from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
+import {
+  ListNetworkRequestOptions,
+  NetworkDefinition,
+} from '@openzeppelin/defender-sdk-network-client/lib/models/networks';
 import { AuthConfig, Network, RetryConfig } from '@openzeppelin/defender-sdk-base-client';
 import https from 'https';
 import {
@@ -76,14 +79,21 @@ export class Defender {
     };
   }
 
-  public networks(opts?: ListNetworkRequestOptions): Promise<Network[]> {
-    return getClient(NetworkClient, {
+  public async networks(params: ListNetworkRequestOptions & { includeDefinition: true }): Promise<NetworkDefinition[]>;
+  public async networks(params?: ListNetworkRequestOptions & { includeDefinition?: false }): Promise<Network[]>;
+
+  public networks(opts: ListNetworkRequestOptions = {}): Promise<Network[] | NetworkDefinition[]> {
+    const client = getClient(NetworkClient, {
       apiKey: this.apiKey,
       apiSecret: this.apiSecret,
       httpsAgent: this.httpsAgent,
       retryConfig: this.retryConfig,
       authConfig: this.authConfig,
-    }).listSupportedNetworks(opts);
+    });
+
+    return opts.includeDefinition
+      ? client.listSupportedNetworks({ ...opts, includeDefinition: true })
+      : client.listSupportedNetworks({ ...opts, includeDefinition: false });
   }
 
   get network() {

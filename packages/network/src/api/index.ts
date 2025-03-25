@@ -33,7 +33,9 @@ export class NetworkClient extends BaseApiClient {
     params?: ListNetworkRequestOptions & { includeDefinition?: false },
   ): Promise<Network[]>;
 
-  public async listSupportedNetworks(params: ListNetworkRequestOptions = {}): Promise<Network[] | NetworkDefinition[]> {
+  public async listSupportedNetworks(
+    params: ListNetworkRequestOptions = { includeDefinition: false },
+  ): Promise<Network[] | NetworkDefinition[]> {
     const queryParams: string[] = [];
 
     if (params.networkType) {
