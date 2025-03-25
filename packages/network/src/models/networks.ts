@@ -1,11 +1,20 @@
 import { SupportedNetwork, TenantNetwork } from '@openzeppelin/defender-sdk-base-client';
 
-export type NetworkType = 'production' | 'test';
+export type NetworkType = 'production' | 'test' | 'deploy';
 export type TenantNetworkType = 'private' | 'fork';
 export type Address = string;
 
 export interface ListNetworkRequestOptions {
-  networkType?: NetworkType;
+  networkType?: NetworkType | NetworkType[];
+  includeDefinition?: boolean;
+}
+
+export interface NetworkDefinition {
+  name: string;
+  displayName: string;
+  chainId: number;
+  symbol: string;
+  isProduction: boolean;
 }
 
 export interface TenantNetworkCreateRequest {

@@ -7,6 +7,7 @@ export {
   NetworkType,
   TenantNetworkType,
   TenantNetworkResponse,
+  NetworkDefinition,
 } from './models/networks';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

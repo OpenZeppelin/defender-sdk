@@ -8,6 +8,7 @@ import {
   PrivateNetworkCreateRequest,
   PrivateNetworkResponse,
   PrivateNetworkUpdateRequest,
+  NetworkDefinition,
 } from '../models/networks';
 
 const PATH = '/networks';
@@ -25,9 +26,29 @@ export class NetworkClient extends BaseApiClient {
     return process.env.DEFENDER_API_URL || 'https://defender-api.openzeppelin.com/';
   }
 
-  public async listSupportedNetworks(params?: ListNetworkRequestOptions): Promise<Network[]> {
+  public async listSupportedNetworks(
+    params: ListNetworkRequestOptions & { includeDefinition: true },
+  ): Promise<NetworkDefinition[]>;
+  public async listSupportedNetworks(
+    params?: ListNetworkRequestOptions & { includeDefinition?: false },
+  ): Promise<Network[]>;
+
+  public async listSupportedNetworks(
+    params: ListNetworkRequestOptions = { includeDefinition: false },
+  ): Promise<Network[] | NetworkDefinition[]> {
+    const queryParams: string[] = [];
+
+    if (params.networkType) {
+      const networkTypes = Array.isArray(params.networkType) ? params.networkType : [params.networkType];
+      queryParams.push(`type=${encodeURIComponent(networkTypes.join(','))}`);
+    }
+
+    if (params.includeDefinition) {
+      queryParams.push('includeDefinition=true');
+    }
+
     return this.apiCall(async (api) => {
-      return await api.get(params && params.networkType ? `${PATH}?type=${params.networkType}` : `${PATH}`);
+      return await api.get(`${PATH}${queryParams.length ? `?${queryParams.join('&')}` : ''}`);
     });
   }
 
