@@ -41,7 +41,7 @@ jobs:
         uses: ./.github/actions/prepare
 
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4
+        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec
         with:
           gpg_private_key: ${{ secrets.SVC_GPG_KEY }}
           passphrase: ${{ secrets.SVC_GPG_PASSPHRASE }}
