@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 2.5.0
+
+### Minor Changes
+
+- d2d4986: feat: Include deploy network type
+
+### Patch Changes
+
+- Updated dependencies [d2d4986]
+  - @openzeppelin/defender-sdk-action-client@2.5.0
+  - @openzeppelin/defender-sdk@2.5.0
+
 ## 2.4.0
 
 ### Minor Changes

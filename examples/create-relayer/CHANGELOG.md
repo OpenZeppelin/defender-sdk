@@ -1,5 +1,16 @@
 # example-create-relayer
 
+## 2.5.0
+
+### Minor Changes
+
+- d2d4986: feat: Include deploy network type
+
+### Patch Changes
+
+- Updated dependencies [d2d4986]
+  - @openzeppelin/defender-sdk@2.5.0
+
 ## 2.4.0
 
 ### Minor Changes

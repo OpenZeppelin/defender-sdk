@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-monitor-client",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenZeppelin/defender-sdk"
@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "ethers": "^6.9.0",
-    "@openzeppelin/defender-sdk-base-client": "^2.4.0",
+    "@openzeppelin/defender-sdk-base-client": "^2.5.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21"
   },
