@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.5.0
+
+### Minor Changes
+
+- d2d4986: feat: Include deploy network type
+
 ## 2.4.0
 
 ### Minor Changes
