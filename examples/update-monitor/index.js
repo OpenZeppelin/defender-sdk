@@ -36,7 +36,7 @@ async function main() {
   const notification = await ensureNotificationChannelExists(client);
 
   const blockRequestParameters = {
-    type: 'BLOCK', // BLOCK or FORTA
+    type: 'BLOCK', // BLOCK
     network: 'sepolia',
     // optional
     confirmLevel: 1, // if not set, we pick the blockwatcher for the chosen network with the lowest offset
