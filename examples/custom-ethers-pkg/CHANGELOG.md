@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 2.6.0
+
+### Minor Changes
+
+- b98eac5: feat: Remove Forta Integration
+
+### Patch Changes
+
+- Updated dependencies [b98eac5]
+  - @openzeppelin/defender-sdk-action-client@2.6.0
+  - @openzeppelin/defender-sdk@2.6.0
+
 ## 2.5.0
 
 ### Minor Changes

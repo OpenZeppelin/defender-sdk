@@ -1,6 +1,6 @@
 {
 	"name": "@openzeppelin/defender-sdk-example-eas-relay-signer",
-	"version": "2.5.0",
+	"version": "2.6.0",
 	"private": true,
 	"main": "index.js",
 	"type": "module",
@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"@ethereum-attestation-service/eas-sdk": "^2.7.0",
-		"@openzeppelin/defender-sdk": "2.5.0",
+		"@openzeppelin/defender-sdk": "2.6.0",
 		"dotenv": "^16.4.5",
 		"ethers": "^6.13.4"
 	}
