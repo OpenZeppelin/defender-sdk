@@ -19,10 +19,10 @@ export interface ExternalApiCreateProposalRequest {
   via?: Address;
   /**
    * The type of account or mechanism that will execute the proposal:
-   * - 'EOA': An externally owned account (regular wallet)
-   * - 'Safe': A Safe (formerly Gnosis Safe) multi-signature wallet
-   * - 'Gnosis Multisig': A legacy Gnosis multi-signature wallet (not Safe)
-   * - 'Relayer': A Defender Relayer
+   * - 'EOA'              : An externally owned account             (hot wallet)
+   * - 'Safe'             : A Safe multi-signature wallet           (formerly Gnosis Safe)
+   * - 'Gnosis Multisig'  : A legacy Gnosis multi-signature wallet  (not Safe)
+   * - 'Relayer'          : A Defender Relayer                      (cloud signer)
    */
   viaType?: 'EOA' | 'Safe' | 'Gnosis Multisig' | 'Relayer';
   functionInterface?: ProposalTargetFunction;
