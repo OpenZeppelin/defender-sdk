@@ -3,7 +3,7 @@ import { MonitorClient } from '.';
 import { NotificationResponse } from '..';
 import { BlockWatcher } from '../models/blockwatcher';
 import { CreateMonitorResponse } from '../models/response';
-import { ExternalCreateBlockMonitorRequest, ExternalCreateFortaMonitorRequest } from '../models/monitor';
+import { ExternalCreateBlockMonitorRequest } from '../models/monitor';
 
 jest.mock('@openzeppelin/defender-sdk-base-client');
 jest.mock('aws-sdk');
@@ -83,37 +83,6 @@ describe('MonitorClient', () => {
       {
         expression: '',
         functionSignature: 'approve(address,uint256)',
-      },
-    ],
-  };
-  const createFortaPayload: ExternalCreateFortaMonitorRequest = {
-    type: 'FORTA',
-    name: 'Test FORTA monitor',
-    network: 'sepolia',
-    addresses: ['0xdead'],
-    notificationChannels: [],
-    paused: false,
-    fortaConditions: { minimumScannerCount: 1 },
-  };
-
-  const oldBlockMonitor: CreateMonitorResponse = {
-    type: 'BLOCK',
-    monitorId: 'old-monitor-id',
-    name: 'Previous monitor',
-    paused: false,
-    blockWatcherId: 'i-am-the-watcher',
-    network: 'sepolia',
-    addressRules: [
-      {
-        abi: '[{ method: "type" }]',
-        addresses: ['0xdead1', '0xdead2'],
-        conditions: [
-          {
-            eventConditions: [{ eventSignature: '0x01' }],
-            txConditions: [],
-            functionConditions: [],
-          },
-        ],
       },
     ],
   };
@@ -225,60 +194,6 @@ describe('MonitorClient', () => {
       expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
       expect(createAuthenticatedApi).toHaveBeenCalled();
     });
-
-    it('passes correct FORTA type arguments to the API', async () => {
-      const { name, paused, type, addresses, fortaConditions, network } = createFortaPayload;
-
-      const expectedApiRequest = {
-        paused,
-        type,
-        name,
-        network,
-        alertThreshold: undefined,
-        notifyConfig: {
-          actionId: undefined,
-          notifications: [],
-          timeoutMs: 0,
-        },
-        fortaRule: {
-          addresses: addresses,
-          agentIDs: undefined,
-          actionCondition: undefined,
-          conditions: fortaConditions,
-        },
-      };
-
-      await monitor.create(createFortaPayload);
-      expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
-      expect(createAuthenticatedApi).toHaveBeenCalled();
-    });
-    it('passes correct Private FORTA type arguments to the API', async () => {
-      const { name, paused, type, addresses, fortaConditions, network } = createFortaPayload;
-
-      const expectedApiRequest = {
-        paused,
-        type,
-        name,
-        network,
-        privateFortaNodeId: '0x123',
-        alertThreshold: undefined,
-        notifyConfig: {
-          actionId: undefined,
-          notifications: [],
-          timeoutMs: 0,
-        },
-        fortaRule: {
-          addresses: addresses,
-          agentIDs: undefined,
-          actionCondition: undefined,
-          conditions: fortaConditions,
-        },
-      };
-
-      await monitor.create({ ...createFortaPayload, privateFortaNodeId: '0x123' });
-      expect(monitor.api.post).toHaveBeenCalledWith('/monitors', expectedApiRequest);
-      expect(createAuthenticatedApi).toHaveBeenCalled();
-    });
   });
 
   describe('get', () => {
@@ -294,13 +209,6 @@ describe('MonitorClient', () => {
       const monitorId = 'i-am-the-BLOCK-watcher';
       await monitor.update(monitorId, { monitorId, ...createBlockPayload });
       expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { monitorId, ...createBlockPayload });
-      expect(createAuthenticatedApi).toHaveBeenCalled();
-    });
-
-    it('passes correct FORTA type arguments to the API', async () => {
-      const monitorId = 'i-am-the-FORTA-watcher';
-      await monitor.update(monitorId, { monitorId, ...createFortaPayload });
-      expect(monitor.api.put).toHaveBeenCalledWith(`/monitors/${monitorId}`, { monitorId, ...createFortaPayload });
       expect(createAuthenticatedApi).toHaveBeenCalled();
     });
   });

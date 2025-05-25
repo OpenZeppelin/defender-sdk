@@ -122,7 +122,7 @@ export interface MonitorConditionMatch {
 /**
  * Represents an object matched by a monitor
  */
-export type MonitorTriggerEvent = BlockTriggerEvent | FortaTriggerEvent;
+export type MonitorTriggerEvent = BlockTriggerEvent;
 
 export interface BlockTriggerEvent {
   type: 'BLOCK';
@@ -138,19 +138,10 @@ export interface BlockTriggerEvent {
   metadata?: { [k: string]: unknown };
 }
 
-export interface FortaTriggerEvent {
-  type: 'FORTA';
-  hash: string;
-  alert: FortaAlert;
-  matchReasons: FortaConditionSummary[];
-  monitor: FortaMonitorSummary;
-  metadata?: { [k: string]: unknown };
-}
-
 /**
  * Summary of a Monitor definition
  */
-export type MonitorSubscriberSummary = FortaMonitorSummary | BlockMonitorSummary;
+export type MonitorSubscriberSummary = BlockMonitorSummary;
 
 export interface BlockMonitorSummary {
   id: string;
@@ -160,18 +151,6 @@ export interface BlockMonitorSummary {
   confirmBlocks: MonitorConfirmation;
   abi: Record<string, unknown> | undefined;
   chainId: number;
-}
-
-export interface FortaMonitorSummary {
-  id: string;
-  name: string;
-  addresses: string[];
-  // Forta have changed the terminology for 'Agent' to 'Detection Bot'
-  // We will continue to refer to them as 'Agent' for now.
-  // agents should be a list of Bot IDs
-  agents: string[];
-  network?: string;
-  chainId?: number;
 }
 
 export interface MonitorBaseConditionSummary {
@@ -220,8 +199,6 @@ export type MonitorConditionSummary =
   | FunctionConditionSummary
   | EventConditionSummary;
 
-export type FortaConditionSummary = AlertIdConditionSummary | SeverityConditionSummary;
-
 /**
  * Ethereum transaction receipt
  */
@@ -255,12 +232,7 @@ export interface EthLog {
   transactionIndex: string;
 }
 
-/**
- * Forta Alert
- */
-export type FortaAlert = TxAlert | BlockAlert;
-
-export type TxAlert = TFortaAlert & {
+export type TxAlert = {
   addresses: string[];
   source: Source & {
     tx_hash: string;
@@ -268,27 +240,9 @@ export type TxAlert = TFortaAlert & {
   alertType: 'TX';
 };
 
-export type BlockAlert = TFortaAlert & {
+export type BlockAlert = {
   alertType: 'BLOCK';
 };
-
-interface TFortaAlert {
-  addresses?: string[];
-  createdAt: string;
-  severity: string;
-  alertId: string;
-  scanNodeCount: number;
-  name: string;
-  description: string;
-  hash: string;
-  protocol: string;
-  findingType: string;
-  source: Source;
-  metadata: {
-    [k: string]: unknown;
-  };
-  alertType?: 'TX' | 'BLOCK';
-}
 
 interface Source {
   transactionHash?: string;
@@ -305,11 +259,11 @@ interface Source {
   };
 }
 
-export function isTxAlert(alert: FortaAlert): alert is TxAlert {
+export function isTxAlert(alert: TxAlert): alert is TxAlert {
   return (alert as TxAlert).alertType === 'TX';
 }
 
-export function isBlockAlert(alert: FortaAlert): alert is BlockAlert {
+export function isBlockAlert(alert: BlockAlert): alert is BlockAlert {
   return (alert as BlockAlert).alertType === 'BLOCK';
 }
 
@@ -320,5 +274,4 @@ export enum AlertType {
 
 export enum SubscriberType {
   BLOCK = 'BLOCK',
-  FORTA = 'FORTA',
 }

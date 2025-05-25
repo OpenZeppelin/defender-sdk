@@ -1,11 +1,11 @@
 export type MonitorConfirmation = number | 'safe' | 'finalized';
-export type ExternalCreateMonitorRequest = ExternalCreateBlockMonitorRequest | ExternalCreateFortaMonitorRequest;
+export type ExternalCreateMonitorRequest = ExternalCreateBlockMonitorRequest;
 
-export type ExternalUpdateMonitorRequest = ExternalUpdateBlockMonitorRequest | ExternalUpdateFortaMonitorRequest;
+export type ExternalUpdateMonitorRequest = ExternalUpdateBlockMonitorRequest;
 export interface ExternalBaseCreateMonitorRequest {
   name: string;
   addresses?: string[];
-  type: 'FORTA' | 'BLOCK';
+  type: 'BLOCK';
   notificationChannels: string[];
   abi?: string;
   paused?: boolean;
@@ -31,18 +31,6 @@ export interface ExternalCreateBlockMonitorRequest extends ExternalBaseCreateMon
   type: 'BLOCK';
 }
 
-export interface ExternalCreateFortaMonitorRequest extends ExternalBaseCreateMonitorRequest {
-  privateFortaNodeId?: string;
-  network?: Network;
-  fortaLastProcessedTime?: string;
-  addresses?: Address[];
-  // Forta have changed the terminology for 'Agent' to 'Detection Bot'
-  // We will continue to refer to them as 'Agent' for now.
-  // agentIDs should be a list of Bot IDs
-  agentIDs?: string[];
-  fortaConditions: FortaConditionSet;
-  type: 'FORTA';
-}
 export interface ExternalUpdateBlockMonitorRequest
   extends Omit<ExternalCreateBlockMonitorRequest, 'network' | 'addresses' | 'name' | 'notificationChannels'> {
   monitorId: string;
@@ -52,15 +40,7 @@ export interface ExternalUpdateBlockMonitorRequest
   notificationChannels?: string[];
 }
 
-export interface ExternalUpdateFortaMonitorRequest
-  extends Omit<ExternalCreateFortaMonitorRequest, 'fortaConditions' | 'name' | 'notificationChannels'> {
-  monitorId: string;
-  fortaConditions?: FortaConditionSet;
-  name?: string;
-  notificationChannels?: string[];
-}
-
-export type CreateMonitorRequest = CreateBlockMonitorRequest | CreateFortaMonitorRequest;
+export type CreateMonitorRequest = CreateBlockMonitorRequest;
 
 // Copied from openzeppelin/defender/models/src/types/subscribers.req.d.ts
 
@@ -82,13 +62,6 @@ export interface BaseCreateMonitorResponse extends BaseCreateMonitorRequest {
   createdAt?: string;
 }
 
-export interface PartialCreateFortaMonitorRequest {
-  privateFortaNodeId?: string;
-  fortaRule: FortaRule;
-  network?: Network;
-  type: 'FORTA';
-}
-
 export interface PartialCreateBlockMonitorRequest {
   addressRules: AddressRule[];
   blockWatcherId: string;
@@ -99,32 +72,10 @@ export interface PartialCreateBlockMonitorRequest {
 
 export interface CreateBlockMonitorRequest extends BaseCreateMonitorRequest, PartialCreateBlockMonitorRequest {}
 
-export interface CreateFortaMonitorRequest extends BaseCreateMonitorRequest, PartialCreateFortaMonitorRequest {}
-
-export interface CreateFortaMonitorResponse extends BaseCreateMonitorResponse, CreateFortaMonitorRequest {
-  fortaLastProcessedTime?: string;
-}
-
 export interface CreateBlockMonitorResponse extends BaseCreateMonitorResponse, CreateBlockMonitorRequest {}
-
-export interface FortaRule {
-  addresses?: Address[];
-  // Forta have changed the terminology for 'Agent' to 'Detection Bot'
-  // We will continue to refer to them as 'Agent' for now.
-  // agentIDs should be a list of Bot IDs
-  agentIDs?: string[];
-  conditions: FortaConditionSet;
-  actionCondition?: ActionCondition;
-}
-export interface FortaConditionSet {
-  alertIDs?: string[];
-  minimumScannerCount: number;
-  severity?: number;
-}
 
 export enum MonitorType {
   BLOCK = 'BLOCK',
-  FORTA = 'FORTA',
 }
 
 export type MonitorRiskCategory = 'NONE' | 'GOVERNANCE' | 'ACCESS-CONTROL' | 'SUSPICIOUS' | 'FINANCIAL' | 'TECHNICAL';

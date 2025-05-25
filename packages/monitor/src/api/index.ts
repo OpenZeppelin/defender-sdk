@@ -3,13 +3,10 @@ import {
   ConditionSet,
   CreateMonitorRequest,
   ExternalCreateBlockMonitorRequest as CreateBlockMonitorRequest,
-  ExternalCreateFortaMonitorRequest as CreateFortaMonitorRequest,
   ExternalCreateMonitorRequest,
   ExternalUpdateMonitorRequest as UpdateMonitorRequest,
   NotificationReference,
   PartialCreateBlockMonitorRequest,
-  PartialCreateFortaMonitorRequest,
-  CreateFortaMonitorResponse,
   CreateBlockMonitorResponse,
 } from '../models/monitor';
 import { DeletedMonitorResponse, CreateMonitorResponse, ListMonitorResponse } from '../models/response';
@@ -129,20 +126,6 @@ export class MonitorClient extends BaseApiClient {
     return (await this.listBlockwatchers()).filter((blockwatcher) => blockwatcher.network === network);
   }
 
-  private constructFortaMonitor(monitor: CreateFortaMonitorRequest): PartialCreateFortaMonitorRequest {
-    return {
-      fortaRule: {
-        addresses: monitor.addresses,
-        agentIDs: monitor.agentIDs,
-        conditions: monitor.fortaConditions,
-        actionCondition: monitor.actionCondition ? { actionId: monitor.actionCondition } : undefined,
-      },
-      privateFortaNodeId: monitor.privateFortaNodeId,
-      network: monitor.network,
-      type: 'FORTA',
-    };
-  }
-
   private normaliseABI(abi: any): string | undefined {
     return abi ? (typeof abi === 'string' ? abi : JSON.stringify(abi)) : undefined;
   }
@@ -243,14 +226,12 @@ export class MonitorClient extends BaseApiClient {
   }
 
   private async constructMonitorRequest(monitor: ExternalCreateMonitorRequest): Promise<CreateMonitorRequest> {
-    let partialResponse: PartialCreateBlockMonitorRequest | PartialCreateFortaMonitorRequest;
+    let partialResponse: PartialCreateBlockMonitorRequest;
 
     if (monitor.type === 'BLOCK') {
       partialResponse = await this.constructBlockMonitor(monitor);
-    } else if (monitor.type === 'FORTA') {
-      partialResponse = this.constructFortaMonitor(monitor);
     } else {
-      throw new Error(`Invalid monitor type. Type must be FORTA or BLOCK`);
+      throw new Error(`Invalid monitor type. Type must be BLOCK`);
     }
 
     const notificationChannels = await this.getNotifications(monitor.notificationChannels);
@@ -309,32 +290,9 @@ export class MonitorClient extends BaseApiClient {
     };
   }
 
-  private toCreateFortaMonitorRequest(monitor: CreateFortaMonitorResponse): CreateFortaMonitorRequest {
-    return {
-      type: 'FORTA',
-      name: monitor.name,
-      paused: monitor.paused,
-      alertThreshold: monitor.alertThreshold,
-      actionCondition: monitor.fortaRule.actionCondition?.actionId,
-      actionTrigger: monitor.notifyConfig?.actionId,
-      alertTimeoutMs: monitor.notifyConfig?.timeoutMs,
-      alertMessageSubject: monitor.notifyConfig?.messageSubject,
-      alertMessageBody: monitor.notifyConfig?.messageBody,
-      notificationChannels: monitor.notifyConfig?.notifications?.map(({ notificationId }) => notificationId) ?? [],
-      severityLevel: monitor.notifyConfig?.severityLevel,
-      network: monitor.network,
-      fortaLastProcessedTime: monitor.fortaLastProcessedTime,
-      addresses: monitor.fortaRule.addresses,
-      agentIDs: monitor.fortaRule.agentIDs,
-      fortaConditions: monitor.fortaRule.conditions,
-      privateFortaNodeId: monitor.privateFortaNodeId,
-    };
-  }
-
   private toCreateMonitorRequest(monitor: CreateMonitorResponse): ExternalCreateMonitorRequest {
     if (monitor.type === 'BLOCK') return this.toCreateBlockMonitorRequest(monitor);
-    if (monitor.type === 'FORTA') return this.toCreateFortaMonitorRequest(monitor);
 
-    throw new Error(`Invalid monitor type. Type must be FORTA or BLOCK`);
+    throw new Error(`Invalid monitor type. Type must be BLOCK`);
   }
 }

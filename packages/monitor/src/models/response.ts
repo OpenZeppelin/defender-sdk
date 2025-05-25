@@ -1,14 +1,13 @@
-import { CreateBlockMonitorResponse, CreateFortaMonitorResponse } from './monitor';
+import { CreateBlockMonitorResponse } from './monitor';
 
 export interface DeletedMonitorResponse {
   message: string;
 }
 
-export type CreateMonitorResponse = CreateBlockMonitorResponse | CreateFortaMonitorResponse;
+export type CreateMonitorResponse = CreateBlockMonitorResponse;
 
 export type ListMonitorResponse = {
   items: CreateMonitorResponse[];
   notificationsQuotaUsage: number;
   blockProcessedQuotaUsage: number;
-  fortaAlertsQuotaUsage: number;
 };

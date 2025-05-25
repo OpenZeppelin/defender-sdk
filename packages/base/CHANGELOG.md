@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.6.0
+
+### Minor Changes
+
+- b98eac5: feat: Remove Forta Integration
+
 ## 2.5.0
 
 ### Minor Changes
