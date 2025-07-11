@@ -51,6 +51,8 @@ export type PublicNetwork =
   | 'scroll-sepolia'
   | 'scroll'
   | 'sepolia'
+  | 'sei'
+  | 'atlantic-2'
   | 'sokol'
   | 'unichain'
   | 'unichain-sepolia'
@@ -109,6 +111,8 @@ export const Networks: Network[] = [
   'scroll-sepolia',
   'scroll',
   'sepolia',
+  'sei',
+  'atlantic-2',
   'sokol',
   'unichain',
   'unichain-sepolia',
@@ -181,6 +185,8 @@ export const chainIds: { [key in Network]: number } = {
   'scroll': 534352,
   'scroll-sepolia': 534351,
   'sepolia': 11155111,
+  'sei': 1329,
+  'atlantic-2': 1328,
   'sokol': 77,
   'unichain': 130,
   'unichain-sepolia': 1301,
