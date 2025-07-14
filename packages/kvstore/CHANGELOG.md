@@ -1,5 +1,17 @@
 # @openzeppelin/defender-sdk-key-value-store-client
 
+## 2.7.0
+
+### Minor Changes
+
+- 31d5944: feat: Adding support for Sei chain.
+  docs(proposals): Clarify distinction between Safe and Gnosis Multisig viaType options.
+
+### Patch Changes
+
+- Updated dependencies [31d5944]
+  - @openzeppelin/defender-sdk-base-client@2.7.0
+
 ## 2.6.0
 
 ### Minor Changes

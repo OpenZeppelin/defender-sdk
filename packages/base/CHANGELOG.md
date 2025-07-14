@@ -1,5 +1,12 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.7.0
+
+### Minor Changes
+
+- 31d5944: feat: Adding support for Sei chain.
+  docs(proposals): Clarify distinction between Safe and Gnosis Multisig viaType options.
+
 ## 2.6.0
 
 ### Minor Changes
