@@ -1,6 +1,6 @@
 {
   "name": "@openzeppelin/defender-sdk-relay-group-client",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenZeppelin/defender-sdk"
@@ -24,7 +24,7 @@
   "author": "OpenZeppelin Defender <defender@openzeppelin.com>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/defender-sdk-base-client": "^2.6.0",
+    "@openzeppelin/defender-sdk-base-client": "^2.7.0",
     "axios": "^1.7.4",
     "lodash": "^4.17.21"
   },
