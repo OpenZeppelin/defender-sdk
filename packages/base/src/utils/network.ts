@@ -48,6 +48,7 @@ export type PublicNetwork =
   | 'optimism'
   | 'peaq-mainnet'
   | 'peaq-agung'
+  | 'rayls-devnet'
   | 'scroll-sepolia'
   | 'scroll'
   | 'sepolia'
@@ -108,6 +109,7 @@ export const Networks: Network[] = [
   'optimism',
   'peaq-mainnet',
   'peaq-agung',
+  'rayls-devnet',
   'scroll-sepolia',
   'scroll',
   'sepolia',
@@ -182,6 +184,7 @@ export const chainIds: { [key in Network]: number } = {
   'peaq-mainnet': 3338,
   'peaq-agung': 9990,
   'optimism-sepolia': 11155420,
+  'rayls-devnet': 123123,
   'scroll': 534352,
   'scroll-sepolia': 534351,
   'sepolia': 11155111,
