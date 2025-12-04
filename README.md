@@ -8,6 +8,16 @@
 [![Scorecard supply-chain security](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/scorecard.yml)
 [![CI](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenZeppelin/defender-sdk/actions/workflows/ci.yml)
 
+## ⚠️ Important Notice
+
+> **This SDK will be deprecated on July 1, 2026 and will no longer receive updates after that date.**
+>
+> OpenZeppelin Defender is currently undergoing migration. If you are using OpenZeppelin Relayer, you can use the new SDK: [OpenZeppelin Relayer SDK](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk).
+>
+> For more information about the Defender migration and updated services, please refer to the [Defender Migration Guide](https://docs.openzeppelin.com/defender/migration).
+
+---
+
 This monorepo contains individual OpenZeppelin Defender TypeScript clients and publishes the collection of clients as `@openzeppelin/defender-sdk`
 
 ## Usage
