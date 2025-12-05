@@ -12,7 +12,7 @@
 
 > **OpenZeppelin Defender will sunset on July 1, 2026. As a result, this SDK will be deprecated and will no longer receive updates after that date.**
 >
-> Users are encouraged to migrate to OpenZeppelin's open source projects, including [OZ Relayer](https://github.com/OpenZeppelin/openzeppelin-relayer) and [OZ Monitor](https://github.com/OpenZeppelin/openzeppelin-monitor). For detailed migration instructions and guidance, please follow the [Defender Migration Guide](https://docs.openzeppelin.com/defender/migration).
+> Users are encouraged to migrate to OpenZeppelin's open source projects, including [OpenZeppelin Relayer](https://github.com/OpenZeppelin/openzeppelin-relayer) and [OpenZeppelin Monitor](https://github.com/OpenZeppelin/openzeppelin-monitor). For detailed migration instructions and guidance, please follow the [Defender Migration Guide](https://docs.openzeppelin.com/defender/migration).
 >
 > **Note on OZ Monitor:** While this defender-sdk includes a Defender Monitor client, OpenZeppelin Monitor (the open source version) is a standalone binary/CLI tool and does not ship with a client SDK.
 >
