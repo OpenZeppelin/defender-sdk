@@ -1,5 +1,18 @@
 # @openzeppelin/defender-sdk-example-ethers-signer
 
+## 2.8.0
+
+### Minor Changes
+
+- 5f14964: chore: add support for rayls testnet network
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+- Updated dependencies [5f14964]
+- Updated dependencies [46b6267]
+  - @openzeppelin/defender-sdk@2.8.0
+
 ## 2.7.0
 
 ### Minor Changes
