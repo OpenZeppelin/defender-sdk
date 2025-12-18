@@ -1,5 +1,15 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.8.0
+
+### Minor Changes
+
+- 5f14964: chore: add support for rayls testnet network
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+
 ## 2.7.0
 
 ### Minor Changes
