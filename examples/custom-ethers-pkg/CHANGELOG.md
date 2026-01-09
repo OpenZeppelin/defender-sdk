@@ -1,5 +1,14 @@
 # @openzeppelin/defender-sdk-example-rollup
 
+## 2.7.1
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+- Updated dependencies [46b6267]
+  - @openzeppelin/defender-sdk-action-client@2.7.1
+  - @openzeppelin/defender-sdk@2.7.1
+
 ## 2.7.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-relayer-signer-auth-v2
 
+## 2.7.1
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+- Updated dependencies [46b6267]
+  - @openzeppelin/defender-sdk@2.7.1
+
 ## 2.7.0
 
 ### Minor Changes
