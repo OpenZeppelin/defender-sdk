@@ -3,13 +3,14 @@ import { findKey } from 'lodash';
 export type Network = SupportedNetwork | TenantNetwork;
 export type SupportedNetwork = PublicNetwork | CustomNetwork;
 export type PublicNetwork =
+  | 'abstract-sepolia'
+  | 'abstract'
   | 'alfajores'
   | 'amoy'
-  | 'abstract'
-  | 'abstract-sepolia'
   | 'arbitrum-nova'
   | 'arbitrum-sepolia'
   | 'arbitrum'
+  | 'atlantic-2'
   | 'aurora'
   | 'auroratest'
   | 'avalanche'
@@ -46,17 +47,16 @@ export type PublicNetwork =
   | 'mumbai'
   | 'optimism-sepolia'
   | 'optimism'
-  | 'peaq-mainnet'
   | 'peaq-agung'
+  | 'peaq-mainnet'
   | 'rayls-devnet'
   | 'scroll-sepolia'
   | 'scroll'
-  | 'sepolia'
   | 'sei'
-  | 'atlantic-2'
+  | 'sepolia'
   | 'sokol'
-  | 'unichain'
   | 'unichain-sepolia'
+  | 'unichain'
   | 'xdai'
   | 'zksync-sepolia'
   | 'zksync';
@@ -64,13 +64,14 @@ export type CustomNetwork = 'x-dfk-avax-chain' | 'x-dfk-avax-chain-test' | 'x-se
 export type TenantNetwork = string;
 
 export const Networks: Network[] = [
+  'abstract-sepolia',
+  'abstract',
   'alfajores',
   'amoy',
-  'abstract',
-  'abstract-sepolia',
   'arbitrum-nova',
   'arbitrum-sepolia',
   'arbitrum',
+  'atlantic-2',
   'aurora',
   'auroratest',
   'avalanche',
@@ -107,17 +108,16 @@ export const Networks: Network[] = [
   'mumbai',
   'optimism-sepolia',
   'optimism',
-  'peaq-mainnet',
   'peaq-agung',
+  'peaq-mainnet',
   'rayls-devnet',
   'scroll-sepolia',
   'scroll',
-  'sepolia',
   'sei',
-  'atlantic-2',
+  'sepolia',
   'sokol',
-  'unichain',
   'unichain-sepolia',
+  'unichain',
   'x-dfk-avax-chain-test',
   'x-dfk-avax-chain',
   'x-security-alliance',
@@ -139,13 +139,14 @@ export function toChainId(network: Network): number | undefined {
 }
 
 export const chainIds: { [key in Network]: number } = {
-  'alfajores': 44787,
-  'amoy': 80002,
   'abstract': 2741,
   'abstract-sepolia': 11124,
+  'alfajores': 44787,
+  'amoy': 80002,
   'arbitrum': 42161,
   'arbitrum-nova': 42170,
   'arbitrum-sepolia': 421614,
+  'atlantic-2': 1328,
   'aurora': 1313161554,
   'auroratest': 1313161555,
   'avalanche': 43114,
@@ -181,15 +182,14 @@ export const chainIds: { [key in Network]: number } = {
   'moonriver': 1285,
   'mumbai': 80001,
   'optimism': 10,
-  'peaq-mainnet': 3338,
-  'peaq-agung': 9990,
   'optimism-sepolia': 11155420,
+  'peaq-agung': 9990,
+  'peaq-mainnet': 3338,
   'rayls-devnet': 123123,
   'scroll': 534352,
   'scroll-sepolia': 534351,
-  'sepolia': 11155111,
   'sei': 1329,
-  'atlantic-2': 1328,
+  'sepolia': 11155111,
   'sokol': 77,
   'unichain': 130,
   'unichain-sepolia': 1301,

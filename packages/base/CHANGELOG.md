@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.7.1
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+
 ## 2.7.0
 
 ### Minor Changes

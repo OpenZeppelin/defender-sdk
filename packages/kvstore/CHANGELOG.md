@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-key-value-store-client
 
+## 2.7.1
+
+### Patch Changes
+
+- 46b6267: chore: Update README with oss migration
+- Updated dependencies [46b6267]
+  - @openzeppelin/defender-sdk-base-client@2.7.1
+
 ## 2.7.0
 
 ### Minor Changes

@@ -137,7 +137,7 @@ export abstract class BaseApiClient {
         throw new Error('API Key is either expired or invalid');
       }
 
-       // by default no retries on 500 errors except for Cloudflare errors
+      // by default no retries on 500 errors except for Cloudflare errors
       if (isInternalServerError(error) && !isCloudFlareError(error)) {
         throw error;
       }
