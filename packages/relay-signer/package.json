@@ -28,7 +28,7 @@
     "@ethersproject/abstract-signer": "^5.7.0",
     "@ethersproject/hash": "^5.7.0",
     "@ethersproject/transactions": "^5.7.0",
-    "jest-mock-extended": "^3.0.5"
+    "jest-mock-extended": "^4.0.0"
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.2",
