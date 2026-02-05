@@ -65,7 +65,7 @@ jobs:
         shell: bash
 
       - name: Commit pnpm-lock.yaml file changes
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
         with:
           commit-message: "🤖 chore: Update the pnpm-lock.yaml file"
           title: "chore: 🤖 [Automated PR] Update the pnpm-lock.yaml file"
