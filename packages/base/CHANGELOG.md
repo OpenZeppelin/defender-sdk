@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - 46b6267: chore: Update README with oss migration
+- 1c1b7bd: fix: add axios as an explicit dependency
 
 ## 2.7.0
 

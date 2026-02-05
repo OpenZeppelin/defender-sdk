@@ -95,7 +95,7 @@ jobs:
 
       - name: Publish to NPM
         id: changesets
-        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
+        uses: changesets/action@c48e67d110a68bc90ccf1098e9646092baacaa87 # v1.6.0
         with:
           setupGitUser: false
           version: pnpm ci:version
@@ -103,7 +103,6 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
-          NPM_TOKEN: '' # https://github.com/changesets/changesets/issues/1152#issuecomment-3190884868
           NPM_CONFIG_PROVENANCE: true
 
       - name: Generate SBOM
