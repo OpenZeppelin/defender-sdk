@@ -1,5 +1,11 @@
 # @openzeppelin/defender-sdk-base-client
 
+## 2.7.2
+
+### Patch Changes
+
+- 5bac9c8: chore: bump rollup from 4.22.4 to 4.59.0 in /examples/custom-ethers-pkg
+
 ## 2.7.1
 
 ### Patch Changes

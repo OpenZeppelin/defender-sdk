@@ -1,5 +1,26 @@
 # @openzeppelin/defender-sdk
 
+## 2.7.2
+
+### Patch Changes
+
+- 5bac9c8: chore: bump rollup from 4.22.4 to 4.59.0 in /examples/custom-ethers-pkg
+- Updated dependencies [5bac9c8]
+  - @openzeppelin/defender-sdk-account-client@2.7.2
+  - @openzeppelin/defender-sdk-action-client@2.7.2
+  - @openzeppelin/defender-sdk-address-book-client@2.7.2
+  - @openzeppelin/defender-sdk-approval-process-client@2.7.2
+  - @openzeppelin/defender-sdk-base-client@2.7.2
+  - @openzeppelin/defender-sdk-deploy-client@2.7.2
+  - @openzeppelin/defender-sdk-key-value-store-client@2.7.2
+  - @openzeppelin/defender-sdk-monitor-client@2.7.2
+  - @openzeppelin/defender-sdk-network-client@2.7.2
+  - @openzeppelin/defender-sdk-notification-channel-client@2.7.2
+  - @openzeppelin/defender-sdk-proposal-client@2.7.2
+  - @openzeppelin/defender-sdk-relay-client@2.7.2
+  - @openzeppelin/defender-sdk-relay-group-client@2.7.2
+  - @openzeppelin/defender-sdk-relay-signer-client@2.7.2
+
 ## 2.7.1
 
 ### Patch Changes

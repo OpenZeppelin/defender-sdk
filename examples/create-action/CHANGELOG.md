@@ -1,5 +1,13 @@
 # @openzeppelin/defender-sdk-example-create-action
 
+## 2.7.2
+
+### Patch Changes
+
+- 5bac9c8: chore: bump rollup from 4.22.4 to 4.59.0 in /examples/custom-ethers-pkg
+- Updated dependencies [5bac9c8]
+  - @openzeppelin/defender-sdk@2.7.2
+
 ## 2.7.1
 
 ### Patch Changes
