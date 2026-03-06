@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+      uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
       with:
         egress-policy: audit
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.5.4
 
     - name: Prepare pre-requisites
       uses: ./.github/actions/prepare
