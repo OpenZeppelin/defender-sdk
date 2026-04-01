@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+        uses: step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d # v2.16.1
         with:
           egress-policy: audit
 
-      - uses: release-drafter/release-drafter@00ce30b0ce8a4d67bccfca59421cdf6c55dd0784 # v6.3.0
+      - uses: release-drafter/release-drafter@139054aeaa9adc52ab36ddf67437541f039b88e2 # v7.1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
